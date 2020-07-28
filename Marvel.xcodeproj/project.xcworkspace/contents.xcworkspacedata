@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MarvelCharacters.xcodeproj">
+      location = "self:Marvel.xcodeproj">
    </FileRef>
 </Workspace>

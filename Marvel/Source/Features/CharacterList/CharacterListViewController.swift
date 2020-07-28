@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class CharacterListViewController: UIViewController {
+    
+    @IBOutlet private var message: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        message.text = R.Localizable.helloWorld()
     }
-
-
 }
-

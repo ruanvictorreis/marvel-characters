@@ -66,7 +66,7 @@ class CharacterListViewController: UIViewController {
     }
     
     private func setupSearchBar() {
-        let search = UISearchController()
+        let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self
         search.searchBar.tintColor = .darkness
         search.obscuresBackgroundDuringPresentation = false

@@ -16,5 +16,13 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         message.text = R.Localizable.helloWorld()
+        
+        CharacterListWorker().fetchCharacterList(
+            sucess: { response in
+                print(response)
+            },
+            failure: { error in
+                print(error)
+            })
     }
 }

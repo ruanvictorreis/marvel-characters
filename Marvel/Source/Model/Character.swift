@@ -16,4 +16,5 @@ struct Character: Decodable {
     
     let description: String
     
+    let thumbnail: Thumbnail
 }

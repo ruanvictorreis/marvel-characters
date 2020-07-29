@@ -1,0 +1,58 @@
+disabled_rules: 
+  - trailing_whitespace
+  - sorted_imports
+  - unused_optional_binding
+
+opt_in_rules:
+  - empty_count
+
+included:
+  - Marvel
+
+excluded:
+  - Carthage
+  - Pods
+  - MarvelTests
+  - Marvel/Resources/R.generated.swift
+
+analyzer_rules:
+  - explicit_self
+  - unused_declaration
+  - unused_import
+
+force_cast: warning
+
+force_try:
+  severity: warning
+
+line_length:
+    warning: 110
+    error: 200
+    ignores_function_declarations: true
+    ignores_comments: true
+    ignores_urls: true
+
+type_body_length:
+  - warning: 300
+  - error: 400
+
+file_length:
+  warning: 500
+  error: 1200
+
+type_name:
+  min_length: 3
+  max_length:
+    warning: 40
+    error: 50
+  excluded: iPhone
+  allowed_symbols: ["_"]
+
+identifier_name:
+  min_length:
+    error: 3
+  excluded:
+    - id
+    - GlobalAPIKey
+
+reporter: "xcode"

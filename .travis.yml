@@ -1,0 +1,19 @@
+language: swift
+osx_image: xcode11.6
+xcode_workspace: Marvel.xcworkspace
+xcode_sdk: iphonesimulator13.6
+
+env:
+ - DESTINATION="platform=iOS Simulator,name=iPhone 11,OS=13.6"
+
+branches:
+  only:
+  - master
+
+install:
+  - pod install
+  - ./Scripts/install_swiftlint.sh
+
+script:
+  - swiftlint
+  - set -o pipefail && xcodebuild -workspace Marvel.xcworkspace -scheme Marvel -destination "$DESTINATION" test | xcpretty

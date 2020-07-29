@@ -19,7 +19,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-3Z-7eA">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
                                     <size key="itemSize" width="180" height="275"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -33,11 +33,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
                                                     <rect key="frame" x="0.0" y="0.0" width="180" height="275"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="3DO-oS-oSv"/>
+                                                <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="TrT-YP-fRY"/>
+                                                <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="n0i-IP-1c8"/>
+                                                <constraint firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" id="rX5-h7-Z6k"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                     <real key="value" value="0.59999999999999998"/>

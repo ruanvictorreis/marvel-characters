@@ -20,35 +20,31 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
-                                    <size key="itemSize" width="185" height="275"/>
+                                    <size key="itemSize" width="180" height="275"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="eS3-Ta-seH" customClass="CharacterCollectionViewCell" customModule="Marvel" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="183" height="275"/>
+                                        <rect key="frame" x="16" y="16" width="180" height="275"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S38-ZH-Hg7">
-                                            <rect key="frame" x="0.0" y="0.0" width="183" height="275"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S38-ZH-Hg7" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="275"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="183" id="BLk-Et-PfM"/>
-                                                        <constraint firstAttribute="height" constant="275" id="jcP-8H-ZuT"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="275"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="dJp-vC-6La"/>
-                                                <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="ldC-6w-VfX"/>
-                                                <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="oez-KN-DZS"/>
-                                                <constraint firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" id="tdp-Il-L6v"/>
-                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="0.59999999999999998"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="183" height="275"/>
+                                        <size key="customSize" width="180" height="275"/>
                                         <connections>
                                             <outlet property="characterImage" destination="G7h-a8-leH" id="mSv-HP-gxo"/>
                                         </connections>

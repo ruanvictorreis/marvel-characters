@@ -10,7 +10,20 @@ import Foundation
 
 class CharacterListBuilder {
     
+    // MARK: - Public functions
+    
     func build() -> CharacterListViewController? {
-        return R.storyboard.main.characterList()
+        let viewController = R.storyboard.main.characterList()
+        let interactor = CharacterListInteractor()
+        let presenter = CharacterListPresenter()
+        let router = CharacterListRouter()
+        
+        viewController?.interactor = interactor
+        viewController?.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        
+        return viewController
     }
 }

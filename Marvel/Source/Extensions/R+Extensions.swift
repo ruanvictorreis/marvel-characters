@@ -9,5 +9,4 @@
 extension R {
     
     typealias Localizable = R.string.localizable
-    
 }

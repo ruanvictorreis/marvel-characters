@@ -13,18 +13,18 @@ typealias RequestFailure = (_ error: AFError?) -> Void
 
 protocol Networking {
     
-    func request<T: Decodable>(data: RequestData,
-                               decoder: Decoder<T>,
-                               success: @escaping RequestSuccess<T>,
-                               failure: @escaping RequestFailure)
+    static func request<T: Decodable>(data: RequestData,
+                                      decoder: DefaultDecoder<T>,
+                                      success: @escaping RequestSuccess<T>,
+                                      failure: @escaping RequestFailure)
 }
 
 class Network: Networking {
     
-    func request<T: Decodable>(data: RequestData,
-                               decoder: Decoder<T>,
-                               success: @escaping RequestSuccess<T>,
-                               failure: @escaping RequestFailure) {
+    static func request<T: Decodable>(data: RequestData,
+                                      decoder: DefaultDecoder<T>,
+                                      success: @escaping RequestSuccess<T>,
+                                      failure: @escaping RequestFailure) {
         
         let request = AF.request(data.url, method: data.method,
                                  parameters: data.parameters,

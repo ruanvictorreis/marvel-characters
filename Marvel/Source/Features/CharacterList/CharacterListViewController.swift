@@ -16,20 +16,5 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         message.text = R.Localizable.helloWorld()
-        
-        let enconding = JSONEncoding.default
-        let url = MarvelAPI.build(section: .characters, limit: 25)
-        let request = RequestData(url: url, method: .get, encoding: enconding)
-        
-        Network().request(
-            data: request,
-            decoder: Decoder(expectation: Character.self),
-            success: { response in
-                print(response)
-            },
-            failure: { error in
-                print(error)
-            })
-        
     }
 }

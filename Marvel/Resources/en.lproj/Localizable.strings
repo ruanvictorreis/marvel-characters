@@ -7,3 +7,11 @@
 */
 
 "helloWorld" = "Hello World";
+
+"characters" = "Marvel Characters";
+
+"search" = "Search";
+
+"errorTitle" = "Oops, an error has occurred!";
+
+"errorDescription" = "Sorry, something went wrong. Try again later.";

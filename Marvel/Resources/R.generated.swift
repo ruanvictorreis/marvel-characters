@@ -114,14 +114,38 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `CharacterCell`.
+    static let characterCell: Rswift.ReuseIdentifier<CharacterCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "CharacterCell")
+
+    fileprivate init() {}
+  }
+
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
     struct localizable {
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
       static let helloWorld = Rswift.StringResource(key: "helloWorld", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Marvel Characters
+      ///
+      /// Locales: en, pt-BR
+      static let characters = Rswift.StringResource(key: "characters", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Oops, an error has occurred!
+      ///
+      /// Locales: en, pt-BR
+      static let errorTitle = Rswift.StringResource(key: "errorTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, pt-BR
+      static let search = Rswift.StringResource(key: "search", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Sorry, something went wrong. Try again later.
+      ///
+      /// Locales: en, pt-BR
+      static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
 
       /// en translation: Hello World
       ///
@@ -136,6 +160,66 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helloWorld", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Marvel Characters
+      ///
+      /// Locales: en, pt-BR
+      static func characters(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("characters", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "characters"
+        }
+
+        return NSLocalizedString("characters", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Oops, an error has occurred!
+      ///
+      /// Locales: en, pt-BR
+      static func errorTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("errorTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "errorTitle"
+        }
+
+        return NSLocalizedString("errorTitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, pt-BR
+      static func search(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "search"
+        }
+
+        return NSLocalizedString("search", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sorry, something went wrong. Try again later.
+      ///
+      /// Locales: en, pt-BR
+      static func errorDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("errorDescription", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "errorDescription"
+        }
+
+        return NSLocalizedString("errorDescription", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

@@ -11,7 +11,7 @@ import Alamofire
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
-    func showCharacterList(characterList: [Character])
+    func showCharacterList(_ characters: [Character])
     
     func showCharacterListError(errorMessage: String)
 }
@@ -51,6 +51,11 @@ class CharacterListViewController: UIViewController {
         interactor.fetchCharacterList()
     }
     
+    private func fetchCharacterNextPage() {
+        showLoading()
+        interactor.fetchCharacterNextPage()
+    }
+    
     private func setupUI() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -74,11 +79,21 @@ class CharacterListViewController: UIViewController {
 
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
-    func showCharacterList(characterList: [Character]) {
-        self.characterList = characterList
+    func showCharacterList(_ characters: [Character]) {
+        var indexPaths: [IndexPath] = []
+        
+        for index in characters.indices {
+            let item = IndexPath(item: index + (characterList.count), section: 0)
+            indexPaths.append(item)
+        }
+        
+        characterList.append(contentsOf: characters)
+        
+        self.collectionView.performBatchUpdates({
+            self.collectionView.insertItems(at: indexPaths)
+        })
         
         hideLoading()
-        collectionView.reloadData()
     }
     
     func showCharacterListError(errorMessage: String) {
@@ -90,6 +105,27 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        
+        let lastRowIndex = collectionView.numberOfItems(inSection: indexPath.section) - 1
+        
+        if lastRowIndex == indexPath.row {
+            fetchCharacterNextPage()
+        }
+        
+        cell.alpha = 0.0
+        cell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        
+        UIView.animate(withDuration: 0.4, delay: 0.0, options: .allowUserInteraction, animations: {
+            cell.alpha = 1.0
+            cell.transform = .identity
+        })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //router.proceedToCharacterDetails(character: characterList[indexPath.item])
+    }
 }
 
 extension CharacterListViewController: UICollectionViewDataSource {
@@ -99,9 +135,8 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CharacterCell", for: indexPath) as? CharacterCollectionViewCell
-        else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath)
+            as? CharacterCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setup(character: characterList[indexPath.item])
         
@@ -117,7 +152,8 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding = insetForSections.left + insetForSections.right + margin
         let width = (view.bounds.size.width - padding) / 2
         let ratio: CGFloat = 1.85

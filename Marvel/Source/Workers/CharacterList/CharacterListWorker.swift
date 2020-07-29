@@ -13,6 +13,10 @@ typealias CharacterListError = (_ error: AFError?) -> Void
 
 protocol CharacterListWorkerProtocol {
     
+    var currentPage: Int { get }
+    
+    func nextPage()
+    
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
     
@@ -23,11 +27,24 @@ protocol CharacterListWorkerProtocol {
 
 class CharacterListWorker: CharacterListWorkerProtocol {
     
+    // MARK: - Private properties
+    
+    private let pageCount = 25
+    
+    // MARK: - Public properties
+    
+    var currentPage = 0
+    
+    // MARK: - Public function
+    
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
+        let url = MarvelAPI.build(
+            resource: .characters,
+            offset: pageCount * currentPage)
+        
         let enconding = JSONEncoding.default
-        let url = MarvelAPI.build(resource: .characters)
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
         let request = RequestData(url: url, method: .get, encoding: enconding)
         
@@ -47,7 +64,8 @@ class CharacterListWorker: CharacterListWorkerProtocol {
                             failure: @escaping CharacterListError) {
         
         let url = MarvelAPI.build(
-            resource: .characters, searchParameter: searchParameter)
+            resource: .characters,
+            searchParameter: searchParameter)
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
@@ -62,5 +80,9 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             failure: { error in
                 failure(error)
             })
+    }
+    
+    func nextPage() {
+        self.currentPage += 1
     }
 }

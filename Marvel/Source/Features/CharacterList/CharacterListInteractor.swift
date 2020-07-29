@@ -11,10 +11,12 @@ import Foundation
 protocol CharacterListInteractorProtocol {
     
     func fetchCharacterList()
+    
+    func fetchCharacterNextPage()
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
-    
+
     // MARK: - VIP properties
     
     var presenter: CharacterListPresenterProtocol!
@@ -39,5 +41,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
             })
+    }
+    
+    func fetchCharacterNextPage() {
+        characterListWorker.nextPage()
+        fetchCharacterList()
     }
 }

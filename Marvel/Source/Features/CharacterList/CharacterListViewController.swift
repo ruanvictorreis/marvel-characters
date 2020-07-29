@@ -156,9 +156,9 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding = insetForSections.left + insetForSections.right + margin
         let width = (view.bounds.size.width - padding) / 2
-        let ratio: CGFloat = 1.85
+        let ratio: CGFloat = 1.5
         let height = width * ratio
-        
+
         return CGSize(width: width, height: height)
     }
 }

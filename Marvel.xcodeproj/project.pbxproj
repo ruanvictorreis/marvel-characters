@@ -23,6 +23,7 @@
 		155B772C24D1F688005DECC3 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B772B24D1F688005DECC3 /* UIViewController+Extensions.swift */; };
 		155B772E24D1F6FB005DECC3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B772D24D1F6FB005DECC3 /* UIColor+Extensions.swift */; };
 		155B773024D1FE8E005DECC3 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B772F24D1FE8E005DECC3 /* CharacterCollectionViewCell.swift */; };
+		155B773224D21DE5005DECC3 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B773124D21DE5005DECC3 /* UIImageView+Extensions.swift */; };
 		156B2F2224D10B4400643FB6 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2124D10B4400643FB6 /* Character.swift */; };
 		156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2324D10FAF00643FB6 /* Date+Extensions.swift */; };
 		156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2524D110F300643FB6 /* String+Extensions.swift */; };
@@ -67,6 +68,7 @@
 		155B772B24D1F688005DECC3 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		155B772D24D1F6FB005DECC3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		155B772F24D1FE8E005DECC3 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		155B773124D21DE5005DECC3 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		156B2F2124D10B4400643FB6 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		156B2F2324D10FAF00643FB6 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		156B2F2524D110F300643FB6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				156B2F2524D110F300643FB6 /* String+Extensions.swift */,
 				155B772D24D1F6FB005DECC3 /* UIColor+Extensions.swift */,
 				155B772B24D1F688005DECC3 /* UIViewController+Extensions.swift */,
+				155B773124D21DE5005DECC3 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				155B772C24D1F688005DECC3 /* UIViewController+Extensions.swift in Sources */,
 				151C67A024D0EE5A005D0D08 /* CharacterListBuilder.swift in Sources */,
 				156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */,
+				155B773224D21DE5005DECC3 /* UIImageView+Extensions.swift in Sources */,
 				155B772524D1D742005DECC3 /* CharacterListInteractor.swift in Sources */,
 				1518F10B24D0FB360020593B /* MarvelAPI.swift in Sources */,
 				155B772124D1B9AD005DECC3 /* CharacterListResults.swift in Sources */,

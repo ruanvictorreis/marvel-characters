@@ -10,17 +10,23 @@ import UIKit
 
 class CharacterCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet private var characterName: UILabel!
+//    @IBOutlet private var characterName: UILabel!
+    
+    @IBOutlet private var characterImage: UIImageView!
     
     override func prepareForReuse() {
         clearForReuse()
     }
     
     func setup(character: Character) {
-        characterName.text = character.name
+//        characterName.text = character.name
+        let thumbnail = character.thumbnail
+        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
+        characterImage.load(url: imageUrl)
     }
     
     private func clearForReuse() {
-        characterName.text = nil
+//        characterName.text = nil
+        characterImage.cancel()
     }
 }

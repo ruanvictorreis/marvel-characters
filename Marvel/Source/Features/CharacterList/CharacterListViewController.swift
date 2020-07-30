@@ -18,25 +18,25 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func showCharacterListError(errorMessage: String)
 }
 
-class CharacterListViewController: UIViewController {
+class CharacterListViewController: UIViewController, CharacterListViewControllerProtocol {
     
-    // MARK: - VIP properties
+    // MARK: - IBOutlets
+    
+    @IBOutlet private var collectionView: UICollectionView!
+
+    // MARK: - VIP Properties
     
     var interactor: CharacterListInteractorProtocol!
     
     var router: CharacterListRouterProtocol!
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet private var collectionView: UICollectionView!
-    
-    // MARK: - Private properties
+    // MARK: - Private Properties
     
     private var characterList: [Character] = []
     
     private let disposeBag = DisposeBag()
     
-    // MARK: - View lifecycle
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +47,9 @@ class CharacterListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigation()
-        setupSearchBar()
     }
     
-    // MARK: - Private functions
+    // MARK: - Private Functions
     
     private func clean() {
         characterList = []
@@ -75,12 +74,13 @@ class CharacterListViewController: UIViewController {
     }
     
     private func setupUI() {
+        setupSearchBar()
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
     private func setupNavigation() {
-        self.navigationItem.title = R.Localizable.characters()
+        navigationItem.title = R.Localizable.characters()
     }
     
     private func setupSearchBar() {
@@ -100,15 +100,12 @@ class CharacterListViewController: UIViewController {
                 self?.searchForCharacter(searchParameter)
             }).disposed(by: disposeBag)
         
-        self.navigationItem.searchController = search
-        self.navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.searchController = search
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
-}
-
-// MARK: - CharacterListViewController protocol requirements
-
-extension CharacterListViewController: CharacterListViewControllerProtocol {
-        
+    
+    // MARK: - Public Functions
+    
     func showCharacterList(_ characters: [Character]) {
         var indexPaths: [IndexPath] = []
         
@@ -132,7 +129,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
 }
 
-// MARK: - UICollectionView protocols requirements
+// MARK: - UICollectionViewDelegate Protocol
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
@@ -155,9 +152,11 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //router.proceedToCharacterDetails(character: characterList[indexPath.item])
+        router.proceedToCharacterDetails(characterList[indexPath.item])
     }
 }
+
+// MARK: - UICollectionViewDataSource Protocol
 
 extension CharacterListViewController: UICollectionViewDataSource {
     
@@ -174,6 +173,8 @@ extension CharacterListViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout Protocol
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     
@@ -194,7 +195,7 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - UISearchBarDelegate protocol requirements
+// MARK: - UISearchBarDelegate Protocol
 
 extension CharacterListViewController: UISearchBarDelegate {
     

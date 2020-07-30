@@ -17,19 +17,21 @@ protocol CharacterListPresenterProtocol {
 
 class CharacterListPresenter: CharacterListPresenterProtocol {
 
-    // MARK: - VIP properties
+    // MARK: - VIP Properties
     
     weak var viewController: CharacterListViewControllerProtocol!
     
-    // MARK: - Public function
+    // MARK: - Public Function
     
     func showCharacterList(_ response: CharacterListResponse?) {
-        guard let results = response?.data.results else { return }
+        guard let results = response?.data.results
+            else { showCharacterListError(); return }
+        
         viewController.showCharacterList(results)
     }
     
-    func showCharacterListError(_ error: AFError?) {
-        viewController.showCharacterListError(
-            errorMessage: error?.errorDescription ?? R.Localizable.errorDescription())
+    func showCharacterListError(_ error: AFError? = nil) {
+        let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
+        viewController.showCharacterListError(errorMessage: errorMessage)
     }
 }

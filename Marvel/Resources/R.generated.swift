@@ -114,18 +114,24 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `CharacterCell`.
     static let characterCell: Rswift.ReuseIdentifier<CharacterCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "CharacterCell")
+    /// Reuse identifier `ComicBookCell`.
+    static let comicBookCell: Rswift.ReuseIdentifier<ComicBookCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "ComicBookCell")
 
     fileprivate init() {}
   }
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
+      /// en translation: Comics
+      ///
+      /// Locales: en, pt-BR
+      static let comics = Rswift.StringResource(key: "comics", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
@@ -146,6 +152,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+
+      /// en translation: Comics
+      ///
+      /// Locales: en, pt-BR
+      static func comics(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("comics", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "comics"
+        }
+
+        return NSLocalizedString("comics", bundle: bundle, comment: "")
+      }
 
       /// en translation: Hello World
       ///
@@ -280,8 +301,13 @@ struct _R: Rswift.Validatable {
       typealias InitialController = CharacterListViewController
 
       let bundle = R.hostingBundle
+      let characterDetails = StoryboardViewControllerResource<CharacterDetailsViewController>(identifier: "CharacterDetails")
       let characterList = StoryboardViewControllerResource<CharacterListViewController>(identifier: "CharacterList")
       let name = "Main"
+
+      func characterDetails(_: Void = ()) -> CharacterDetailsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: characterDetails)
+      }
 
       func characterList(_: Void = ()) -> CharacterListViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: characterList)
@@ -290,6 +316,7 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+        if _R.storyboard.main().characterDetails() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterDetails' could not be loaded from storyboard 'Main' as 'CharacterDetailsViewController'.") }
         if _R.storyboard.main().characterList() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterList' could not be loaded from storyboard 'Main' as 'CharacterListViewController'.") }
       }
 

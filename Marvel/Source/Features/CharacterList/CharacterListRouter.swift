@@ -10,12 +10,19 @@ import Foundation
 
 protocol CharacterListRouterProtocol {
     
+    func proceedToCharacterDetails(_ character: Character)
 }
 
 class CharacterListRouter: CharacterListRouterProtocol {
     
-    // MARK: - VIP properties
+    // MARK: - VIP Properties
     
     weak var viewController: CharacterListViewController!
     
+    // MARK: - Public Functions
+    
+    func proceedToCharacterDetails(_ character: Character) {
+        guard let nextScene = CharacterDetailsBuilder().build(character) else { return }
+        viewController.navigationController?.pushViewController(nextScene, animated: true)
+    }
 }

@@ -9,5 +9,4 @@
 struct CharacterListResponse: Decodable {
     
     let data: CharacterListResults
-    
 }

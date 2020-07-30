@@ -10,7 +10,7 @@ import Foundation
 
 class CharacterListBuilder {
     
-    // MARK: - Public functions
+    // MARK: - Public Functions
     
     func build() -> CharacterListViewController? {
         let viewController = R.storyboard.main.characterList()

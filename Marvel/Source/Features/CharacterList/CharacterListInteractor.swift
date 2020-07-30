@@ -21,11 +21,11 @@ protocol CharacterListInteractorProtocol {
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
 
-    // MARK: - VIP properties
+    // MARK: - VIP Properties
     
     var presenter: CharacterListPresenterProtocol!
     
-    // MARK: - Private properties
+    // MARK: - Private Properties
     
     private var searchingFor = ""
     
@@ -39,7 +39,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         self.characterListWorker = CharacterListWorker()
     }
     
-    // MARK: - Public functions
+    // MARK: - Public Functions
     
     func fetchCharacterList() {
         characterListWorker.fetchCharacterList(
@@ -64,7 +64,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         searchingFor = searchParameter
         isSearchEnabled = true
         
-        characterListWorker.searchForCharacter(
+        characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             sucess: {[weak self] response in
                 self?.presenter.showCharacterList(response)
@@ -80,7 +80,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.restart()
     }
     
-    // MARK: - Private functions
+    // MARK: - Private Functions
     
     private func searchForCharacter() {
         searchForCharacter(searchingFor)

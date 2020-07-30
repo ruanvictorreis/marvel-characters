@@ -1,12 +1,14 @@
 //
-//  CharacterListData.swift
+//  ComicBooListResults.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 29/07/20.
+//  Created by Ruan Reis on 30/07/20.
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-struct CharacterListResults: Decodable {
+import Foundation
+
+struct ComicBooListResults: Decodable {
     
     let offset: Int
     
@@ -16,5 +18,5 @@ struct CharacterListResults: Decodable {
     
     let count: Int
     
-    let results: [Character]
+    let results: [ComicBook]
 }

@@ -64,7 +64,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         searchingFor = searchParameter
         isSearchEnabled = true
         
-        characterListWorker.searchForCharacter(
+        characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             sucess: {[weak self] response in
                 self?.presenter.showCharacterList(response)

@@ -22,14 +22,14 @@ protocol CharacterListWorkerProtocol {
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
     
-    func searchForCharacter(searchParameter: String,
+    func fetchCharacterList(searchParameter: String,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
 }
 
 class CharacterListWorker: CharacterListWorkerProtocol {
     
-    // MARK: - Private properties
+    // MARK: - Private Properties
     
     private var totalCount = 0
     
@@ -37,7 +37,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     
     private let pageCount = 20
     
-    // MARK: - Public function
+    // MARK: - Public Function
     
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
@@ -55,14 +55,14 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             decoder: decoder,
             success: { [weak self] response in
                 sucess(response)
-                self?.setup(response)
+                self?.totalCount = response?.data.total ?? 0
             },
             failure: { error in
                 failure(error)
             })
     }
     
-    func searchForCharacter(searchParameter: String,
+    func fetchCharacterList(searchParameter: String,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
@@ -80,7 +80,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             decoder: decoder,
             success: { [weak self] response in
                 sucess(response)
-                self?.setup(response)
+                self?.totalCount = response?.data.total ?? 0
             },
             failure: { error in
                 failure(error)
@@ -100,11 +100,5 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     func restart() {
         totalCount = 0
         currentPage = 0
-    }
-    
-    // MARK: - Private function
-    
-    func setup(_ response: CharacterListResponse?) {
-        totalCount = response?.data.total ?? 0
     }
 }

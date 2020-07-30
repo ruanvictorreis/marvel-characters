@@ -14,10 +14,10 @@ class MarvelURLBuilder {
     
     init(resource: MarvelResource) {
         self.url = "\(MarvelAPI.baseURL)/public/\(resource.rawValue)"
-        setup()
+        setupURL()
     }
     
-    private func setup() {
+    private func setupURL() {
         let apiKey = MarvelAPI.publicKey
         let privateKey = MarvelAPI.privateKey
         let timeStamp = Date().toMillisString()
@@ -32,6 +32,11 @@ class MarvelURLBuilder {
     
     func set(nameStartsWith: String) -> MarvelURLBuilder {
         self.url += "&nameStartsWith=\(nameStartsWith.percentEncoding)"
+        return self
+    }
+    
+    func set(characters: Int) -> MarvelURLBuilder {
+        self.url += "&characters=\(characters)"
         return self
     }
     

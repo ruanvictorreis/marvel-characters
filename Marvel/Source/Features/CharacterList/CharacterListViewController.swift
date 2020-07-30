@@ -127,6 +127,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
     
     func showCharacterListError(errorMessage: String) {
+        hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

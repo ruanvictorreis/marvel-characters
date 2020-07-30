@@ -280,8 +280,13 @@ struct _R: Rswift.Validatable {
       typealias InitialController = CharacterListViewController
 
       let bundle = R.hostingBundle
+      let characterDetails = StoryboardViewControllerResource<CharacterDetailsViewController>(identifier: "CharacterDetails")
       let characterList = StoryboardViewControllerResource<CharacterListViewController>(identifier: "CharacterList")
       let name = "Main"
+
+      func characterDetails(_: Void = ()) -> CharacterDetailsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: characterDetails)
+      }
 
       func characterList(_: Void = ()) -> CharacterListViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: characterList)
@@ -290,6 +295,7 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+        if _R.storyboard.main().characterDetails() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterDetails' could not be loaded from storyboard 'Main' as 'CharacterDetailsViewController'.") }
         if _R.storyboard.main().characterList() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterList' could not be loaded from storyboard 'Main' as 'CharacterListViewController'.") }
       }
 

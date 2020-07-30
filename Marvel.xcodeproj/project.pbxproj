@@ -30,6 +30,11 @@
 		156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2524D110F300643FB6 /* String+Extensions.swift */; };
 		159E393224D0EBE000744AB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 159E393424D0EBE000744AB4 /* Localizable.strings */; };
 		159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E393724D0ECDF00744AB4 /* R+Extensions.swift */; };
+		15ACB5C524D30508002156D0 /* CharacterDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACB5C424D30508002156D0 /* CharacterDetailsBuilder.swift */; };
+		15ACB5C724D30559002156D0 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACB5C624D30559002156D0 /* CharacterDetailsViewController.swift */; };
+		15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACB5C824D30A38002156D0 /* CharacterDetailsInteractor.swift */; };
+		15ACB5CB24D30A8C002156D0 /* CharacterDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACB5CA24D30A8C002156D0 /* CharacterDetailsPresenter.swift */; };
+		15ACB5CD24D30ADE002156D0 /* CharacterDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ACB5CC24D30ADE002156D0 /* CharacterDetailsRouter.swift */; };
 		15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */; };
 		15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */; };
 		15B6EA0324D0D640005F2CD2 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA0224D0D640005F2CD2 /* CharacterListViewController.swift */; };
@@ -77,6 +82,11 @@
 		159E393324D0EBE000744AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		159E393524D0EBF500744AB4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159E393724D0ECDF00744AB4 /* R+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R+Extensions.swift"; sourceTree = "<group>"; };
+		15ACB5C424D30508002156D0 /* CharacterDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsBuilder.swift; sourceTree = "<group>"; };
+		15ACB5C624D30559002156D0 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
+		15ACB5C824D30A38002156D0 /* CharacterDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsInteractor.swift; sourceTree = "<group>"; };
+		15ACB5CA24D30A8C002156D0 /* CharacterDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsPresenter.swift; sourceTree = "<group>"; };
+		15ACB5CC24D30ADE002156D0 /* CharacterDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsRouter.swift; sourceTree = "<group>"; };
 		15B6E9FB24D0D640005F2CD2 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +154,6 @@
 		153AAF2224D0EA4400EEE22E /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */,
 				15B6EA0424D0D640005F2CD2 /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -216,6 +225,7 @@
 				15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */,
 				15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */,
 				15B6EA0C24D0D640005F2CD2 /* Info.plist */,
+				15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -236,6 +246,7 @@
 		159E393A24D0EDAB00744AB4 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				15ACB5C324D30137002156D0 /* CharacterDetails */,
 				159E393B24D0EDB600744AB4 /* CharacterList */,
 			);
 			path = Features;
@@ -252,6 +263,18 @@
 				15B6EA0224D0D640005F2CD2 /* CharacterListViewController.swift */,
 			);
 			path = CharacterList;
+			sourceTree = "<group>";
+		};
+		15ACB5C324D30137002156D0 /* CharacterDetails */ = {
+			isa = PBXGroup;
+			children = (
+				15ACB5C424D30508002156D0 /* CharacterDetailsBuilder.swift */,
+				15ACB5C824D30A38002156D0 /* CharacterDetailsInteractor.swift */,
+				15ACB5CA24D30A8C002156D0 /* CharacterDetailsPresenter.swift */,
+				15ACB5CC24D30ADE002156D0 /* CharacterDetailsRouter.swift */,
+				15ACB5C624D30559002156D0 /* CharacterDetailsViewController.swift */,
+			);
+			path = CharacterDetails;
 			sourceTree = "<group>";
 		};
 		15B6E9F224D0D640005F2CD2 = {
@@ -556,6 +579,7 @@
 				15B6EA0324D0D640005F2CD2 /* CharacterListViewController.swift in Sources */,
 				15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */,
 				15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */,
+				15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */,
 				155B772924D1D83C005DECC3 /* CharacterListRouter.swift in Sources */,
 				156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */,
 				156B2F2224D10B4400643FB6 /* Character.swift in Sources */,
@@ -564,15 +588,19 @@
 				156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */,
 				155B773224D21DE5005DECC3 /* UIImageView+Extensions.swift in Sources */,
 				155B772524D1D742005DECC3 /* CharacterListInteractor.swift in Sources */,
+				15ACB5C524D30508002156D0 /* CharacterDetailsBuilder.swift in Sources */,
 				1518F10B24D0FB360020593B /* MarvelAPI.swift in Sources */,
 				155B772124D1B9AD005DECC3 /* CharacterListResults.swift in Sources */,
 				155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */,
+				15ACB5CB24D30A8C002156D0 /* CharacterDetailsPresenter.swift in Sources */,
 				15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */,
 				1518F10524D0F99C0020593B /* Network.swift in Sources */,
 				159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */,
 				155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */,
 				155B772324D1C314005DECC3 /* Thumbnail.swift in Sources */,
+				15ACB5C724D30559002156D0 /* CharacterDetailsViewController.swift in Sources */,
 				155B773524D2245B005DECC3 /* UICardView.swift in Sources */,
+				15ACB5CD24D30ADE002156D0 /* CharacterDetailsRouter.swift in Sources */,
 				155B772724D1D7DC005DECC3 /* CharacterListPresenter.swift in Sources */,
 				1518F10724D0F9E40020593B /* RequestData.swift in Sources */,
 				155B771D24D1B59C005DECC3 /* CharacterListResponse.swift in Sources */,

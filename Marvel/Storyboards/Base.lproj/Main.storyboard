@@ -88,5 +88,89 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
+        <!--Character Details View Controller-->
+        <scene sceneID="spV-Xl-jJK">
+            <objects>
+                <viewController storyboardIdentifier="CharacterDetails" id="txf-B7-BjM" customClass="CharacterDetailsViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KcM-Nv-PXJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
+                                                <rect key="frame" x="0.0" y="82" width="414" height="178"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="240" width="414" height="644"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
+                                                        <rect key="frame" x="16" y="16" width="382" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="GV3-A6-NKn" firstAttribute="leading" secondItem="QSP-vL-nX4" secondAttribute="leading" constant="16" id="89K-Xw-m5p"/>
+                                                    <constraint firstAttribute="trailing" secondItem="GV3-A6-NKn" secondAttribute="trailing" constant="16" id="gr0-cD-U4D"/>
+                                                    <constraint firstItem="GV3-A6-NKn" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="16" id="le6-na-JVc"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="900" id="8xy-Bg-use"/>
+                                            <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="D61-Ec-24r"/>
+                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
+                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
+                                            <constraint firstAttribute="trailing" secondItem="dHP-hA-hqy" secondAttribute="trailing" id="N8y-OL-Wrp"/>
+                                            <constraint firstAttribute="trailing" secondItem="QSP-vL-nX4" secondAttribute="trailing" id="ZH7-US-gxp"/>
+                                            <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
+                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="yQQ-Uc-dJJ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hfs-dn-YSv" firstAttribute="leading" secondItem="bCl-Ed-bPG" secondAttribute="leading" id="0Vx-7Q-URs"/>
+                                    <constraint firstItem="hfs-dn-YSv" firstAttribute="trailing" secondItem="bCl-Ed-bPG" secondAttribute="trailing" id="3UX-mV-hxz"/>
+                                    <constraint firstItem="hfs-dn-YSv" firstAttribute="bottom" secondItem="bCl-Ed-bPG" secondAttribute="bottom" id="EXH-0V-slf"/>
+                                    <constraint firstItem="hfs-dn-YSv" firstAttribute="width" secondItem="oMU-76-BWo" secondAttribute="width" id="HYC-6Z-tfJ"/>
+                                    <constraint firstItem="hfs-dn-YSv" firstAttribute="top" secondItem="bCl-Ed-bPG" secondAttribute="top" id="dth-sh-a9Z"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="bCl-Ed-bPG"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="oMU-76-BWo"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bRe-YI-76a" firstAttribute="leading" secondItem="L5O-Yj-Zvw" secondAttribute="leading" id="L7I-2e-EIu"/>
+                            <constraint firstItem="dHP-hA-hqy" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" id="WnK-q4-BVk"/>
+                            <constraint firstItem="L5O-Yj-Zvw" firstAttribute="bottom" secondItem="bRe-YI-76a" secondAttribute="bottom" id="dFB-Y6-FPQ"/>
+                            <constraint firstItem="L5O-Yj-Zvw" firstAttribute="trailing" secondItem="bRe-YI-76a" secondAttribute="trailing" id="jD5-jz-WYk"/>
+                            <constraint firstItem="bRe-YI-76a" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" id="rQO-1t-41B"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="L5O-Yj-Zvw"/>
+                    </view>
+                    <size key="freeformSize" width="414" height="896"/>
+                    <connections>
+                        <outlet property="characterImage" destination="dHP-hA-hqy" id="x9b-K7-pCs"/>
+                        <outlet property="characterName" destination="GV3-A6-NKn" id="u0H-KP-d3l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KvB-VA-v82" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="902.89855072463774" y="133.92857142857142"/>
+        </scene>
     </scenes>
 </document>

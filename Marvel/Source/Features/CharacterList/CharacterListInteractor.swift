@@ -10,9 +10,13 @@ import Foundation
 
 protocol CharacterListInteractorProtocol {
     
+    func restart()
+    
     func fetchCharacterList()
     
     func fetchCharacterNextPage()
+    
+    func searchForCharacter(_ searchParameter: String)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -22,6 +26,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     var presenter: CharacterListPresenterProtocol!
     
     // MARK: - Private properties
+    
+    private var searchingFor = ""
+    
+    private var isSearchEnabled = false
     
     private let characterListWorker: CharacterListWorkerProtocol
     
@@ -44,7 +52,37 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func fetchCharacterNextPage() {
+        guard characterListWorker.shouldFetchNewPage() else { return }
         characterListWorker.nextPage()
-        fetchCharacterList()
+        
+        isSearchEnabled
+            ? searchForCharacter()
+            : fetchCharacterList()
+    }
+    
+    func searchForCharacter(_ searchParameter: String) {
+        searchingFor = searchParameter
+        isSearchEnabled = true
+        
+        characterListWorker.searchForCharacter(
+            searchParameter: searchParameter,
+            sucess: {[weak self] response in
+                self?.presenter.showCharacterList(response)
+            },
+            failure: { [weak self] error in
+                self?.presenter.showCharacterListError(error)
+            })
+    }
+    
+    func restart() {
+        searchingFor = ""
+        isSearchEnabled = false
+        characterListWorker.restart()
+    }
+    
+    // MARK: - Private functions
+    
+    private func searchForCharacter() {
+        searchForCharacter(searchingFor)
     }
 }

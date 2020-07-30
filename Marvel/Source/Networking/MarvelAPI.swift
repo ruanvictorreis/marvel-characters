@@ -34,7 +34,8 @@ struct MarvelAPI {
             + "&apikey=\(MarvelAPI.publicKey)"
     }
     
-    static func build(resource: MarvelResource, searchParameter: String) -> String {
-        return MarvelAPI.build(resource: resource) + "&nameStartsWith=\(searchParameter)"
+    static func build(resource: MarvelResource, searchParameter: String, offset: Int = 0) -> String {
+        return MarvelAPI.build(resource: resource, offset: offset)
+            + "&nameStartsWith=\(searchParameter.percentEncoding)"
     }
 }

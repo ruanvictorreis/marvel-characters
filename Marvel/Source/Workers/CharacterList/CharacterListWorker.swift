@@ -13,9 +13,11 @@ typealias CharacterListError = (_ error: AFError?) -> Void
 
 protocol CharacterListWorkerProtocol {
     
-    var currentPage: Int { get }
+    func restart()
     
     func nextPage()
+    
+    func shouldFetchNewPage() -> Bool
     
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
@@ -29,11 +31,11 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     
     // MARK: - Private properties
     
-    private let pageCount = 25
+    private var totalCount = 0
     
-    // MARK: - Public properties
+    private var currentPage = 0
     
-    var currentPage = 0
+    private let pageCount = 20
     
     // MARK: - Public function
     
@@ -42,7 +44,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         
         let url = MarvelAPI.build(
             resource: .characters,
-            offset: pageCount * currentPage)
+            offset: currentPage * pageCount)
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
@@ -51,8 +53,9 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         Network.request(
             data: request,
             decoder: decoder,
-            success: { response in
+            success: { [weak self] response in
                 sucess(response)
+                self?.setup(response)
             },
             failure: { error in
                 failure(error)
@@ -65,7 +68,8 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         
         let url = MarvelAPI.build(
             resource: .characters,
-            searchParameter: searchParameter)
+            searchParameter: searchParameter,
+            offset: currentPage * pageCount)
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
@@ -74,15 +78,33 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         Network.request(
             data: request,
             decoder: decoder,
-            success: { response in
+            success: { [weak self] response in
                 sucess(response)
+                self?.setup(response)
             },
             failure: { error in
                 failure(error)
             })
     }
     
+    func shouldFetchNewPage() -> Bool {
+        let isFirstFetch = totalCount == 0
+        let shouldFetchMore = (currentPage + 1) * pageCount < totalCount
+        return isFirstFetch || shouldFetchMore
+    }
+    
     func nextPage() {
-        self.currentPage += 1
+        currentPage += 1
+    }
+    
+    func restart() {
+        totalCount = 0
+        currentPage = 0
+    }
+    
+    // MARK: - Private function
+    
+    func setup(_ response: CharacterListResponse?) {
+        totalCount = response?.data.total ?? 0
     }
 }

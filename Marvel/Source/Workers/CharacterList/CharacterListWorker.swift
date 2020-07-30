@@ -42,9 +42,9 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
-        let url = MarvelAPI.build(
-            resource: .characters,
-            offset: currentPage * pageCount)
+        let url = MarvelURLBuilder(resource: .characters)
+            .set(offset: currentPage * pageCount)
+            .build()
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
@@ -66,10 +66,10 @@ class CharacterListWorker: CharacterListWorkerProtocol {
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
-        let url = MarvelAPI.build(
-            resource: .characters,
-            searchParameter: searchParameter,
-            offset: currentPage * pageCount)
+        let url = MarvelURLBuilder(resource: .characters)
+            .set(nameStartsWith: searchParameter)
+            .set(offset: currentPage * pageCount)
+            .build()
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)

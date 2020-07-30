@@ -18,7 +18,9 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var characterName: UILabel!
     
-    @IBOutlet private var characterImage: UIImageView!
+    @IBOutlet private var characterDescription: UILabel!
+    
+    @IBOutlet private var characterThumbnail: UIImageView!
     
     // MARK: - VIP Properties
     
@@ -38,8 +40,9 @@ class CharacterDetailsViewController: UIViewController {
     private func setupUI() {
         let thumbnail = character.thumbnail
         let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        self.characterImage.load(url: imageUrl)
+        self.characterThumbnail.load(url: imageUrl)
         self.characterName.text = character.name
+        self.characterDescription.text = character.description
     }
 }
 

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-3Z-7eA">
-                                <rect key="frame" x="0.0" y="60" width="414" height="802"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
                                     <size key="itemSize" width="180" height="296"/>
@@ -73,7 +73,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="8cM-3Z-7eA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="hGh-Hr-Dwz"/>
+                            <constraint firstItem="8cM-3Z-7eA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hGh-Hr-Dwz"/>
                             <constraint firstItem="8cM-3Z-7eA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qPn-kc-I83"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8cM-3Z-7eA" secondAttribute="trailing" id="v3L-ec-MXN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8cM-3Z-7eA" secondAttribute="bottom" id="vFZ-VC-dNa"/>
@@ -108,16 +108,32 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="240" width="414" height="644"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
-                                                        <rect key="frame" x="16" y="16" width="382" height="29"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
+                                                        <rect key="frame" x="16" y="16" width="382" height="26.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                         <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgF-cr-HbQ">
+                                                        <rect key="frame" x="16" y="58.5" width="382" height="262.5"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment>
+                                                                <mutableString key="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</mutableString>
+                                                                <attributes>
+                                                                    <font key="NSFont" metaFont="system" size="16"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="GV3-A6-NKn" firstAttribute="leading" secondItem="QSP-vL-nX4" secondAttribute="leading" constant="16" id="89K-Xw-m5p"/>
+                                                    <constraint firstItem="KgF-cr-HbQ" firstAttribute="leading" secondItem="QSP-vL-nX4" secondAttribute="leading" constant="16" id="FJg-jf-jA7"/>
+                                                    <constraint firstItem="KgF-cr-HbQ" firstAttribute="top" secondItem="GV3-A6-NKn" secondAttribute="bottom" constant="16" id="HSc-gm-QH1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KgF-cr-HbQ" secondAttribute="trailing" constant="16" id="Viu-8D-WCY"/>
                                                     <constraint firstAttribute="trailing" secondItem="GV3-A6-NKn" secondAttribute="trailing" constant="16" id="gr0-cD-U4D"/>
                                                     <constraint firstItem="GV3-A6-NKn" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="16" id="le6-na-JVc"/>
                                                 </constraints>
@@ -164,8 +180,9 @@
                     </view>
                     <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="characterImage" destination="dHP-hA-hqy" id="x9b-K7-pCs"/>
+                        <outlet property="characterDescription" destination="KgF-cr-HbQ" id="gTR-Fj-tF2"/>
                         <outlet property="characterName" destination="GV3-A6-NKn" id="u0H-KP-d3l"/>
+                        <outlet property="characterThumbnail" destination="dHP-hA-hqy" id="x9b-K7-pCs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvB-VA-v82" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

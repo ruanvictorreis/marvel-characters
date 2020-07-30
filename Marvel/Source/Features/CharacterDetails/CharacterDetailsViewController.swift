@@ -46,15 +46,16 @@ class CharacterDetailsViewController: UIViewController {
     // MARK: - Private Functions
     
     private func setupNavigation() {
-        self.navigationItem.title = character.name
+        navigationItem.title = character.name
     }
     
     private func setupUI() {
         let thumbnail = character.thumbnail
         let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        self.characterThumbnail.load(url: imageUrl)
-        self.characterName.text = character.name
-        self.characterDescription.text = character.description
+        characterThumbnail.load(url: imageUrl)
+        characterName.text = character.name
+        characterDescription.text = character.description
+        comicBookCarousel.setupUI()
     }
     
     private func fetchComicBookList() {

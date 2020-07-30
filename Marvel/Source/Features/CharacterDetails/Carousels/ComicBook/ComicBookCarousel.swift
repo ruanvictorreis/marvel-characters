@@ -24,12 +24,15 @@ class ComicBookCarousel: UIView {
     
      // MARK: - Public Functions
     
+    func setupUI() {
+        title.text = R.Localizable.comics()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
     func setupUI(comics: [ComicBook]) {
         comicBookList = comics
         loaging.isHidden = true
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.reloadData()
     }
 }

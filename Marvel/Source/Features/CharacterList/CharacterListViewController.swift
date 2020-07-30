@@ -80,7 +80,7 @@ class CharacterListViewController: UIViewController, CharacterListViewController
     }
     
     private func setupNavigation() {
-        self.navigationItem.title = R.Localizable.characters()
+        navigationItem.title = R.Localizable.characters()
     }
     
     private func setupSearchBar() {
@@ -100,8 +100,8 @@ class CharacterListViewController: UIViewController, CharacterListViewController
                 self?.searchForCharacter(searchParameter)
             }).disposed(by: disposeBag)
         
-        self.navigationItem.searchController = search
-        self.navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.searchController = search
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     // MARK: - Public Functions

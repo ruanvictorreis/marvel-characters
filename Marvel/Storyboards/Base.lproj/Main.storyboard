@@ -93,21 +93,21 @@
             <objects>
                 <viewController storyboardIdentifier="CharacterDetails" id="txf-B7-BjM" customClass="CharacterDetailsViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KcM-Nv-PXJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="922"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="901.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="240" width="414" height="644"/>
+                                                <rect key="frame" x="0.0" y="240" width="414" height="645.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
                                                         <rect key="frame" x="16" y="16" width="382" height="26.5"/>
@@ -119,7 +119,7 @@
                                                         <rect key="frame" x="16" y="58.5" width="382" height="262.5"/>
                                                         <attributedString key="attributedText">
                                                             <fragment>
-                                                                <mutableString key="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</mutableString>
+                                                                <string key="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
                                                                 <attributes>
                                                                     <font key="NSFont" metaFont="system" size="16"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
@@ -129,7 +129,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnE-O4-iGd" customClass="ComicBookCarousel" customModule="Marvel" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="345" width="414" height="299"/>
+                                                        <rect key="frame" x="0.0" y="345" width="414" height="276.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-hY-txs">
                                                                 <rect key="frame" x="16" y="0.0" width="382" height="26.5"/>
@@ -138,8 +138,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0mZ-SK-c9r">
-                                                                <rect key="frame" x="0.0" y="42.5" width="414" height="256.5"/>
+                                                                <rect key="frame" x="0.0" y="42.5" width="414" height="210"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="210" id="y2C-eW-Vgc"/>
+                                                                </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dxY-mU-uib">
                                                                     <size key="itemSize" width="128" height="128"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -148,7 +151,7 @@
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicBookCell" id="S3N-nQ-eVm" userLabel="Comic Book Cell" customClass="ComicBookCollectionViewCell" customModule="Marvel" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="23.5" width="140" height="210"/>
+                                                                        <rect key="frame" x="16" y="0.0" width="140" height="210"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3tq-iW-MUe" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
@@ -173,19 +176,25 @@
                                                                     </collectionViewCell>
                                                                 </cells>
                                                             </collectionView>
+                                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WSP-q7-G5K">
+                                                                <rect key="frame" x="188.5" y="120" width="37" height="37"/>
+                                                            </activityIndicatorView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="ICI-hY-txs" secondAttribute="trailing" constant="16" id="E1t-4b-cpR"/>
+                                                            <constraint firstItem="WSP-q7-G5K" firstAttribute="centerY" secondItem="qnE-O4-iGd" secondAttribute="centerY" id="GcM-cj-aK2"/>
                                                             <constraint firstAttribute="trailing" secondItem="0mZ-SK-c9r" secondAttribute="trailing" id="Pmu-L2-Cpx"/>
-                                                            <constraint firstAttribute="bottom" secondItem="0mZ-SK-c9r" secondAttribute="bottom" id="TPF-gM-R76"/>
+                                                            <constraint firstAttribute="bottom" secondItem="0mZ-SK-c9r" secondAttribute="bottom" constant="24" id="TPF-gM-R76"/>
                                                             <constraint firstItem="ICI-hY-txs" firstAttribute="leading" secondItem="qnE-O4-iGd" secondAttribute="leading" constant="16" id="g58-8g-xj3"/>
                                                             <constraint firstItem="0mZ-SK-c9r" firstAttribute="leading" secondItem="qnE-O4-iGd" secondAttribute="leading" id="q3L-0u-RBS"/>
+                                                            <constraint firstItem="WSP-q7-G5K" firstAttribute="centerX" secondItem="qnE-O4-iGd" secondAttribute="centerX" id="xLK-P0-Lle"/>
                                                             <constraint firstItem="0mZ-SK-c9r" firstAttribute="top" secondItem="ICI-hY-txs" secondAttribute="bottom" constant="16" id="zTf-DQ-BY8"/>
                                                             <constraint firstItem="ICI-hY-txs" firstAttribute="top" secondItem="qnE-O4-iGd" secondAttribute="top" id="zyA-BZ-vDK"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="collectionView" destination="0mZ-SK-c9r" id="eJI-Jg-HeZ"/>
+                                                            <outlet property="loaging" destination="WSP-q7-G5K" id="uxC-hG-LaF"/>
                                                             <outlet property="title" destination="ICI-hY-txs" id="QmH-ii-34m"/>
                                                         </connections>
                                                     </view>
@@ -198,7 +207,7 @@
                                                     <constraint firstItem="KgF-cr-HbQ" firstAttribute="top" secondItem="GV3-A6-NKn" secondAttribute="bottom" constant="16" id="HSc-gm-QH1"/>
                                                     <constraint firstItem="qnE-O4-iGd" firstAttribute="leading" secondItem="QSP-vL-nX4" secondAttribute="leading" id="U7P-TC-xuI"/>
                                                     <constraint firstAttribute="trailing" secondItem="KgF-cr-HbQ" secondAttribute="trailing" constant="16" id="Viu-8D-WCY"/>
-                                                    <constraint firstAttribute="bottom" secondItem="qnE-O4-iGd" secondAttribute="bottom" id="b0O-7V-SpE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="qnE-O4-iGd" secondAttribute="bottom" constant="24" id="b0O-7V-SpE"/>
                                                     <constraint firstItem="qnE-O4-iGd" firstAttribute="top" secondItem="KgF-cr-HbQ" secondAttribute="bottom" constant="24" id="fJE-Ic-M5h"/>
                                                     <constraint firstAttribute="trailing" secondItem="GV3-A6-NKn" secondAttribute="trailing" constant="16" id="gr0-cD-U4D"/>
                                                     <constraint firstItem="GV3-A6-NKn" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="16" id="le6-na-JVc"/>
@@ -212,7 +221,6 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="900" id="8Qz-b7-cfO"/>
                                             <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="D61-Ec-24r"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
@@ -244,7 +252,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="L5O-Yj-Zvw"/>
                     </view>
-                    <size key="freeformSize" width="414" height="896"/>
+                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="characterDescription" destination="KgF-cr-HbQ" id="gTR-Fj-tF2"/>
                         <outlet property="characterName" destination="GV3-A6-NKn" id="u0H-KP-d3l"/>

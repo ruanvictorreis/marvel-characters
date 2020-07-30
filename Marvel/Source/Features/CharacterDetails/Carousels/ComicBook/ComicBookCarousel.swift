@@ -14,6 +14,8 @@ class ComicBookCarousel: UIView {
     
     @IBOutlet private var title: UILabel!
     
+    @IBOutlet private var loaging: UIActivityIndicatorView!
+    
     @IBOutlet private var collectionView: UICollectionView!
     
     // MARK: - Private Properties
@@ -23,7 +25,9 @@ class ComicBookCarousel: UIView {
      // MARK: - Public Functions
     
     func setupUI(comics: [ComicBook]) {
-        self.comicBookList = comics
+        comicBookList = comics
+        loaging.isHidden = true
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()

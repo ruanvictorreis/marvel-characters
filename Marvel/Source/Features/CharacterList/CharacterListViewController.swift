@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import RxCocoa
+import RxSwift
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
@@ -32,6 +34,8 @@ class CharacterListViewController: UIViewController {
     
     private var characterList: [Character] = []
     
+    private let disposeBag = DisposeBag()
+    
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -46,13 +50,27 @@ class CharacterListViewController: UIViewController {
         setupSearchBar()
     }
     
+    // MARK: - Private functions
+    
+    private func clean() {
+        characterList = []
+        interactor.restart()
+        collectionView.reloadData()
+    }
+    
     private func fetchCharacterList() {
+        clean()
         showLoading()
         interactor.fetchCharacterList()
     }
     
-    private func fetchCharacterNextPage() {
+    private func searchForCharacter(_ searchParameter: String) {
+        clean()
         showLoading()
+        interactor.searchForCharacter(searchParameter)
+    }
+    
+    private func fetchCharacterNextPage() {
         interactor.fetchCharacterNextPage()
     }
     
@@ -72,13 +90,25 @@ class CharacterListViewController: UIViewController {
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = R.Localizable.search()
         
+        search.searchBar
+            .rx.text
+            .orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter({ $0.isNotEmpty})
+            .subscribe(onNext: { [weak self] searchParameter in
+                self?.searchForCharacter(searchParameter)
+            }).disposed(by: disposeBag)
+        
         self.navigationItem.searchController = search
         self.navigationItem.hidesSearchBarWhenScrolling = true
     }
 }
 
+// MARK: - CharacterListViewController protocol requirements
+
 extension CharacterListViewController: CharacterListViewControllerProtocol {
-    
+        
     func showCharacterList(_ characters: [Character]) {
         var indexPaths: [IndexPath] = []
         
@@ -101,7 +131,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
 }
 
-// MARK: - UICollectionView delegates and DataSource
+// MARK: - UICollectionView protocols requirements
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
@@ -158,24 +188,16 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let width = (view.bounds.size.width - padding) / 2
         let ratio: CGFloat = 1.5
         let height = width * ratio
-
+        
         return CGSize(width: width, height: height)
     }
 }
 
-// MARK: - UISearchBar delegate
+// MARK: - UISearchBarDelegate protocol requirements
 
 extension CharacterListViewController: UISearchBarDelegate {
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-    }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
+        fetchCharacterList()
     }
 }

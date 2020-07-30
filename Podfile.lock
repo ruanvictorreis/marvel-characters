@@ -8,6 +8,12 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
@@ -16,6 +22,8 @@ DEPENDENCIES:
   - Nimble (= 8.1.1)
   - Quick (= 3.0.0)
   - R.swift (~> 5.1.0)
+  - RxCocoa
+  - RxSwift (~> 5.1.1)
   - SwiftLint (~> 0.39.2)
 
 SPEC REPOS:
@@ -26,6 +34,9 @@ SPEC REPOS:
     - Quick
     - R.swift
     - R.swift.Library
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -35,8 +46,11 @@ SPEC CHECKSUMS:
   Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: ae737f4531054a64e155305a9a171d9a874f494b
+PODFILE CHECKSUM: 199993941d92c42e00b65262d014f075770ab6a5
 
 COCOAPODS: 1.9.3

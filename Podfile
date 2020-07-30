@@ -7,6 +7,8 @@ target 'Marvel' do
   # Pods for Marvel
   pod 'Alamofire', '~> 5.1'
   pod 'R.swift', '~> 5.1.0'
+  pod 'RxSwift', '~> 5.1.1'
+  pod 'RxCocoa', '~> 5.1.1'
   pod 'Kingfisher', '5.14.1'
   pod 'SwiftLint', '~> 0.39.2'
 

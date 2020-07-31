@@ -10,9 +10,21 @@ import UIKit
 
 class CharacterCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet private var characterName: UILabel!
     
     @IBOutlet private var characterImage: UIImageView!
+    
+    @IBOutlet private var loveItButton: UIHeartButton!
+    
+    // MARK: - IBActions
+    
+    @IBAction func loveIt(_ sender: UIHeartButton) {
+        loveItButton.toggleIt()
+    }
+    
+    // MARK: - Public Functions
     
     override func prepareForReuse() {
         clearForReuse()
@@ -24,6 +36,8 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
         characterImage.load(url: imageUrl)
     }
+    
+    // MARK: - Private Functions
     
     private func clearForReuse() {
         characterName.text = nil

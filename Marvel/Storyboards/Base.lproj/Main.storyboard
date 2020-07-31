@@ -45,15 +45,38 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBX-AD-obE" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                                    <rect key="frame" x="146" y="225" width="30" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eF-lj-igv" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                                            <rect key="frame" x="4" y="4" width="22" height="22"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="loveIt:" destination="eS3-Ta-seH" eventType="touchUpInside" id="K5F-tz-Vda"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="5eF-lj-igv" secondAttribute="bottom" constant="4" id="6lg-1Z-sWD"/>
+                                                        <constraint firstAttribute="width" constant="30" id="MNm-To-cIY"/>
+                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="top" secondItem="XBX-AD-obE" secondAttribute="top" constant="4" id="dcb-d2-Cm0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="5eF-lj-igv" secondAttribute="trailing" constant="4" id="hgA-f4-KcC"/>
+                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="leading" secondItem="XBX-AD-obE" secondAttribute="leading" constant="4" id="mqq-68-FhA"/>
+                                                        <constraint firstAttribute="height" constant="30" id="poz-P7-y2p"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="zUr-T6-sed" secondAttribute="trailing" constant="8" id="0On-JA-H4c"/>
                                                 <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="3DO-oS-oSv"/>
                                                 <constraint firstItem="zUr-T6-sed" firstAttribute="top" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="16" id="JSS-lJ-mgq"/>
+                                                <constraint firstItem="XBX-AD-obE" firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="15" id="JhP-IR-zLx"/>
                                                 <constraint firstItem="zUr-T6-sed" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" constant="8" id="Pvl-mT-80X"/>
                                                 <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="TrT-YP-fRY"/>
                                                 <constraint firstAttribute="bottom" secondItem="zUr-T6-sed" secondAttribute="bottom" constant="16" id="bws-Dt-Tcc"/>
+                                                <constraint firstAttribute="trailing" secondItem="XBX-AD-obE" secondAttribute="trailing" constant="4" id="hmf-T9-FUG"/>
                                                 <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="n0i-IP-1c8"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -66,6 +89,7 @@
                                         <connections>
                                             <outlet property="characterImage" destination="G7h-a8-leH" id="mSv-HP-gxo"/>
                                             <outlet property="characterName" destination="zUr-T6-sed" id="MgR-S3-zRx"/>
+                                            <outlet property="loveItButton" destination="5eF-lj-igv" id="7Al-l6-o49"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

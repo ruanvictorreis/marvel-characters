@@ -114,6 +114,30 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.image` struct is generated, and contains static references to 2 images.
+  struct image {
+    /// Image `heart_filled`.
+    static let heart_filled = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_filled")
+    /// Image `heart_outline`.
+    static let heart_outline = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_outline")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "heart_filled", bundle: ..., traitCollection: ...)`
+    static func heart_filled(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.heart_filled, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "heart_outline", bundle: ..., traitCollection: ...)`
+    static func heart_outline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.heart_outline, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `CharacterCell`.

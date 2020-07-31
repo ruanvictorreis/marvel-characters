@@ -218,15 +218,25 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                                <rect key="frame" x="356" y="8" width="50" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="hP7-1z-CL9"/>
+                                                    <constraint firstAttribute="width" constant="50" id="wAl-mD-X8l"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="Ecw-QJ-fZ5" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="8" id="6Va-Qb-mc2"/>
                                             <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="D61-Ec-24r"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
                                             <constraint firstAttribute="trailing" secondItem="dHP-hA-hqy" secondAttribute="trailing" id="N8y-OL-Wrp"/>
                                             <constraint firstAttribute="trailing" secondItem="QSP-vL-nX4" secondAttribute="trailing" id="ZH7-US-gxp"/>
                                             <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="8" id="mZG-Zi-6gh"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="yQQ-Uc-dJJ"/>
                                         </constraints>
                                     </view>

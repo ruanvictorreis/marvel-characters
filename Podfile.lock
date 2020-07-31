@@ -8,6 +8,11 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - Realm (5.3.2):
+    - Realm/Headers (= 5.3.2)
+  - Realm/Headers (5.3.2)
+  - RealmSwift (5.3.2):
+    - Realm (= 5.3.2)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -22,6 +27,7 @@ DEPENDENCIES:
   - Nimble (= 8.1.1)
   - Quick (= 3.0.0)
   - R.swift (~> 5.1.0)
+  - RealmSwift
   - RxCocoa (~> 5.1.1)
   - RxSwift (~> 5.1.1)
   - SwiftLint (~> 0.39.2)
@@ -34,6 +40,8 @@ SPEC REPOS:
     - Quick
     - R.swift
     - R.swift.Library
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -46,11 +54,13 @@ SPEC CHECKSUMS:
   Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  Realm: c6794276ca8884808ba168a22f9d71362b170b85
+  RealmSwift: 42ec6cec3170aeeda407f797f07268a7d055ebc7
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: cc34abc720b80e3bcb1e775b6f7f38e64492142d
+PODFILE CHECKSUM: 57cdb6d186e7e2d940dc93781ae52183e85fe5ce
 
 COCOAPODS: 1.9.3

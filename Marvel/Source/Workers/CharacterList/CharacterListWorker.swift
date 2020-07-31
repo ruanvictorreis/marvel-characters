@@ -25,10 +25,14 @@ protocol CharacterListWorkerProtocol {
     func fetchCharacterList(searchParameter: String,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation,
+                      failure: Completation)
 }
 
 class CharacterListWorker: CharacterListWorkerProtocol {
-    
+
     // MARK: - Private Properties
     
     private var totalCount = 0
@@ -38,6 +42,20 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     private let pageCount = 20
     
     // MARK: - Public Function
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation = nil,
+                      failure: Completation = nil) {
+        
+        PersistenceManager().save(
+            character: character,
+            sucess: {
+                sucess?()
+            },
+            failure: {
+                failure?()
+            })
+    }
     
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {

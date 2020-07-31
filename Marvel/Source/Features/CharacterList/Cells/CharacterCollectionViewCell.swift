@@ -18,12 +18,6 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private var loveItButton: UIHeartButton!
     
-    // MARK: - IBActions
-    
-    @IBAction func loveIt(_ sender: UIHeartButton) {
-        loveItButton.toggleIt()
-    }
-    
     // MARK: - Public Functions
     
     override func prepareForReuse() {
@@ -43,5 +37,11 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         characterName.text = nil
         characterImage.image = nil
         characterImage.cancel()
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func loveIt(_ sender: UIHeartButton) {
+        loveItButton.toggleIt()
     }
 }

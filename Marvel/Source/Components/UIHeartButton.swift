@@ -45,7 +45,7 @@ class UIHeartButton: UIButton {
     // MARK: - Public Functions
     
     func toggleIt() {
-        self.isFilled = !self.isFilled
+        isFilled = !isFilled
     }
     
     // MARK: - Private Functions
@@ -57,13 +57,15 @@ class UIHeartButton: UIButton {
     }
     
     private func setupImage() {
-        self.imageScale = isFilled
+        imageScale = isFilled
             ? CGFloat(1.3)
             : CGFloat(0.7)
         
-        self.heartImage = isFilled
+        heartImage = isFilled
             ? R.image.heart_filled()
             : R.image.heart_outline()
+        
+        heartImage?.withRenderingMode(.alwaysOriginal)
     }
     
     private func animate() {

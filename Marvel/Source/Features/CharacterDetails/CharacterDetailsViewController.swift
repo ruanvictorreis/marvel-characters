@@ -67,6 +67,7 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBAction func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
+        interactor.saveFavorite(character: character)
     }
 }
 

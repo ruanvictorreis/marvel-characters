@@ -8,43 +8,76 @@
 
 import UIKit
 
+@IBDesignable
 class UIHeartButton: UIButton {
     
-    private var isLiked = false
+    // MARK: - Public Properties
     
-    private let likedScale: CGFloat = 1.3
-    
-    private let unlikedScale: CGFloat = 0.7
-    
-    private let likedImage = R.image.heart_filled()
-    
-    private let unlikedImage = R.image.heart_outline()
-    
-    override public init(frame: CGRect) {
-      super.init(frame: frame)
-      setImage(unlikedImage, for: .normal)
+    @IBInspectable var isFilled: Bool = false {
+        didSet {
+            animate()
+        }
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setImage(unlikedImage, for: .normal)
+    // MARK: - Private Properties
+    
+    private var imageScale: CGFloat = 0.7
+    
+    private var heartImage: UIImage? = R.image.heart_outline()
+    
+    // MARK: - View Lifecycle
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupUI()
     }
-
-    public func flipLikedState() {
-      isLiked = !isLiked
-      animate()
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setupUI()
     }
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupUI()
+    }
+    
+    // MARK: - Public Functions
+    
+    func toggleIt() {
+        self.isFilled = !self.isFilled
+    }
+    
+    // MARK: - Private Functions
+    
+    private func setupUI() {
+        setupImage()
+        self.setTitle(nil, for: .normal)
+        self.setImage(heartImage, for: .normal)
+    }
+    
+    private func setupImage() {
+        self.imageScale = isFilled
+            ? CGFloat(1.3)
+            : CGFloat(0.7)
+        
+        self.heartImage = isFilled
+            ? R.image.heart_filled()
+            : R.image.heart_outline()
+    }
+    
     private func animate() {
-      UIView.animate(withDuration: 0.1, animations: {
-        let newImage = self.isLiked ? self.likedImage : self.unlikedImage
-        let newScale = self.isLiked ? self.likedScale : self.unlikedScale
-        self.transform = self.transform.scaledBy(x: newScale, y: newScale)
-        self.setImage(newImage, for: .normal)
-      }, completion: { _ in
-        UIView.animate(withDuration: 0.1, animations: {
-          self.transform = CGAffineTransform.identity
+        UIView.animate(
+            withDuration: 0.1,
+            animations: {
+                self.setupUI()
+                self.transform = self.transform.scaledBy(
+                    x: self.imageScale, y: self.imageScale)
+            },
+            completion: { [weak self] _ in
+                UIView.animate(withDuration: 0.1, animations: {
+                    self?.transform = CGAffineTransform.identity
+                })
         })
-      })
     }
 }

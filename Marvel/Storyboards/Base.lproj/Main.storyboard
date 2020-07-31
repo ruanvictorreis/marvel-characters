@@ -219,11 +219,27 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="356" y="8" width="50" height="50"/>
+                                                <rect key="frame" x="366" y="8" width="40" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                                        <rect key="frame" x="8.8000000000000043" y="8.8000000000000043" width="22.399999999999999" height="22.399999999999999"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="loveIt:" destination="txf-B7-BjM" eventType="touchUpInside" id="cdI-eZ-dvc"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="hP7-1z-CL9"/>
-                                                    <constraint firstAttribute="width" constant="50" id="wAl-mD-X8l"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Rdy-GY-J7n" secondAttribute="trailing" constant="4" id="R1p-iD-b7W"/>
+                                                    <constraint firstAttribute="height" constant="40" id="hP7-1z-CL9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Rdy-GY-J7n" secondAttribute="bottom" constant="4" id="qPq-yG-Wt5"/>
+                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="leading" secondItem="Ecw-QJ-fZ5" secondAttribute="leading" constant="4" id="slN-nl-EJq"/>
+                                                    <constraint firstAttribute="width" constant="40" id="wAl-mD-X8l"/>
+                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -268,6 +284,7 @@
                         <outlet property="characterName" destination="GV3-A6-NKn" id="u0H-KP-d3l"/>
                         <outlet property="characterThumbnail" destination="dHP-hA-hqy" id="x9b-K7-pCs"/>
                         <outlet property="comicBookCarousel" destination="qnE-O4-iGd" id="GAf-PA-UJP"/>
+                        <outlet property="loveItButton" destination="Rdy-GY-J7n" id="Teo-uH-Xew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvB-VA-v82" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

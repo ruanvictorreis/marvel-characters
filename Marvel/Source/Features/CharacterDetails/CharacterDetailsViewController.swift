@@ -21,6 +21,8 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var characterName: UILabel!
     
+    @IBOutlet private var loveItButton: UIHeartButton!
+    
     @IBOutlet private var characterDescription: UILabel!
     
     @IBOutlet private var characterThumbnail: UIImageView!
@@ -50,16 +52,21 @@ class CharacterDetailsViewController: UIViewController {
     }
     
     private func setupUI() {
-        let thumbnail = character.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        characterThumbnail.load(url: imageUrl)
         characterName.text = character.name
         characterDescription.text = character.description
         comicBookCarousel.setupUI()
+        
+        let thumbnail = character.thumbnail
+        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
+        characterThumbnail.load(url: imageUrl)
     }
     
     private func fetchComicBookList() {
         interactor.fetchComicBookList(character.id)
+    }
+    
+    @IBAction func loveIt(_ sender: UIHeartButton) {
+        loveItButton.toggleIt()
     }
 }
 

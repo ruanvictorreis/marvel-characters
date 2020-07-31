@@ -13,18 +13,6 @@ class UICircularView: UIView {
     
     // MARK: - Public Properties
     
-    @IBInspectable var isCircular: Bool = true {
-        didSet {
-            setupUI()
-        }
-    }
-    
-    @IBInspectable var cornerRadius: CGFloat = 10.0 {
-        didSet {
-            self.layer.cornerRadius = self.cornerRadius
-        }
-    }
-    
     @IBInspectable var borderedWidth: CGFloat = 0.0 {
         didSet {
             self.layer.borderWidth = self.borderedWidth
@@ -35,6 +23,44 @@ class UICircularView: UIView {
         didSet {
             self.layer.borderColor = self.borderedColor.cgColor
         }
+    }
+    
+    @IBInspectable
+    var shadowColored: UIColor? = .black {
+        didSet {
+            self.layer.shadowColor = self.shadowColored?.cgColor
+        }
+    }
+    
+    @IBInspectable
+    var shadowRadius: CGFloat = 3.0 {
+        didSet {
+            self.layer.shadowRadius = self.shadowRadius
+            self.layer.shadowPath = self.bezierPath.cgPath
+        }
+    }
+    
+    @IBInspectable
+    var shadowOpacity: Float = 0.3 {
+        didSet {
+            self.layer.shadowOpacity = self.shadowOpacity
+        }
+    }
+    
+    @IBInspectable
+    var shadowOffset: CGSize = CGSize(width: 1.0, height: 1.0) {
+        didSet {
+            self.layer.shadowOffset = self.shadowOffset
+        }
+    }
+    
+    // MARK: - Private Properties
+    
+    private var bezierPath: UIBezierPath {
+        let path = UIBezierPath(
+            roundedRect: self.bounds,
+            cornerRadius: self.frame.width / 2)
+        return path
     }
     
     // MARK: - View Lifecycle
@@ -57,8 +83,13 @@ class UICircularView: UIView {
     // MARK: - Private Functions
     
     private func setupUI() {
-        self.layer.cornerRadius = isCircular ? self.frame.width / 2 : cornerRadius
-        self.layer.borderWidth = borderedWidth
-        self.layer.borderColor = borderedColor.cgColor
+        self.layer.cornerRadius = self.frame.width / 2
+        self.layer.borderWidth = self.borderedWidth
+        self.layer.borderColor = self.borderedColor.cgColor
+        self.layer.shadowOffset = self.shadowOffset
+        self.layer.shadowRadius = self.shadowRadius
+        self.layer.shadowPath = self.bezierPath.cgPath
+        self.layer.shadowOpacity = self.shadowOpacity
+        self.layer.shadowColor = self.shadowColored?.cgColor
     }
 }

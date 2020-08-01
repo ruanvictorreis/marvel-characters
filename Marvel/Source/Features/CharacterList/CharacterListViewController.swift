@@ -43,9 +43,13 @@ class CharacterListViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigation(
+            title: R.Localizable.characters(),
+            isTranslucent: true,
+            hasLargeTitle: true)
+        
         setupSegmentedControl()
         collectionView.reloadData()
-        setupNavigation(title: R.Localizable.characters())
     }
     
     // MARK: - Private Functions
@@ -89,9 +93,11 @@ class CharacterListViewController: BaseViewController {
     private func setupSearchBar() {
         setupSearchBar(
             placeholder: R.Localizable.search(),
-            delegate: self,
             onSearch: { [weak self] searchParameter in
                 self?.searchForCharacter(searchParameter)
+            },
+            onCancel: { [weak self] in
+                self?.fetchCharacterList()
             }
         )
     }
@@ -192,14 +198,5 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let height = width * ratio
         
         return CGSize(width: width, height: height)
-    }
-}
-
-// MARK: - UISearchBarDelegate Protocol
-
-extension CharacterListViewController: UISearchBarDelegate {
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        fetchCharacterList()
     }
 }

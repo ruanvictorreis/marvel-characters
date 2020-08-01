@@ -19,15 +19,20 @@ class BaseViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
+    private var searchOnCancel: Completation?
+
     // MARK: - Public Functions
     
-    func setupNavigation(title: String) {
+    func setupNavigation(title: String = "",
+                         isTranslucent: Bool = false,
+                         hasLargeTitle: Bool = false) {
+        
         navigationItem.title = title
         navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = isTranslucent
+        navigationController?.navigationBar.prefersLargeTitles = hasLargeTitle
         navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func setupSegmentedControl(titles: [String]) {
@@ -56,11 +61,11 @@ class BaseViewController: UIViewController {
     }
     
     func setupSearchBar(placeholder: String,
-                        delegate: UISearchBarDelegate?,
-                        onSearch: @escaping SearchAction) {
+                        onSearch: @escaping SearchAction,
+                        onCancel: Completation? = nil) {
         
         let search = UISearchController(searchResultsController: nil)
-        search.searchBar.delegate = delegate
+        search.searchBar.delegate = self
         search.searchBar.tintColor = .darkness
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = placeholder
@@ -75,7 +80,17 @@ class BaseViewController: UIViewController {
                 onSearch(searchParameter)
             }).disposed(by: disposeBag)
         
+        self.searchOnCancel = onCancel
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = true
+    }
+}
+
+// MARK: - UISearchBarDelegate Protocol
+
+extension BaseViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchOnCancel?()
     }
 }

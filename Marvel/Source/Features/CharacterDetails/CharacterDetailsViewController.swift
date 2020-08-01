@@ -15,7 +15,7 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
     func showComicBookListError(_ errorMessage: String)
 }
 
-class CharacterDetailsViewController: UIViewController {
+class CharacterDetailsViewController: BaseViewController {
     
     // MARK: - IBOutlets
     
@@ -45,16 +45,16 @@ class CharacterDetailsViewController: UIViewController {
         fetchComicBookList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loveItButton.isFilled = character.isFavorite
     }
     
     // MARK: - Private Functions
-    
-    private func setupNavigation() {
-        navigationItem.title = character.name
-    }
     
     private func setupUI() {
         characterName.text = character.name

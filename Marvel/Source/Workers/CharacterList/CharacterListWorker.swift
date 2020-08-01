@@ -16,8 +16,8 @@ protocol CharacterListWorkerProtocol {
     func getFavoriteCharacters() -> [Character]
     
     func saveFavorite(character: Character,
-                      sucess: Completation,
-                      failure: Completation)
+                      sucess: Completation?,
+                      failure: Completation?)
     
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterListSuccess,
@@ -84,8 +84,8 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     }
     
     func saveFavorite(character: Character,
-                      sucess: Completation,
-                      failure: Completation) {
+                      sucess: Completation?,
+                      failure: Completation?) {
         
         PersistenceManager().save(
             character: character,

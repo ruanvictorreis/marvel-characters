@@ -15,11 +15,13 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     
     func showCharacterList(_ characters: [Character])
     
-    func showCharacterListError(errorMessage: String)
+    func showCharacterListError(_ errorMessage: String)
+    
+    func saveFavorite(_ character: Character)
 }
 
 class CharacterListViewController: UIViewController, CharacterListViewControllerProtocol {
-    
+
     // MARK: - IBOutlets
     
     @IBOutlet private var collectionView: UICollectionView!
@@ -123,9 +125,13 @@ class CharacterListViewController: UIViewController, CharacterListViewController
         hideLoading()
     }
     
-    func showCharacterListError(errorMessage: String) {
+    func showCharacterListError(_ errorMessage: String) {
         hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
+    }
+    
+    func saveFavorite(_ character: Character) {
+        interactor.saveFavorite(character)
     }
 }
 
@@ -169,6 +175,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
             as? CharacterCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setup(character: characterList[indexPath.item])
+        cell.delegate = self
         
         return cell
     }

@@ -16,11 +16,13 @@ protocol CharacterListInteractorProtocol {
     
     func fetchCharacterNextPage()
     
+    func saveFavorite(_ character: Character)
+    
     func searchForCharacter(_ searchParameter: String)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
-
+    
     // MARK: - VIP Properties
     
     var presenter: CharacterListPresenterProtocol!
@@ -43,13 +45,13 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     func fetchCharacterList() {
         characterListWorker.fetchCharacterList(
-            sucess: { [weak self] response in
-                let result = self?.setupFavorites(response)
-                self?.presenter.showCharacterList(result)
+            sucess: { [weak self] results in
+                let response = self?.setFavorites(results)
+                self?.presenter.showCharacterList(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-            })
+        })
     }
     
     func fetchCharacterNextPage() {
@@ -67,13 +69,22 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
-            sucess: {[weak self] response in
-                let result = self?.setupFavorites(response)
-                self?.presenter.showCharacterList(result)
+            sucess: {[weak self] results in
+                let response = self?.setFavorites(results)
+                self?.presenter.showCharacterList(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-            })
+        })
+    }
+    
+    func saveFavorite(_ character: Character) {
+        characterListWorker.saveFavorite(
+            character: character,
+            sucess: nil,
+            failure: {
+                //self?.presenter.showError(error)
+        })
     }
     
     func restart() {
@@ -88,7 +99,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         searchForCharacter(searchingFor)
     }
     
-    private func setupFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {
+    private func setFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {
         let characters = characterListWorker
             .getFavoriteCharacters()
             .map({ $0.id })

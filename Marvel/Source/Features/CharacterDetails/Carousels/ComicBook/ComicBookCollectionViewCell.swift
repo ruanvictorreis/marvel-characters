@@ -24,7 +24,7 @@ class ComicBookCollectionViewCell: UICollectionViewCell {
         clearForReuse()
     }
     
-    func setup(comicBook: ComicBook) {
+    func setup(_ comicBook: ComicBook) {
         let thumbnail = comicBook.thumbnail
         let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
         comicBookImage.load(url: imageUrl)

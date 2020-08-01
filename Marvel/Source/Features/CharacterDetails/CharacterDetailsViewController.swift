@@ -10,9 +10,9 @@ import UIKit
 
 protocol CharacterDetailsViewControllerProtocol: AnyObject {
     
-    func showCommicBookList(comics: [ComicBook])
+    func showCommicBookList(_ comics: [ComicBook])
     
-    func showComicBookListError(errorMessage: String)
+    func showComicBookListError(_ errorMessage: String)
 }
 
 class CharacterDetailsViewController: UIViewController {
@@ -72,7 +72,8 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBAction func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
-        interactor.saveFavorite(character: character)
+        character.isFavorite = loveItButton.isFilled
+        interactor.saveFavorite(character)
     }
 }
 
@@ -80,11 +81,11 @@ class CharacterDetailsViewController: UIViewController {
 
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
 
-    func showCommicBookList(comics: [ComicBook]) {
-        comicBookCarousel.setupUI(comics: comics)
+    func showCommicBookList(_ comics: [ComicBook]) {
+        comicBookCarousel.setupUI(comics)
     }
     
-    func showComicBookListError(errorMessage: String) {
+    func showComicBookListError(_ errorMessage: String) {
         hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }

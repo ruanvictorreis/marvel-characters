@@ -25,6 +25,8 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var characterThumbnail: UIImageView!
     
+    @IBOutlet private var loveItButton: UIHeartButton!
+    
     @IBOutlet private var comicBookCarousel: ComicBookCarousel!
     
     // MARK: - VIP Properties
@@ -43,6 +45,11 @@ class CharacterDetailsViewController: UIViewController {
         fetchComicBookList()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loveItButton.isFilled = character.isFavorite
+    }
+    
     // MARK: - Private Functions
     
     private func setupNavigation() {
@@ -50,16 +57,22 @@ class CharacterDetailsViewController: UIViewController {
     }
     
     private func setupUI() {
-        let thumbnail = character.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        characterThumbnail.load(url: imageUrl)
         characterName.text = character.name
         characterDescription.text = character.description
         comicBookCarousel.setupUI()
+        
+        let thumbnail = character.thumbnail
+        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
+        characterThumbnail.load(url: imageUrl)
     }
     
     private func fetchComicBookList() {
         interactor.fetchComicBookList(character.id)
+    }
+    
+    @IBAction func loveIt(_ sender: UIHeartButton) {
+        loveItButton.toggleIt()
+        interactor.saveFavorite(character: character)
     }
 }
 

@@ -45,15 +45,38 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBX-AD-obE" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                                    <rect key="frame" x="146" y="225" width="30" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eF-lj-igv" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                                            <rect key="frame" x="4" y="4" width="22" height="22"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <connections>
+                                                                <action selector="loveIt:" destination="eS3-Ta-seH" eventType="touchUpInside" id="K5F-tz-Vda"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="5eF-lj-igv" secondAttribute="bottom" constant="4" id="6lg-1Z-sWD"/>
+                                                        <constraint firstAttribute="width" constant="30" id="MNm-To-cIY"/>
+                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="top" secondItem="XBX-AD-obE" secondAttribute="top" constant="4" id="dcb-d2-Cm0"/>
+                                                        <constraint firstAttribute="trailing" secondItem="5eF-lj-igv" secondAttribute="trailing" constant="4" id="hgA-f4-KcC"/>
+                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="leading" secondItem="XBX-AD-obE" secondAttribute="leading" constant="4" id="mqq-68-FhA"/>
+                                                        <constraint firstAttribute="height" constant="30" id="poz-P7-y2p"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="zUr-T6-sed" secondAttribute="trailing" constant="8" id="0On-JA-H4c"/>
                                                 <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="3DO-oS-oSv"/>
                                                 <constraint firstItem="zUr-T6-sed" firstAttribute="top" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="16" id="JSS-lJ-mgq"/>
+                                                <constraint firstItem="XBX-AD-obE" firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="15" id="JhP-IR-zLx"/>
                                                 <constraint firstItem="zUr-T6-sed" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" constant="8" id="Pvl-mT-80X"/>
                                                 <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="TrT-YP-fRY"/>
                                                 <constraint firstAttribute="bottom" secondItem="zUr-T6-sed" secondAttribute="bottom" constant="16" id="bws-Dt-Tcc"/>
+                                                <constraint firstAttribute="trailing" secondItem="XBX-AD-obE" secondAttribute="trailing" constant="4" id="hmf-T9-FUG"/>
                                                 <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="n0i-IP-1c8"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
@@ -66,6 +89,7 @@
                                         <connections>
                                             <outlet property="characterImage" destination="G7h-a8-leH" id="mSv-HP-gxo"/>
                                             <outlet property="characterName" destination="zUr-T6-sed" id="MgR-S3-zRx"/>
+                                            <outlet property="loveItButton" destination="5eF-lj-igv" id="7Al-l6-o49"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -218,6 +242,30 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                                <rect key="frame" x="366" y="220" width="40" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                                        <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="loveIt:" destination="txf-B7-BjM" eventType="touchUpInside" id="cdI-eZ-dvc"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="Rdy-GY-J7n" secondAttribute="trailing" constant="4" id="R1p-iD-b7W"/>
+                                                    <constraint firstAttribute="height" constant="40" id="hP7-1z-CL9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Rdy-GY-J7n" secondAttribute="bottom" constant="4" id="qPq-yG-Wt5"/>
+                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="leading" secondItem="Ecw-QJ-fZ5" secondAttribute="leading" constant="4" id="slN-nl-EJq"/>
+                                                    <constraint firstAttribute="width" constant="40" id="wAl-mD-X8l"/>
+                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -226,7 +274,9 @@
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
                                             <constraint firstAttribute="trailing" secondItem="dHP-hA-hqy" secondAttribute="trailing" id="N8y-OL-Wrp"/>
                                             <constraint firstAttribute="trailing" secondItem="QSP-vL-nX4" secondAttribute="trailing" id="ZH7-US-gxp"/>
+                                            <constraint firstItem="Ecw-QJ-fZ5" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="-20" id="bT6-5b-ly4"/>
                                             <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="8" id="mBm-4G-Jv2"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="yQQ-Uc-dJJ"/>
                                         </constraints>
                                     </view>
@@ -258,6 +308,7 @@
                         <outlet property="characterName" destination="GV3-A6-NKn" id="u0H-KP-d3l"/>
                         <outlet property="characterThumbnail" destination="dHP-hA-hqy" id="x9b-K7-pCs"/>
                         <outlet property="comicBookCarousel" destination="qnE-O4-iGd" id="GAf-PA-UJP"/>
+                        <outlet property="loveItButton" destination="Rdy-GY-J7n" id="Teo-uH-Xew"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KvB-VA-v82" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

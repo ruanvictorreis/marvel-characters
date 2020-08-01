@@ -11,6 +11,8 @@ import Foundation
 protocol CharacterDetailsInteractorProtocol {
     
     func fetchComicBookList(_ character: Int)
+    
+    func saveFavorite(character: Character)
 }
 
 class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
@@ -21,11 +23,14 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
     
     // MARK: - Private Properties
     
+    private let characterListWorker: CharacterListWorkerProtocol
+    
     private let comickBookListWorker: ComicBookListWorkerProtocol
     
     // MARK: - Inits
     
     init() {
+        self.characterListWorker = CharacterListWorker()
         self.comickBookListWorker = ComicBookListWorker()
     }
     
@@ -39,6 +44,15 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
             },
             failure: { [weak self] error in
                 self?.presenter.showComicBookListError(error)
+            })
+    }
+    
+    func saveFavorite(character: Character) {
+        characterListWorker.saveFavorite(
+            character: character,
+            sucess: nil,
+            failure: {
+                //self?.presenter.showComicBookListError(error)
             })
     }
 }

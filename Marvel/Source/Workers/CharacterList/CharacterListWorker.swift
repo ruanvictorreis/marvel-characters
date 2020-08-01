@@ -19,6 +19,12 @@ protocol CharacterListWorkerProtocol {
     
     func shouldFetchNewPage() -> Bool
     
+    func getFavoriteCharacters() -> [Character]
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation,
+                      failure: Completation)
+    
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
     
@@ -28,7 +34,7 @@ protocol CharacterListWorkerProtocol {
 }
 
 class CharacterListWorker: CharacterListWorkerProtocol {
-    
+
     // MARK: - Private Properties
     
     private var totalCount = 0
@@ -84,6 +90,24 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             },
             failure: { error in
                 failure(error)
+            })
+    }
+    
+    func getFavoriteCharacters() -> [Character] {
+        return PersistenceManager().getCharacters()
+    }
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation,
+                      failure: Completation) {
+        
+        PersistenceManager().save(
+            character: character,
+            sucess: {
+                sucess?()
+            },
+            failure: {
+                failure?()
             })
     }
     

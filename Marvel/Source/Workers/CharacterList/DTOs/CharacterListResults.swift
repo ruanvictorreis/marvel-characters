@@ -16,5 +16,5 @@ struct CharacterListResults: Decodable {
     
     let count: Int
     
-    let results: [Character]
+    var results: [Character]
 }

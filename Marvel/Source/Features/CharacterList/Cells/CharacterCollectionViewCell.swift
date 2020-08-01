@@ -18,6 +18,14 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private var loveItButton: UIHeartButton!
     
+    // MARK: - Public Properties
+    
+     weak var delegate: CharacterListViewControllerProtocol?
+    
+    // MARK: - Private Properties
+    
+    private var character: Character?
+    
     // MARK: - Public Functions
     
     override func prepareForReuse() {
@@ -25,7 +33,10 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(character: Character) {
+        self.character = character
         characterName.text = character.name
+        loveItButton.isFilled = character.isFavorite
+        
         let thumbnail = character.thumbnail
         let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
         characterImage.load(url: imageUrl)
@@ -36,12 +47,16 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     private func clearForReuse() {
         characterName.text = nil
         characterImage.image = nil
+        loveItButton.isFilled = false
         characterImage.cancel()
     }
     
     // MARK: - IBActions
     
     @IBAction func loveIt(_ sender: UIHeartButton) {
+        guard let character = self.character else { return }
         loveItButton.toggleIt()
+        delegate?.saveFavorite(character)
+        character.isFavorite = loveItButton.isFilled
     }
 }

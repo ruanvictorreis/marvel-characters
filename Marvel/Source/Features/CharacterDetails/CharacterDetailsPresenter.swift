@@ -25,11 +25,11 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
         guard let results = response?.data.results
             else { showComicBookListError(); return }
         
-        viewController.showCommicBookList(comics: results)
+        viewController.showCommicBookList(results)
     }
     
     func showComicBookListError(_ error: AFError? = nil) {
         let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
-        viewController.showComicBookListError(errorMessage: errorMessage)
+        viewController.showComicBookListError(errorMessage)
     }
 }

@@ -8,5 +8,5 @@
 
 struct CharacterListResponse: Decodable {
     
-    let data: CharacterListResults
+    var data: CharacterListResults
 }

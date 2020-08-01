@@ -30,7 +30,7 @@ class ComicBookCarousel: UIView {
         collectionView.dataSource = self
     }
     
-    func setupUI(comics: [ComicBook]) {
+    func setupUI(_ comics: [ComicBook]) {
         comicBookList = comics
         loaging.isHidden = true
         collectionView.reloadData()
@@ -49,7 +49,7 @@ extension ComicBookCarousel: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicBookCell", for: indexPath)
             as? ComicBookCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.setup(comicBook: comicBookList[indexPath.item])
+        cell.setup(comicBookList[indexPath.item])
         
         return cell
     }

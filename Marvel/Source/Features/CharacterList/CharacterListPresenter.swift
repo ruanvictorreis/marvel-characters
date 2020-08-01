@@ -32,6 +32,6 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     
     func showCharacterListError(_ error: AFError? = nil) {
         let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
-        viewController.showCharacterListError(errorMessage: errorMessage)
+        viewController.showCharacterListError(errorMessage)
     }
 }

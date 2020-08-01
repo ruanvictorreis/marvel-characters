@@ -12,7 +12,7 @@ protocol CharacterDetailsInteractorProtocol {
     
     func fetchComicBookList(_ character: Int)
     
-    func saveFavorite(character: Character)
+    func saveFavorite(_ character: Character)
 }
 
 class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
@@ -47,12 +47,12 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
             })
     }
     
-    func saveFavorite(character: Character) {
+    func saveFavorite(_ character: Character) {
         characterListWorker.saveFavorite(
             character: character,
             sucess: nil,
             failure: {
-                //self?.presenter.showComicBookListError(error)
+                //self?.presenter.showError(error)
             })
     }
 }

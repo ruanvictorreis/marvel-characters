@@ -12,6 +12,7 @@ target 'Marvel' do
   pod 'RxCocoa', '~> 5.1.1'
   pod 'Kingfisher', '5.14.1'
   pod 'SwiftLint', '~> 0.39.2'
+  pod 'BetterSegmentedControl', '~> 1.3'
 
   target 'MarvelTests' do
     inherit! :search_paths

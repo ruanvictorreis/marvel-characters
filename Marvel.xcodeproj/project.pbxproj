@@ -57,6 +57,7 @@
 		15B6EA0B24D0D640005F2CD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */; };
 		15B6EA1624D0D641005F2CD2 /* MarvelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA1524D0D641005F2CD2 /* MarvelTests.swift */; };
 		15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA2324D0DD32005F2CD2 /* R.generated.swift */; };
+		15FB0EC024D6054B00123270 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB0EBF24D6054B00123270 /* BaseViewController.swift */; };
 		423B387063969EC3EB660349 /* Pods_MarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FB57ADC45AFC5AC0845B320 /* Pods_MarvelTests.framework */; };
 		E901BA065013B52D856798B7 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D087A69A482909276C41AD55 /* Pods_Marvel.framework */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		15B6EA1524D0D641005F2CD2 /* MarvelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelTests.swift; sourceTree = "<group>"; };
 		15B6EA1724D0D641005F2CD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B6EA2324D0DD32005F2CD2 /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		15FB0EBF24D6054B00123270 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		43A688F7B8CA997C82209E79 /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
 		8FB57ADC45AFC5AC0845B320 /* Pods_MarvelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD77DA7C31CED05E6DF27017 /* Pods-MarvelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelTests/Pods-MarvelTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,12 +171,11 @@
 		153AAF2124D0EA2E00EEE22E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				155B773324D22408005DECC3 /* Components */,
-				159E393624D0ECCA00744AB4 /* Extensions */,
 				159E393A24D0EDAB00744AB4 /* Features */,
 				156B2F2024D10B3500643FB6 /* Model */,
 				1518F10324D0F9770020593B /* Networking */,
 				157A2E1624D4A72F00133F79 /* Persistence */,
+				15FB0EBD24D6040B00123270 /* Shared */,
 				155B771724D1B4E5005DECC3 /* Workers */,
 			);
 			path = Source;
@@ -441,6 +442,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		15FB0EBD24D6040B00123270 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				15FB0EBE24D6053800123270 /* Common */,
+				155B773324D22408005DECC3 /* Components */,
+				159E393624D0ECCA00744AB4 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		15FB0EBE24D6053800123270 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				15FB0EBF24D6054B00123270 /* BaseViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		19C2EB976174199E1D0F7CC3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,6 +711,7 @@
 				155B773024D1FE8E005DECC3 /* CharacterCollectionViewCell.swift in Sources */,
 				15B6EA0324D0D640005F2CD2 /* CharacterListViewController.swift in Sources */,
 				15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */,
+				15FB0EC024D6054B00123270 /* BaseViewController.swift in Sources */,
 				15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */,
 				15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */,
 				157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */,

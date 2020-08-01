@@ -180,20 +180,24 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
+      /// en translation: Characters
+      ///
+      /// Locales: en, pt-BR
+      static let characters = Rswift.StringResource(key: "characters", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Comics
       ///
       /// Locales: en, pt-BR
       static let comics = Rswift.StringResource(key: "comics", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Favorites
+      ///
+      /// Locales: en, pt-BR
+      static let favorites = Rswift.StringResource(key: "favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
       static let helloWorld = Rswift.StringResource(key: "helloWorld", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
-      /// en translation: Marvel Characters
-      ///
-      /// Locales: en, pt-BR
-      static let characters = Rswift.StringResource(key: "characters", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Oops, an error has occurred!
       ///
       /// Locales: en, pt-BR
@@ -206,6 +210,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+
+      /// en translation: Characters
+      ///
+      /// Locales: en, pt-BR
+      static func characters(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("characters", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "characters"
+        }
+
+        return NSLocalizedString("characters", bundle: bundle, comment: "")
+      }
 
       /// en translation: Comics
       ///
@@ -222,6 +241,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("comics", bundle: bundle, comment: "")
       }
 
+      /// en translation: Favorites
+      ///
+      /// Locales: en, pt-BR
+      static func favorites(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favorites", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favorites"
+        }
+
+        return NSLocalizedString("favorites", bundle: bundle, comment: "")
+      }
+
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
@@ -235,21 +269,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helloWorld", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Marvel Characters
-      ///
-      /// Locales: en, pt-BR
-      static func characters(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("characters", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "characters"
-        }
-
-        return NSLocalizedString("characters", bundle: bundle, comment: "")
       }
 
       /// en translation: Oops, an error has occurred!

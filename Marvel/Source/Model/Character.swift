@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Character: Decodable {
+class Character: Decodable {
     
     let id: Int
     
@@ -22,5 +22,12 @@ struct Character: Decodable {
     
     private enum CodingKeys: CodingKey {
         case id, name, description, thumbnail
+    }
+    
+    init(id: Int, name: String, description: String, thumbnail: Thumbnail) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.thumbnail = thumbnail
     }
 }

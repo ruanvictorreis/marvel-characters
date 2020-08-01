@@ -44,7 +44,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     func fetchCharacterList() {
         characterListWorker.fetchCharacterList(
             sucess: { [weak self] response in
-                self?.presenter.showCharacterList(response)
+                let result = self?.setupFavorites(response)
+                self?.presenter.showCharacterList(result)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -67,7 +68,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             sucess: {[weak self] response in
-                self?.presenter.showCharacterList(response)
+                let result = self?.setupFavorites(response)
+                self?.presenter.showCharacterList(result)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -84,5 +86,17 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private func searchForCharacter() {
         searchForCharacter(searchingFor)
+    }
+    
+    private func setupFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {
+        let characters = characterListWorker
+            .getFavoriteCharacters()
+            .map({ $0.id })
+        
+        response?.data.results.forEach({
+            $0.isFavorite = characters.contains($0.id)
+        })
+        
+        return response
     }
 }

@@ -5,9 +5,9 @@ PODS:
   - Kingfisher/Core (5.14.1)
   - Nimble (8.1.1)
   - Quick (3.0.0)
-  - R.swift (5.1.0):
-    - R.swift.Library (~> 5.1.0)
-  - R.swift.Library (5.1.0)
+  - R.swift (5.2.2):
+    - R.swift.Library (~> 5.2.0)
+  - R.swift.Library (5.2.0)
   - Realm (5.3.2):
     - Realm/Headers (= 5.3.2)
   - Realm/Headers (5.3.2)
@@ -26,8 +26,8 @@ DEPENDENCIES:
   - Kingfisher (= 5.14.1)
   - Nimble (= 8.1.1)
   - Quick (= 3.0.0)
-  - R.swift (~> 5.1.0)
-  - RealmSwift
+  - R.swift (~> 5.2.0)
+  - RealmSwift (~> 5.3.2)
   - RxCocoa (~> 5.1.1)
   - RxSwift (~> 5.1.1)
   - SwiftLint (~> 0.39.2)
@@ -52,8 +52,8 @@ SPEC CHECKSUMS:
   Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
   Nimble: 5f8a2fb6fa343a7242dfdd9d42f7267419d464b2
   Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
-  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
-  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
+  R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
   Realm: c6794276ca8884808ba168a22f9d71362b170b85
   RealmSwift: 42ec6cec3170aeeda407f797f07268a7d055ebc7
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -61,6 +61,6 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 57cdb6d186e7e2d940dc93781ae52183e85fe5ce
+PODFILE CHECKSUM: b95e61eb0cb85c8e9724fd238507abb5096415ac
 
 COCOAPODS: 1.9.3

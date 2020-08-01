@@ -29,7 +29,13 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Private Properties
     
-    private var searchingFor = ""
+    private let pageCount = 20
+    
+    private var totalCount = 0
+    
+    private var currentPage = 0
+
+    private var searchParameter = ""
     
     private var isSearchEnabled = false
     
@@ -45,9 +51,11 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     func fetchCharacterList() {
         characterListWorker.fetchCharacterList(
+            offset: currentPage * pageCount,
             sucess: { [weak self] results in
                 let response = self?.setFavorites(results)
                 self?.presenter.showCharacterList(response)
+                self?.totalCount = response?.data.total ?? 0
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -55,8 +63,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func fetchCharacterNextPage() {
-        guard characterListWorker.shouldFetchNewPage() else { return }
-        characterListWorker.nextPage()
+        guard shouldFetchNewPage() else { return }
+        currentPage += 1
         
         isSearchEnabled
             ? searchForCharacter()
@@ -64,14 +72,16 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func searchForCharacter(_ searchParameter: String) {
-        searchingFor = searchParameter
+        self.searchParameter = searchParameter
         isSearchEnabled = true
         
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
+            offset: currentPage * pageCount,
             sucess: {[weak self] results in
                 let response = self?.setFavorites(results)
                 self?.presenter.showCharacterList(response)
+                self?.totalCount = response?.data.total ?? 0
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -88,15 +98,22 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func restart() {
-        searchingFor = ""
+        currentPage = 0
+        totalCount = 0
+        searchParameter = ""
         isSearchEnabled = false
-        characterListWorker.restart()
     }
     
     // MARK: - Private Functions
     
     private func searchForCharacter() {
-        searchForCharacter(searchingFor)
+        searchForCharacter(searchParameter)
+    }
+    
+    private func shouldFetchNewPage() -> Bool {
+        let isFirstFetch = totalCount == 0
+        let shouldFetchMore = (currentPage + 1) * pageCount < totalCount
+        return isFirstFetch || shouldFetchMore
     }
     
     private func setFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {

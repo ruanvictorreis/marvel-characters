@@ -48,6 +48,7 @@ class CharacterListViewController: UIViewController, CharacterListViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView.reloadData()
         setupNavigation()
     }
     

@@ -19,16 +19,18 @@ protocol CharacterListWorkerProtocol {
     
     func shouldFetchNewPage() -> Bool
     
+    func getFavoriteCharacters() -> [Character]
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation,
+                      failure: Completation)
+    
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
     
     func fetchCharacterList(searchParameter: String,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
-    
-    func saveFavorite(character: Character,
-                      sucess: Completation,
-                      failure: Completation)
 }
 
 class CharacterListWorker: CharacterListWorkerProtocol {
@@ -42,20 +44,6 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     private let pageCount = 20
     
     // MARK: - Public Function
-    
-    func saveFavorite(character: Character,
-                      sucess: Completation = nil,
-                      failure: Completation = nil) {
-        
-        PersistenceManager().save(
-            character: character,
-            sucess: {
-                sucess?()
-            },
-            failure: {
-                failure?()
-            })
-    }
     
     func fetchCharacterList(sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
@@ -102,6 +90,24 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             },
             failure: { error in
                 failure(error)
+            })
+    }
+    
+    func getFavoriteCharacters() -> [Character] {
+        return PersistenceManager().getCharacters()
+    }
+    
+    func saveFavorite(character: Character,
+                      sucess: Completation,
+                      failure: Completation) {
+        
+        PersistenceManager().save(
+            character: character,
+            sucess: {
+                sucess?()
+            },
+            failure: {
+                failure?()
             })
     }
     

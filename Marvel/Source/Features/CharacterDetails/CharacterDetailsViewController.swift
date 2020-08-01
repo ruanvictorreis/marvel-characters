@@ -21,11 +21,11 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var characterName: UILabel!
     
-    @IBOutlet private var loveItButton: UIHeartButton!
-    
     @IBOutlet private var characterDescription: UILabel!
     
     @IBOutlet private var characterThumbnail: UIImageView!
+    
+    @IBOutlet private var loveItButton: UIHeartButton!
     
     @IBOutlet private var comicBookCarousel: ComicBookCarousel!
     
@@ -43,6 +43,11 @@ class CharacterDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         fetchComicBookList()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loveItButton.isFilled = character.isFavorite
     }
     
     // MARK: - Private Functions

@@ -18,5 +18,9 @@ struct Character: Decodable {
     
     let thumbnail: Thumbnail
     
-    let isFavorite: Bool = false
+    var isFavorite: Bool = false
+    
+    private enum CodingKeys: CodingKey {
+        case id, name, description, thumbnail
+    }
 }

@@ -10,5 +10,7 @@ import Foundation
 
 protocol PersistenceProtocol {
     
+    func getCharacters() -> [Character]
+    
     func save(_ character: Character) -> Bool
 }

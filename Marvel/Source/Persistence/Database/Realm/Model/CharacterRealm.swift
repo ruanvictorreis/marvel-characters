@@ -27,4 +27,8 @@ class CharacterRealm: Object {
         let thumbnail = character.thumbnail
         self.thumbnail = ThumbnailRealm(thumbnail: thumbnail)
     }
+    
+    override class func primaryKey() -> String {
+        return "id"
+    }
 }

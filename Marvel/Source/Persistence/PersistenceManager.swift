@@ -12,6 +12,8 @@ typealias Completation = (() -> Void)?
 
 protocol PersistenceManagerProtocol {
     
+    func getCharacters() -> [Character]
+    
     func save(character: Character, sucess: Completation, failure: Completation)
 }
 
@@ -21,6 +23,10 @@ class PersistenceManager: PersistenceManagerProtocol {
     
     init() {
         database = RealmDatabase()
+    }
+    
+    func getCharacters() -> [Character] {
+        return database.getCharacters()
     }
     
     func save(character: Character, sucess: Completation, failure: Completation) {

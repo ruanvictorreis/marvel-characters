@@ -139,7 +139,6 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="240" width="414" height="661.5"/>
@@ -296,7 +295,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
                                                 <rect key="frame" x="16" y="16" width="13" height="22"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="icon_back"/>
                                                 <connections>
                                                     <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>

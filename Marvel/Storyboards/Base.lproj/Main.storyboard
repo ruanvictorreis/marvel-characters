@@ -26,62 +26,73 @@
                                     <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="eS3-Ta-seH" customClass="CharacterCollectionViewCell" customModule="Marvel" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="eS3-Ta-seH" customClass="CharacterCollectionViewCell" customModule="Marvel" customModuleProvider="target">
                                         <rect key="frame" x="16" y="16" width="180" height="296"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S38-ZH-Hg7" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                                        <collectionViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S38-ZH-Hg7" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="296"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUr-T6-sed">
-                                                    <rect key="frame" x="8" y="256" width="164" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="pDd-QR-gc8"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBX-AD-obE" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
-                                                    <rect key="frame" x="146" y="225" width="30" height="30"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSj-YQ-fzo" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="296"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eF-lj-igv" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
-                                                            <rect key="frame" x="4" y="4" width="22" height="22"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <connections>
-                                                                <action selector="loveIt:" destination="eS3-Ta-seH" eventType="touchUpInside" id="K5F-tz-Vda"/>
-                                                            </connections>
-                                                        </button>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7h-a8-leH">
+                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUr-T6-sed">
+                                                            <rect key="frame" x="8" y="256" width="164" height="24"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="pDd-QR-gc8"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBX-AD-obE" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                                            <rect key="frame" x="146" y="225" width="30" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eF-lj-igv" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                                                    <rect key="frame" x="4" y="4" width="22" height="22"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="loveIt:" destination="eS3-Ta-seH" eventType="touchUpInside" id="K5F-tz-Vda"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="5eF-lj-igv" secondAttribute="bottom" constant="4" id="6lg-1Z-sWD"/>
+                                                                <constraint firstAttribute="width" constant="30" id="MNm-To-cIY"/>
+                                                                <constraint firstItem="5eF-lj-igv" firstAttribute="top" secondItem="XBX-AD-obE" secondAttribute="top" constant="4" id="dcb-d2-Cm0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="5eF-lj-igv" secondAttribute="trailing" constant="4" id="hgA-f4-KcC"/>
+                                                                <constraint firstItem="5eF-lj-igv" firstAttribute="leading" secondItem="XBX-AD-obE" secondAttribute="leading" constant="4" id="mqq-68-FhA"/>
+                                                                <constraint firstAttribute="height" constant="30" id="poz-P7-y2p"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="5eF-lj-igv" secondAttribute="bottom" constant="4" id="6lg-1Z-sWD"/>
-                                                        <constraint firstAttribute="width" constant="30" id="MNm-To-cIY"/>
-                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="top" secondItem="XBX-AD-obE" secondAttribute="top" constant="4" id="dcb-d2-Cm0"/>
-                                                        <constraint firstAttribute="trailing" secondItem="5eF-lj-igv" secondAttribute="trailing" constant="4" id="hgA-f4-KcC"/>
-                                                        <constraint firstItem="5eF-lj-igv" firstAttribute="leading" secondItem="XBX-AD-obE" secondAttribute="leading" constant="4" id="mqq-68-FhA"/>
-                                                        <constraint firstAttribute="height" constant="30" id="poz-P7-y2p"/>
+                                                        <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="NSj-YQ-fzo" secondAttribute="top" id="17v-zF-r5u"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XBX-AD-obE" secondAttribute="trailing" constant="4" id="CjS-Ef-BPI"/>
+                                                        <constraint firstItem="zUr-T6-sed" firstAttribute="leading" secondItem="NSj-YQ-fzo" secondAttribute="leading" constant="8" id="KXS-8v-ViY"/>
+                                                        <constraint firstAttribute="bottom" secondItem="zUr-T6-sed" secondAttribute="bottom" constant="16" id="Rg1-XP-0ih"/>
+                                                        <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="NSj-YQ-fzo" secondAttribute="leading" id="eIb-IX-tWt"/>
+                                                        <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="i3f-Of-zcv"/>
+                                                        <constraint firstItem="XBX-AD-obE" firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="15" id="kBc-6E-WhE"/>
+                                                        <constraint firstItem="zUr-T6-sed" firstAttribute="top" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="16" id="nhy-OR-OgL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="zUr-T6-sed" secondAttribute="trailing" constant="8" id="rW2-bd-4Bg"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="zUr-T6-sed" secondAttribute="trailing" constant="8" id="0On-JA-H4c"/>
-                                                <constraint firstItem="G7h-a8-leH" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="3DO-oS-oSv"/>
-                                                <constraint firstItem="zUr-T6-sed" firstAttribute="top" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="16" id="JSS-lJ-mgq"/>
-                                                <constraint firstItem="XBX-AD-obE" firstAttribute="bottom" secondItem="G7h-a8-leH" secondAttribute="bottom" constant="15" id="JhP-IR-zLx"/>
-                                                <constraint firstItem="zUr-T6-sed" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" constant="8" id="Pvl-mT-80X"/>
-                                                <constraint firstAttribute="trailing" secondItem="G7h-a8-leH" secondAttribute="trailing" id="TrT-YP-fRY"/>
-                                                <constraint firstAttribute="bottom" secondItem="zUr-T6-sed" secondAttribute="bottom" constant="16" id="bws-Dt-Tcc"/>
-                                                <constraint firstAttribute="trailing" secondItem="XBX-AD-obE" secondAttribute="trailing" constant="4" id="hmf-T9-FUG"/>
-                                                <constraint firstItem="G7h-a8-leH" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="n0i-IP-1c8"/>
+                                                <constraint firstAttribute="trailing" secondItem="NSj-YQ-fzo" secondAttribute="trailing" id="Bdj-2z-meP"/>
+                                                <constraint firstItem="NSj-YQ-fzo" firstAttribute="top" secondItem="S38-ZH-Hg7" secondAttribute="top" id="W62-BU-dmh"/>
+                                                <constraint firstItem="NSj-YQ-fzo" firstAttribute="leading" secondItem="S38-ZH-Hg7" secondAttribute="leading" id="W6B-eO-1Bh"/>
+                                                <constraint firstAttribute="bottom" secondItem="NSj-YQ-fzo" secondAttribute="bottom" id="jJ6-ix-540"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="0.80000000000000004"/>
+                                                    <real key="value" value="0.59999999999999998"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
@@ -124,14 +135,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="922"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="901.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="917.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="240" width="414" height="645.5"/>
+                                                <rect key="frame" x="0.0" y="240" width="414" height="661.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
                                                         <rect key="frame" x="16" y="16" width="382" height="26.5"/>
@@ -153,7 +164,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnE-O4-iGd" customClass="ComicBookCarousel" customModule="Marvel" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="345" width="414" height="276.5"/>
+                                                        <rect key="frame" x="0.0" y="345" width="414" height="292.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-hY-txs">
                                                                 <rect key="frame" x="16" y="0.0" width="382" height="26.5"/>
@@ -162,10 +173,10 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0mZ-SK-c9r">
-                                                                <rect key="frame" x="0.0" y="42.5" width="414" height="210"/>
+                                                                <rect key="frame" x="0.0" y="42.5" width="414" height="226"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="210" id="y2C-eW-Vgc"/>
+                                                                    <constraint firstAttribute="height" constant="226" id="y2C-eW-Vgc"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dxY-mU-uib">
                                                                     <size key="itemSize" width="128" height="128"/>
@@ -174,24 +185,41 @@
                                                                     <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicBookCell" id="S3N-nQ-eVm" userLabel="Comic Book Cell" customClass="ComicBookCollectionViewCell" customModule="Marvel" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="0.0" width="140" height="210"/>
+                                                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComicBookCell" id="S3N-nQ-eVm" userLabel="Comic Book Cell" customClass="ComicBookCollectionViewCell" customModule="Marvel" customModuleProvider="target">
+                                                                        <rect key="frame" x="16" y="8" width="140" height="210"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3tq-iW-MUe" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                                                                        <collectionViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3tq-iW-MUe" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ukN-r7-BEe">
+                                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CV8-qZ-UDi" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
-                                                                                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                                                                </imageView>
+                                                                                    <subviews>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ukN-r7-BEe">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="210"/>
+                                                                                            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                                                        </imageView>
+                                                                                    </subviews>
+                                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstItem="ukN-r7-BEe" firstAttribute="top" secondItem="CV8-qZ-UDi" secondAttribute="top" id="LmD-bb-IZt"/>
+                                                                                        <constraint firstAttribute="bottom" secondItem="ukN-r7-BEe" secondAttribute="bottom" id="jhV-Fr-DlI"/>
+                                                                                        <constraint firstItem="ukN-r7-BEe" firstAttribute="leading" secondItem="CV8-qZ-UDi" secondAttribute="leading" id="rFn-pw-a1y"/>
+                                                                                        <constraint firstAttribute="trailing" secondItem="ukN-r7-BEe" secondAttribute="trailing" id="zlt-UQ-zyX"/>
+                                                                                    </constraints>
+                                                                                </view>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstItem="ukN-r7-BEe" firstAttribute="top" secondItem="3tq-iW-MUe" secondAttribute="top" id="Fdh-PC-1kV"/>
-                                                                                <constraint firstItem="ukN-r7-BEe" firstAttribute="leading" secondItem="3tq-iW-MUe" secondAttribute="leading" id="Jeh-2j-o2L"/>
-                                                                                <constraint firstAttribute="trailing" secondItem="ukN-r7-BEe" secondAttribute="trailing" id="JxF-uK-r5Y"/>
-                                                                                <constraint firstAttribute="bottom" secondItem="ukN-r7-BEe" secondAttribute="bottom" id="WzH-qg-yra"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="CV8-qZ-UDi" secondAttribute="bottom" id="agG-aB-vtb"/>
+                                                                                <constraint firstItem="CV8-qZ-UDi" firstAttribute="leading" secondItem="3tq-iW-MUe" secondAttribute="leading" id="bqq-1F-CZp"/>
+                                                                                <constraint firstItem="CV8-qZ-UDi" firstAttribute="top" secondItem="3tq-iW-MUe" secondAttribute="top" id="fhg-MB-aZi"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="CV8-qZ-UDi" secondAttribute="trailing" id="qi4-qm-TgK"/>
                                                                             </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                                    <real key="value" value="0.59999999999999998"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </collectionViewCellContentView>
                                                                         <size key="customSize" width="140" height="210"/>
                                                                         <connections>
@@ -201,7 +229,7 @@
                                                                 </cells>
                                                             </collectionView>
                                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WSP-q7-G5K">
-                                                                <rect key="frame" x="188.5" y="120" width="37" height="37"/>
+                                                                <rect key="frame" x="188.5" y="128" width="37" height="37"/>
                                                             </activityIndicatorView>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -24,7 +24,7 @@ class BaseViewController: UIViewController {
     // MARK: - Public Functions
     
     func setupNavigation(title: String = "",
-                         isTranslucent: Bool = false,
+                         isTranslucent: Bool = true,
                          hasLargeTitle: Bool = false) {
         
         navigationItem.title = title

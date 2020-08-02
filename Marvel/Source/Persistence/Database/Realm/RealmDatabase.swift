@@ -37,7 +37,24 @@ class RealmDatabase: PersistenceProtocol {
                 realm.add(object, update: .all)
             }
             return true
-        
+            
+        } catch {
+            return false
+        }
+    }
+    
+    func delete(_ character: Character) -> Bool {
+        do {
+            let realm = try Realm()
+            
+            guard let object = realm.object(ofType: CharacterRealm.self, forPrimaryKey: character.id)
+                else { return false }
+            
+            try realm.write {
+                realm.delete(object)
+            }
+            return true
+            
         } catch {
             return false
         }

@@ -22,7 +22,14 @@ class CharacterListRouter: CharacterListRouterProtocol {
     // MARK: - Public Functions
     
     func proceedToCharacterDetails(_ character: Character) {
-        guard let nextScene = CharacterDetailsBuilder().build(character) else { return }
-        viewController.navigationController?.pushViewController(nextScene, animated: true)
+        guard let nextScene = CharacterDetailsBuilder().build(character)
+            else { return }
+        
+        viewController
+            .navigationItem.title = ""
+
+        viewController
+            .navigationController?
+            .pushViewController(nextScene, animated: true)
     }
 }

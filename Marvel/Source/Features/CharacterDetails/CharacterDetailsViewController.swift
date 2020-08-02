@@ -38,20 +38,23 @@ class CharacterDetailsViewController: BaseViewController {
     // MARK: - Public Properties
     
     var character: Character!
-
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         fetchComicBookList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loveItButton.isFilled = character.isFavorite
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupNavigation(isHidden: true)
     }
     
     // MARK: - Private Functions
@@ -74,6 +77,10 @@ class CharacterDetailsViewController: BaseViewController {
         loveItButton.toggleIt()
         character.isFavorite = loveItButton.isFilled
         interactor.saveFavorite(character)
+    }
+    
+    @IBAction func close(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
     }
 }
 

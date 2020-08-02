@@ -114,12 +114,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `heart_filled`.
     static let heart_filled = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_filled")
     /// Image `heart_outline`.
     static let heart_outline = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_outline")
+    /// Image `icon_back`.
+    static let icon_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_back")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "heart_filled", bundle: ..., traitCollection: ...)`
@@ -132,6 +134,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "heart_outline", bundle: ..., traitCollection: ...)`
     static func heart_outline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.heart_outline, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_back", bundle: ..., traitCollection: ...)`
+    static func icon_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_back, compatibleWith: traitCollection)
     }
     #endif
 
@@ -387,6 +396,7 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "icon_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_back' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().characterDetails() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterDetails' could not be loaded from storyboard 'Main' as 'CharacterDetailsViewController'.") }

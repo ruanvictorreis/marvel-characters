@@ -294,9 +294,18 @@
                                                     <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
+                                                <rect key="frame" x="16" y="16" width="13" height="22"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="icon_back"/>
+                                                <connections>
+                                                    <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="tcf-ac-JNY" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" constant="16" id="7yy-ns-F8Q"/>
                                             <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="D61-Ec-24r"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
@@ -305,6 +314,7 @@
                                             <constraint firstItem="Ecw-QJ-fZ5" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="-20" id="bT6-5b-ly4"/>
                                             <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
                                             <constraint firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="8" id="mBm-4G-Jv2"/>
+                                            <constraint firstItem="tcf-ac-JNY" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="16" id="uch-qn-Ltf"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="yQQ-Uc-dJJ"/>
                                         </constraints>
                                     </view>
@@ -344,4 +354,7 @@
             <point key="canvasLocation" x="902.89855072463774" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_back" width="13" height="21"/>
+    </resources>
 </document>

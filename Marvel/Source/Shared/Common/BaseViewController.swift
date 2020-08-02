@@ -24,6 +24,7 @@ class BaseViewController: UIViewController {
     // MARK: - Public Functions
     
     func setupNavigation(title: String = "",
+                         isHidden: Bool = false,
                          isTranslucent: Bool = true,
                          hasLargeTitle: Bool = false) {
         
@@ -32,7 +33,7 @@ class BaseViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = isTranslucent
         navigationController?.navigationBar.prefersLargeTitles = hasLargeTitle
         navigationController?.navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(isHidden, animated: true)
     }
     
     func setupSegmentedControl(titles: [String]) {

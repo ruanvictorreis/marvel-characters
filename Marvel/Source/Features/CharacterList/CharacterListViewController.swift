@@ -45,7 +45,6 @@ class CharacterListViewController: BaseViewController {
         super.viewWillAppear(animated)
         setupNavigation(
             title: R.Localizable.characters(),
-            isHidden: false,
             isTranslucent: true,
             hasLargeTitle: true)
         

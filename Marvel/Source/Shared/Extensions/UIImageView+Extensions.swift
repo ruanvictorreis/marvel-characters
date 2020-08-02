@@ -12,8 +12,7 @@ import Kingfisher
 extension UIImageView {
     
     func load(url: String, completion: (() -> Void)? = nil) {
-        guard url.notContains("image_not_available")
-            else { return }
+        guard url.notContains("image_not_available") else { return }
         
         kf.setImage(
             with: URL(string: url),

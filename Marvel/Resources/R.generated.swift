@@ -114,12 +114,14 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `heart_filled`.
     static let heart_filled = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_filled")
     /// Image `heart_outline`.
     static let heart_outline = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_outline")
+    /// Image `icon_back`.
+    static let icon_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_back")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "heart_filled", bundle: ..., traitCollection: ...)`
@@ -132,6 +134,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "heart_outline", bundle: ..., traitCollection: ...)`
     static func heart_outline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.heart_outline, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_back", bundle: ..., traitCollection: ...)`
+    static func icon_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_back, compatibleWith: traitCollection)
     }
     #endif
 
@@ -180,20 +189,24 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
+      /// en translation: Characters
+      ///
+      /// Locales: en, pt-BR
+      static let characters = Rswift.StringResource(key: "characters", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Comics
       ///
       /// Locales: en, pt-BR
       static let comics = Rswift.StringResource(key: "comics", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Favorites
+      ///
+      /// Locales: en, pt-BR
+      static let favorites = Rswift.StringResource(key: "favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
       static let helloWorld = Rswift.StringResource(key: "helloWorld", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
-      /// en translation: Marvel Characters
-      ///
-      /// Locales: en, pt-BR
-      static let characters = Rswift.StringResource(key: "characters", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Oops, an error has occurred!
       ///
       /// Locales: en, pt-BR
@@ -206,6 +219,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+
+      /// en translation: Characters
+      ///
+      /// Locales: en, pt-BR
+      static func characters(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("characters", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "characters"
+        }
+
+        return NSLocalizedString("characters", bundle: bundle, comment: "")
+      }
 
       /// en translation: Comics
       ///
@@ -222,6 +250,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("comics", bundle: bundle, comment: "")
       }
 
+      /// en translation: Favorites
+      ///
+      /// Locales: en, pt-BR
+      static func favorites(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("favorites", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "favorites"
+        }
+
+        return NSLocalizedString("favorites", bundle: bundle, comment: "")
+      }
+
       /// en translation: Hello World
       ///
       /// Locales: en, pt-BR
@@ -235,21 +278,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helloWorld", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Marvel Characters
-      ///
-      /// Locales: en, pt-BR
-      static func characters(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("characters", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "characters"
-        }
-
-        return NSLocalizedString("characters", bundle: bundle, comment: "")
       }
 
       /// en translation: Oops, an error has occurred!
@@ -368,6 +396,7 @@ struct _R: Rswift.Validatable {
       }
 
       static func validate() throws {
+        if UIKit.UIImage(named: "icon_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_back' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().characterDetails() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterDetails' could not be loaded from storyboard 'Main' as 'CharacterDetailsViewController'.") }

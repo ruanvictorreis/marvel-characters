@@ -15,7 +15,7 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
     func showComicBookListError(_ errorMessage: String)
 }
 
-class CharacterDetailsViewController: UIViewController {
+class CharacterDetailsViewController: BaseViewController {
     
     // MARK: - IBOutlets
     
@@ -38,7 +38,9 @@ class CharacterDetailsViewController: UIViewController {
     // MARK: - Public Properties
     
     var character: Character!
-
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -50,11 +52,12 @@ class CharacterDetailsViewController: UIViewController {
         loveItButton.isFilled = character.isFavorite
     }
     
-    // MARK: - Private Functions
-    
-    private func setupNavigation() {
-        navigationItem.title = character.name
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupNavigation(isHidden: true)
     }
+    
+    // MARK: - Private Functions
     
     private func setupUI() {
         characterName.text = character.name
@@ -74,6 +77,10 @@ class CharacterDetailsViewController: UIViewController {
         loveItButton.toggleIt()
         character.isFavorite = loveItButton.isFilled
         interactor.saveFavorite(character)
+    }
+    
+    @IBAction func close(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
     }
 }
 

@@ -8,11 +8,13 @@
 
 "helloWorld" = "Olá mundo!";
 
-"characters" = "Personagens da Marvel";
+"characters" = "Marvel";
 
 "search" = "Buscar";
 
 "comics" = "Quadrinhos";
+
+"favorites" = "Favoritos";
 
 "errorTitle"= "Ops, ocorreu um erro!";
 

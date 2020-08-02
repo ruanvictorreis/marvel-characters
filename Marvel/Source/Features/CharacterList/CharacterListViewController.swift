@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import RxCocoa
-import RxSwift
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
@@ -20,7 +17,7 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func saveFavorite(_ character: Character)
 }
 
-class CharacterListViewController: UIViewController, CharacterListViewControllerProtocol {
+class CharacterListViewController: BaseViewController {
 
     // MARK: - IBOutlets
     
@@ -36,8 +33,6 @@ class CharacterListViewController: UIViewController, CharacterListViewController
     
     private var characterList: [Character] = []
     
-    private let disposeBag = DisposeBag()
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -48,8 +43,13 @@ class CharacterListViewController: UIViewController, CharacterListViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigation(
+            title: R.Localizable.characters(),
+            isTranslucent: true,
+            hasLargeTitle: true)
+        
+        setupSegmentedControl()
         collectionView.reloadData()
-        setupNavigation()
     }
     
     // MARK: - Private Functions
@@ -82,32 +82,30 @@ class CharacterListViewController: UIViewController, CharacterListViewController
         collectionView.dataSource = self
     }
     
-    private func setupNavigation() {
-        navigationItem.title = R.Localizable.characters()
+    private func setupSegmentedControl() {
+        let titles: [String] = [
+            R.Localizable.characters(),
+            R.Localizable.favorites()]
+        
+        setupSegmentedControl(titles: titles)
     }
     
     private func setupSearchBar() {
-        let search = UISearchController(searchResultsController: nil)
-        search.searchBar.delegate = self
-        search.searchBar.tintColor = .darkness
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = R.Localizable.search()
-        
-        search.searchBar
-            .rx.text
-            .orEmpty
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .filter({ $0.isNotEmpty})
-            .subscribe(onNext: { [weak self] searchParameter in
+        setupSearchBar(
+            placeholder: R.Localizable.search(),
+            onSearch: { [weak self] searchParameter in
                 self?.searchForCharacter(searchParameter)
-            }).disposed(by: disposeBag)
-        
-        navigationItem.searchController = search
-        navigationItem.hidesSearchBarWhenScrolling = true
+            },
+            onCancel: { [weak self] in
+                self?.fetchCharacterList()
+            }
+        )
     }
+}
+
+// MARK: - CharacterListViewController Protocol
     
-    // MARK: - Public Functions
+extension CharacterListViewController: CharacterListViewControllerProtocol {
     
     func showCharacterList(_ characters: [Character]) {
         var indexPaths: [IndexPath] = []
@@ -200,14 +198,5 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let height = width * ratio
         
         return CGSize(width: width, height: height)
-    }
-}
-
-// MARK: - UISearchBarDelegate Protocol
-
-extension CharacterListViewController: UISearchBarDelegate {
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        fetchCharacterList()
     }
 }

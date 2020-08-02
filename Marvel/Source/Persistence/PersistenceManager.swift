@@ -8,13 +8,13 @@
 
 import Foundation
 
-typealias Completation = (() -> Void)?
+typealias Completation = (() -> Void)
 
 protocol PersistenceManagerProtocol {
     
     func getCharacters() -> [Character]
     
-    func save(character: Character, sucess: Completation, failure: Completation)
+    func save(character: Character, sucess: Completation?, failure: Completation?)
 }
 
 class PersistenceManager: PersistenceManagerProtocol {
@@ -29,7 +29,7 @@ class PersistenceManager: PersistenceManagerProtocol {
         return database.getCharacters()
     }
     
-    func save(character: Character, sucess: Completation, failure: Completation) {
+    func save(character: Character, sucess: Completation?, failure: Completation?) {
         database.save(character)
             ? sucess?()
             : failure?()

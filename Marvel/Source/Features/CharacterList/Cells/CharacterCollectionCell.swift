@@ -1,5 +1,5 @@
 //
-//  CharacterCollectionViewCell.swift
+//  CharacterCollectionCell.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 29/07/20.
@@ -8,7 +8,12 @@
 
 import UIKit
 
-class CharacterCollectionViewCell: UICollectionViewCell {
+protocol CharacterCellDelegate: AnyObject {
+    
+    func setupFavorite(character: Character, isFavorite: Bool)
+}
+
+class CharacterCollectionCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -20,7 +25,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public Properties
     
-     weak var delegate: CharacterListViewControllerProtocol?
+     weak var delegate: CharacterCellDelegate?
     
     // MARK: - Private Properties
     
@@ -56,7 +61,9 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     @IBAction func loveIt(_ sender: UIHeartButton) {
         guard let character = self.character else { return }
         loveItButton.toggleIt()
-        delegate?.saveFavorite(character)
-        character.isFavorite = loveItButton.isFilled
+        
+        delegate?.setupFavorite(
+            character: character,
+            isFavorite: loveItButton.isFilled)
     }
 }

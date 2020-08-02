@@ -15,10 +15,12 @@ protocol PersistenceManagerProtocol {
     func getCharacters() -> [Character]
     
     func save(character: Character, sucess: Completation?, failure: Completation?)
+    
+    func delete(character: Character, sucess: Completation?, failure: Completation?)
 }
 
 class PersistenceManager: PersistenceManagerProtocol {
-    
+
     private let database: PersistenceProtocol
     
     init() {
@@ -31,6 +33,12 @@ class PersistenceManager: PersistenceManagerProtocol {
     
     func save(character: Character, sucess: Completation?, failure: Completation?) {
         database.save(character)
+            ? sucess?()
+            : failure?()
+    }
+    
+    func delete(character: Character, sucess: Completation?, failure: Completation?) {
+        database.delete(character)
             ? sucess?()
             : failure?()
     }

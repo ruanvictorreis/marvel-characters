@@ -75,13 +75,15 @@ class CharacterDetailsViewController: BaseViewController {
     
     @IBAction func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
-        character.isFavorite = loveItButton.isFilled
-        interactor.saveFavorite(character)
+
+        interactor.setupFavorite(
+            character: character,
+            isFavorite: loveItButton.isFilled)
     }
     
     @IBAction func close(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
-    }
+    } 
 }
 
 // MARK: - CharacterDetailsViewController Protocol

@@ -19,6 +19,10 @@ protocol CharacterListWorkerProtocol {
                       sucess: Completation?,
                       failure: Completation?)
     
+    func deleteFavorite(character: Character,
+                        sucess: Completation?,
+                        failure: Completation?)
+    
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError)
@@ -88,6 +92,20 @@ class CharacterListWorker: CharacterListWorkerProtocol {
                       failure: Completation?) {
         
         PersistenceManager().save(
+            character: character,
+            sucess: {
+                sucess?()
+            },
+            failure: {
+                failure?()
+            })
+    }
+    
+    func deleteFavorite(character: Character,
+                        sucess: Completation?,
+                        failure: Completation?) {
+        
+        PersistenceManager().delete(
             character: character,
             sucess: {
                 sucess?()

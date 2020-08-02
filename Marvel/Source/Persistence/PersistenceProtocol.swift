@@ -13,4 +13,6 @@ protocol PersistenceProtocol {
     func getCharacters() -> [Character]
     
     func save(_ character: Character) -> Bool
+    
+    func delete(_ character: Character) -> Bool
 }

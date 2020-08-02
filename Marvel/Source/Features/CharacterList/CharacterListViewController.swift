@@ -13,8 +13,6 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func showCharacterList(_ characters: [Character])
     
     func showCharacterListError(_ errorMessage: String)
-    
-    func saveFavorite(_ character: Character)
 }
 
 class CharacterListViewController: BaseViewController {
@@ -128,9 +126,14 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
+}
+
+extension CharacterListViewController: CharacterCellDelegate {
     
-    func saveFavorite(_ character: Character) {
-        interactor.saveFavorite(character)
+    func setupFavorite(character: Character, isFavorite: Bool) {
+        interactor.setupFavorite(
+            character: character,
+            isFavorite: isFavorite)
     }
 }
 
@@ -171,7 +174,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath)
-            as? CharacterCollectionViewCell else { return UICollectionViewCell() }
+            as? CharacterCollectionCell else { return UICollectionViewCell() }
         
         cell.setup(character: characterList[indexPath.item])
         cell.delegate = self

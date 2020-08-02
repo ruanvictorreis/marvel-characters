@@ -16,9 +16,9 @@ protocol CharacterListInteractorProtocol {
     
     func fetchCharacterNextPage()
     
-    func saveFavorite(_ character: Character)
-    
     func searchForCharacter(_ searchParameter: String)
+    
+    func setupFavorite(character: Character, isFavorite: Bool)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -88,13 +88,12 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         })
     }
     
-    func saveFavorite(_ character: Character) {
-        characterListWorker.saveFavorite(
-            character: character,
-            sucess: nil,
-            failure: {
-                //self?.presenter.showError(error)
-        })
+    func setupFavorite(character: Character, isFavorite: Bool) {
+        character.isFavorite = isFavorite
+        
+        isFavorite
+            ? saveFavorite(character)
+            : deleteFavorite(character)
     }
     
     func restart() {
@@ -114,6 +113,20 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         let isFirstFetch = totalCount == 0
         let shouldFetchMore = (currentPage + 1) * pageCount < totalCount
         return isFirstFetch || shouldFetchMore
+    }
+    
+    private func saveFavorite(_ character: Character) {
+        characterListWorker.saveFavorite(
+            character: character,
+            sucess: nil,
+            failure: nil)
+    }
+    
+    private func deleteFavorite(_ character: Character) {
+        characterListWorker.deleteFavorite(
+            character: character,
+            sucess: nil,
+            failure: nil)
     }
     
     private func setFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {

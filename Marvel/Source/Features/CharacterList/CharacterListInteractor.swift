@@ -12,13 +12,13 @@ protocol CharacterListInteractorProtocol {
     
     func restart()
     
-    func setupFavorite(character: Character, isFavorite: Bool)
-    
     func fetchCharacterList(section: CharacterListViewSection)
     
     func fetchCharacterNextPage(section: CharacterListViewSection)
     
     func searchForCharacter(searchParameter: String, section: CharacterListViewSection)
+    
+    func setupFavorite(character: Character, isFavorite: Bool, section: CharacterListViewSection)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -79,12 +79,12 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             : fetchCharacterList()
     }
     
-    func setupFavorite(character: Character, isFavorite: Bool) {
+    func setupFavorite(character: Character, isFavorite: Bool, section: CharacterListViewSection) {
         character.isFavorite = isFavorite
         
         isFavorite
-            ? saveFavorite(character)
-            : deleteFavorite(character)
+            ? saveFavorite(character, section: section)
+            : deleteFavorite(character, section: section)
     }
     
     func restart() {
@@ -142,17 +142,20 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         return isFirstFetch || shouldFetchMore
     }
     
-    private func saveFavorite(_ character: Character) {
+    private func saveFavorite(_ character: Character, section: CharacterListViewSection) {
         characterListWorker.saveFavorite(
             character: character,
             sucess: nil,
             failure: nil)
     }
     
-    private func deleteFavorite(_ character: Character) {
+    private func deleteFavorite(_ character: Character, section: CharacterListViewSection) {
         characterListWorker.deleteFavorite(
             character: character,
-            sucess: nil,
+            sucess: { [weak self] in
+                guard section == .favorites else { return }
+                self?.presenter.removeCharacterFromList(character)
+            },
             failure: nil)
     }
     

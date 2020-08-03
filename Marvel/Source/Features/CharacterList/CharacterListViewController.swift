@@ -14,6 +14,8 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func showCharacterList(_ characters: [Character])
     
     func showCharacterListError(_ errorMessage: String)
+    
+    func removeCharacterFromList(_ character: Character)
 }
 
 class CharacterListViewController: BaseViewController {
@@ -50,6 +52,11 @@ class CharacterListViewController: BaseViewController {
             hasLargeTitle: true)
         
         collectionView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        removeNonFavoritesFromList()
     }
     
     // MARK: - Private Functions
@@ -115,6 +122,15 @@ class CharacterListViewController: BaseViewController {
         navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)
     }
+    
+    private func removeNonFavoritesFromList() {
+        guard section == .favorites else { return }
+        characterList
+            .filter({ !$0.isFavorite })
+            .forEach({
+                removeCharacterFromList($0)
+            })
+    }
 }
 
 // MARK: - CharacterListViewController Protocol
@@ -142,6 +158,13 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
+    
+    func removeCharacterFromList(_ character: Character) {
+        guard let index = characterList.firstIndex(of: character) else { return }
+        let indexPath = IndexPath(item: index, section: 0)
+        characterList.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+    }
 }
 
 extension CharacterListViewController: CharacterCellDelegate {
@@ -149,7 +172,8 @@ extension CharacterListViewController: CharacterCellDelegate {
     func setupFavorite(character: Character, isFavorite: Bool) {
         interactor.setupFavorite(
             character: character,
-            isFavorite: isFavorite)
+            isFavorite: isFavorite,
+            section: section)
     }
 }
 

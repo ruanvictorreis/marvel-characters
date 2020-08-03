@@ -15,6 +15,8 @@ protocol CharacterListPresenterProtocol {
     func showCharacterList(_ results: [Character])
     
     func showCharacterListError(_ error: AFError?)
+    
+    func removeCharacterFromList(_ character: Character)
 }
 
 class CharacterListPresenter: CharacterListPresenterProtocol {
@@ -39,5 +41,9 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     func showCharacterListError(_ error: AFError? = nil) {
         let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
         viewController.showCharacterListError(errorMessage)
+    }
+    
+    func removeCharacterFromList(_ character: Character) {
+        viewController.removeCharacterFromList(character)
     }
 }

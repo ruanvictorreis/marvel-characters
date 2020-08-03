@@ -113,6 +113,7 @@ class CharacterListViewController: BaseViewController {
         self.section = section
         fetchCharacterList()
         navigationItem.title = section.title
+        collectionView.setContentOffset(.zero, animated: true)
     }
 }
 

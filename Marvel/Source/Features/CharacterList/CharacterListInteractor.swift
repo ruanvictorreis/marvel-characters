@@ -12,13 +12,13 @@ protocol CharacterListInteractorProtocol {
     
     func restart()
     
-    func fetchCharacterList(section: CharacterSection)
-    
-    func fetchCharacterNextPage(section: CharacterSection)
-    
-    func searchForCharacter(searchParameter: String, section: CharacterSection)
-    
     func setupFavorite(character: Character, isFavorite: Bool)
+    
+    func fetchCharacterList(section: CharacterListViewSection)
+    
+    func fetchCharacterNextPage(section: CharacterListViewSection)
+    
+    func searchForCharacter(searchParameter: String, section: CharacterListViewSection)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -49,7 +49,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Public Functions
     
-    func fetchCharacterList(section: CharacterSection = .characters) {
+    func fetchCharacterList(section: CharacterListViewSection = .characters) {
         switch section {
         case .characters:
             fetchCharacters()
@@ -58,7 +58,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         }
     }
     
-    func searchForCharacter(searchParameter: String, section: CharacterSection) {
+    func searchForCharacter(searchParameter: String, section: CharacterListViewSection) {
         self.searchParameter = searchParameter
         isSearchEnabled = true
         
@@ -70,7 +70,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         }
     }
     
-    func fetchCharacterNextPage(section: CharacterSection) {
+    func fetchCharacterNextPage(section: CharacterListViewSection) {
         guard section == .characters, shouldFetchNewPage() else { return }
         currentPage += 1
         

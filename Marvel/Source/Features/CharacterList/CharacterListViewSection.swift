@@ -1,5 +1,5 @@
 //
-//  CharacterSection.swift
+//  CharacterListViewSection.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 02/08/20.

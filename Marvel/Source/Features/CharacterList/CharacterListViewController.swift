@@ -17,11 +17,11 @@ protocol CharacterListViewControllerProtocol: AnyObject {
 }
 
 class CharacterListViewController: BaseViewController {
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet private var collectionView: UICollectionView!
-
+    
     // MARK: - VIP Properties
     
     var interactor: CharacterListInteractorProtocol!
@@ -32,7 +32,7 @@ class CharacterListViewController: BaseViewController {
     
     private var characterList: [Character] = []
     
-    private var section: CharacterSection = .characters
+    private var section: CharacterListViewSection = .characters
     
     // MARK: - View Lifecycle
     
@@ -49,7 +49,6 @@ class CharacterListViewController: BaseViewController {
             isTranslucent: true,
             hasLargeTitle: true)
         
-        setupSegmentedControl()
         collectionView.reloadData()
     }
     
@@ -80,19 +79,9 @@ class CharacterListViewController: BaseViewController {
     
     private func setupUI() {
         setupSearchBar()
+        setupSegmentedControl()
         collectionView.delegate = self
         collectionView.dataSource = self
-    }
-    
-    private func setupSegmentedControl() {
-        let titles: [String] = [
-            R.Localizable.characters(),
-            R.Localizable.favorites()]
-        
-        setupSegmentedControl(
-            titles: titles,
-            section: section.rawValue,
-            action: #selector(didChangeControlSection))
     }
     
     private func setupSearchBar() {
@@ -107,9 +96,20 @@ class CharacterListViewController: BaseViewController {
         )
     }
     
+    private func setupSegmentedControl() {
+        let titles: [String] = [
+            R.Localizable.characters(),
+            R.Localizable.favorites()]
+        
+        setupSegmentedControl(
+            titles: titles,
+            section: section.rawValue,
+            action: #selector(didChangeControlSection))
+    }
+    
     @objc
     private func didChangeControlSection(_ control: BetterSegmentedControl) {
-        guard let section = CharacterSection(rawValue: control.index) else { return }
+        guard let section = CharacterListViewSection(rawValue: control.index) else { return }
         self.section = section
         fetchCharacterList()
         navigationItem.title = section.title
@@ -118,7 +118,7 @@ class CharacterListViewController: BaseViewController {
 }
 
 // MARK: - CharacterListViewController Protocol
-    
+
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
     func showCharacterList(_ characters: [Character]) {

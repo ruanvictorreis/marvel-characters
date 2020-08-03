@@ -54,6 +54,11 @@ class CharacterListViewController: BaseViewController {
         collectionView.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        removeNonFavoritesFromList()
+    }
+    
     // MARK: - Private Functions
     
     private func clean() {
@@ -116,6 +121,15 @@ class CharacterListViewController: BaseViewController {
         fetchCharacterList()
         navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)
+    }
+    
+    private func removeNonFavoritesFromList() {
+        guard section == .favorites else { return }
+        characterList
+            .filter({ !$0.isFavorite })
+            .forEach({
+                removeCharacterFromList($0)
+            })
     }
 }
 

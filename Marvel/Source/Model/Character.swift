@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Character: Decodable {
+class Character: Decodable, Equatable {
     
     let id: Int
     
@@ -30,5 +30,9 @@ class Character: Decodable {
         self.description = description
         self.isFavorite = isFavorite
         self.thumbnail = thumbnail
+    }
+    
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        return lhs.id == rhs.id
     }
 }

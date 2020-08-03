@@ -14,6 +14,8 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func showCharacterList(_ characters: [Character])
     
     func showCharacterListError(_ errorMessage: String)
+    
+    func removeCharacterFromList(_ character: Character)
 }
 
 class CharacterListViewController: BaseViewController {
@@ -142,6 +144,13 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         hideLoading()
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
+    
+    func removeCharacterFromList(_ character: Character) {
+        guard let index = characterList.firstIndex(of: character) else { return }
+        let indexPath = IndexPath(item: index, section: 0)
+        characterList.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+    }
 }
 
 extension CharacterListViewController: CharacterCellDelegate {
@@ -149,7 +158,8 @@ extension CharacterListViewController: CharacterCellDelegate {
     func setupFavorite(character: Character, isFavorite: Bool) {
         interactor.setupFavorite(
             character: character,
-            isFavorite: isFavorite)
+            isFavorite: isFavorite,
+            section: section)
     }
 }
 

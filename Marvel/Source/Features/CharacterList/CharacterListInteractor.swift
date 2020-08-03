@@ -66,7 +66,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         case .characters:
             searchForCharacter()
         case .favorites:
-            searchInFavorites()
+            searchForFavorites()
         }
     }
     
@@ -128,7 +128,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         presenter.showCharacterList(characters)
     }
     
-    private func searchInFavorites() {
+    private func searchForFavorites() {
         let characters = characterListWorker
             .getFavoriteCharacters()
             .filter({ $0.name.contains(searchParameter) })

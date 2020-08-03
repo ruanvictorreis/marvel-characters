@@ -12,11 +12,13 @@ protocol CharacterListPresenterProtocol {
     
     func showCharacterList(_ response: CharacterListResponse?)
     
+    func showCharacterList(_ results: [Character])
+    
     func showCharacterListError(_ error: AFError?)
 }
 
 class CharacterListPresenter: CharacterListPresenterProtocol {
-
+    
     // MARK: - VIP Properties
     
     weak var viewController: CharacterListViewControllerProtocol!
@@ -27,6 +29,10 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         guard let results = response?.data.results
             else { showCharacterListError(); return }
         
+        viewController.showCharacterList(results)
+    }
+    
+    func showCharacterList(_ results: [Character]) {
         viewController.showCharacterList(results)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BetterSegmentedControl
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
@@ -31,6 +32,8 @@ class CharacterListViewController: BaseViewController {
     
     private var characterList: [Character] = []
     
+    private var section: CharacterSection = .characters
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -42,7 +45,7 @@ class CharacterListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigation(
-            title: R.Localizable.characters(),
+            title: section.title,
             isTranslucent: true,
             hasLargeTitle: true)
         
@@ -61,17 +64,18 @@ class CharacterListViewController: BaseViewController {
     private func fetchCharacterList() {
         clean()
         showLoading()
-        interactor.fetchCharacterList()
+        interactor.fetchCharacterList(section: section)
     }
     
     private func searchForCharacter(_ searchParameter: String) {
         clean()
         showLoading()
-        interactor.searchForCharacter(searchParameter)
+        interactor.searchForCharacter(
+            searchParameter: searchParameter, section: section)
     }
     
     private func fetchCharacterNextPage() {
-        interactor.fetchCharacterNextPage()
+        interactor.fetchCharacterNextPage(section: section)
     }
     
     private func setupUI() {
@@ -85,7 +89,10 @@ class CharacterListViewController: BaseViewController {
             R.Localizable.characters(),
             R.Localizable.favorites()]
         
-        setupSegmentedControl(titles: titles)
+        setupSegmentedControl(
+            titles: titles,
+            section: section.rawValue,
+            action: #selector(didChangeControlSection))
     }
     
     private func setupSearchBar() {
@@ -98,6 +105,14 @@ class CharacterListViewController: BaseViewController {
                 self?.fetchCharacterList()
             }
         )
+    }
+    
+    @objc
+    private func didChangeControlSection(_ control: BetterSegmentedControl) {
+        guard let section = CharacterSection(rawValue: control.index) else { return }
+        self.section = section
+        fetchCharacterList()
+        navigationItem.title = section.title
     }
 }
 

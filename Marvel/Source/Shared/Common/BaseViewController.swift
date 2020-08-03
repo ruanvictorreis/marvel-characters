@@ -36,7 +36,7 @@ class BaseViewController: UIViewController {
         navigationController?.setNavigationBarHidden(isHidden, animated: true)
     }
     
-    func setupSegmentedControl(titles: [String]) {
+    func setupSegmentedControl(titles: [String], section: Int, action: Selector) {
         let normalFont: UIFont = .systemFont(ofSize: 14.0, weight: .medium)
         let selectedFont: UIFont = .systemFont(ofSize: 14.0, weight: .bold)
         
@@ -55,9 +55,10 @@ class BaseViewController: UIViewController {
         let segmentedControl = BetterSegmentedControl(
             frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 40.0),
             segments: segments,
-            index: 0,
+            index: section,
             options: options)
         
+        segmentedControl.addTarget(self, action: action, for: .valueChanged)
         self.navigationItem.titleView = segmentedControl
     }
     

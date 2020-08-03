@@ -24,10 +24,11 @@ class Character: Decodable {
         case id, name, description, thumbnail
     }
     
-    init(id: Int, name: String, description: String, thumbnail: Thumbnail) {
+    init(id: Int, name: String, description: String, isFavorite: Bool, thumbnail: Thumbnail) {
         self.id = id
         self.name = name
         self.description = description
+        self.isFavorite = isFavorite
         self.thumbnail = thumbnail
     }
 }

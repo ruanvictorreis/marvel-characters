@@ -16,6 +16,8 @@ class CharacterRealm: Object {
     
     @objc dynamic var about: String = ""
     
+    @objc dynamic var isFavorite: Bool = false
+    
     @objc dynamic var thumbnail: ThumbnailRealm?
     
     convenience init(character: Character) {
@@ -23,6 +25,7 @@ class CharacterRealm: Object {
         self.id = character.id
         self.name = character.name
         self.about = character.description
+        self.isFavorite = character.isFavorite
         
         let thumbnail = character.thumbnail
         self.thumbnail = ThumbnailRealm(thumbnail: thumbnail)

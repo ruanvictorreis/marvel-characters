@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BetterSegmentedControl
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
@@ -16,11 +17,11 @@ protocol CharacterListViewControllerProtocol: AnyObject {
 }
 
 class CharacterListViewController: BaseViewController {
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet private var collectionView: UICollectionView!
-
+    
     // MARK: - VIP Properties
     
     var interactor: CharacterListInteractorProtocol!
@@ -30,6 +31,8 @@ class CharacterListViewController: BaseViewController {
     // MARK: - Private Properties
     
     private var characterList: [Character] = []
+    
+    private var section: CharacterListViewSection = .characters
     
     // MARK: - View Lifecycle
     
@@ -42,11 +45,10 @@ class CharacterListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigation(
-            title: R.Localizable.characters(),
+            title: section.title,
             isTranslucent: true,
             hasLargeTitle: true)
         
-        setupSegmentedControl()
         collectionView.reloadData()
     }
     
@@ -61,31 +63,25 @@ class CharacterListViewController: BaseViewController {
     private func fetchCharacterList() {
         clean()
         showLoading()
-        interactor.fetchCharacterList()
+        interactor.fetchCharacterList(section: section)
     }
     
     private func searchForCharacter(_ searchParameter: String) {
         clean()
         showLoading()
-        interactor.searchForCharacter(searchParameter)
+        interactor.searchForCharacter(
+            searchParameter: searchParameter, section: section)
     }
     
     private func fetchCharacterNextPage() {
-        interactor.fetchCharacterNextPage()
+        interactor.fetchCharacterNextPage(section: section)
     }
     
     private func setupUI() {
         setupSearchBar()
+        setupSegmentedControl()
         collectionView.delegate = self
         collectionView.dataSource = self
-    }
-    
-    private func setupSegmentedControl() {
-        let titles: [String] = [
-            R.Localizable.characters(),
-            R.Localizable.favorites()]
-        
-        setupSegmentedControl(titles: titles)
     }
     
     private func setupSearchBar() {
@@ -99,10 +95,30 @@ class CharacterListViewController: BaseViewController {
             }
         )
     }
+    
+    private func setupSegmentedControl() {
+        let titles: [String] = [
+            R.Localizable.characters(),
+            R.Localizable.favorites()]
+        
+        setupSegmentedControl(
+            titles: titles,
+            section: section.rawValue,
+            action: #selector(didChangeControlSection))
+    }
+    
+    @objc
+    private func didChangeControlSection(_ control: BetterSegmentedControl) {
+        guard let section = CharacterListViewSection(rawValue: control.index) else { return }
+        self.section = section
+        fetchCharacterList()
+        navigationItem.title = section.title
+        collectionView.setContentOffset(.zero, animated: true)
+    }
 }
 
 // MARK: - CharacterListViewController Protocol
-    
+
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
     func showCharacterList(_ characters: [Character]) {

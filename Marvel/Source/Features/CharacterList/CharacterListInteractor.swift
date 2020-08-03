@@ -12,13 +12,13 @@ protocol CharacterListInteractorProtocol {
     
     func restart()
     
-    func fetchCharacterList()
-    
-    func fetchCharacterNextPage()
-    
-    func searchForCharacter(_ searchParameter: String)
-    
     func setupFavorite(character: Character, isFavorite: Bool)
+    
+    func fetchCharacterList(section: CharacterListViewSection)
+    
+    func fetchCharacterNextPage(section: CharacterListViewSection)
+    
+    func searchForCharacter(searchParameter: String, section: CharacterListViewSection)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -49,43 +49,34 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Public Functions
     
-    func fetchCharacterList() {
-        characterListWorker.fetchCharacterList(
-            offset: currentPage * pageCount,
-            sucess: { [weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
-        })
+    func fetchCharacterList(section: CharacterListViewSection = .characters) {
+        switch section {
+        case .characters:
+            fetchCharacters()
+        case .favorites:
+            fetchFavorites()
+        }
     }
     
-    func fetchCharacterNextPage() {
-        guard shouldFetchNewPage() else { return }
+    func searchForCharacter(searchParameter: String, section: CharacterListViewSection) {
+        self.searchParameter = searchParameter
+        isSearchEnabled = true
+        
+        switch section {
+        case .characters:
+            searchForCharacter()
+        case .favorites:
+            searchForFavorites()
+        }
+    }
+    
+    func fetchCharacterNextPage(section: CharacterListViewSection) {
+        guard section == .characters, shouldFetchNewPage() else { return }
         currentPage += 1
         
         isSearchEnabled
             ? searchForCharacter()
             : fetchCharacterList()
-    }
-    
-    func searchForCharacter(_ searchParameter: String) {
-        self.searchParameter = searchParameter
-        isSearchEnabled = true
-        
-        characterListWorker.fetchCharacterList(
-            searchParameter: searchParameter,
-            offset: currentPage * pageCount,
-            sucess: {[weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
-        })
     }
     
     func setupFavorite(character: Character, isFavorite: Bool) {
@@ -105,8 +96,44 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Private Functions
     
+    private func fetchCharacters() {
+        characterListWorker.fetchCharacterList(
+            offset: currentPage * pageCount,
+            sucess: { [weak self] results in
+                let response = self?.setFavorites(results)
+                self?.presenter.showCharacterList(response)
+                self?.totalCount = response?.data.total ?? 0
+            },
+            failure: { [weak self] error in
+                self?.presenter.showCharacterListError(error)
+        })
+    }
+    
     private func searchForCharacter() {
-        searchForCharacter(searchParameter)
+        characterListWorker.fetchCharacterList(
+            searchParameter: searchParameter,
+            offset: currentPage * pageCount,
+            sucess: {[weak self] results in
+                let response = self?.setFavorites(results)
+                self?.presenter.showCharacterList(response)
+                self?.totalCount = response?.data.total ?? 0
+            },
+            failure: { [weak self] error in
+                self?.presenter.showCharacterListError(error)
+        })
+    }
+    
+    private func fetchFavorites() {
+        let characters = characterListWorker.getFavoriteCharacters()
+        presenter.showCharacterList(characters)
+    }
+    
+    private func searchForFavorites() {
+        let characters = characterListWorker
+            .getFavoriteCharacters()
+            .filter({ $0.name.contains(searchParameter) })
+        
+        presenter.showCharacterList(characters)
     }
     
     private func shouldFetchNewPage() -> Bool {

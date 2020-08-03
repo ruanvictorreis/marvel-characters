@@ -17,7 +17,9 @@ class RealmDatabase: PersistenceProtocol {
             
             return resuls.map({
                 Character(
-                    id: $0.id, name: $0.name, description: $0.about,
+                    id: $0.id, name: $0.name,
+                    description: $0.about,
+                    isFavorite: $0.isFavorite,
                     thumbnail: Thumbnail(
                         path: $0.thumbnail?.path ?? "",
                         extension: $0.thumbnail?.extension ?? "")

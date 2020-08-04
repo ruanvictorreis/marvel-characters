@@ -1,5 +1,5 @@
 //
-//  ComicBookCarousel.swift
+//  ComicBookCarouselView.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 30/07/20.

@@ -64,7 +64,6 @@ class CharacterListViewController: BaseViewController {
     private func clean() {
         characterList = []
         interactor.restart()
-        collectionView.reloadData()
     }
     
     private func fetchCharacterList() {
@@ -147,25 +146,32 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         
         characterList.append(contentsOf: characters)
         
-        self.collectionView.performBatchUpdates({
-            self.collectionView.insertItems(at: indexPaths)
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: indexPaths)
         })
         
         hideLoading()
+        collectionView.isHidden = characterList.isEmpty
+    }
+    
+    func removeCharacterFromList(_ character: Character) {
+        guard let index = characterList.firstIndex(of: character)
+            else { return }
+        
+        let indexPath = IndexPath(item: index, section: 0)
+        characterList.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+        collectionView.isHidden = characterList.isEmpty
     }
     
     func showCharacterListError(_ errorMessage: String) {
         hideLoading()
+        collectionView.isHidden = characterList.isEmpty
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
-    
-    func removeCharacterFromList(_ character: Character) {
-        guard let index = characterList.firstIndex(of: character) else { return }
-        let indexPath = IndexPath(item: index, section: 0)
-        characterList.remove(at: indexPath.item)
-        collectionView.deleteItems(at: [indexPath])
-    }
 }
+
+// MARK: - CharacterCellDelegate Protocol
 
 extension CharacterListViewController: CharacterCellDelegate {
     

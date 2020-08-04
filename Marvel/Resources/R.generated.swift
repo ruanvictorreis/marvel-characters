@@ -114,7 +114,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
     /// Image `heart_filled`.
     static let heart_filled = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_filled")
@@ -122,6 +122,8 @@ struct R: Rswift.Validatable {
     static let heart_outline = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_outline")
     /// Image `icon_back`.
     static let icon_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_back")
+    /// Image `thanos`.
+    static let thanos = Rswift.ImageResource(bundle: R.hostingBundle, name: "thanos")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "heart_filled", bundle: ..., traitCollection: ...)`
@@ -141,6 +143,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon_back", bundle: ..., traitCollection: ...)`
     static func icon_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icon_back, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "thanos", bundle: ..., traitCollection: ...)`
+    static func thanos(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.thanos, compatibleWith: traitCollection)
     }
     #endif
 
@@ -397,6 +406,7 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "icon_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_back' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
         if _R.storyboard.main().characterDetails() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterDetails' could not be loaded from storyboard 'Main' as 'CharacterDetailsViewController'.") }

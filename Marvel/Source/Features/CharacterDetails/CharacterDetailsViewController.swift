@@ -27,7 +27,9 @@ class CharacterDetailsViewController: BaseViewController {
     
     @IBOutlet private var loveItButton: UIHeartButton!
     
-    @IBOutlet private var comicBookCarousel: ComicBookCarousel!
+    @IBOutlet private var comicBookCarousel: ComicBookCarouselView!
+    
+    @IBOutlet private var comicBookLoading: UIActivityIndicatorView!
     
     // MARK: - VIP Properties
     
@@ -91,11 +93,12 @@ class CharacterDetailsViewController: BaseViewController {
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
 
     func showCommicBookList(_ comics: [ComicBook]) {
+        comicBookLoading.isHidden = true
         comicBookCarousel.setupUI(comics)
     }
     
     func showComicBookListError(_ errorMessage: String) {
-        hideLoading()
+        comicBookLoading.isHidden = true
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

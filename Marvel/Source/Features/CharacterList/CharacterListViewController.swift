@@ -64,6 +64,7 @@ class CharacterListViewController: BaseViewController {
     private func clean() {
         characterList = []
         interactor.restart()
+        collectionView.reloadData()
     }
     
     private func fetchCharacterList() {

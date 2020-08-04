@@ -21,4 +21,9 @@ target 'Marvel' do
     pod 'Nimble', '8.1.1'
   end
 
+  target 'MarvelUITests' do
+    inherit! :search_paths
+    pod 'KIF', '~> 3.7.9', :configurations => ['Debug']
+  end
+  
 end

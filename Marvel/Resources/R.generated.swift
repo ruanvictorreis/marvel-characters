@@ -114,6 +114,20 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.id` struct is generated, and contains static references to accessibility identifiers.
+  struct id {
+    struct main {
+      /// Accessibility identifier `backButton`.
+      static let backButton: String = "backButton"
+      /// Accessibility identifier `characterCollection`.
+      static let characterCollection: String = "characterCollection"
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
     /// Image `heart_filled`.
@@ -200,6 +214,10 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
     struct localizable {
+      /// en translation: Cancel
+      ///
+      /// Locales: en, pt-BR
+      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Characters
       ///
       /// Locales: en, pt-BR
@@ -212,10 +230,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let favorites = Rswift.StringResource(key: "favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
-      /// en translation: Hello World
-      ///
-      /// Locales: en, pt-BR
-      static let helloWorld = Rswift.StringResource(key: "helloWorld", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Oops, an error has occurred!
       ///
       /// Locales: en, pt-BR
@@ -228,6 +242,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+
+      /// en translation: Cancel
+      ///
+      /// Locales: en, pt-BR
+      static func cancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("cancel", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "cancel"
+        }
+
+        return NSLocalizedString("cancel", bundle: bundle, comment: "")
+      }
 
       /// en translation: Characters
       ///
@@ -272,21 +301,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("favorites", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Hello World
-      ///
-      /// Locales: en, pt-BR
-      static func helloWorld(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("helloWorld", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "helloWorld"
-        }
-
-        return NSLocalizedString("helloWorld", bundle: bundle, comment: "")
       }
 
       /// en translation: Oops, an error has occurred!

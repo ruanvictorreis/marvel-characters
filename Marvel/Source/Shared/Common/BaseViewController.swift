@@ -23,11 +23,8 @@ class BaseViewController: UIViewController {
 
     // MARK: - Public Functions
     
-    func setupNavigation(title: String = "",
-                         isHidden: Bool = false,
-                         isTranslucent: Bool = true,
+    func setupNavigation(title: String = "", isHidden: Bool = false, isTranslucent: Bool = true,
                          hasLargeTitle: Bool = false) {
-        
         navigationItem.title = title
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.isTranslucent = isTranslucent
@@ -58,14 +55,12 @@ class BaseViewController: UIViewController {
             index: section,
             options: options)
         
+        segmentedControl.accessibilityLabel = "segmentedControl"
         segmentedControl.addTarget(self, action: action, for: .valueChanged)
         self.navigationItem.titleView = segmentedControl
     }
     
-    func setupSearchBar(placeholder: String,
-                        onSearch: @escaping SearchAction,
-                        onCancel: Completation? = nil) {
-        
+    func setupSearchBar(placeholder: String, onSearch: @escaping SearchAction, onCancel: Completation? = nil) {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self
         search.searchBar.tintColor = .darkness
@@ -84,11 +79,11 @@ class BaseViewController: UIViewController {
         
         self.searchOnCancel = onCancel
         navigationItem.searchController = search
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
 
-// MARK: - UISearchBarDelegate Protocol
+// MARK: - UISearchBarDelegate Extension
 
 extension BaseViewController: UISearchBarDelegate {
     

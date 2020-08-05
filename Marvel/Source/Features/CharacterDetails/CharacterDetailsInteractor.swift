@@ -12,7 +12,7 @@ protocol CharacterDetailsInteractorProtocol {
     
     func fetchComicBookList(_ character: Int)
     
-    func setupFavorite(character: Character, isFavorite: Bool)
+    func setFavorite(_ character: Character)
 }
 
 class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
@@ -34,6 +34,11 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
         self.comickBookListWorker = ComicBookListWorker()
     }
     
+    init(characterListWorker: CharacterListWorkerProtocol, comickBookListWorker: ComicBookListWorkerProtocol) {
+        self.characterListWorker = characterListWorker
+        self.comickBookListWorker = comickBookListWorker
+    }
+    
     // MARK: - Public Functions
     
     func fetchComicBookList(_ character: Int) {
@@ -47,10 +52,8 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
             })
     }
     
-    func setupFavorite(character: Character, isFavorite: Bool) {
-        character.isFavorite = isFavorite
-        
-        isFavorite
+    func setFavorite(_ character: Character) {
+        character.isFavorite
             ? saveFavorite(character)
             : deleteFavorite(character)
     }

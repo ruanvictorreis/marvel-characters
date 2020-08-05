@@ -34,8 +34,6 @@ class CharacterListViewController: BaseViewController {
     
     private var characterList: [Character] = []
     
-    private var section: CharacterListViewSection = .characters
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -46,8 +44,10 @@ class CharacterListViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let title = interactor.currentSection.title
+        
         setupNavigation(
-            title: section.title,
+            title: title,
             isTranslucent: true,
             hasLargeTitle: true)
         
@@ -70,18 +70,18 @@ class CharacterListViewController: BaseViewController {
     private func fetchCharacterList() {
         clean()
         showLoading()
-        interactor.fetchCharacterList(section: section)
+        interactor.fetchCharacterList()
     }
     
     private func searchForCharacter(_ searchParameter: String) {
         clean()
         showLoading()
         interactor.searchForCharacter(
-            searchParameter: searchParameter, section: section)
+            searchParameter: searchParameter)
     }
     
     private func fetchCharacterNextPage() {
-        interactor.fetchCharacterNextPage(section: section)
+        interactor.fetchCharacterNextPage()
     }
     
     private func setupUI() {
@@ -108,6 +108,8 @@ class CharacterListViewController: BaseViewController {
             R.Localizable.characters(),
             R.Localizable.favorites()]
         
+        let section = interactor.currentSection
+        
         setupSegmentedControl(
             titles: titles,
             section: section.rawValue,
@@ -116,15 +118,15 @@ class CharacterListViewController: BaseViewController {
     
     @objc
     private func didChangeControlSection(_ control: BetterSegmentedControl) {
-        guard let section = CharacterListViewSection(rawValue: control.index) else { return }
-        self.section = section
+        guard let section = CharacterListSection(rawValue: control.index) else { return }
+        interactor.currentSection = section
         fetchCharacterList()
         navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)
     }
     
     private func removeNonFavoritesFromList() {
-        guard section == .favorites else { return }
+        guard interactor.currentSection == .favorites else { return }
         characterList
             .filter({ !$0.isFavorite })
             .forEach({
@@ -133,7 +135,7 @@ class CharacterListViewController: BaseViewController {
     }
 }
 
-// MARK: - CharacterListViewController Protocol
+// MARK: - CharacterListViewControllerProtocol Extension
 
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
@@ -172,19 +174,16 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
 }
 
-// MARK: - CharacterCellDelegate Protocol
+// MARK: - CharacterCellDelegate Extension
 
 extension CharacterListViewController: CharacterCellDelegate {
     
-    func setupFavorite(character: Character, isFavorite: Bool) {
-        interactor.setupFavorite(
-            character: character,
-            isFavorite: isFavorite,
-            section: section)
+    func setFavorite(_ character: Character) {
+        interactor.setFavorite(character)
     }
 }
 
-// MARK: - UICollectionViewDelegate Protocol
+// MARK: - UICollectionViewDelegate Extension
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
@@ -211,7 +210,7 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UICollectionViewDataSource Protocol
+// MARK: - UICollectionViewDataSource Extension
 
 extension CharacterListViewController: UICollectionViewDataSource {
     
@@ -230,7 +229,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout Protocol
+// MARK: - UICollectionViewDelegateFlowLayout Extension
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     

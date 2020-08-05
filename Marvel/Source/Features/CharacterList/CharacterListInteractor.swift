@@ -59,7 +59,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func searchForCharacter(searchParameter: String, section: CharacterListViewSection) {
-        self.searchParameter = searchParameter
+        self.searchParameter = searchParameter.capitalized
         isSearchEnabled = true
         
         switch section {

@@ -34,6 +34,11 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
         self.comickBookListWorker = ComicBookListWorker()
     }
     
+    init(characterListWorker: CharacterListWorkerProtocol, comickBookListWorker: ComicBookListWorkerProtocol) {
+        self.characterListWorker = characterListWorker
+        self.comickBookListWorker = comickBookListWorker
+    }
+    
     // MARK: - Public Functions
     
     func fetchComicBookList(_ character: Int) {

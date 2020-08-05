@@ -15,23 +15,7 @@ class CharacterLisSpec: QuickSpec {
     override func spec() {
         var viewController: CharacterListViewControllerMock!
         
-        describe("List of Characters", {
-            context("Given that the CharacterListScene has initialized") {
-                it("All architecture components must be initialized") {
-                    let interactor = CharacterListInteractor()
-                    expect(interactor).notTo(beNil())
-                    
-                    let presenter = CharacterListPresenter()
-                    expect(presenter).notTo(beNil())
-                    
-                    let router = CharacterListRouter()
-                    expect(router).notTo(beNil())
-                    
-                    let builder = CharacterListBuilder()
-                    expect(builder).notTo(beNil())
-                }
-            }
-            
+        describe("List of Characters") {
             context("Given that the app starts presenting a list of characters") {
                 afterEach {
                     viewController = nil
@@ -202,6 +186,6 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
                 }
             }
-        })
+        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CharacterListViewSection.swift
+//  CharacterListSection.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 02/08/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CharacterListViewSection: Int {
+enum CharacterListSection: Int {
     case characters
     case favorites
     

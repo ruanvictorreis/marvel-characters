@@ -43,7 +43,7 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("View is presenting character list from first page") {
-                    viewController.interactor.fetchCharacterList(section: .characters)
+                    viewController.interactor.fetchCharacterList()
                     expect(viewController.characterList).to(haveCount(20))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     
@@ -55,8 +55,8 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("View is presenting character list from next page") {
-                    viewController.interactor.fetchCharacterList(section: .characters)
-                    viewController.interactor.fetchCharacterNextPage(section: .characters)
+                    viewController.interactor.fetchCharacterList()
+                    viewController.interactor.fetchCharacterNextPage()
                     expect(viewController.characterList).to(haveCount(25))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     
@@ -68,11 +68,11 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("View can't present more characters from new pages") {
-                    viewController.interactor.fetchCharacterList(section: .characters)
-                    viewController.interactor.fetchCharacterNextPage(section: .characters)
+                    viewController.interactor.fetchCharacterList()
+                    viewController.interactor.fetchCharacterNextPage()
                     
                     viewController.showCharacterListCalled = false
-                    viewController.interactor.fetchCharacterNextPage(section: .characters)
+                    viewController.interactor.fetchCharacterNextPage()
                     
                     expect(viewController.characterList).to(haveCount(25))
                     expect(viewController.showCharacterListCalled).to(beFalse())
@@ -96,21 +96,21 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("The user gets his favorite characters") {
-                    viewController.interactor.fetchCharacterList(section: .characters)
+                    viewController.interactor.fetchCharacterList()
                     
                     let characterOne = viewController.characterList[0]
                     characterOne.isFavorite = true
-                    viewController.interactor.setFavorite(characterOne, section: .characters)
-                    
+                    viewController.interactor.setFavorite(characterOne)
                     
                     let characterTwo = viewController.characterList[1]
                     characterTwo.isFavorite = true
-                    viewController.interactor.setFavorite(characterTwo, section: .characters)
+                    viewController.interactor.setFavorite(characterTwo)
                     
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
+                    viewController.interactor.currentSection = .favorites
                     
-                    viewController.interactor.fetchCharacterList(section: .favorites)
+                    viewController.interactor.fetchCharacterList()
                     expect(viewController.characterList).to(haveCount(2))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     

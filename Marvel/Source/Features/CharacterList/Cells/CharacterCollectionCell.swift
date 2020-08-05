@@ -10,7 +10,7 @@ import UIKit
 
 protocol CharacterCellDelegate: AnyObject {
     
-    func setupFavorite(character: Character, isFavorite: Bool)
+    func setFavorite(_ character: Character)
 }
 
 class CharacterCollectionCell: UICollectionViewCell {
@@ -61,9 +61,7 @@ class CharacterCollectionCell: UICollectionViewCell {
     @IBAction func loveIt(_ sender: UIHeartButton) {
         guard let character = self.character else { return }
         loveItButton.toggleIt()
-        
-        delegate?.setupFavorite(
-            character: character,
-            isFavorite: loveItButton.isFilled)
+        character.isFavorite = loveItButton.isFilled
+        delegate?.setFavorite(character)
     }
 }

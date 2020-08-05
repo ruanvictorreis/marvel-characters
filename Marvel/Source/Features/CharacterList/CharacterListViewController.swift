@@ -176,11 +176,8 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
 
 extension CharacterListViewController: CharacterCellDelegate {
     
-    func setupFavorite(character: Character, isFavorite: Bool) {
-        interactor.setupFavorite(
-            character: character,
-            isFavorite: isFavorite,
-            section: section)
+    func setFavorite(_ character: Character) {
+        interactor.setFavorite(character, section: section)
     }
 }
 

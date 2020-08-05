@@ -16,9 +16,9 @@ protocol CharacterListInteractorProtocol {
     
     func fetchCharacterNextPage(section: CharacterListViewSection)
     
-    func searchForCharacter(searchParameter: String, section: CharacterListViewSection)
+    func setFavorite(_ character: Character, section: CharacterListViewSection)
     
-    func setupFavorite(character: Character, isFavorite: Bool, section: CharacterListViewSection)
+    func searchForCharacter(searchParameter: String, section: CharacterListViewSection)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -45,6 +45,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     init() {
         self.characterListWorker = CharacterListWorker()
+    }
+    
+    init(characterListWorker: CharacterListWorkerProtocol) {
+        self.characterListWorker = characterListWorker
     }
     
     // MARK: - Public Functions
@@ -79,10 +83,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             : fetchCharacterList()
     }
     
-    func setupFavorite(character: Character, isFavorite: Bool, section: CharacterListViewSection) {
-        character.isFavorite = isFavorite
-        
-        isFavorite
+    func setFavorite(_ character: Character, section: CharacterListViewSection) {
+        character.isFavorite
             ? saveFavorite(character, section: section)
             : deleteFavorite(character, section: section)
     }

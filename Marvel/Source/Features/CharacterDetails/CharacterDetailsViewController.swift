@@ -77,10 +77,8 @@ class CharacterDetailsViewController: BaseViewController {
     
     @IBAction func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
-
-        interactor.setupFavorite(
-            character: character,
-            isFavorite: loveItButton.isFilled)
+        character.isFavorite = loveItButton.isFilled
+        interactor.setFavorite(character)
     }
     
     @IBAction func close(_ sender: UIButton) {
@@ -88,7 +86,7 @@ class CharacterDetailsViewController: BaseViewController {
     } 
 }
 
-// MARK: - CharacterDetailsViewController Protocol
+// MARK: - CharacterDetailsViewControllerProtocol Extension
 
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
 

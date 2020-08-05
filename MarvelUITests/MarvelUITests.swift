@@ -16,7 +16,7 @@ import BetterSegmentedControl
 class MarvelUITests: KIFTestCase {
     
     func testFavoriteCharacters() {
-        let characters = ["Iron Man", "Captain America", "Thor", "Black Widow"]
+        let characters = ["Iron Man", "Captain America", "Thor"]
         characters.forEach({ character in
             searchForCharacter(withName: character)
             selectFirstCharacter(withName: character)
@@ -41,7 +41,7 @@ class MarvelUITests: KIFTestCase {
     }
     
     func testSearchForCharacters() {
-        let characters = ["Thanos", "Ultron", "Kang", "Galactus"]
+        let characters = ["Thanos", "Ultron", "Galactus"]
         characters.forEach({ character in
             searchForCharacter(withName: character)
             selectFirstCharacter(withName: character)
@@ -52,7 +52,7 @@ class MarvelUITests: KIFTestCase {
     }
     
     func testSearchWithoutResults() {
-        let characters = ["Batman", "Flash", "Wonder Woman", "Super Man"]
+        let characters = ["Batman", "Flash", "Wonder Woman"]
         characters.forEach({ character in
             searchForCharacter(withName: character, waiting: false)
             waitForNoCharactersFoundMessage()

@@ -120,6 +120,52 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.removeCharacterFromListCalled).to(beTrue())
                 }
             }
+            
+            context("Given that the app allows the user to search for characters") {
+                afterEach {
+                    viewController = nil
+                }
+                
+                beforeEach {
+                    viewController = CharacterListBuilderMock()
+                        .build(characterListWorker: CharacterListWorkerSuccessMock())
+                }
+                
+                it("The user searches for a character by name from API") {
+                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    expect(viewController.characterList).to(haveCount(2))
+                    expect(viewController.showCharacterListCalled).to(beTrue())
+                    
+                    let firstCharacter = viewController.characterList.first
+                    expect(firstCharacter?.name).to(equal("Captain America"))
+                    
+                    let lastCharacter = viewController.characterList.last
+                    expect(lastCharacter?.name).to(equal("Captain Marvel"))
+                }
+                
+                it("The user searches for a character by name from favorite list") {
+                    viewController.interactor.fetchCharacterList()
+                    
+                    let characterOne = viewController.characterList[0]
+                    characterOne.isFavorite = true
+                    viewController.interactor.setFavorite(characterOne)
+                    
+                    let characterTwo = viewController.characterList[1]
+                    characterTwo.isFavorite = true
+                    viewController.interactor.setFavorite(characterTwo)
+                    
+                    viewController.characterList = []
+                    viewController.showCharacterListCalled = false
+                    viewController.interactor.currentSection = .favorites
+                    
+                    viewController.interactor.searchForCharacter(searchParameter: "Iron")
+                    expect(viewController.characterList).to(haveCount(1))
+                    expect(viewController.showCharacterListCalled).to(beTrue())
+                    
+                    let firstCharacter = viewController.characterList.first
+                    expect(firstCharacter?.name).to(equal("Iron Man"))
+                }
+            }
         })
     }
 }

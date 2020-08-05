@@ -24,7 +24,7 @@ struct CharacterListResponseMock {
                       isFavorite: false, thumbnail: thumbnail),
             Character(id: 5, name: "Black Widon", description: "",
                       isFavorite: false, thumbnail: thumbnail),
-            Character(id: 6, name: "Marvel Captain", description: "",
+            Character(id: 6, name: "Captain Marvel", description: "",
                       isFavorite: false, thumbnail: thumbnail),
             Character(id: 7, name: "Doctor Strange", description: "",
                       isFavorite: false, thumbnail: thumbnail),

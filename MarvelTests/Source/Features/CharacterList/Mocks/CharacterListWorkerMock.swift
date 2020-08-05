@@ -30,12 +30,23 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
-        sucess(CharacterListResponseMock.build(offset: offset, pageCount: 20))
+        let response = CharacterListResponseMock
+            .build(offset: offset, pageCount: 20)
+        
+        sucess(response)
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
                             sucess: @escaping CharacterListSuccess,
                             failure: @escaping CharacterListError) {
         
+        var response = CharacterListResponseMock
+            .build(offset: offset, pageCount: 20)
+        
+        let results = response.data.results
+            .filter({ $0.name.contains(searchParameter) })
+        
+        response.data.results = results
+        sucess(response)
     }
 }

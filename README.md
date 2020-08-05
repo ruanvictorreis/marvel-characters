@@ -16,12 +16,12 @@ Saiba mais sobre o Homem de Ferro, Thor, Capitão América e outros heróis da M
 
 ## Screenshots
 
-<img src="/Screenshots/Screenshot-01.png" width="210"> <img src="/Screenshots/Screenshot-02.png" width="210"> <img src="/Screenshots/Screenshot-03.png" width="210"> <img src="/Screenshots/Screenshot-04.png" width="210">
+<img src="/Screenshots/Screenshot-01.png" width="210"> <img src="/Screenshots/Screenshot-02.png" width="210"> <img src="/Screenshots/Screenshot-03.png" width="210"> <img src="/Screenshots/Screenshot-04.png" width="210"> <img src="/Screenshots/Screenshot-05.png" width="210"> <img src="/Screenshots/Screenshot-06.png" width="210">
 
 ## Executando
 - Instale o [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) `sudo gem install cocoapods`.
 - Execute `pod install` dentro do diretório **marvel-characters**.
-- Use o **xCode 11** para abrir o projeto pelo arquivo **Marvel.xcworkspace**.
+- Use o **xCode 11+** para abrir o projeto pelo arquivo **Marvel.xcworkspace**.
 - :arrow_forward:
 
 ## Padrão Arquitetural

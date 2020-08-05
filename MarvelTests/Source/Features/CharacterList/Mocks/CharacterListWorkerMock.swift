@@ -50,3 +50,30 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
         sucess(response)
     }
 }
+
+class CharacterListWorkerFailureMock: CharacterListWorkerProtocol {
+    
+    func getFavoriteCharacters() -> [Character] {
+        return []
+    }
+    
+    func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+        failure?()
+    }
+    
+    func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+       failure?()
+    }
+    
+    func fetchCharacterList(offset: Int,
+                            sucess: @escaping CharacterListSuccess,
+                            failure: @escaping CharacterListError) {
+        failure(nil)
+    }
+    
+    func fetchCharacterList(searchParameter: String, offset: Int,
+                            sucess: @escaping CharacterListSuccess,
+                            failure: @escaping CharacterListError) {
+        failure(nil)
+    }
+}

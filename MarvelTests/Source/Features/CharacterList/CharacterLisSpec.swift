@@ -166,6 +166,42 @@ class CharacterLisSpec: QuickSpec {
                     expect(firstCharacter?.name).to(equal("Iron Man"))
                 }
             }
+            
+            context("Given that the app is unable to connect to the API") {
+                afterEach {
+                    viewController = nil
+                }
+                
+                beforeEach {
+                    viewController = CharacterListBuilderMock()
+                        .build(characterListWorker: CharacterListWorkerFailureMock())
+                }
+                
+                it("View is presenting error alert when fetching characters") {
+                    viewController.interactor.fetchCharacterList()
+                    expect(viewController.characterList).to(haveCount(0))
+                    expect(viewController.showCharacterListCalled).to(beFalse())
+                    expect(viewController.showCharacterListErrorCalled).to(beTrue())
+                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                }
+                
+                it("View is presenting error alert when fetching characters next page") {
+                    viewController.interactor.fetchCharacterList()
+                    viewController.interactor.fetchCharacterNextPage()
+                    expect(viewController.characterList).to(haveCount(0))
+                    expect(viewController.showCharacterListCalled).to(beFalse())
+                    expect(viewController.showCharacterListErrorCalled).to(beTrue())
+                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                }
+                
+                it("View is presenting error alert when searching characters") {
+                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    expect(viewController.characterList).to(haveCount(0))
+                    expect(viewController.showCharacterListCalled).to(beFalse())
+                    expect(viewController.showCharacterListErrorCalled).to(beTrue())
+                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                }
+            }
         })
     }
 }

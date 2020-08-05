@@ -13,6 +13,8 @@ class CharacterListViewControllerMock: CharacterListViewControllerProtocol {
     var interactor: CharacterListInteractorProtocol!
     
     var characterList: [Character] = []
+    
+    var errorMessage: String = ""
 
     var showCharacterListCalled = false
     
@@ -26,6 +28,7 @@ class CharacterListViewControllerMock: CharacterListViewControllerProtocol {
     }
     
     func showCharacterListError(_ errorMessage: String) {
+        self.errorMessage = errorMessage
         showCharacterListErrorCalled = true
     }
     

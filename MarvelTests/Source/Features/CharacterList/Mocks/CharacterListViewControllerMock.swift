@@ -30,6 +30,7 @@ class CharacterListViewControllerMock: CharacterListViewControllerProtocol {
     }
     
     func removeCharacterFromList(_ character: Character) {
+        characterList.removeAll(where: { $0.id == character.id })
         removeCharacterFromListCalled = true
     }
 }

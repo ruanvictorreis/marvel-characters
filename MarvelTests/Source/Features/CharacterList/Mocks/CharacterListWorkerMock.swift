@@ -18,10 +18,12 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
     
     func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
         favoriteCharacters.append(character)
+        sucess?()
     }
     
     func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
         favoriteCharacters.removeAll(where: { $0.id == character.id })
+        sucess?()
     }
     
     func fetchCharacterList(offset: Int,

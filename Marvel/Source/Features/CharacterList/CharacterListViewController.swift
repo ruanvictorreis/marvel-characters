@@ -135,7 +135,7 @@ class CharacterListViewController: BaseViewController {
     }
 }
 
-// MARK: - CharacterListViewController Protocol
+// MARK: - CharacterListViewControllerProtocol Extension
 
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
@@ -174,7 +174,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
 }
 
-// MARK: - CharacterCellDelegate Protocol
+// MARK: - CharacterCellDelegate Extension
 
 extension CharacterListViewController: CharacterCellDelegate {
     
@@ -183,7 +183,7 @@ extension CharacterListViewController: CharacterCellDelegate {
     }
 }
 
-// MARK: - UICollectionViewDelegate Protocol
+// MARK: - UICollectionViewDelegate Extension
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
@@ -210,7 +210,7 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UICollectionViewDataSource Protocol
+// MARK: - UICollectionViewDataSource Extension
 
 extension CharacterListViewController: UICollectionViewDataSource {
     
@@ -229,7 +229,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout Protocol
+// MARK: - UICollectionViewDelegateFlowLayout Extension
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     

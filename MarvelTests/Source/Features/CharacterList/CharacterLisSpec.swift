@@ -95,30 +95,29 @@ class CharacterLisSpec: QuickSpec {
                         .build(characterListWorker: CharacterListWorkerSuccessMock())
                 }
                 
-                it("The user gets his favorite characters") {
+                it("The user gets his favorite characters and can also delete them") {
                     viewController.interactor.fetchCharacterList()
                     
                     let characterOne = viewController.characterList[0]
                     characterOne.isFavorite = true
                     viewController.interactor.setFavorite(characterOne)
                     
-                    let characterTwo = viewController.characterList[1]
-                    characterTwo.isFavorite = true
-                    viewController.interactor.setFavorite(characterTwo)
-                    
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
                     viewController.interactor.currentSection = .favorites
                     
                     viewController.interactor.fetchCharacterList()
-                    expect(viewController.characterList).to(haveCount(2))
+                    expect(viewController.characterList).to(haveCount(1))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     
                     let firstCharacter = viewController.characterList.first
                     expect(firstCharacter?.name).to(equal("Iron Man"))
                     
-                    let lastCharacter = viewController.characterList.last
-                    expect(lastCharacter?.name).to(equal("Captain America"))
+                    characterOne.isFavorite = false
+                    viewController.interactor.setFavorite(characterOne)
+                    viewController.interactor.fetchCharacterList()
+                    expect(viewController.characterList).to(haveCount(0))
+                    expect(viewController.removeCharacterFromListCalled).to(beTrue())
                 }
             }
         })

@@ -4,7 +4,7 @@ xcode_workspace: Marvel.xcworkspace
 xcode_sdk: iphonesimulator13.6
 
 env:
- - DESTINATION="platform=iOS Simulator,name=iPhone 11,OS=13.6"
+ - DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.6"
 
 branches:
   only:

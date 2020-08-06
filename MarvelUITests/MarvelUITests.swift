@@ -103,10 +103,10 @@ extension MarvelUITests {
         
         let identifier = UIElements.heart
         let heartButton = tester().waitForView(
-            withAccessibilityLabel: identifier) as! UIHeartButton
+            withAccessibilityLabel: identifier, traits: .button) as! UIHeartButton
         
         if heartButton.isFilled == status {
-            tester().tapView(withAccessibilityLabel: identifier)
+            tester().tapView(withAccessibilityLabel: identifier, traits: .button)
         }
     }
     

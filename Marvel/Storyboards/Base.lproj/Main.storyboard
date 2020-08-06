@@ -315,7 +315,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
                                                         <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="heartButton" label="heartButton"/>
+                                                        <accessibility key="accessibilityConfiguration" label="heartButton"/>
                                                         <state key="normal" title="Button"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>

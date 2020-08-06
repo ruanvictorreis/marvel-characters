@@ -25,7 +25,7 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     
     weak var viewController: CharacterListViewControllerProtocol!
     
-    // MARK: - Public Function
+    // MARK: - Public Functions
     
     func showCharacterList(_ response: CharacterListResponse?) {
         guard let results = response?.data.results

@@ -56,9 +56,7 @@ class CharacterCollectionCell: UICollectionViewCell {
         characterImage.cancel()
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func loveIt(_ sender: UIHeartButton) {
+    @IBAction private func loveIt(_ sender: UIHeartButton) {
         guard let character = self.character else { return }
         loveItButton.toggleIt()
         character.isFavorite = loveItButton.isFilled

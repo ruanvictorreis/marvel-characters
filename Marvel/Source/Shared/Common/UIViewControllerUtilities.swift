@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  UIViewControllerUtilities.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 01/08/20.
@@ -13,7 +13,7 @@ import BetterSegmentedControl
 
 typealias SearchAction = (_ searchParamter: String) -> Void
 
-class BaseViewController: UIViewController {
+class UIViewControllerUtilities: UIViewController {
     
     // MARK: - Private Properties
     
@@ -22,17 +22,7 @@ class BaseViewController: UIViewController {
     private var searchOnCancel: Completation?
 
     // MARK: - Public Functions
-    
-    func setupNavigation(title: String = "", isHidden: Bool = false, isTranslucent: Bool = true,
-                         hasLargeTitle: Bool = false) {
-        navigationItem.title = title
-        navigationController?.navigationBar.barStyle = .default
-        navigationController?.navigationBar.isTranslucent = isTranslucent
-        navigationController?.navigationBar.prefersLargeTitles = hasLargeTitle
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.setNavigationBarHidden(isHidden, animated: true)
-    }
-    
+        
     func setupSegmentedControl(titles: [String], section: Int, action: Selector) {
         let normalFont: UIFont = .systemFont(ofSize: 14.0, weight: .medium)
         let selectedFont: UIFont = .systemFont(ofSize: 14.0, weight: .bold)
@@ -85,7 +75,7 @@ class BaseViewController: UIViewController {
 
 // MARK: - UISearchBarDelegate Extension
 
-extension BaseViewController: UISearchBarDelegate {
+extension UIViewControllerUtilities: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchOnCancel?()

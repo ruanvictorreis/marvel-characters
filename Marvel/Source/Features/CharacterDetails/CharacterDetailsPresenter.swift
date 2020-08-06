@@ -21,6 +21,8 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
     weak var viewController: CharacterDetailsViewControllerProtocol!
     
+    // MARK: - Public Functions
+    
     func showComicBookList(_ response: ComicBookListResponse?) {
         guard let results = response?.data.results
             else { showComicBookListError(); return }

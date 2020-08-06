@@ -14,13 +14,13 @@ class DefaultDecoder<T: Decodable> {
     
     internal let expectedType: T.Type
     
-    // MARK: - Init
+    // MARK: - Inits
     
     init(for type: T.Type) {
         self.expectedType = type
     }
     
-    // MARK: - Public functions
+    // MARK: - Public Functions
     
     func decode(from data: Data) -> T? {
         return try? JSONDecoder().decode(expectedType.self, from: data)

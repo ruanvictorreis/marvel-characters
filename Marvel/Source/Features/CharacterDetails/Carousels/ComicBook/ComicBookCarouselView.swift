@@ -37,7 +37,7 @@ class ComicBookCarouselView: UIView {
     }
 }
 
-// MARK: - UICollectionViewDataSource Protocol
+// MARK: - UICollectionViewDataSource Extension
 
 extension ComicBookCarouselView: UICollectionViewDataSource {
     
@@ -47,7 +47,7 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicBookCell", for: indexPath)
-            as? ComicBookCollectionViewCell else { return UICollectionViewCell() }
+            as? ComicBookCollectionCell else { return UICollectionViewCell() }
         
         cell.setup(comicBookList[indexPath.item])
         
@@ -55,12 +55,12 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout Protocol
+// MARK: - UICollectionViewDelegateFlowLayout Extension
 
 extension ComicBookCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return ComicBookCollectionViewCell.size
+        return ComicBookCollectionCell.size
     }
 }

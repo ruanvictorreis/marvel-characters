@@ -20,6 +20,8 @@ protocol ComicBookListWorkerProtocol {
 
 class ComicBookListWorker: ComicBookListWorkerProtocol {
     
+    // MARK: - Public Functions
+    
     func fetchComicBookList(character: Int,
                             sucess: @escaping ComicBookListSuccess,
                             failure: @escaping ComicBookListError) {

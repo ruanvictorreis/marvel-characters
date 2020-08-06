@@ -34,7 +34,7 @@ protocol CharacterListWorkerProtocol {
 
 class CharacterListWorker: CharacterListWorkerProtocol {
         
-    // MARK: - Public Function
+    // MARK: - Public Functions
     
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterListSuccess,

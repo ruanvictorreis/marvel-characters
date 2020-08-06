@@ -20,12 +20,18 @@ protocol PersistenceManagerProtocol {
 }
 
 class PersistenceManager: PersistenceManagerProtocol {
+    
+    // MARK: - Private Properties
 
     private let database: PersistenceProtocol
+    
+    // MARK: - Inits
     
     init() {
         database = RealmDatabase()
     }
+    
+    // MARK: - Public Functions
     
     func getCharacters() -> [Character] {
         return database.getCharacters()

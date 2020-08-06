@@ -10,6 +10,8 @@ import RealmSwift
 
 class RealmDatabase: PersistenceProtocol {
     
+    // MARK: Public Functions
+    
     func getCharacters() -> [Character] {
         do {
             let realm = try Realm()

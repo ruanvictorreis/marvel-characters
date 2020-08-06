@@ -228,7 +228,7 @@ struct R: Rswift.Validatable {
     /// Reuse identifier `CharacterCell`.
     static let characterCell: Rswift.ReuseIdentifier<CharacterCollectionCell> = Rswift.ReuseIdentifier(identifier: "CharacterCell")
     /// Reuse identifier `ComicBookCell`.
-    static let comicBookCell: Rswift.ReuseIdentifier<ComicBookCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "ComicBookCell")
+    static let comicBookCell: Rswift.ReuseIdentifier<ComicBookCollectionCell> = Rswift.ReuseIdentifier(identifier: "ComicBookCell")
 
     fileprivate init() {}
   }

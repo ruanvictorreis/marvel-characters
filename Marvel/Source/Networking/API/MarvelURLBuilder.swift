@@ -10,20 +10,18 @@ import Foundation
 
 class MarvelURLBuilder {
     
+    // MARK: - Private Properties
+    
     private var url: String
+    
+    // MARK: - Inits
     
     init(resource: MarvelResource) {
         self.url = "\(MarvelAPI.baseURL)/public/\(resource.rawValue)"
         setupURL()
     }
     
-    private func setupURL() {
-        let apiKey = MarvelAPI.publicKey
-        let privateKey = MarvelAPI.privateKey
-        let timeStamp = Date().toMillisString()
-        let hash = (timeStamp + privateKey + apiKey).md5
-        self.url += "?apikey=\(apiKey)&hash=\(hash)&ts=\(timeStamp)"
-    }
+    // MARK: - Public Functions
     
     func set(offset: Int) -> MarvelURLBuilder {
         self.url += "&offset=\(offset)"
@@ -42,5 +40,15 @@ class MarvelURLBuilder {
     
     func build() -> String {
         return url
+    }
+    
+    // MARK: - Private Functions
+    
+    private func setupURL() {
+        let apiKey = MarvelAPI.publicKey
+        let privateKey = MarvelAPI.privateKey
+        let timeStamp = Date().toMillisString()
+        let hash = (timeStamp + privateKey + apiKey).md5
+        self.url += "?apikey=\(apiKey)&hash=\(hash)&ts=\(timeStamp)"
     }
 }

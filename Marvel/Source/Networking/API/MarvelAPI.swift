@@ -11,14 +11,11 @@ import Foundation
 enum MarvelResource: String {
     case characters
     case comics
-    case events
-    case series
-    case stories
 }
 
 struct MarvelAPI {
     
-    // MARK: - Internal Properties
+    // MARK: - Public Properties
     
     static var publicKey: String {
         Bundle.main.keys?["publicKey"] ?? ""

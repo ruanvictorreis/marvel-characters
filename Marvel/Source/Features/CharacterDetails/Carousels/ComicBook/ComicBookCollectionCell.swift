@@ -1,5 +1,5 @@
 //
-//  ComicBookCollectionViewCell.swift
+//  ComicBookCollectionCell.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 30/07/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComicBookCollectionViewCell: UICollectionViewCell {
+class ComicBookCollectionCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     

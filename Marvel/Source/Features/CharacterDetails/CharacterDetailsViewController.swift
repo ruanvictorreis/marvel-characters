@@ -15,7 +15,7 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
     func showComicBookListError(_ errorMessage: String)
 }
 
-class CharacterDetailsViewController: BaseViewController {
+class CharacterDetailsViewController: UIViewController {
     
     // MARK: - IBOutlets
     
@@ -75,13 +75,13 @@ class CharacterDetailsViewController: BaseViewController {
         interactor.fetchComicBookList(character.id)
     }
     
-    @IBAction func loveIt(_ sender: UIHeartButton) {
+    @IBAction private func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
         character.isFavorite = loveItButton.isFilled
         interactor.setFavorite(character)
     }
     
-    @IBAction func close(_ sender: UIButton) {
+    @IBAction private func close(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     } 
 }

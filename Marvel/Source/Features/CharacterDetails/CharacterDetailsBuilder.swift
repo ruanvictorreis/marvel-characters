@@ -10,6 +10,8 @@ import Foundation
 
 class CharacterDetailsBuilder {
     
+    // MARK: - Public Functions
+    
     func build(_ character: Character) -> CharacterDetailsViewController? {
         let viewController = R.storyboard.main.characterDetails()
         let interactor = CharacterDetailsInteractor()

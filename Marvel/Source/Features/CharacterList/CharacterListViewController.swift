@@ -18,7 +18,7 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func removeCharacterFromList(_ character: Character)
 }
 
-class CharacterListViewController: BaseViewController {
+class CharacterListViewController: UIViewControllerUtilities {
     
     // MARK: - IBOutlets
     

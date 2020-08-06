@@ -71,6 +71,8 @@
 		15B6EA0B24D0D640005F2CD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */; };
 		15B6EA1624D0D641005F2CD2 /* CharacterLisSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA1524D0D641005F2CD2 /* CharacterLisSpec.swift */; };
 		15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA2324D0DD32005F2CD2 /* R.generated.swift */; };
+		15ED297624DB72A100D8C494 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED297524DB72A100D8C494 /* Keys.plist */; };
+		15ED297824DB81FB00D8C494 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */; };
 		15FB0EC024D6054B00123270 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB0EBF24D6054B00123270 /* BaseViewController.swift */; };
 		4CA3F162F8B1D64DE7C5B32B /* Pods_MarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 851695742AFA0D418EC0B679 /* Pods_MarvelTests.framework */; };
 		D4DB62A787D4E123849DB371 /* Pods_MarvelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E8403F9F365BCBE12E92EB /* Pods_MarvelUITests.framework */; };
@@ -166,6 +168,8 @@
 		15B6EA1524D0D641005F2CD2 /* CharacterLisSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLisSpec.swift; sourceTree = "<group>"; };
 		15B6EA1724D0D641005F2CD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B6EA2324D0DD32005F2CD2 /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		15ED297524DB72A100D8C494 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		15FB0EBF24D6054B00123270 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1A8B4EFA799A31314CC8B99F /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		455D419E904DB3AD26D0E90F /* Pods-MarvelUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelUITests.debug.xcconfig"; path = "Target Support Files/Pods-MarvelUITests/Pods-MarvelUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 				15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */,
 				15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */,
 				15B6EA0C24D0D640005F2CD2 /* Info.plist */,
+				15ED297524DB72A100D8C494 /* Keys.plist */,
 				15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
@@ -361,6 +366,7 @@
 		159E393624D0ECCA00744AB4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */,
 				156B2F2324D10FAF00643FB6 /* Date+Extensions.swift */,
 				159E393724D0ECDF00744AB4 /* R+Extensions.swift */,
 				156B2F2524D110F300643FB6 /* String+Extensions.swift */,
@@ -765,6 +771,7 @@
 				159E393224D0EBE000744AB4 /* Localizable.strings in Resources */,
 				15B6EA0824D0D640005F2CD2 /* Assets.xcassets in Resources */,
 				15B6EA0624D0D640005F2CD2 /* Main.storyboard in Resources */,
+				15ED297624DB72A100D8C494 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +996,7 @@
 				157A2E1324D4A17700133F79 /* CharacterRealm.swift in Sources */,
 				15ACB5CD24D30ADE002156D0 /* CharacterDetailsRouter.swift in Sources */,
 				155B772724D1D7DC005DECC3 /* CharacterListPresenter.swift in Sources */,
+				15ED297824DB81FB00D8C494 /* Bundle+Extensions.swift in Sources */,
 				15ACB5CF24D34CFD002156D0 /* MarvelURLBuilder.swift in Sources */,
 				1518F10724D0F9E40020593B /* RequestData.swift in Sources */,
 				155B771D24D1B59C005DECC3 /* CharacterListResponse.swift in Sources */,

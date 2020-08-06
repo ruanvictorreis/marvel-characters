@@ -17,14 +17,18 @@ enum MarvelResource: String {
 }
 
 struct MarvelAPI {
-
+    
     // MARK: - Internal Properties
     
+    static var publicKey: String {
+        Bundle.main.keys?["publicKey"] ?? ""
+    }
+    
+    static var privateKey: String {
+        Bundle.main.keys?["privateKey"] ?? ""
+    }
+    
     static let version: String = "v1"
-    
-    static let publicKey: String = "e4ef626c97f6855f275df4f0f08eb5bb"
-    
-    static let privateKey: String = "a44cb5dff01f02f3314e0f01bb3d89ef88057a8d"
     
     static let baseURL: String = "https://gateway.marvel.com:443/\(MarvelAPI.version)"
 }

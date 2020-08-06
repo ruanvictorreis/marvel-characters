@@ -93,7 +93,7 @@
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="5eF-lj-igv" secondAttribute="bottom" constant="4" id="6lg-1Z-sWD"/>
                                                                 <constraint firstAttribute="width" constant="30" id="MNm-To-cIY"/>
@@ -325,7 +325,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Rdy-GY-J7n" secondAttribute="trailing" constant="4" id="R1p-iD-b7W"/>
                                                     <constraint firstAttribute="height" constant="40" id="hP7-1z-CL9"/>

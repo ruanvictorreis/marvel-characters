@@ -114,6 +114,20 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `Keys.plist`.
+    static let keysPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Keys", pathExtension: "plist")
+
+    /// `bundle.url(forResource: "Keys", withExtension: "plist")`
+    static func keysPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.keysPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
   /// This `R.id` struct is generated, and contains static references to accessibility identifiers.
   struct id {
     struct main {

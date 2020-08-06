@@ -11,7 +11,7 @@ import UIKit
 extension UIColor {
     
     public class var cloud: UIColor {
-        return UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.8)
+        return UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.5)
     }
     
     public class var eclipse: UIColor {

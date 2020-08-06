@@ -63,7 +63,7 @@ class BaseViewController: UIViewController {
     func setupSearchBar(placeholder: String, onSearch: @escaping SearchAction, onCancel: Completation? = nil) {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self
-        search.searchBar.tintColor = .darkness
+        search.searchBar.tintColor = .label
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = placeholder
         

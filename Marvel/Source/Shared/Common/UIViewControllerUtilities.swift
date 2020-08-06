@@ -45,7 +45,7 @@ class UIViewControllerUtilities: UIViewController {
             index: section,
             options: options)
         
-        segmentedControl.accessibilityLabel = "segmentedControl"
+        segmentedControl.accessibilityIdentifier = "segmentedControl"
         segmentedControl.addTarget(self, action: action, for: .valueChanged)
         self.navigationItem.titleView = segmentedControl
     }

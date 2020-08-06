@@ -93,7 +93,7 @@ extension MarvelUITests {
         
         let identifier = UIElements.segmentedControl
         let segmentedControll = tester().waitForView(
-            withAccessibilityLabel: identifier) as! BetterSegmentedControl
+            withAccessibilityIdentifier: identifier) as! BetterSegmentedControl
         
         segmentedControll.setIndex(index)
     }
@@ -103,15 +103,15 @@ extension MarvelUITests {
         
         let identifier = UIElements.heart
         let heartButton = tester().waitForView(
-            withAccessibilityLabel: identifier, traits: .button) as! UIHeartButton
+            withAccessibilityIdentifier: identifier) as! UIHeartButton
         
         if heartButton.isFilled == status {
-            tester().tapView(withAccessibilityLabel: identifier, traits: .button)
+            tester().tapView(withAccessibilityIdentifier: identifier)
         }
     }
     
     func backToCharacterList() {
-        tester().tapView(withAccessibilityLabel: UIElements.back)
+        tester().tapView(withAccessibilityIdentifier: UIElements.back)
     }
     
     func cancelSearch() {

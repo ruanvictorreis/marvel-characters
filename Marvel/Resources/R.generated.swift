@@ -150,8 +150,8 @@ struct R: Rswift.Validatable {
     static let heart_outline = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart_outline")
     /// Image `icon_back`.
     static let icon_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_back")
-    /// Image `iron_man`.
-    static let iron_man = Rswift.ImageResource(bundle: R.hostingBundle, name: "iron_man")
+    /// Image `marvel`.
+    static let marvel = Rswift.ImageResource(bundle: R.hostingBundle, name: "marvel")
     /// Image `thanos`.
     static let thanos = Rswift.ImageResource(bundle: R.hostingBundle, name: "thanos")
 
@@ -177,9 +177,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "iron_man", bundle: ..., traitCollection: ...)`
-    static func iron_man(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.iron_man, compatibleWith: traitCollection)
+    /// `UIImage(named: "marvel", bundle: ..., traitCollection: ...)`
+    static func marvel(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.marvel, compatibleWith: traitCollection)
     }
     #endif
 
@@ -416,7 +416,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
-        if UIKit.UIImage(named: "iron_man", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'iron_man' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "marvel", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'marvel' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

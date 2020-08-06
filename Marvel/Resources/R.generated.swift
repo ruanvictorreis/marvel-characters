@@ -131,12 +131,12 @@ struct R: Rswift.Validatable {
   /// This `R.id` struct is generated, and contains static references to accessibility identifiers.
   struct id {
     struct main {
-      /// Accessibility identifier `backButton`.
-      static let backButton: String = "backButton"
+      /// Accessibility identifier `back`.
+      static let back: String = "back"
       /// Accessibility identifier `characterCollection`.
       static let characterCollection: String = "characterCollection"
-      /// Accessibility identifier `heartButton`.
-      static let heartButton: String = "heartButton"
+      /// Accessibility identifier `heart`.
+      static let heart: String = "heart"
 
       fileprivate init() {}
     }

@@ -20,7 +20,7 @@ class MarvelUITests: KIFTestCase {
         characters.forEach({ character in
             searchForCharacter(withName: character)
             selectFirstCharacter(withName: character)
-            loveCharacter()
+            loveCharacter(withLoveStatus: false)
             backToCharacterList()
         })
 
@@ -30,7 +30,7 @@ class MarvelUITests: KIFTestCase {
         characters.forEach({ character in
             searchForCharacter(withName: character, waiting: false)
             selectFirstCharacter(withName: character)
-            notLoveCharacter()
+            loveCharacter(withLoveStatus: true)
             backToCharacterList()
             waitForNoCharactersFoundMessage()
         })
@@ -93,31 +93,25 @@ extension MarvelUITests {
         
         let identifier = UIElements.segmentedControl
         let segmentedControll = tester().waitForView(
-            withAccessibilityLabel: identifier) as! BetterSegmentedControl
+            withAccessibilityIdentifier: identifier) as! BetterSegmentedControl
         
         segmentedControll.setIndex(index)
     }
     
-    func loveCharacter() {
-        guard let heartButton = tester().waitForView(withAccessibilityLabel: UIElements.heart)
-            as? UIHeartButton else { return }
+    func loveCharacter(withLoveStatus status: Bool) {
+        tester().waitForAnimationsToFinish()
         
-        if !heartButton.isFilled {
-            tester().tapView(withAccessibilityLabel: UIElements.heart)
-        }
-    }
-    
-    func notLoveCharacter() {
-        guard let heartButton = tester().waitForView(withAccessibilityLabel: UIElements.heart)
-            as? UIHeartButton else { return }
+        let identifier = UIElements.heart
+        let heartButton = tester().waitForView(
+            withAccessibilityIdentifier: identifier) as! UIHeartButton
         
-        if heartButton.isFilled {
-            tester().tapView(withAccessibilityLabel: UIElements.heart)
+        if heartButton.isFilled == status {
+            tester().tapView(withAccessibilityIdentifier: identifier)
         }
     }
     
     func backToCharacterList() {
-        tester().tapView(withAccessibilityLabel: UIElements.back)
+        tester().tapView(withAccessibilityIdentifier: UIElements.back)
     }
     
     func cancelSearch() {

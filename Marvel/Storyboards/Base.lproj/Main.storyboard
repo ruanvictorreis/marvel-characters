@@ -315,7 +315,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
                                                         <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="heartButton" label="heartButton"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="heart"/>
                                                         <state key="normal" title="Button"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>
@@ -337,7 +337,7 @@
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
                                                 <rect key="frame" x="16" y="16" width="13" height="22"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="backButton" label="backButton"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="back"/>
                                                 <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" image="icon_back"/>
                                                 <connections>

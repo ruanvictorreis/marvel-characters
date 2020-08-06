@@ -135,6 +135,8 @@ struct R: Rswift.Validatable {
       static let backButton: String = "backButton"
       /// Accessibility identifier `characterCollection`.
       static let characterCollection: String = "characterCollection"
+      /// Accessibility identifier `heartButton`.
+      static let heartButton: String = "heartButton"
 
       fileprivate init() {}
     }

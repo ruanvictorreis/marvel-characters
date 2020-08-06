@@ -20,7 +20,7 @@ class MarvelUITests: KIFTestCase {
         characters.forEach({ character in
             searchForCharacter(withName: character)
             selectFirstCharacter(withName: character)
-            loveCharacter()
+            loveCharacter(initalStatus: false)
             backToCharacterList()
         })
 
@@ -30,13 +30,12 @@ class MarvelUITests: KIFTestCase {
         characters.forEach({ character in
             searchForCharacter(withName: character, waiting: false)
             selectFirstCharacter(withName: character)
-            loveCharacter()
+            loveCharacter(initalStatus: true)
             backToCharacterList()
             waitForNoCharactersFoundMessage()
         })
         
         cancelSearch()
-        waitForNoCharactersFoundMessage()
         selectSegmentControl(at: 0)
     }
     
@@ -99,8 +98,13 @@ extension MarvelUITests {
         segmentedControll.setIndex(index)
     }
     
-    func loveCharacter() {
-        tester().tapView(withAccessibilityLabel: UIElements.heart)
+    func loveCharacter(initalStatus: Bool) {
+        guard let heartButton = tester().waitForView(withAccessibilityLabel: UIElements.heart)
+            as? UIHeartButton else { return }
+        
+        if heartButton.isFilled == initalStatus {
+            tester().tapView(withAccessibilityLabel: UIElements.heart)
+        }
     }
     
     func backToCharacterList() {

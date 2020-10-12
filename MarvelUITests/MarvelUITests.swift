@@ -12,7 +12,6 @@ import BetterSegmentedControl
 
 @testable import Marvel
 
-
 class MarvelUITests: KIFTestCase {
     
     func testFavoriteCharacters() {

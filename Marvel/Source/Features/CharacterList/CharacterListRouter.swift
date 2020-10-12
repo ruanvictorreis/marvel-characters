@@ -10,19 +10,33 @@ import Foundation
 
 protocol CharacterListRouterProtocol {
     
-    func proceedToCharacterDetails(_ character: Character)
+    func proceedToCharacterDetails()
 }
 
-class CharacterListRouter: CharacterListRouterProtocol {
+protocol CharacterListDataPassingProtocol {
+    
+    var dataStore: CharacterListDataStoreProtocol! { get }
+}
+
+class CharacterListRouter: CharacterListRouterProtocol, CharacterListDataPassingProtocol {
     
     // MARK: - VIP Properties
     
     weak var viewController: CharacterListViewController!
     
+    // MARK: - Public Properties
+    
+    var dataStore: CharacterListDataStoreProtocol!
+    
     // MARK: - Public Functions
     
-    func proceedToCharacterDetails(_ character: Character) {
-        guard let nextScene = CharacterDetailsBuilder().build(character) else { return }
-        viewController.navigationController?.pushViewController(nextScene, animated: true)
+    func proceedToCharacterDetails() {
+        guard let character = dataStore.character else { return }
+        
+        guard let detailsScene = CharacterDetailsBuilder()
+                .build(character) else { return }
+        
+        viewController.navigationController?
+            .pushViewController(detailsScene, animated: true)
     }
 }

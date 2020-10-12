@@ -8,7 +8,12 @@
 
 import Foundation
 
-protocol CharacterListInteractorProtocol {
+protocol CharacterListDataStoreProtocol {
+    
+    var character: Character? { get set }
+}
+
+protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     var currentSection: CharacterListSection { get set }
     
@@ -30,6 +35,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     var presenter: CharacterListPresenterProtocol!
     
     // MARK: - Public Properties
+    
+    var character: Character?
     
     var currentSection: CharacterListSection = .characters
     

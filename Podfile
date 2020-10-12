@@ -23,8 +23,8 @@ target 'Marvel' do
 
   target 'MarvelUITests' do
     inherit! :search_paths
-    pod 'KIF', '~> 3.7.9'
-    pod 'KIF/IdentifierTests', '~> 3.7.9'
+    pod 'KIF', '~> 3.7.11'
+    pod 'KIF/IdentifierTests', '~> 3.7.11'
   end
   
 end

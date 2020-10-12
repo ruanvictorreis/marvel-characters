@@ -16,9 +16,9 @@ extension UIImageView {
         
         kf.setImage(
             with: URL(string: url),
-            options: [.transition(.fade(0.3))]) { _ in
+            options: [.transition(.fade(0.3))], completionHandler: { _ in
                 completion?()
-        }
+            })
     }
     
     func cancel() {

@@ -63,7 +63,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     private func clean() {
         characterList = []
-        interactor.restart()
+        interactor.reset()
         collectionView.reloadData()
     }
     

@@ -17,7 +17,7 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     var currentSection: CharacterListSection { get set }
     
-    func restart()
+    func reset()
     
     func fetchCharacterList()
     
@@ -102,7 +102,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             : deleteFavorite(character)
     }
     
-    func restart() {
+    func reset() {
         currentPage = 0
         totalCount = 0
         searchParameter = ""

@@ -1,0 +1,23 @@
+name: Testing
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+jobs:
+  test:
+    name: Testing iOS app
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Bundle Install
+        run: bundle install
+      - name: Pod Install
+        run: |
+          cd Marvel
+          bundle exec pod install --repo-update
+      - name: Testing iOS app
+        run: exec ./.github/scripts/test_app.sh

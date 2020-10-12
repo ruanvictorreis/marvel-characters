@@ -16,6 +16,6 @@ jobs:
       - name: Pod Install
         run: |
           cd Marvel
-          bundle exec pod install --repo-update
+          pod install --repo-update
       - name: Testing iOS app
         run: exec ./.github/scripts/test_app.sh

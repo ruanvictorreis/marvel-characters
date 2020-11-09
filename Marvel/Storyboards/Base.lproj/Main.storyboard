@@ -401,10 +401,10 @@
     </scenes>
     <designables>
         <designable name="5eF-lj-igv">
-            <size key="intrinsicContentSize" width="45" height="45"/>
+            <size key="intrinsicContentSize" width="46" height="30"/>
         </designable>
         <designable name="Rdy-GY-J7n">
-            <size key="intrinsicContentSize" width="45" height="45"/>
+            <size key="intrinsicContentSize" width="46" height="30"/>
         </designable>
     </designables>
     <resources>

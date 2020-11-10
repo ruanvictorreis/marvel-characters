@@ -31,7 +31,7 @@ class CharacterListRouter: CharacterListRouterProtocol, CharacterListDataPassing
     // MARK: - Public Functions
     
     func proceedToCharacterDetails() {
-        guard let character = dataStore.character else { return }
+        guard let character = dataStore.selectedCharacter else { return }
         
         guard let detailsScene = CharacterDetailsBuilder()
                 .build(character) else { return }

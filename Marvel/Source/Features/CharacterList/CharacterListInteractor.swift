@@ -10,7 +10,7 @@ import Foundation
 
 protocol CharacterListDataStoreProtocol {
     
-    var character: Character? { get set }
+    var selectedCharacter: Character? { get set }
 }
 
 protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
@@ -36,7 +36,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Public Properties
     
-    var character: Character?
+    var selectedCharacter: Character?
     
     var currentSection: CharacterListSection = .characters
     

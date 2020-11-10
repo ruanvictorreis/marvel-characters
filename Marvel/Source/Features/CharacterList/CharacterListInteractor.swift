@@ -25,7 +25,7 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func select(at index: Int)
     
-    func setFavorite(_ character: Character)
+    func setFavorite(at index: Int, toggle: Bool)
     
     func searchForCharacter(searchParameter: String)
 }
@@ -104,7 +104,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         selectedCharacter = characterList[index]
     }
     
-    func setFavorite(_ character: Character) {
+    func setFavorite(at index: Int, toggle: Bool) {
+        let character = characterList[index]
+        character.isFavorite = toggle
+        
         character.isFavorite
             ? saveFavorite(character)
             : deleteFavorite(character)
@@ -177,6 +180,17 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         return isFirstFetch || shouldFetchMore
     }
     
+    private func setFavorites(_ results: inout [Character]) {
+        let favorites = characterListWorker
+            .getFavoriteCharacters()
+            .map { character in character.id }
+        
+        results.forEach { character in
+            let id = character.id
+            character.isFavorite = favorites.contains(id)
+        }
+    }
+    
     private func saveFavorite(_ character: Character) {
         characterListWorker.saveFavorite(
             character: character,
@@ -188,20 +202,14 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.deleteFavorite(
             character: character,
             sucess: { [weak self] in
-                guard self?.currentSection == .favorites else { return }
-                self?.presenter.removeCharacterFromList(character)
+                self?.didDeleteFavorite(character)
             },
             failure: nil)
     }
     
-    private func setFavorites(_ results: inout [Character]) {
-        let favorites = characterListWorker
-            .getFavoriteCharacters()
-            .map { character in character.id }
-        
-        results.forEach { character in
-            let id = character.id
-            character.isFavorite = favorites.contains(id)
-        }
+    private func didDeleteFavorite(_ character: Character) {
+        guard currentSection == .favorites else { return }
+        characterList.removeAll { $0.id == character.id }
+        presenter.removeCharacterFromList(character)
     }
 }

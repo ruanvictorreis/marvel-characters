@@ -210,7 +210,7 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        interactor.selectedCharacter = characterList[indexPath.item]
+        interactor.select(at: indexPath.item)
         router.proceedToCharacterDetails()
     }
 }

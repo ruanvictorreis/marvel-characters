@@ -23,6 +23,8 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func fetchCharacterNextPage()
     
+    func select(at index: Int)
+    
     func setFavorite(_ character: Character)
     
     func searchForCharacter(searchParameter: String)
@@ -51,6 +53,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private var searchParameter = ""
     
     private var isSearchEnabled = false
+    
+    private var characterList: [Character] = []
     
     private let characterListWorker: CharacterListWorkerProtocol
     
@@ -96,6 +100,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             : fetchCharacterList()
     }
     
+    func select(at index: Int) {
+        selectedCharacter = characterList[index]
+    }
+    
     func setFavorite(_ character: Character) {
         character.isFavorite
             ? saveFavorite(character)
@@ -105,6 +113,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     func reset() {
         currentPage = 0
         totalCount = 0
+        characterList = []
         searchParameter = ""
         isSearchEnabled = false
     }
@@ -114,10 +123,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private func fetchCharacters() {
         characterListWorker.fetchCharacterList(
             offset: currentPage * pageCount,
-            sucess: { [weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
+            sucess: { [weak self] response in
+                self?.didFetchCharacters(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -128,10 +135,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             offset: currentPage * pageCount,
-            sucess: {[weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
+            sucess: { [weak self] response in
+                self?.didFetchCharacters(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
@@ -139,8 +144,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func fetchFavorites() {
-        let characters = characterListWorker.getFavoriteCharacters()
-        presenter.showCharacterList(characters)
+        let characters = characterListWorker
+            .getFavoriteCharacters()
+        
+        presentCharacters(characters)
     }
     
     private func searchForFavorite() {
@@ -148,7 +155,20 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             .getFavoriteCharacters()
             .filter({ $0.name.contains(searchParameter) })
         
+        presentCharacters(characters)
+    }
+    
+    private func didFetchCharacters(_ response: CharacterListResponse?) {
+        var characters = response?.data.results ?? []
+        setFavorites(&characters)
+        
+        presentCharacters(characters)
+        totalCount = response?.data.total ?? 0
+    }
+    
+    private func presentCharacters(_ characters: [Character]) {
         presenter.showCharacterList(characters)
+        characterList.append(contentsOf: characters)
     }
     
     private func shouldFetchNewPage() -> Bool {
@@ -174,15 +194,14 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             failure: nil)
     }
     
-    private func setFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {
-        let characters = characterListWorker
+    private func setFavorites(_ results: inout [Character]) {
+        let favorites = characterListWorker
             .getFavoriteCharacters()
-            .map({ $0.id })
+            .map { character in character.id }
         
-        response?.data.results.forEach({
-            $0.isFavorite = characters.contains($0.id)
-        })
-        
-        return response
+        results.forEach { character in
+            let id = character.id
+            character.isFavorite = favorites.contains(id)
+        }
     }
 }

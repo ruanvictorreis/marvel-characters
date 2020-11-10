@@ -69,9 +69,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     func fetchCharacterList() {
         switch currentSection {
         case .favorites:
-            fetchLocalFavorites()
+            fetchFavorites()
         case .characters:
-            fetchCharactersFromAPI()
+            fetchCharacters()
         }
     }
     
@@ -81,9 +81,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         
         switch currentSection {
         case .favorites:
-            searchForLocalFavorites()
+            searchForFavorite()
         case .characters:
-            searchForCharacterFromAPI()
+            searchForCharacter()
         }
     }
     
@@ -92,7 +92,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         currentPage += 1
         
         isSearchEnabled
-            ? searchForCharacterFromAPI()
+            ? searchForCharacter()
             : fetchCharacterList()
     }
     
@@ -111,7 +111,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Private Functions
     
-    private func fetchCharactersFromAPI() {
+    private func fetchCharacters() {
         characterListWorker.fetchCharacterList(
             offset: currentPage * pageCount,
             sucess: { [weak self] results in
@@ -124,7 +124,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         })
     }
     
-    private func searchForCharacterFromAPI() {
+    private func searchForCharacter() {
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             offset: currentPage * pageCount,
@@ -138,12 +138,12 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         })
     }
     
-    private func fetchLocalFavorites() {
+    private func fetchFavorites() {
         let characters = characterListWorker.getFavoriteCharacters()
         presenter.showCharacterList(characters)
     }
     
-    private func searchForLocalFavorites() {
+    private func searchForFavorite() {
         let characters = characterListWorker
             .getFavoriteCharacters()
             .filter({ $0.name.contains(searchParameter) })

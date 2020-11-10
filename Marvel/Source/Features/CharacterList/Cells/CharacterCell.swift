@@ -10,7 +10,7 @@ import UIKit
 
 protocol CharacterCellDelegate: AnyObject {
     
-    func setFavorite(_ character: Character)
+    func setFavorite(_ cell: UICollectionViewCell, toggle: Bool)
 }
 
 class CharacterCell: UICollectionViewCell {
@@ -29,10 +29,6 @@ class CharacterCell: UICollectionViewCell {
     
     static let identifier = String(describing: CharacterCell.self)
     
-    // MARK: - Private Properties
-    
-    private var character: Character?
-    
     // MARK: - Public Functions
     
     override func prepareForReuse() {
@@ -40,7 +36,6 @@ class CharacterCell: UICollectionViewCell {
     }
     
     func setup(_ character: Character) {
-        self.character = character
         characterName.text = character.name
         characterImage.load(url: character.imageURL)
         loveItButton.isFilled = character.isFavorite
@@ -56,9 +51,9 @@ class CharacterCell: UICollectionViewCell {
     }
     
     @IBAction private func loveIt(_ sender: UIHeartButton) {
-        guard let character = self.character else { return }
         loveItButton.toggleIt()
-        character.isFavorite = loveItButton.isFilled
-        delegate?.setFavorite(character)
+        
+        let toggle = loveItButton.isFilled
+        delegate?.setFavorite(self, toggle: toggle)
     }
 }

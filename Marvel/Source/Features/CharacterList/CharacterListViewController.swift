@@ -178,7 +178,11 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
 
 extension CharacterListViewController: CharacterCellDelegate {
     
-    func setFavorite(_ character: Character) {
+    func setFavorite(_ cell: UICollectionViewCell, toggle: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        
+        let character = characterList[indexPath.item]
+        character.isFavorite = toggle
         interactor.setFavorite(character)
     }
 }

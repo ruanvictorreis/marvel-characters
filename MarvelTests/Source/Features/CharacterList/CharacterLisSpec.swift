@@ -67,6 +67,15 @@ class CharacterLisSpec: QuickSpec {
                     let lastCharacter = viewController.characterList.last
                     expect(lastCharacter?.name).to(equal("Gamora"))
                 }
+                
+                it("The user selects an item from character list") {
+                    viewController.interactor.fetchCharacterList()
+                    viewController.interactor.select(at: 0)
+                    
+                    let character = viewController.interactor.selectedCharacter
+                    expect(character).toNot(beNil())
+                    expect(character?.name).to(equal("Iron Man"))
+                }
             }
             
             context("Given that the app allows the user to choose their favorite characters") {
@@ -103,6 +112,25 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.removeCharacterFromListCalled).to(beTrue())
                 }
+                
+                it("The user selects an item from favorite characters list") {
+                    viewController.interactor.fetchCharacterList()
+                    
+                    let characterOne = viewController.characterList[1]
+                    characterOne.isFavorite = true
+                    viewController.interactor.setFavorite(characterOne)
+                    
+                    viewController.characterList = []
+                    viewController.interactor.reset()
+                    viewController.interactor.currentSection = .favorites
+                    
+                    viewController.interactor.fetchCharacterList()
+                    viewController.interactor.select(at: 0)
+                    
+                    let character = viewController.interactor.selectedCharacter
+                    expect(character).toNot(beNil())
+                    expect(character?.name).to(equal("Captain America"))
+                }
             }
             
             context("Given that the app allows the user to search for characters") {
@@ -127,6 +155,15 @@ class CharacterLisSpec: QuickSpec {
                     expect(lastCharacter?.name).to(equal("Captain Marvel"))
                 }
                 
+                it("The user selects a character from the API search") {
+                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    viewController.interactor.select(at: 1)
+                    
+                    let character = viewController.interactor.selectedCharacter
+                    expect(character).toNot(beNil())
+                    expect(character?.name).to(equal("Captain Marvel"))
+                }
+                
                 it("The user searches for a character by name from favorite list") {
                     viewController.interactor.fetchCharacterList()
                     
@@ -148,6 +185,29 @@ class CharacterLisSpec: QuickSpec {
                     
                     let firstCharacter = viewController.characterList.first
                     expect(firstCharacter?.name).to(equal("Iron Man"))
+                }
+                
+                it("The user selects a character from the search in favorite list") {
+                    viewController.interactor.fetchCharacterList()
+                    
+                    let characterOne = viewController.characterList[0]
+                    characterOne.isFavorite = true
+                    viewController.interactor.setFavorite(characterOne)
+                    
+                    let characterTwo = viewController.characterList[1]
+                    characterTwo.isFavorite = true
+                    viewController.interactor.setFavorite(characterTwo)
+                    
+                    viewController.characterList = []
+                    viewController.interactor.reset()
+                    viewController.interactor.currentSection = .favorites
+                    
+                    viewController.interactor.searchForCharacter(searchParameter: "Iron")
+                    viewController.interactor.select(at: 0)
+                    
+                    let character = viewController.interactor.selectedCharacter
+                    expect(character).toNot(beNil())
+                    expect(character?.name).to(equal("Iron Man"))
                 }
             }
             

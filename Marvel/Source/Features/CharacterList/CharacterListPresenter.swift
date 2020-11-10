@@ -31,7 +31,7 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         guard let results = response?.data.results
             else { showCharacterListError(); return }
         
-        viewController.showCharacterList(results)
+        showCharacterList(results)
     }
     
     func showCharacterList(_ results: [Character]) {

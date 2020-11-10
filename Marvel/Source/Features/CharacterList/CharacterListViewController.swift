@@ -220,10 +220,12 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCell", for: indexPath)
-            as? CharacterCollectionCell else { return UICollectionViewCell() }
+        let identifier = CharacterCell.identifier
         
-        cell.setup(character: characterList[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+            as? CharacterCell else { return UICollectionViewCell() }
+        
+        cell.setup(characterList[indexPath.item])
         cell.delegate = self
         
         return cell

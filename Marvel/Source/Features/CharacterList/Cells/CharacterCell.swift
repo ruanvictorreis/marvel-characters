@@ -13,7 +13,7 @@ protocol CharacterCellDelegate: AnyObject {
     func setFavorite(_ character: Character)
 }
 
-class CharacterCollectionCell: UICollectionViewCell {
+class CharacterCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -25,7 +25,9 @@ class CharacterCollectionCell: UICollectionViewCell {
     
     // MARK: - Public Properties
     
-     weak var delegate: CharacterCellDelegate?
+    weak var delegate: CharacterCellDelegate?
+    
+    static let identifier = String(describing: CharacterCell.self)
     
     // MARK: - Private Properties
     
@@ -37,14 +39,11 @@ class CharacterCollectionCell: UICollectionViewCell {
         clearForReuse()
     }
     
-    func setup(character: Character) {
+    func setup(_ character: Character) {
         self.character = character
         characterName.text = character.name
+        characterImage.load(url: character.imageURL)
         loveItButton.isFilled = character.isFavorite
-        
-        let thumbnail = character.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        characterImage.load(url: imageUrl)
     }
     
     // MARK: - Private Functions

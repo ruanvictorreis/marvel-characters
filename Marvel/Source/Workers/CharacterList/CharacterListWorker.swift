@@ -33,7 +33,17 @@ protocol CharacterListWorkerProtocol {
 }
 
 class CharacterListWorker: CharacterListWorkerProtocol {
-        
+    
+    // MARK: - Private Properties
+    
+    private let persistenceManager: PersistenceManagerProtocol
+    
+    // MARK: - Inits
+    
+    init() {
+        self.persistenceManager = PersistenceManager()
+    }
+    
     // MARK: - Public Functions
     
     func fetchCharacterList(offset: Int,
@@ -56,7 +66,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
             },
             failure: { error in
                 failure(error)
-        })
+            })
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
@@ -84,14 +94,14 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     }
     
     func getFavoriteCharacters() -> [Character] {
-        return PersistenceManager().getCharacters()
+        return persistenceManager.getCharacters()
     }
     
     func saveFavorite(character: Character,
                       sucess: Completation?,
                       failure: Completation?) {
         
-        PersistenceManager().save(
+        persistenceManager.save(
             character: character,
             sucess: {
                 sucess?()
@@ -105,7 +115,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
                         sucess: Completation?,
                         failure: Completation?) {
         
-        PersistenceManager().delete(
+        persistenceManager.delete(
             character: character,
             sucess: {
                 sucess?()

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,27 +13,27 @@
             <objects>
                 <viewController storyboardIdentifier="CharacterList" id="BYZ-38-t0r" customClass="CharacterListViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-zP-2qV">
-                                <rect key="frame" x="0.0" y="92" width="414" height="226.5"/>
+                                <rect key="frame" x="0.0" y="48" width="600" height="226.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thanos" translatesAutoresizingMaskIntoConstraints="NO" id="yOH-6W-Z2w">
-                                        <rect key="frame" x="143" y="16" width="128" height="128"/>
+                                        <rect key="frame" x="236" y="16" width="128" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="128" id="JRs-2r-7lq"/>
                                             <constraint firstAttribute="height" constant="128" id="QhP-01-gBg"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no results found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROi-qR-fs6">
-                                        <rect key="frame" x="120" y="152" width="174.5" height="29"/>
+                                        <rect key="frame" x="213" y="152" width="174.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanos probably killed everyone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDj-l3-iBl">
-                                        <rect key="frame" x="77.5" y="189" width="259.5" height="21.5"/>
+                                        <rect key="frame" x="170.5" y="189" width="259.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -53,7 +51,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-3Z-7eA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
                                     <size key="itemSize" width="180" height="296"/>
@@ -62,7 +60,7 @@
                                     <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="eS3-Ta-seH" customClass="CharacterCollectionCell" customModule="Marvel" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="eS3-Ta-seH" customClass="CharacterCell" customModule="Marvel" customModuleProvider="target">
                                         <rect key="frame" x="16" y="16" width="180" height="296"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S38-ZH-Hg7" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
@@ -174,7 +172,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
-                                <rect key="frame" x="0.0" y="44" width="414" height="922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="917.5"/>
@@ -399,14 +397,6 @@
             <point key="canvasLocation" x="902.89855072463774" y="133.92857142857142"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="5eF-lj-igv">
-            <size key="intrinsicContentSize" width="45" height="45"/>
-        </designable>
-        <designable name="Rdy-GY-J7n">
-            <size key="intrinsicContentSize" width="45" height="45"/>
-        </designable>
-    </designables>
     <resources>
         <image name="icon_back" width="13" height="21"/>
         <image name="thanos" width="64" height="64"/>

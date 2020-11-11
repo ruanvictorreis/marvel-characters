@@ -56,7 +56,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        removeNonFavoritesFromList()
+        interactor.checkChangesInFavorites()
     }
     
     // MARK: - Private Functions
@@ -123,15 +123,6 @@ class CharacterListViewController: UIViewControllerUtilities {
         fetchCharacterList()
         navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)
-    }
-    
-    private func removeNonFavoritesFromList() {
-        guard interactor.currentSection == .favorites else { return }
-        characterList
-            .filter({ !$0.isFavorite })
-            .forEach({
-                removeCharacterFromList($0)
-            })
     }
 }
 

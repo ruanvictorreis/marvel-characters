@@ -23,6 +23,8 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func fetchCharacterNextPage()
     
+    func checkChangesInFavorites()
+    
     func select(at index: Int)
     
     func setFavorite(at index: Int, value: Bool)
@@ -111,6 +113,17 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         character.isFavorite
             ? saveFavorite(character)
             : deleteFavorite(character)
+    }
+    
+    func checkChangesInFavorites() {
+        guard currentSection == .favorites else { return }
+        
+        let nonFavorites = characterList
+            .filter { !$0.isFavorite }
+        
+        nonFavorites.forEach { character in
+            removeFromFavorites(character)
+        }
     }
     
     func reset() {
@@ -202,12 +215,12 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.deleteFavorite(
             character: character,
             sucess: { [weak self] in
-                self?.didDeleteFavorite(character)
+                self?.removeFromFavorites(character)
             },
             failure: nil)
     }
     
-    private func didDeleteFavorite(_ character: Character) {
+    private func removeFromFavorites(_ character: Character) {
         guard currentSection == .favorites else { return }
         characterList.removeAll { $0.id == character.id }
         presenter.removeCharacterFromList(character)

@@ -8,12 +8,7 @@
 
 import UIKit
 
-protocol CharacterCellDelegate: AnyObject {
-    
-    func setFavorite(_ character: Character)
-}
-
-class CharacterCollectionCell: UICollectionViewCell {
+class CharacterCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -25,11 +20,9 @@ class CharacterCollectionCell: UICollectionViewCell {
     
     // MARK: - Public Properties
     
-     weak var delegate: CharacterCellDelegate?
+    weak var delegate: CharacterCellDelegate?
     
-    // MARK: - Private Properties
-    
-    private var character: Character?
+    static let identifier = String(describing: CharacterCell.self)
     
     // MARK: - Public Functions
     
@@ -37,14 +30,10 @@ class CharacterCollectionCell: UICollectionViewCell {
         clearForReuse()
     }
     
-    func setup(character: Character) {
-        self.character = character
+    func setup(_ character: Character) {
         characterName.text = character.name
+        characterImage.load(url: character.imageURL)
         loveItButton.isFilled = character.isFavorite
-        
-        let thumbnail = character.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        characterImage.load(url: imageUrl)
     }
     
     // MARK: - Private Functions
@@ -57,9 +46,9 @@ class CharacterCollectionCell: UICollectionViewCell {
     }
     
     @IBAction private func loveIt(_ sender: UIHeartButton) {
-        guard let character = self.character else { return }
         loveItButton.toggleIt()
-        character.isFavorite = loveItButton.isFilled
-        delegate?.setFavorite(character)
+        
+        let value = loveItButton.isFilled
+        delegate?.setFavorite(self, value: value)
     }
 }

@@ -10,8 +10,6 @@ import Alamofire
 
 protocol CharacterListPresenterProtocol {
     
-    func showCharacterList(_ response: CharacterListResponse?)
-    
     func showCharacterList(_ results: [Character])
     
     func showCharacterListError(_ error: AFError?)
@@ -26,13 +24,6 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     weak var viewController: CharacterListViewControllerProtocol!
     
     // MARK: - Public Functions
-    
-    func showCharacterList(_ response: CharacterListResponse?) {
-        guard let results = response?.data.results
-            else { showCharacterListError(); return }
-        
-        viewController.showCharacterList(results)
-    }
     
     func showCharacterList(_ results: [Character]) {
         viewController.showCharacterList(results)

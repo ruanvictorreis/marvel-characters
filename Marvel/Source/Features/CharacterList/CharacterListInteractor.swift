@@ -15,7 +15,7 @@ protocol CharacterListDataStoreProtocol {
 
 protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
-    var currentSection: CharacterListSection { get set }
+    var section: CharacterListSection { get set }
     
     func reset()
     
@@ -23,7 +23,11 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func fetchCharacterNextPage()
     
-    func setFavorite(_ character: Character)
+    func checkChangesInFavorites()
+    
+    func select(at index: Int)
+    
+    func setFavorite(at index: Int, value: Bool)
     
     func searchForCharacter(searchParameter: String)
 }
@@ -38,7 +42,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     var character: Character?
     
-    var currentSection: CharacterListSection = .characters
+    var section: CharacterListSection = .characters
     
     // MARK: - Private Properties
     
@@ -47,10 +51,12 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private var totalCount = 0
     
     private var currentPage = 0
-
+    
     private var searchParameter = ""
     
     private var isSearchEnabled = false
+    
+    private var characterList: [Character] = []
     
     private let characterListWorker: CharacterListWorkerProtocol
     
@@ -67,11 +73,11 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     // MARK: - Public Functions
     
     func fetchCharacterList() {
-        switch currentSection {
+        switch section {
         case .favorites:
-            fetchLocalFavorites()
+            fetchFavorites()
         case .characters:
-            fetchCharactersFromAPI()
+            fetchCharacters()
         }
     }
     
@@ -79,82 +85,123 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         self.searchParameter = searchParameter.capitalized
         isSearchEnabled = true
         
-        switch currentSection {
+        switch section {
         case .favorites:
-            searchForLocalFavorites()
+            searchForFavorite()
         case .characters:
-            searchForCharacterFromAPI()
+            searchForCharacter()
         }
     }
     
     func fetchCharacterNextPage() {
-        guard currentSection == .characters, shouldFetchNewPage() else { return }
+        guard section == .characters, shouldFetchNewPage() else { return }
         currentPage += 1
         
         isSearchEnabled
-            ? searchForCharacterFromAPI()
+            ? searchForCharacter()
             : fetchCharacterList()
     }
     
-    func setFavorite(_ character: Character) {
+    func select(at index: Int) {
+        character = characterList[index]
+    }
+    
+    func setFavorite(at index: Int, value: Bool) {
+        let character = characterList[index]
+        character.isFavorite = value
+        
         character.isFavorite
             ? saveFavorite(character)
             : deleteFavorite(character)
     }
     
+    func checkChangesInFavorites() {
+        guard section == .favorites else { return }
+        
+        let nonFavorites = characterList
+            .filter { !$0.isFavorite }
+        
+        nonFavorites.forEach { character in
+            removeFromFavorites(character)
+        }
+    }
+    
     func reset() {
         currentPage = 0
         totalCount = 0
+        characterList = []
         searchParameter = ""
         isSearchEnabled = false
     }
     
     // MARK: - Private Functions
     
-    private func fetchCharactersFromAPI() {
+    private func fetchCharacters() {
         characterListWorker.fetchCharacterList(
             offset: currentPage * pageCount,
-            sucess: { [weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
+            sucess: { [weak self] response in
+                self?.didFetchCharacters(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-        })
+            })
     }
     
-    private func searchForCharacterFromAPI() {
+    private func searchForCharacter() {
         characterListWorker.fetchCharacterList(
             searchParameter: searchParameter,
             offset: currentPage * pageCount,
-            sucess: {[weak self] results in
-                let response = self?.setFavorites(results)
-                self?.presenter.showCharacterList(response)
-                self?.totalCount = response?.data.total ?? 0
+            sucess: { [weak self] response in
+                self?.didFetchCharacters(response)
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-        })
+            })
     }
     
-    private func fetchLocalFavorites() {
-        let characters = characterListWorker.getFavoriteCharacters()
-        presenter.showCharacterList(characters)
+    private func fetchFavorites() {
+        let characters = characterListWorker
+            .getFavoriteCharacters()
+        
+        presentCharacters(characters)
     }
     
-    private func searchForLocalFavorites() {
+    private func searchForFavorite() {
         let characters = characterListWorker
             .getFavoriteCharacters()
             .filter({ $0.name.contains(searchParameter) })
         
+        presentCharacters(characters)
+    }
+    
+    private func didFetchCharacters(_ response: CharacterListResponse?) {
+        var characters = response?.data.results ?? []
+        setFavorites(&characters)
+        
+        presentCharacters(characters)
+        totalCount = response?.data.total ?? 0
+    }
+    
+    private func presentCharacters(_ characters: [Character]) {
         presenter.showCharacterList(characters)
+        characterList.append(contentsOf: characters)
     }
     
     private func shouldFetchNewPage() -> Bool {
         let isFirstFetch = totalCount == 0
         let shouldFetchMore = (currentPage + 1) * pageCount < totalCount
         return isFirstFetch || shouldFetchMore
+    }
+    
+    private func setFavorites(_ results: inout [Character]) {
+        let favorites = characterListWorker
+            .getFavoriteCharacters()
+            .map { character in character.id }
+        
+        results.forEach { character in
+            let id = character.id
+            character.isFavorite = favorites.contains(id)
+        }
     }
     
     private func saveFavorite(_ character: Character) {
@@ -168,21 +215,14 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterListWorker.deleteFavorite(
             character: character,
             sucess: { [weak self] in
-                guard self?.currentSection == .favorites else { return }
-                self?.presenter.removeCharacterFromList(character)
+                self?.removeFromFavorites(character)
             },
             failure: nil)
     }
     
-    private func setFavorites(_ response: CharacterListResponse?) -> CharacterListResponse? {
-        let characters = characterListWorker
-            .getFavoriteCharacters()
-            .map({ $0.id })
-        
-        response?.data.results.forEach({
-            $0.isFavorite = characters.contains($0.id)
-        })
-        
-        return response
+    private func removeFromFavorites(_ character: Character) {
+        guard section == .favorites else { return }
+        characterList.removeAll { $0.id == character.id }
+        presenter.removeCharacterFromList(character)
     }
 }

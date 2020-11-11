@@ -24,6 +24,10 @@ class Character: Decodable, Equatable {
         case id, name, description, thumbnail
     }
     
+    var imageURL: String {
+        "\(thumbnail.path).\(thumbnail.extension)"
+    }
+    
     init(id: Int, name: String, description: String, isFavorite: Bool, thumbnail: Thumbnail) {
         self.id = id
         self.name = name

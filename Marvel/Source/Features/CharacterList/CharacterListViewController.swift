@@ -44,7 +44,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let title = interactor.currentSection.title
+        let title = interactor.section.title
         
         setupNavigation(
             title: title,
@@ -108,7 +108,7 @@ class CharacterListViewController: UIViewControllerUtilities {
             R.Localizable.characters(),
             R.Localizable.favorites()]
         
-        let section = interactor.currentSection
+        let section = interactor.section
         
         setupSegmentedControl(
             titles: titles,
@@ -119,7 +119,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     @objc
     private func didChangeControlSection(_ control: BetterSegmentedControl) {
         guard let section = CharacterListSection(rawValue: control.index) else { return }
-        interactor.currentSection = section
+        interactor.section = section
         fetchCharacterList()
         navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)

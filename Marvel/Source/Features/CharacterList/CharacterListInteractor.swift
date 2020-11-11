@@ -10,12 +10,12 @@ import Foundation
 
 protocol CharacterListDataStoreProtocol {
     
-    var selectedCharacter: Character? { get set }
+    var character: Character? { get set }
 }
 
 protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
-    var currentSection: CharacterListSection { get set }
+    var section: CharacterListSection { get set }
     
     func reset()
     
@@ -40,9 +40,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     // MARK: - Public Properties
     
-    var selectedCharacter: Character?
+    var character: Character?
     
-    var currentSection: CharacterListSection = .characters
+    var section: CharacterListSection = .characters
     
     // MARK: - Private Properties
     
@@ -73,7 +73,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     // MARK: - Public Functions
     
     func fetchCharacterList() {
-        switch currentSection {
+        switch section {
         case .favorites:
             fetchFavorites()
         case .characters:
@@ -85,7 +85,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         self.searchParameter = searchParameter.capitalized
         isSearchEnabled = true
         
-        switch currentSection {
+        switch section {
         case .favorites:
             searchForFavorite()
         case .characters:
@@ -94,7 +94,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func fetchCharacterNextPage() {
-        guard currentSection == .characters, shouldFetchNewPage() else { return }
+        guard section == .characters, shouldFetchNewPage() else { return }
         currentPage += 1
         
         isSearchEnabled
@@ -103,7 +103,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func select(at index: Int) {
-        selectedCharacter = characterList[index]
+        character = characterList[index]
     }
     
     func setFavorite(at index: Int, value: Bool) {
@@ -116,7 +116,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     func checkChangesInFavorites() {
-        guard currentSection == .favorites else { return }
+        guard section == .favorites else { return }
         
         let nonFavorites = characterList
             .filter { !$0.isFavorite }
@@ -221,7 +221,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func removeFromFavorites(_ character: Character) {
-        guard currentSection == .favorites else { return }
+        guard section == .favorites else { return }
         characterList.removeAll { $0.id == character.id }
         presenter.removeCharacterFromList(character)
     }

@@ -72,7 +72,7 @@ class CharacterLisSpec: QuickSpec {
                     viewController.interactor.fetchCharacterList()
                     viewController.interactor.select(at: 0)
                     
-                    let character = viewController.interactor.selectedCharacter
+                    let character = viewController.interactor.character
                     expect(character).toNot(beNil())
                     expect(character?.name).to(equal("Iron Man"))
                 }
@@ -94,7 +94,7 @@ class CharacterLisSpec: QuickSpec {
                     
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
-                    viewController.interactor.currentSection = .favorites
+                    viewController.interactor.section = .favorites
                     
                     viewController.interactor.fetchCharacterList()
                     expect(viewController.characterList).to(haveCount(1))
@@ -115,12 +115,12 @@ class CharacterLisSpec: QuickSpec {
                     
                     viewController.characterList = []
                     viewController.interactor.reset()
-                    viewController.interactor.currentSection = .favorites
+                    viewController.interactor.section = .favorites
                     
                     viewController.interactor.fetchCharacterList()
                     viewController.interactor.select(at: 0)
                     
-                    let character = viewController.interactor.selectedCharacter
+                    let character = viewController.interactor.character
                     expect(character).toNot(beNil())
                     expect(character?.name).to(equal("Captain America"))
                 }
@@ -152,7 +152,7 @@ class CharacterLisSpec: QuickSpec {
                     viewController.interactor.searchForCharacter(searchParameter: "Captain")
                     viewController.interactor.select(at: 1)
                     
-                    let character = viewController.interactor.selectedCharacter
+                    let character = viewController.interactor.character
                     expect(character).toNot(beNil())
                     expect(character?.name).to(equal("Captain Marvel"))
                 }
@@ -164,7 +164,7 @@ class CharacterLisSpec: QuickSpec {
                     
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
-                    viewController.interactor.currentSection = .favorites
+                    viewController.interactor.section = .favorites
                     
                     viewController.interactor.searchForCharacter(searchParameter: "Iron")
                     expect(viewController.characterList).to(haveCount(1))
@@ -181,12 +181,12 @@ class CharacterLisSpec: QuickSpec {
                     
                     viewController.characterList = []
                     viewController.interactor.reset()
-                    viewController.interactor.currentSection = .favorites
+                    viewController.interactor.section = .favorites
                     
                     viewController.interactor.searchForCharacter(searchParameter: "Iron")
                     viewController.interactor.select(at: 0)
                     
-                    let character = viewController.interactor.selectedCharacter
+                    let character = viewController.interactor.character
                     expect(character).toNot(beNil())
                     expect(character?.name).to(equal("Iron Man"))
                 }

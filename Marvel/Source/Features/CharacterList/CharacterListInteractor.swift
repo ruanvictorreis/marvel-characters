@@ -25,7 +25,7 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func select(at index: Int)
     
-    func setFavorite(at index: Int, toggle: Bool)
+    func setFavorite(at index: Int, value: Bool)
     
     func searchForCharacter(searchParameter: String)
 }
@@ -49,7 +49,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private var totalCount = 0
     
     private var currentPage = 0
-
+    
     private var searchParameter = ""
     
     private var isSearchEnabled = false
@@ -104,9 +104,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         selectedCharacter = characterList[index]
     }
     
-    func setFavorite(at index: Int, toggle: Bool) {
+    func setFavorite(at index: Int, value: Bool) {
         let character = characterList[index]
-        character.isFavorite = toggle
+        character.isFavorite = value
         
         character.isFavorite
             ? saveFavorite(character)
@@ -131,7 +131,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-        })
+            })
     }
     
     private func searchForCharacter() {
@@ -143,7 +143,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
             },
             failure: { [weak self] error in
                 self?.presenter.showCharacterListError(error)
-        })
+            })
     }
     
     private func fetchFavorites() {

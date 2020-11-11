@@ -90,7 +90,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 it("The user gets his favorite characters and can also delete them") {
                     viewController.interactor.fetchCharacterList()
-                    viewController.interactor.setFavorite(at: 0, toggle: true)
+                    viewController.interactor.setFavorite(at: 0, value: true)
                     
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
@@ -103,7 +103,7 @@ class CharacterLisSpec: QuickSpec {
                     let firstCharacter = viewController.characterList.first
                     expect(firstCharacter?.name).to(equal("Iron Man"))
                     
-                    viewController.interactor.setFavorite(at: 0, toggle: false)
+                    viewController.interactor.setFavorite(at: 0, value: false)
                     viewController.interactor.fetchCharacterList()
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.removeCharacterFromListCalled).to(beTrue())
@@ -111,7 +111,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 it("The user selects an item from favorite characters list") {
                     viewController.interactor.fetchCharacterList()
-                    viewController.interactor.setFavorite(at: 1, toggle: true)
+                    viewController.interactor.setFavorite(at: 1, value: true)
                     
                     viewController.characterList = []
                     viewController.interactor.reset()
@@ -159,8 +159,8 @@ class CharacterLisSpec: QuickSpec {
                 
                 it("The user searches for a character by name from favorite list") {
                     viewController.interactor.fetchCharacterList()
-                    viewController.interactor.setFavorite(at: 0, toggle: true)
-                    viewController.interactor.setFavorite(at: 1, toggle: true)
+                    viewController.interactor.setFavorite(at: 0, value: true)
+                    viewController.interactor.setFavorite(at: 1, value: true)
                     
                     viewController.characterList = []
                     viewController.showCharacterListCalled = false
@@ -176,8 +176,8 @@ class CharacterLisSpec: QuickSpec {
                 
                 it("The user selects a character from the search in favorite list") {
                     viewController.interactor.fetchCharacterList()
-                    viewController.interactor.setFavorite(at: 0, toggle: true)
-                    viewController.interactor.setFavorite(at: 1, toggle: true)
+                    viewController.interactor.setFavorite(at: 0, value: true)
+                    viewController.interactor.setFavorite(at: 1, value: true)
                     
                     viewController.characterList = []
                     viewController.interactor.reset()

@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol CharacterCellDelegate: AnyObject {
-    
-    func setFavorite(_ cell: UICollectionViewCell, toggle: Bool)
-}
-
 class CharacterCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
@@ -53,7 +48,7 @@ class CharacterCell: UICollectionViewCell {
     @IBAction private func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
         
-        let toggle = loveItButton.isFilled
-        delegate?.setFavorite(self, toggle: toggle)
+        let value = loveItButton.isFilled
+        delegate?.setFavorite(self, value: value)
     }
 }

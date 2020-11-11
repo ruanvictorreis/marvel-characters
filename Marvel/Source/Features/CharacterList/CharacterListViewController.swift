@@ -159,7 +159,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     
     func removeCharacterFromList(_ character: Character) {
         guard let index = characterList.firstIndex(of: character)
-            else { return }
+        else { return }
         
         let indexPath = IndexPath(item: index, section: 0)
         characterList.remove(at: indexPath.item)
@@ -174,17 +174,7 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
     }
 }
 
-// MARK: - CharacterCellDelegate Extension
-
-extension CharacterListViewController: CharacterCellDelegate {
-    
-    func setFavorite(_ cell: UICollectionViewCell, toggle: Bool) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        interactor.setFavorite(at: indexPath.item, toggle: toggle)
-    }
-}
-
-// MARK: - UICollectionViewDelegate Extension
+// MARK: - UICollectionView Protocols Extensions
 
 extension CharacterListViewController: UICollectionViewDelegate {
     
@@ -212,8 +202,6 @@ extension CharacterListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - UICollectionViewDataSource Extension
-
 extension CharacterListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -224,7 +212,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
         let identifier = CharacterCell.identifier
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-            as? CharacterCell else { return UICollectionViewCell() }
+                as? CharacterCell else { return UICollectionViewCell() }
         
         cell.setup(characterList[indexPath.item])
         cell.delegate = self
@@ -232,8 +220,6 @@ extension CharacterListViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout Extension
 
 extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     
@@ -251,5 +237,15 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let height = width * ratio
         
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: - CharacterCellDelegate Extension
+
+extension CharacterListViewController: CharacterCellDelegate {
+    
+    func setFavorite(_ cell: UICollectionViewCell, value: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        interactor.setFavorite(at: indexPath.item, value: value)
     }
 }

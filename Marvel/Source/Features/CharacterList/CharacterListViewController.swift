@@ -53,7 +53,7 @@ class CharacterListViewController: UIViewControllerUtilities {
             isTranslucent: true,
             hasLargeTitle: true)
         
-        interactor.reload()
+        interactor.reloadCharacters()
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -19,11 +19,11 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func reset()
     
-    func reload()
-    
     func fetchCharacterList()
     
     func fetchCharacterNextPage()
+    
+    func reloadCharacters()
     
     func checkChangesInFavorites()
     
@@ -134,10 +134,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterList = []
         searchParameter = ""
         isSearchEnabled = false
-        reload()
+        reloadCharacters()
     }
     
-    func reload() {
+    func reloadCharacters() {
         presenter.reloadCharacters(characterList)
     }
     

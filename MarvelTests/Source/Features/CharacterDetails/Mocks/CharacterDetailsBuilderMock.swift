@@ -10,7 +10,8 @@
 
 class CharacterDetailsBuilderMock {
     
-    func build(characterListWorker: CharacterListWorkerProtocol,
+    func build(character: Character,
+               characterListWorker: CharacterListWorkerProtocol,
                comickBookListWorker: ComicBookListWorkerProtocol) -> CharacterDetailsViewControllerMock {
         
         let viewController = CharacterDetailsViewControllerMock()
@@ -20,6 +21,7 @@ class CharacterDetailsBuilderMock {
             characterListWorker: characterListWorker,
             comickBookListWorker: comickBookListWorker)
         
+        interactor.character = character
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController

@@ -10,22 +10,32 @@ import Alamofire
 
 protocol CharacterDetailsPresenterProtocol {
     
+    func showDetails(_ character: Character)
+    
     func showComicBookList(_ response: ComicBookListResponse?)
     
     func showComicBookListError(_ error: AFError?)
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
-
+    
     // MARK: - VIP Properties
     
     weak var viewController: CharacterDetailsViewControllerProtocol!
     
     // MARK: - Public Functions
     
+    func showDetails(_ character: Character) {
+        let viewModel = CharacterDetailsViewModel(
+            name: character.name, description: character.description,
+            image: character.imageURL, isLoved: character.isFavorite)
+        
+        viewController.showCharacterDetails(viewModel)
+    }
+    
     func showComicBookList(_ response: ComicBookListResponse?) {
         guard let results = response?.data.results
-            else { showComicBookListError(); return }
+        else { showComicBookListError(); return }
         
         viewController.showCommicBookList(results)
     }

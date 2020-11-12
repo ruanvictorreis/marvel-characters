@@ -72,6 +72,7 @@
 		15B6EA1624D0D641005F2CD2 /* CharacterLisSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA1524D0D641005F2CD2 /* CharacterLisSpec.swift */; };
 		15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA2324D0DD32005F2CD2 /* R.generated.swift */; };
 		15B728B4255D755700C9A654 /* CharacterListViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B728B3255D755700C9A654 /* CharacterListViewModels.swift */; };
+		15B728BF255DB0B600C9A654 /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B728BE255DB0B600C9A654 /* CharacterDetailsViewModel.swift */; };
 		15ED297624DB72A100D8C494 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED297524DB72A100D8C494 /* Keys.plist */; };
 		15ED297824DB81FB00D8C494 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */; };
 		15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */; };
@@ -170,6 +171,7 @@
 		15B6EA1724D0D641005F2CD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B6EA2324D0DD32005F2CD2 /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		15B728B3255D755700C9A654 /* CharacterListViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModels.swift; sourceTree = "<group>"; };
+		15B728BE255DB0B600C9A654 /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		15ED297524DB72A100D8C494 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtilities.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				15ACB5CA24D30A8C002156D0 /* CharacterDetailsPresenter.swift */,
 				15ACB5CC24D30ADE002156D0 /* CharacterDetailsRouter.swift */,
 				15ACB5C624D30559002156D0 /* CharacterDetailsViewController.swift */,
+				15B728BE255DB0B600C9A654 /* CharacterDetailsViewModel.swift */,
 			);
 			path = CharacterDetails;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				155B772524D1D742005DECC3 /* CharacterListInteractor.swift in Sources */,
 				157A2E1D24D4A81E00133F79 /* PersistenceProtocol.swift in Sources */,
 				15ACB5D624D364BB002156D0 /* ComicBookListResponse.swift in Sources */,
+				15B728BF255DB0B600C9A654 /* CharacterDetailsViewModel.swift in Sources */,
 				15ACB5D824D36981002156D0 /* ComicBooListResults.swift in Sources */,
 				15ACB5C524D30508002156D0 /* CharacterDetailsBuilder.swift in Sources */,
 				1518F10B24D0FB360020593B /* MarvelAPI.swift in Sources */,

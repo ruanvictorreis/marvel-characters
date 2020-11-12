@@ -22,13 +22,16 @@ class ComicBookCarouselView: UIView {
     
     private var comicBookList: [ComicBook] = []
     
-     // MARK: - Public Functions
+    // MARK: - View Lifecycle
     
-    func setupUI() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
         title.text = R.Localizable.comics()
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    // MARK: - Public Functions
     
     func setupUI(_ comics: [ComicBook]) {
         comicBookList = comics
@@ -47,7 +50,7 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicBookCell", for: indexPath)
-            as? ComicBookCollectionCell else { return UICollectionViewCell() }
+                as? ComicBookCollectionCell else { return UICollectionViewCell() }
         
         cell.setup(comicBookList[indexPath.item])
         

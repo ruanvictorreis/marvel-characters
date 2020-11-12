@@ -80,10 +80,6 @@ class CharacterListViewController: UIViewControllerUtilities {
             searchParameter: searchParameter)
     }
     
-    private func fetchCharacterNextPage() {
-        interactor.fetchCharacterNextPage()
-    }
-    
     private func setupUI() {
         setupSearchBar()
         setupSegmentedControl()
@@ -175,7 +171,7 @@ extension CharacterListViewController: UICollectionViewDelegate {
         let lastRowIndex = collectionView.numberOfItems(inSection: indexPath.section) - 1
         
         if lastRowIndex == indexPath.row {
-            fetchCharacterNextPage()
+            interactor.fetchCharacterNextPage()
         }
         
         cell.alpha = 0.0

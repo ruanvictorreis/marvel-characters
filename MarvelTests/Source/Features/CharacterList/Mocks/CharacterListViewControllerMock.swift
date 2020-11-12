@@ -6,34 +6,39 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
+import UIKit
 @testable import Marvel
 
 class CharacterListViewControllerMock: CharacterListViewControllerProtocol {
     
     var interactor: CharacterListInteractorProtocol!
     
-    var characterList: [Character] = []
+    var characterList: [CharacterViewModel] = []
     
     var errorMessage: String = ""
-
+    
     var showCharacterListCalled = false
     
     var showCharacterListErrorCalled = false
     
     var removeCharacterFromListCalled = false
     
-    func showCharacterList(_ characters: [Character]) {
-        characterList.append(contentsOf: characters)
+    func showCharacterList(_ viewModel: CharacterListViewModel) {
+        characterList.append(contentsOf: viewModel.characters)
         showCharacterListCalled = true
+    }
+    
+    func reloadCharacters(_ viewModel: CharacterListViewModel) {
+        characterList = viewModel.characters
+    }
+    
+    func removeCharacter(at indexPath: IndexPath) {
+        characterList.remove(at: indexPath.item)
+        removeCharacterFromListCalled = true
     }
     
     func showCharacterListError(_ errorMessage: String) {
         self.errorMessage = errorMessage
         showCharacterListErrorCalled = true
-    }
-    
-    func removeCharacterFromList(_ character: Character) {
-        characterList.removeAll(where: { $0.id == character.id })
-        removeCharacterFromListCalled = true
     }
 }

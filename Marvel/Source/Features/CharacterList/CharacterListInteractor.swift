@@ -19,6 +19,8 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func reset()
     
+    func reload()
+    
     func fetchCharacterList()
     
     func fetchCharacterNextPage()
@@ -29,7 +31,7 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func setFavorite(at index: Int, value: Bool)
     
-    func searchForCharacter(searchParameter: String)
+    func searchForCharacter(_ characterName: String)
 }
 
 class CharacterListInteractor: CharacterListInteractorProtocol {
@@ -81,9 +83,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         }
     }
     
-    func searchForCharacter(searchParameter: String) {
-        self.searchParameter = searchParameter.capitalized
+    func searchForCharacter(_ characterName: String) {
         isSearchEnabled = true
+        searchParameter = characterName.capitalized
         
         switch section {
         case .favorites:
@@ -132,6 +134,11 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterList = []
         searchParameter = ""
         isSearchEnabled = false
+        reload()
+    }
+    
+    func reload() {
+        presenter.reloadCharacters(characterList)
     }
     
     // MARK: - Private Functions
@@ -222,7 +229,10 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private func removeFromFavorites(_ character: Character) {
         guard section == .favorites else { return }
-        characterList.removeAll { $0.id == character.id }
-        presenter.removeCharacterFromList(character)
+        
+        if let index = characterList.firstIndex(of: character) {
+            characterList.remove(at: index)
+            presenter.removeCharacterFromList(at: index)
+        }
     }
 }

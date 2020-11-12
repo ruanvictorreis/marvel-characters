@@ -10,11 +10,13 @@ import Alamofire
 
 protocol CharacterListPresenterProtocol {
     
-    func showCharacterList(_ results: [Character])
+    func showCharacterList(_ characters: [Character])
+    
+    func reloadCharacters(_ characters: [Character])
+    
+    func removeCharacterFromList(at index: Int)
     
     func showCharacterListError(_ error: AFError?)
-    
-    func removeCharacterFromList(_ character: Character)
 }
 
 class CharacterListPresenter: CharacterListPresenterProtocol {
@@ -25,8 +27,14 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     
     // MARK: - Public Functions
     
-    func showCharacterList(_ results: [Character]) {
-        viewController.showCharacterList(results)
+    func showCharacterList(_ characters: [Character]) {
+        let viewModel = buildViewModel(characters)
+        viewController.showCharacterList(viewModel)
+    }
+    
+    func reloadCharacters(_ characters: [Character]) {
+        let viewModel = buildViewModel(characters)
+        viewController.reloadCharacters(viewModel)
     }
     
     func showCharacterListError(_ error: AFError? = nil) {
@@ -34,7 +42,21 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         viewController.showCharacterListError(errorMessage)
     }
     
-    func removeCharacterFromList(_ character: Character) {
-        viewController.removeCharacterFromList(character)
+    func removeCharacterFromList(at index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        viewController.removeCharacter(at: indexPath)
+    }
+    
+    // MARK: - Private Functions
+    
+    private func buildViewModel(_ results: [Character]) -> CharacterListViewModel {
+        let characters = results.map { char in
+            CharacterViewModel(
+                name: char.name,
+                image: char.imageURL,
+                isLoved: char.isFavorite)
+        }
+        
+        return CharacterListViewModel(characters: characters)
     }
 }

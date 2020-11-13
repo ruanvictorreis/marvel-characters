@@ -26,9 +26,10 @@ class Network: Networking {
                                       success: @escaping RequestSuccess<T>,
                                       failure: @escaping RequestFailure) {
         
-        let request = AF.request(data.url, method: data.method,
-                                 parameters: data.parameters,
-                                 encoding: data.encoding)
+        let request = AF.request(
+            data.url, method: data.method,
+            parameters: data.parameters,
+            encoding: data.encoding)
         
         request.validate().responseJSON { response in
             switch response.result {

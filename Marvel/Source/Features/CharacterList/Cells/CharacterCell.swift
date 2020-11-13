@@ -1,5 +1,5 @@
 //
-//  CharacterCollectionCell.swift
+//  CharacterCell.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 29/07/20.
@@ -24,11 +24,13 @@ class CharacterCell: UICollectionViewCell {
     
     static let identifier = String(describing: CharacterCell.self)
     
-    // MARK: - Public Functions
+    // MARK: - View Lifecycle
     
     override func prepareForReuse() {
         clearForReuse()
     }
+    
+    // MARK: - Public Functions
     
     func setup(_ viewModel: CharacterViewModel) {
         characterName.text = viewModel.name

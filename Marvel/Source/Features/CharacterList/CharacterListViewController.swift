@@ -102,8 +102,7 @@ class CharacterListViewController: UIViewControllerUtilities {
         let section = interactor.section
         
         setupSegmentedControl(
-            titles: titles,
-            section: section.rawValue,
+            titles: titles, section: section.rawValue,
             action: #selector(didChangeControlSection))
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 struct ComicBook: Decodable {
     
-    // MARK: - Decoodable Properties
+    // MARK: - Decodable Properties
     
     let id: Int
     

@@ -1,5 +1,5 @@
 //
-//  CharacterListViewModel.swift
+//  CharacterListViewModels.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 12/11/20.

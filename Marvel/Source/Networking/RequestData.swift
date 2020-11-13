@@ -17,5 +17,4 @@ struct RequestData {
     var encoding: ParameterEncoding
     
     var parameters: [String: Any]?
-    
 }

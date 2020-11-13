@@ -10,7 +10,7 @@ import Foundation
 
 class Character: Decodable, Equatable {
     
-    // MARK: - Decoodable Properties
+    // MARK: - Decodable Properties
     
     let id: Int
     

@@ -47,7 +47,7 @@ class ComicBookCarouselView: UIView {
     }
 }
 
-// MARK: - UICollectionViewDataSource Extension
+// MARK: - UICollectionView Protocol Extensions
 
 extension ComicBookCarouselView: UICollectionViewDataSource {
     
@@ -66,8 +66,6 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
         return cell
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout Extension
 
 extension ComicBookCarouselView: UICollectionViewDelegateFlowLayout {
     

@@ -1,5 +1,5 @@
 //
-//  ComicBookCollectionCell.swift
+//  ComicBookCell.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 30/07/20.
@@ -12,7 +12,7 @@ class ComicBookCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
-    @IBOutlet private var comicBookImage: UIImageView!
+    @IBOutlet private var comicImage: UIImageView!
     
     // MARK: - Public Properties
     
@@ -20,20 +20,22 @@ class ComicBookCell: UICollectionViewCell {
     
     static let identifier = String(describing: ComicBookCell.self)
     
-    // MARK: - Public Functions
+    // MARK: - View Lifecycle
     
     override func prepareForReuse() {
         clearForReuse()
     }
     
+    // MARK: - Public Functions
+    
     func setup(_ viewModel: ComicViewModel) {
-        comicBookImage.load(url: viewModel.image)
+        comicImage.load(url: viewModel.image)
     }
     
     // MARK: - Private Functions
     
     private func clearForReuse() {
-        comicBookImage.image = nil
-        comicBookImage.cancel()
+        comicImage.image = nil
+        comicImage.cancel()
     }
 }

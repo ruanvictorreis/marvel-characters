@@ -16,7 +16,7 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
     
     func showCharacterDetails(_ viewModel: CharacterDetailsViewModel)
     
-    func showComicBookListError(_ errorMessage: String)
+    func showCharacterDetailsError(_ errorMessage: String)
 }
 
 class CharacterDetailsViewController: UIViewController {
@@ -86,7 +86,7 @@ extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol
         }
     }
     
-    func showComicBookListError(_ errorMessage: String) {
+    func showCharacterDetailsError(_ errorMessage: String) {
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

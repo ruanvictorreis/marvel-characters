@@ -51,8 +51,8 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     // MARK: - Public Functions
     
     func fetchCharacterDetails() {
-        fetchComicBookList()
         presenter.showDetails(character)
+        fetchComicBookList()
     }
     
     func setFavorite(_ value: Bool) {
@@ -75,14 +75,14 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
                 self?.presenter.stopComicsLoading()
             },
             failure: { [weak self] error in
-                self?.presenter.showComicBookListError(error)
+                self?.presenter.showCharacterDetailsError(error)
                 self?.presenter.stopComicsLoading()
             })
     }
     
     private func didFetchComicBookList(_ response: ComicBookListResponse?) {
-        guard let results = response?.data.results else { return }
-        presenter.showDetails(character, comics: results)
+        guard let comics = response?.data.results else { return }
+        presenter.showDetails(character, comics: comics)
     }
     
     private func saveFavorite(_ character: Character) {

@@ -23,5 +23,7 @@ struct CharacterDetailsViewModel {
 
 struct ComicViewModel {
     
+    let title: String
+    
     let image: String
 }

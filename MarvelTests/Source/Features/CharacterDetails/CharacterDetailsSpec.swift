@@ -36,14 +36,13 @@ class CharacterDetailsSpec: QuickSpec {
                 
                 it("View is presenting the comics that the characters participated") {
                     viewController.interactor.fetchCharacterDetails()
-                    expect(viewController.comicBookList).to(haveCount(5))
+                    expect(viewController.comics).to(haveCount(5))
                     expect(viewController.showCharacterDetailsCalled).to(beTrue())
-                    expect(viewController.showCommicBookListCalled).to(beTrue())
                     
-                    let firstComic = viewController.comicBookList.first
+                    let firstComic = viewController.comics.first
                     expect(firstComic?.title).to(equal("Infinity Gauntlet"))
                     
-                    let lastComic = viewController.comicBookList.last
+                    let lastComic = viewController.comics.last
                     expect(lastComic?.title).to(equal("Secret Wars"))
                 }
             }
@@ -80,8 +79,7 @@ class CharacterDetailsSpec: QuickSpec {
                 
                 it("View is presenting the comics that the characters participated") {
                     viewController.interactor.fetchCharacterDetails()
-                    expect(viewController.comicBookList).to(haveCount(0))
-                    expect(viewController.showCommicBookListCalled).to(beFalse())
+                    expect(viewController.comics).to(haveCount(0))
                 }
             }
         }

@@ -20,7 +20,7 @@ class ComicBookCarouselView: UIView {
     
     // MARK: - Private Properties
     
-    private var comicBookList: [ComicViewModel] = []
+    private var comics: [ComicViewModel] = []
     
     // MARK: - View Lifecycle
     
@@ -34,7 +34,7 @@ class ComicBookCarouselView: UIView {
     // MARK: - Public Functions
     
     func setup(_ comics: [ComicViewModel]) {
-        comicBookList = comics
+        self.comics = comics
         collectionView.reloadData()
     }
     
@@ -52,7 +52,7 @@ class ComicBookCarouselView: UIView {
 extension ComicBookCarouselView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comicBookList.count
+        return comics.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,7 +61,7 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
                 as? ComicBookCell else { return UICollectionViewCell() }
         
-        cell.setup(comicBookList[indexPath.item])
+        cell.setup(comics[indexPath.item])
         
         return cell
     }

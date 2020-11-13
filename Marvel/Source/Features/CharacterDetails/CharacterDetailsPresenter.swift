@@ -18,7 +18,7 @@ protocol CharacterDetailsPresenterProtocol {
     
     func showDetails(_ character: Character, comics: [ComicBook])
     
-    func showComicBookListError(_ error: AFError?)
+    func showCharacterDetailsError(_ error: AFError?)
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
@@ -46,16 +46,18 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
         viewController.showCharacterDetails(viewModel)
     }
     
-    func showComicBookListError(_ error: AFError? = nil) {
+    func showCharacterDetailsError(_ error: AFError? = nil) {
         let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
-        viewController.showComicBookListError(errorMessage)
+        viewController.showCharacterDetailsError(errorMessage)
     }
     
     // MARK: - Private Functions
     
     private func buildViewModel(_ character: Character, comics: [ComicBook]) -> CharacterDetailsViewModel {
         let comicsViewModels = comics.map { comic in
-            ComicViewModel(image: comic.imageURL)
+            ComicViewModel(
+                title: comic.title,
+                image: comic.imageURL)
         }
         
         return CharacterDetailsViewModel(

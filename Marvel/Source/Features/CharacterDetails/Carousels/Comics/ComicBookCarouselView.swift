@@ -14,13 +14,13 @@ class ComicBookCarouselView: UIView {
     
     @IBOutlet private var title: UILabel!
     
-    @IBOutlet private var loaging: UIActivityIndicatorView!
+    @IBOutlet private var loading: UIActivityIndicatorView!
     
     @IBOutlet private var collectionView: UICollectionView!
     
     // MARK: - Private Properties
     
-    private var comicBookList: [ComicBook] = []
+    private var comicBookList: [ComicViewModel] = []
     
     // MARK: - View Lifecycle
     
@@ -33,10 +33,17 @@ class ComicBookCarouselView: UIView {
     
     // MARK: - Public Functions
     
-    func setupUI(_ comics: [ComicBook]) {
+    func setup(_ comics: [ComicViewModel]) {
         comicBookList = comics
-        loaging.isHidden = true
         collectionView.reloadData()
+    }
+    
+    func startLoading() {
+        loading.isHidden = false
+    }
+    
+    func stopLoading() {
+        loading.isHidden = true
     }
 }
 
@@ -49,8 +56,10 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicBookCell", for: indexPath)
-                as? ComicBookCollectionCell else { return UICollectionViewCell() }
+        let identifier = ComicBookCell.identifier
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+                as? ComicBookCell else { return UICollectionViewCell() }
         
         cell.setup(comicBookList[indexPath.item])
         
@@ -64,6 +73,6 @@ extension ComicBookCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return ComicBookCollectionCell.size
+        return ComicBookCell.size
     }
 }

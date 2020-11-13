@@ -10,6 +10,8 @@ import Foundation
 
 class Character: Decodable, Equatable {
     
+    // MARK: - Decoodable Properties
+    
     let id: Int
     
     let name: String
@@ -24,9 +26,13 @@ class Character: Decodable, Equatable {
         case id, name, description, thumbnail
     }
     
+    // MARK: - Computed Properties
+    
     var imageURL: String {
         "\(thumbnail.path).\(thumbnail.extension)"
     }
+    
+    // MARK: - Init
     
     init(id: Int, name: String, description: String, isFavorite: Bool, thumbnail: Thumbnail) {
         self.id = id
@@ -35,6 +41,8 @@ class Character: Decodable, Equatable {
         self.isFavorite = isFavorite
         self.thumbnail = thumbnail
     }
+    
+    // MARK: - Equatable Protocol
     
     static func == (lhs: Character, rhs: Character) -> Bool {
         return lhs.id == rhs.id

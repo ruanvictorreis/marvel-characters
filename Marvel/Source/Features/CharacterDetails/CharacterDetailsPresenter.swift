@@ -10,9 +10,13 @@ import Alamofire
 
 protocol CharacterDetailsPresenterProtocol {
     
+    func startComicsLoading()
+    
+    func stopComicsLoading()
+    
     func showDetails(_ character: Character)
     
-    func showComicBookList(_ response: ComicBookListResponse?)
+    func showDetails(_ character: Character, comics: [ComicBook])
     
     func showComicBookListError(_ error: AFError?)
 }
@@ -25,23 +29,40 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     
     // MARK: - Public Functions
     
-    func showDetails(_ character: Character) {
-        let viewModel = CharacterDetailsViewModel(
-            name: character.name, description: character.description,
-            image: character.imageURL, isLoved: character.isFavorite)
-        
-        viewController.showCharacterDetails(viewModel)
+    func startComicsLoading() {
+        viewController.startComicsLoading()
     }
     
-    func showComicBookList(_ response: ComicBookListResponse?) {
-        guard let results = response?.data.results
-        else { showComicBookListError(); return }
-        
-        viewController.showCommicBookList(results)
+    func stopComicsLoading() {
+        viewController.stopComicsLoading()
+    }
+    
+    func showDetails(_ character: Character) {
+        showDetails(character, comics: [])
+    }
+    
+    func showDetails(_ character: Character, comics: [ComicBook]) {
+        let viewModel = buildViewModel(character, comics: comics)
+        viewController.showCharacterDetails(viewModel)
     }
     
     func showComicBookListError(_ error: AFError? = nil) {
         let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
         viewController.showComicBookListError(errorMessage)
+    }
+    
+    // MARK: - Private Functions
+    
+    private func buildViewModel(_ character: Character, comics: [ComicBook]) -> CharacterDetailsViewModel {
+        let comicsViewModels = comics.map { comic in
+            ComicViewModel(image: comic.imageURL)
+        }
+        
+        return CharacterDetailsViewModel(
+            name: character.name,
+            description: character.description,
+            image: character.imageURL,
+            isLoved: character.isFavorite,
+            comics: comicsViewModels)
     }
 }

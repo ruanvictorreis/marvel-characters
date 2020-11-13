@@ -66,14 +66,23 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     // MARK: - Private Functions
     
     private func fetchComicBookList() {
+        presenter.startComicsLoading()
+        
         comickBookListWorker.fetchComicBookList(
             character: character.id,
             sucess: { [weak self] response in
-                self?.presenter.showComicBookList(response)
+                self?.didFetchComicBookList(response)
+                self?.presenter.stopComicsLoading()
             },
             failure: { [weak self] error in
                 self?.presenter.showComicBookListError(error)
+                self?.presenter.stopComicsLoading()
             })
+    }
+    
+    private func didFetchComicBookList(_ response: ComicBookListResponse?) {
+        guard let results = response?.data.results else { return }
+        presenter.showDetails(character, comics: results)
     }
     
     private func saveFavorite(_ character: Character) {

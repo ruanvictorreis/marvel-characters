@@ -10,9 +10,11 @@ import UIKit
 
 protocol CharacterDetailsViewControllerProtocol: AnyObject {
     
-    func showCharacterDetails(_ viewModel: CharacterDetailsViewModel)
+    func startComicsLoading()
     
-    func showCommicBookList(_ comics: [ComicBook])
+    func stopComicsLoading()
+    
+    func showCharacterDetails(_ viewModel: CharacterDetailsViewModel)
     
     func showComicBookListError(_ errorMessage: String)
 }
@@ -29,9 +31,7 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var loveItButton: UIHeartButton!
     
-    @IBOutlet private var comicBookCarousel: ComicBookCarouselView!
-    
-    @IBOutlet private var comicBookLoading: UIActivityIndicatorView!
+    @IBOutlet private var comicsCarousel: ComicBookCarouselView!
     
     // MARK: - VIP Properties
     
@@ -67,23 +67,26 @@ class CharacterDetailsViewController: UIViewController {
 
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
     
+    func startComicsLoading() {
+        comicsCarousel.startLoading()
+    }
+    
+    func stopComicsLoading() {
+        comicsCarousel.stopLoading()
+    }
+    
     func showCharacterDetails(_ viewModel: CharacterDetailsViewModel) {
         characterName.text = viewModel.name
         characterDescription.text = viewModel.description
         characterThumbnail.load(url: viewModel.image)
+        comicsCarousel.setup(viewModel.comics)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.loveItButton.isFilled = viewModel.isLoved
         }
     }
     
-    func showCommicBookList(_ comics: [ComicBook]) {
-        comicBookLoading.isHidden = true
-        comicBookCarousel.setupUI(comics)
-    }
-    
     func showComicBookListError(_ errorMessage: String) {
-        comicBookLoading.isHidden = true
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

@@ -17,4 +17,11 @@ struct CharacterDetailsViewModel {
     let image: String
     
     let isLoved: Bool
+    
+    let comics: [ComicViewModel]
+}
+
+struct ComicViewModel {
+    
+    let image: String
 }

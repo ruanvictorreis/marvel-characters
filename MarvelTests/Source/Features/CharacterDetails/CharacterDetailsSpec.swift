@@ -15,6 +15,12 @@ class CharacterDetailsSpec: QuickSpec {
     override func spec() {
         var viewController: CharacterDetailsViewControllerMock!
         
+        let character = Character(
+            id: 1, name: "Thanos",
+            description: "The Inevitable",
+            isFavorite: false,
+            thumbnail: Thumbnail(path: "", extension: ""))
+        
         describe("Characters Details") {
             context("Given that the user selected a characters") {
                 afterEach {
@@ -22,20 +28,21 @@ class CharacterDetailsSpec: QuickSpec {
                 }
                 
                 beforeEach {
-                    viewController = CharacterDetailsBuilderMock()
-                        .build(characterListWorker: CharacterListWorkerSuccessMock(),
-                               comickBookListWorker: ComicBookListWorkerSucessMock())
+                    viewController = CharacterDetailsBuilderMock().build(
+                        character: character,
+                        characterListWorker: CharacterListWorkerSuccessMock(),
+                        comickBookListWorker: ComicBookListWorkerSucessMock())
                 }
                 
                 it("View is presenting the comics that the characters participated") {
-                    viewController.interactor.fetchComicBookList(0)
-                    expect(viewController.comicBookList).to(haveCount(5))
-                    expect(viewController.showCommicBookListCalled).to(beTrue())
+                    viewController.interactor.fetchCharacterDetails()
+                    expect(viewController.comics).to(haveCount(5))
+                    expect(viewController.showCharacterDetailsCalled).to(beTrue())
                     
-                    let firstComic = viewController.comicBookList.first
+                    let firstComic = viewController.comics.first
                     expect(firstComic?.title).to(equal("Infinity Gauntlet"))
                     
-                    let lastComic = viewController.comicBookList.last
+                    let lastComic = viewController.comics.last
                     expect(lastComic?.title).to(equal("Secret Wars"))
                 }
             }
@@ -46,23 +53,15 @@ class CharacterDetailsSpec: QuickSpec {
                 }
                 
                 beforeEach {
-                    viewController = CharacterDetailsBuilderMock()
-                        .build(characterListWorker: CharacterListWorkerSuccessMock(),
-                               comickBookListWorker: ComicBookListWorkerSucessMock())
+                    viewController = CharacterDetailsBuilderMock().build(
+                        character: character,
+                        characterListWorker: CharacterListWorkerSuccessMock(),
+                        comickBookListWorker: ComicBookListWorkerSucessMock())
                 }
                 
                 it("It is possible to save and delete a character as favorite") {
-                    let character = Character(
-                        id: 1, name: "Thanos",
-                        description: "",
-                        isFavorite: false,
-                        thumbnail: Thumbnail(path: "", extension: ""))
-                    
-                    character.isFavorite = true
-                    viewController.interactor.setFavorite(character)
-                    
-                    character.isFavorite = false
-                    viewController.interactor.setFavorite(character)
+                    viewController.interactor.setFavorite(true)
+                    viewController.interactor.setFavorite(false)
                 }
             }
             
@@ -72,15 +71,15 @@ class CharacterDetailsSpec: QuickSpec {
                 }
                 
                 beforeEach {
-                    viewController = CharacterDetailsBuilderMock()
-                        .build(characterListWorker: CharacterListWorkerFailureMock(),
-                               comickBookListWorker: ComicBookListWorkerFailureMock())
+                    viewController = CharacterDetailsBuilderMock().build(
+                        character: character,
+                        characterListWorker: CharacterListWorkerFailureMock(),
+                        comickBookListWorker: ComicBookListWorkerFailureMock())
                 }
                 
                 it("View is presenting the comics that the characters participated") {
-                    viewController.interactor.fetchComicBookList(0)
-                    expect(viewController.comicBookList).to(haveCount(0))
-                    expect(viewController.showCommicBookListCalled).to(beFalse())
+                    viewController.interactor.fetchCharacterDetails()
+                    expect(viewController.comics).to(haveCount(0))
                 }
             }
         }

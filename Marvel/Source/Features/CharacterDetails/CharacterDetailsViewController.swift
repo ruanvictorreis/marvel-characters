@@ -10,9 +10,13 @@ import UIKit
 
 protocol CharacterDetailsViewControllerProtocol: AnyObject {
     
-    func showCommicBookList(_ comics: [ComicBook])
+    func startComicsLoading()
     
-    func showComicBookListError(_ errorMessage: String)
+    func stopComicsLoading()
+    
+    func showCharacterDetails(_ viewModel: CharacterDetailsViewModel)
+    
+    func showCharacterDetailsError(_ errorMessage: String)
 }
 
 class CharacterDetailsViewController: UIViewController {
@@ -27,9 +31,7 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBOutlet private var loveItButton: UIHeartButton!
     
-    @IBOutlet private var comicBookCarousel: ComicBookCarouselView!
-    
-    @IBOutlet private var comicBookLoading: UIActivityIndicatorView!
+    @IBOutlet private var comicsCarousel: ComicBookCarouselView!
     
     // MARK: - VIP Properties
     
@@ -37,21 +39,11 @@ class CharacterDetailsViewController: UIViewController {
     
     var router: CharacterDetailsRouterProtocol!
     
-    // MARK: - Public Properties
-    
-    var character: Character!
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        fetchComicBookList()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loveItButton.isFilled = character.isFavorite
+        interactor.fetchCharacterDetails()
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,24 +53,9 @@ class CharacterDetailsViewController: UIViewController {
     
     // MARK: - Private Functions
     
-    private func setupUI() {
-        characterName.text = character.name
-        characterDescription.text = character.description
-        comicBookCarousel.setupUI()
-        
-        let thumbnail = character.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        characterThumbnail.load(url: imageUrl)
-    }
-    
-    private func fetchComicBookList() {
-        interactor.fetchComicBookList(character.id)
-    }
-    
     @IBAction private func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()
-        character.isFavorite = loveItButton.isFilled
-        interactor.setFavorite(character)
+        interactor.setFavorite(loveItButton.isFilled)
     }
     
     @IBAction private func close(_ sender: UIButton) {
@@ -89,14 +66,27 @@ class CharacterDetailsViewController: UIViewController {
 // MARK: - CharacterDetailsViewControllerProtocol Extension
 
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
-
-    func showCommicBookList(_ comics: [ComicBook]) {
-        comicBookLoading.isHidden = true
-        comicBookCarousel.setupUI(comics)
+    
+    func startComicsLoading() {
+        comicsCarousel.startLoading()
     }
     
-    func showComicBookListError(_ errorMessage: String) {
-        comicBookLoading.isHidden = true
+    func stopComicsLoading() {
+        comicsCarousel.stopLoading()
+    }
+    
+    func showCharacterDetails(_ viewModel: CharacterDetailsViewModel) {
+        characterName.text = viewModel.name
+        characterDescription.text = viewModel.description
+        characterThumbnail.load(url: viewModel.image)
+        comicsCarousel.setup(viewModel.comics)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.loveItButton.isFilled = viewModel.isLoved
+        }
+    }
+    
+    func showCharacterDetailsError(_ errorMessage: String) {
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

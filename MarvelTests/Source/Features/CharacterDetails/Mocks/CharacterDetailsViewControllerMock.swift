@@ -10,22 +10,26 @@
 
 class CharacterDetailsViewControllerMock: CharacterDetailsViewControllerProtocol {
     
-    var interactor: CharacterDetailsInteractorProtocol!
+    var interactor: (CharacterDetailsInteractorProtocol &  CharacterDetailsDataStoreProtocol)!
     
-    var comicBookList: [ComicBook] = []
+    var comics: [ComicViewModel] = []
     
     var errorMessage = ""
     
-    var showCommicBookListCalled = false
+    var showCharacterDetailsCalled = false
     
     var showComicBookListErrorCalled = false
     
-    func showCommicBookList(_ comics: [ComicBook]) {
-        comicBookList = comics
-        showCommicBookListCalled = true
+    func startComicsLoading() {}
+    
+    func stopComicsLoading() {}
+    
+    func showCharacterDetails(_ viewModel: CharacterDetailsViewModel) {
+        self.comics = viewModel.comics
+        showCharacterDetailsCalled = true
     }
     
-    func showComicBookListError(_ errorMessage: String) {
+    func showCharacterDetailsError(_ errorMessage: String) {
         self.errorMessage = errorMessage
         showComicBookListErrorCalled = true
     }

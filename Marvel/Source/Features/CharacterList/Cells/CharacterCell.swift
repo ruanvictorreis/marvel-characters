@@ -30,10 +30,10 @@ class CharacterCell: UICollectionViewCell {
         clearForReuse()
     }
     
-    func setup(_ character: Character) {
-        characterName.text = character.name
-        characterImage.load(url: character.imageURL)
-        loveItButton.isFilled = character.isFavorite
+    func setup(_ viewModel: CharacterViewModel) {
+        characterName.text = viewModel.name
+        characterImage.load(url: viewModel.image)
+        loveItButton.isFilled = viewModel.isLoved
     }
     
     // MARK: - Private Functions

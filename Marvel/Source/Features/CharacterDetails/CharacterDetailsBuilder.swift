@@ -20,8 +20,8 @@ class CharacterDetailsBuilder {
         
         viewController?.interactor = interactor
         viewController?.router = router
-        viewController?.character = character
         interactor.presenter = presenter
+        interactor.character = character
         presenter.viewController = viewController
         router.viewController = viewController
         

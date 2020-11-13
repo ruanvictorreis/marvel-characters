@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComicBookCollectionCell: UICollectionViewCell {
+class ComicBookCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     
@@ -24,10 +24,8 @@ class ComicBookCollectionCell: UICollectionViewCell {
         clearForReuse()
     }
     
-    func setup(_ comicBook: ComicBook) {
-        let thumbnail = comicBook.thumbnail
-        let imageUrl = "\(thumbnail.path).\(thumbnail.extension)"
-        comicBookImage.load(url: imageUrl)
+    func setup(_ viewModel: ComicViewModel) {
+        comicBookImage.load(url: viewModel.image)
     }
     
     // MARK: - Private Functions

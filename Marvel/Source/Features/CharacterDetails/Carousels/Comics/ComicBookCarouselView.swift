@@ -14,26 +14,36 @@ class ComicBookCarouselView: UIView {
     
     @IBOutlet private var title: UILabel!
     
-    @IBOutlet private var loaging: UIActivityIndicatorView!
+    @IBOutlet private var loading: UIActivityIndicatorView!
     
     @IBOutlet private var collectionView: UICollectionView!
     
     // MARK: - Private Properties
     
-    private var comicBookList: [ComicBook] = []
+    private var comics: [ComicViewModel] = []
     
-     // MARK: - Public Functions
+    // MARK: - View Lifecycle
     
-    func setupUI() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
         title.text = R.Localizable.comics()
         collectionView.delegate = self
         collectionView.dataSource = self
     }
     
-    func setupUI(_ comics: [ComicBook]) {
-        comicBookList = comics
-        loaging.isHidden = true
+    // MARK: - Public Functions
+    
+    func setup(_ comics: [ComicViewModel]) {
+        self.comics = comics
         collectionView.reloadData()
+    }
+    
+    func startLoading() {
+        loading.isHidden = false
+    }
+    
+    func stopLoading() {
+        loading.isHidden = true
     }
 }
 
@@ -42,14 +52,16 @@ class ComicBookCarouselView: UIView {
 extension ComicBookCarouselView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comicBookList.count
+        return comics.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicBookCell", for: indexPath)
-            as? ComicBookCollectionCell else { return UICollectionViewCell() }
+        let identifier = ComicBookCell.identifier
         
-        cell.setup(comicBookList[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+                as? ComicBookCell else { return UICollectionViewCell() }
+        
+        cell.setup(comics[indexPath.item])
         
         return cell
     }
@@ -61,6 +73,6 @@ extension ComicBookCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return ComicBookCollectionCell.size
+        return ComicBookCell.size
     }
 }

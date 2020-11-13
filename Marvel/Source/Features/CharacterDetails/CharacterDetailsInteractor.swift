@@ -8,18 +8,27 @@
 
 import Foundation
 
-protocol CharacterDetailsInteractorProtocol {
+protocol CharacterDetailsDataStoreProtocol {
     
-    func fetchComicBookList(_ character: Int)
-    
-    func setFavorite(_ character: Character)
+    var character: Character! { get set }
 }
 
-class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
+protocol CharacterDetailsInteractorProtocol {
+    
+    func fetchCharacterDetails()
+    
+    func setFavorite(_ value: Bool)
+}
 
+class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterDetailsDataStoreProtocol {
+    
     // MARK: - VIP Properties
     
     var presenter: CharacterDetailsPresenterProtocol!
+    
+    // MARK: - Public Properties
+    
+    var character: Character!
     
     // MARK: - Private Properties
     
@@ -41,24 +50,40 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol {
     
     // MARK: - Public Functions
     
-    func fetchComicBookList(_ character: Int) {
-        comickBookListWorker.fetchComicBookList(
-            character: character,
-            sucess: { [weak self] response in
-                self?.presenter.showComicBookList(response)
-            },
-            failure: { [weak self] error in
-                self?.presenter.showComicBookListError(error)
-            })
+    func fetchCharacterDetails() {
+        presenter.showDetails(character)
+        fetchComicBookList()
     }
     
-    func setFavorite(_ character: Character) {
+    func setFavorite(_ value: Bool) {
+        character.isFavorite = value
+        
         character.isFavorite
             ? saveFavorite(character)
             : deleteFavorite(character)
     }
     
     // MARK: - Private Functions
+    
+    private func fetchComicBookList() {
+        presenter.startComicsLoading()
+        
+        comickBookListWorker.fetchComicBookList(
+            character: character.id,
+            sucess: { [weak self] response in
+                self?.didFetchComicBookList(response)
+                self?.presenter.stopComicsLoading()
+            },
+            failure: { [weak self] error in
+                self?.presenter.showCharacterDetailsError(error)
+                self?.presenter.stopComicsLoading()
+            })
+    }
+    
+    private func didFetchComicBookList(_ response: ComicBookListResponse?) {
+        guard let comics = response?.data.results else { return }
+        presenter.showDetails(character, comics: comics)
+    }
     
     private func saveFavorite(_ character: Character) {
         characterListWorker.saveFavorite(

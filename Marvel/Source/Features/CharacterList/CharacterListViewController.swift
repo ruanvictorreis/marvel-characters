@@ -11,11 +11,13 @@ import BetterSegmentedControl
 
 protocol CharacterListViewControllerProtocol: AnyObject {
     
-    func showCharacterList(_ characters: [Character])
+    func showCharacterList(_ viewModel: CharacterListViewModel)
+    
+    func reloadCharacters(_ viewModel: CharacterListViewModel)
+    
+    func removeCharacter(at indexPath: IndexPath)
     
     func showCharacterListError(_ errorMessage: String)
-    
-    func removeCharacterFromList(_ character: Character)
 }
 
 class CharacterListViewController: UIViewControllerUtilities {
@@ -32,7 +34,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     // MARK: - Private Properties
     
-    private var characterList: [Character] = []
+    private var characterList: [CharacterViewModel] = []
     
     // MARK: - View Lifecycle
     
@@ -51,7 +53,7 @@ class CharacterListViewController: UIViewControllerUtilities {
             isTranslucent: true,
             hasLargeTitle: true)
         
-        collectionView.reloadData()
+        interactor.reloadCharacters()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,23 +63,16 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     // MARK: - Private Functions
     
-    private func clean() {
-        characterList = []
-        interactor.reset()
-        collectionView.reloadData()
-    }
-    
     private func fetchCharacterList() {
-        clean()
         showLoading()
+        interactor.reset()
         interactor.fetchCharacterList()
     }
     
-    private func searchForCharacter(_ searchParameter: String) {
-        clean()
+    private func searchForCharacter(_ characterName: String) {
         showLoading()
-        interactor.searchForCharacter(
-            searchParameter: searchParameter)
+        interactor.reset()
+        interactor.searchForCharacter(characterName)
     }
     
     private func setupUI() {
@@ -115,9 +110,9 @@ class CharacterListViewController: UIViewControllerUtilities {
     @objc
     private func didChangeControlSection(_ control: BetterSegmentedControl) {
         guard let section = CharacterListSection(rawValue: control.index) else { return }
+        navigationItem.title = section.title
         interactor.section = section
         fetchCharacterList()
-        navigationItem.title = section.title
         collectionView.setContentOffset(.zero, animated: true)
     }
 }
@@ -126,8 +121,9 @@ class CharacterListViewController: UIViewControllerUtilities {
 
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
-    func showCharacterList(_ characters: [Character]) {
+    func showCharacterList(_ viewModel: CharacterListViewModel) {
         var indexPaths: [IndexPath] = []
+        let characters = viewModel.characters
         
         for index in characters.indices {
             let item = IndexPath(item: index + (characterList.count), section: 0)
@@ -144,11 +140,12 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         collectionView.isHidden = characterList.isEmpty
     }
     
-    func removeCharacterFromList(_ character: Character) {
-        guard let index = characterList.firstIndex(of: character)
-        else { return }
-        
-        let indexPath = IndexPath(item: index, section: 0)
+    func reloadCharacters(_ viewModel: CharacterListViewModel) {
+        characterList = viewModel.characters
+        collectionView.reloadData()
+    }
+    
+    func removeCharacter(at indexPath: IndexPath) {
         characterList.remove(at: indexPath.item)
         collectionView.deleteItems(at: [indexPath])
         collectionView.isHidden = characterList.isEmpty

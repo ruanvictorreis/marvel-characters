@@ -10,9 +10,21 @@ import Foundation
 
 struct ComicBook: Decodable {
     
+    // MARK: - Decoodable Properties
+    
     let id: Int
     
     let title: String
     
     let thumbnail: Thumbnail
+    
+    private enum CodingKeys: CodingKey {
+        case id, title, thumbnail
+    }
+    
+    // MARK: - Computed Properties
+    
+    var imageURL: String {
+        "\(thumbnail.path).\(thumbnail.extension)"
+    }
 }

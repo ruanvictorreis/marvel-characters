@@ -137,7 +137,7 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("The user searches for a character by name from API") {
-                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    viewController.interactor.searchForCharacter("Captain")
                     expect(viewController.characterList).to(haveCount(2))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     
@@ -149,7 +149,7 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("The user selects a character from the API search") {
-                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    viewController.interactor.searchForCharacter("Captain")
                     viewController.interactor.select(at: 1)
                     
                     let character = viewController.interactor.character
@@ -166,7 +166,7 @@ class CharacterLisSpec: QuickSpec {
                     viewController.showCharacterListCalled = false
                     viewController.interactor.section = .favorites
                     
-                    viewController.interactor.searchForCharacter(searchParameter: "Iron")
+                    viewController.interactor.searchForCharacter("Iron")
                     expect(viewController.characterList).to(haveCount(1))
                     expect(viewController.showCharacterListCalled).to(beTrue())
                     
@@ -183,7 +183,7 @@ class CharacterLisSpec: QuickSpec {
                     viewController.interactor.reset()
                     viewController.interactor.section = .favorites
                     
-                    viewController.interactor.searchForCharacter(searchParameter: "Iron")
+                    viewController.interactor.searchForCharacter("Iron")
                     viewController.interactor.select(at: 0)
                     
                     let character = viewController.interactor.character
@@ -220,7 +220,7 @@ class CharacterLisSpec: QuickSpec {
                 }
                 
                 it("View is presenting error alert when searching characters") {
-                    viewController.interactor.searchForCharacter(searchParameter: "Captain")
+                    viewController.interactor.searchForCharacter("Captain")
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.showCharacterListCalled).to(beFalse())
                     expect(viewController.showCharacterListErrorCalled).to(beTrue())

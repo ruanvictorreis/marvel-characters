@@ -48,10 +48,14 @@ class CharacterDetailsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupNavigation(isHidden: true)
+        setupNavigation()
     }
     
     // MARK: - Private Functions
+    
+    private func setupNavigation() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
     
     @IBAction private func loveIt(_ sender: UIHeartButton) {
         loveItButton.toggleIt()

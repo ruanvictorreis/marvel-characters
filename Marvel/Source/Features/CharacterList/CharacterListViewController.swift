@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CharacterListViewController.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 28/07/20.
@@ -46,13 +46,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let title = interactor.section.title
-        
-        setupNavigation(
-            title: title,
-            isTranslucent: true,
-            hasLargeTitle: true)
-        
+        setupNavigation()
         interactor.reloadCharacters()
     }
     
@@ -62,6 +56,12 @@ class CharacterListViewController: UIViewControllerUtilities {
     }
     
     // MARK: - Private Functions
+    
+    private func setupNavigation() {
+        navigationItem.title = interactor.section.title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     
     private func fetchCharacterList() {
         showLoading()

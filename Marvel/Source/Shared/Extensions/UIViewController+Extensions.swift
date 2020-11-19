@@ -10,16 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-    func setupNavigation(title: String = "", isHidden: Bool = false, isTranslucent: Bool = true,
-                         hasLargeTitle: Bool = false) {
-        self.navigationItem.title = title
-        self.navigationController?.navigationBar.barStyle = .default
-        self.navigationController?.navigationBar.isTranslucent = isTranslucent
-        self.navigationController?.navigationBar.prefersLargeTitles = hasLargeTitle
-        self.navigationController?.navigationItem.largeTitleDisplayMode = .automatic
-        self.navigationController?.setNavigationBarHidden(isHidden, animated: true)
-    }
-    
     func showMessage(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))

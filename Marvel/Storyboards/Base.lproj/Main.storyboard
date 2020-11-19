@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -13,27 +15,27 @@
             <objects>
                 <viewController storyboardIdentifier="CharacterList" id="BYZ-38-t0r" customClass="CharacterListViewController" customModule="Marvel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IA3-zP-2qV">
-                                <rect key="frame" x="0.0" y="48" width="600" height="226.5"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="226.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thanos" translatesAutoresizingMaskIntoConstraints="NO" id="yOH-6W-Z2w">
-                                        <rect key="frame" x="236" y="16" width="128" height="128"/>
+                                        <rect key="frame" x="143" y="16" width="128" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="128" id="JRs-2r-7lq"/>
                                             <constraint firstAttribute="height" constant="128" id="QhP-01-gBg"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no results found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROi-qR-fs6">
-                                        <rect key="frame" x="213" y="152" width="174.5" height="29"/>
+                                        <rect key="frame" x="120" y="152" width="174.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanos probably killed everyone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDj-l3-iBl">
-                                        <rect key="frame" x="170.5" y="189" width="259.5" height="21.5"/>
+                                        <rect key="frame" x="77.5" y="189" width="259.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -51,7 +53,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8cM-3Z-7eA">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cil-u1-wZd">
                                     <size key="itemSize" width="180" height="296"/>
@@ -171,18 +173,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                                <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
+                                <rect key="frame" x="16" y="60" width="13" height="22"/>
+                                <accessibility key="accessibilityConfiguration" identifier="back"/>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="icon_back"/>
+                                <connections>
+                                    <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>
+                                </connections>
+                            </button>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
+                                <rect key="frame" x="0.0" y="240" width="414" height="726"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="917.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="677.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHP-hA-hqy">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
-                                                <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
-                                            </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSP-vL-nX4" userLabel="Details View" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="240" width="414" height="661.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="661.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV3-A6-NKn">
                                                         <rect key="frame" x="16" y="16" width="382" height="26.5"/>
@@ -311,10 +322,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="366" y="220" width="40" height="40"/>
+                                                <rect key="frame" x="366" y="-20" width="40" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
-                                                        <rect key="frame" x="4" y="4" width="32" height="32"/>
+                                                        <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="heart"/>
                                                         <state key="normal" title="Button"/>
                                                         <userDefinedRuntimeAttributes>
@@ -335,29 +346,15 @@
                                                     <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
-                                                <rect key="frame" x="16" y="16" width="13" height="22"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="back"/>
-                                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" image="icon_back"/>
-                                                <connections>
-                                                    <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="tcf-ac-JNY" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" constant="16" id="7yy-ns-F8Q"/>
-                                            <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="D61-Ec-24r"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
-                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="240" id="JfN-Mb-EH5"/>
-                                            <constraint firstAttribute="trailing" secondItem="dHP-hA-hqy" secondAttribute="trailing" id="N8y-OL-Wrp"/>
+                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" id="JfN-Mb-EH5"/>
                                             <constraint firstAttribute="trailing" secondItem="QSP-vL-nX4" secondAttribute="trailing" id="ZH7-US-gxp"/>
                                             <constraint firstItem="Ecw-QJ-fZ5" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="-20" id="bT6-5b-ly4"/>
                                             <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
                                             <constraint firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="8" id="mBm-4G-Jv2"/>
-                                            <constraint firstItem="tcf-ac-JNY" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" constant="16" id="uch-qn-Ltf"/>
-                                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="yQQ-Uc-dJJ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -375,11 +372,16 @@
                         <viewLayoutGuide key="safeArea" id="L5O-Yj-Zvw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="dHP-hA-hqy" firstAttribute="trailing" secondItem="L5O-Yj-Zvw" secondAttribute="trailing" id="2k6-Wg-CrA"/>
+                            <constraint firstItem="dHP-hA-hqy" firstAttribute="leading" secondItem="L5O-Yj-Zvw" secondAttribute="leading" id="7ZO-Qz-8np"/>
+                            <constraint firstItem="tcf-ac-JNY" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" constant="16" id="BvE-b3-d7t"/>
+                            <constraint firstItem="dHP-hA-hqy" firstAttribute="top" secondItem="KcM-Nv-PXJ" secondAttribute="top" id="Ibx-Ge-dKO"/>
+                            <constraint firstItem="tcf-ac-JNY" firstAttribute="leading" secondItem="L5O-Yj-Zvw" secondAttribute="leading" constant="16" id="KsR-vF-7kG"/>
                             <constraint firstItem="bRe-YI-76a" firstAttribute="leading" secondItem="L5O-Yj-Zvw" secondAttribute="leading" id="L7I-2e-EIu"/>
-                            <constraint firstItem="dHP-hA-hqy" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" id="WnK-q4-BVk"/>
-                            <constraint firstItem="L5O-Yj-Zvw" firstAttribute="bottom" secondItem="bRe-YI-76a" secondAttribute="bottom" id="dFB-Y6-FPQ"/>
+                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="dHP-hA-hqy" secondAttribute="bottom" constant="-20" id="bUs-YP-0ZU"/>
+                            <constraint firstItem="L5O-Yj-Zvw" firstAttribute="bottom" secondItem="bRe-YI-76a" secondAttribute="bottom" id="eiK-E9-tLj"/>
+                            <constraint firstItem="bRe-YI-76a" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" constant="196" id="giW-X8-AEJ"/>
                             <constraint firstItem="L5O-Yj-Zvw" firstAttribute="trailing" secondItem="bRe-YI-76a" secondAttribute="trailing" id="jD5-jz-WYk"/>
-                            <constraint firstItem="bRe-YI-76a" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" id="rQO-1t-41B"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="1000"/>
@@ -396,6 +398,14 @@
             <point key="canvasLocation" x="902.89855072463774" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="5eF-lj-igv">
+            <size key="intrinsicContentSize" width="45" height="45"/>
+        </designable>
+        <designable name="Rdy-GY-J7n">
+            <size key="intrinsicContentSize" width="45" height="45"/>
+        </designable>
+    </designables>
     <resources>
         <image name="icon_back" width="13" height="21"/>
         <image name="thanos" width="64" height="64"/>

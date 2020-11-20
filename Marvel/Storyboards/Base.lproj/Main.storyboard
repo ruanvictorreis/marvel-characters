@@ -177,16 +177,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                 <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
-                                <rect key="frame" x="16" y="60" width="13" height="22"/>
-                                <accessibility key="accessibilityConfiguration" identifier="back"/>
-                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="icon_back"/>
-                                <connections>
-                                    <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>
-                                </connections>
-                            </button>
-                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-YI-76a">
                                 <rect key="frame" x="0.0" y="240" width="414" height="726"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfs-dn-YSv" userLabel="Scroll Content">
@@ -321,40 +312,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
-                                                <rect key="frame" x="366" y="-20" width="40" height="40"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
-                                                        <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="heart"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="loveIt:" destination="txf-B7-BjM" eventType="touchUpInside" id="cdI-eZ-dvc"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Rdy-GY-J7n" secondAttribute="trailing" constant="4" id="R1p-iD-b7W"/>
-                                                    <constraint firstAttribute="height" constant="40" id="hP7-1z-CL9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Rdy-GY-J7n" secondAttribute="bottom" constant="4" id="qPq-yG-Wt5"/>
-                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="leading" secondItem="Ecw-QJ-fZ5" secondAttribute="leading" constant="4" id="slN-nl-EJq"/>
-                                                    <constraint firstAttribute="width" constant="40" id="wAl-mD-X8l"/>
-                                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="leading" secondItem="hfs-dn-YSv" secondAttribute="leading" id="H6y-hy-oNm"/>
                                             <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="hfs-dn-YSv" secondAttribute="top" id="JfN-Mb-EH5"/>
                                             <constraint firstAttribute="trailing" secondItem="QSP-vL-nX4" secondAttribute="trailing" id="ZH7-US-gxp"/>
-                                            <constraint firstItem="Ecw-QJ-fZ5" firstAttribute="top" secondItem="QSP-vL-nX4" secondAttribute="top" constant="-20" id="bT6-5b-ly4"/>
                                             <constraint firstAttribute="bottom" secondItem="QSP-vL-nX4" secondAttribute="bottom" constant="16" id="lM7-dn-bcO"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="8" id="mBm-4G-Jv2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -368,6 +332,40 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="bCl-Ed-bPG"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="oMU-76-BWo"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-ac-JNY">
+                                <rect key="frame" x="16" y="60" width="13" height="22"/>
+                                <accessibility key="accessibilityConfiguration" identifier="back"/>
+                                <color key="tintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="icon_back"/>
+                                <connections>
+                                    <action selector="close:" destination="txf-B7-BjM" eventType="touchUpInside" id="yo8-WY-3YJ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-QJ-fZ5" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                <rect key="frame" x="358" y="220" width="40" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdy-GY-J7n" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                        <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="heart"/>
+                                        <state key="normal" title="Button"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loveIt:" destination="txf-B7-BjM" eventType="touchUpInside" id="cdI-eZ-dvc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Rdy-GY-J7n" secondAttribute="trailing" constant="4" id="R1p-iD-b7W"/>
+                                    <constraint firstAttribute="height" constant="40" id="hP7-1z-CL9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rdy-GY-J7n" secondAttribute="bottom" constant="4" id="qPq-yG-Wt5"/>
+                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="leading" secondItem="Ecw-QJ-fZ5" secondAttribute="leading" constant="4" id="slN-nl-EJq"/>
+                                    <constraint firstAttribute="width" constant="40" id="wAl-mD-X8l"/>
+                                    <constraint firstItem="Rdy-GY-J7n" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="top" constant="4" id="zRh-lS-kKp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="L5O-Yj-Zvw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -382,6 +380,8 @@
                             <constraint firstItem="L5O-Yj-Zvw" firstAttribute="bottom" secondItem="bRe-YI-76a" secondAttribute="bottom" id="eiK-E9-tLj"/>
                             <constraint firstItem="bRe-YI-76a" firstAttribute="top" secondItem="L5O-Yj-Zvw" secondAttribute="top" constant="196" id="giW-X8-AEJ"/>
                             <constraint firstItem="L5O-Yj-Zvw" firstAttribute="trailing" secondItem="bRe-YI-76a" secondAttribute="trailing" id="jD5-jz-WYk"/>
+                            <constraint firstItem="L5O-Yj-Zvw" firstAttribute="trailing" secondItem="Ecw-QJ-fZ5" secondAttribute="trailing" constant="16" id="yoh-hf-aeE"/>
+                            <constraint firstItem="QSP-vL-nX4" firstAttribute="top" secondItem="Ecw-QJ-fZ5" secondAttribute="bottom" constant="-20" id="zof-aN-PO7"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="1000"/>

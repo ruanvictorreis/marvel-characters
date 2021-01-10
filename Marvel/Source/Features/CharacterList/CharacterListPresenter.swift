@@ -12,11 +12,11 @@ protocol CharacterListPresenterProtocol {
     
     func showCharacterList(_ characters: [Character])
     
-    func reloadCharacters(_ characters: [Character])
-    
     func removeCharacterFromList(at index: Int)
     
     func showCharacterListError(_ error: AFError?)
+    
+    func reloadCharacters(_ characters: [Character], animated: Bool)
 }
 
 class CharacterListPresenter: CharacterListPresenterProtocol {
@@ -32,9 +32,9 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         viewController.showCharacterList(viewModel)
     }
     
-    func reloadCharacters(_ characters: [Character]) {
+    func reloadCharacters(_ characters: [Character], animated: Bool) {
         let viewModel = buildViewModel(characters)
-        viewController.reloadCharacters(viewModel)
+        viewController.reloadCharacters(viewModel, animated: animated)
     }
     
     func showCharacterListError(_ error: AFError? = nil) {

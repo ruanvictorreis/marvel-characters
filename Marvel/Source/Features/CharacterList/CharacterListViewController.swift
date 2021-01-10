@@ -13,11 +13,11 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     
     func showCharacterList(_ viewModel: CharacterListViewModel)
     
-    func reloadCharacters(_ viewModel: CharacterListViewModel)
-    
     func removeCharacter(at indexPath: IndexPath)
     
     func showCharacterListError(_ errorMessage: String)
+    
+    func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool)
 }
 
 class CharacterListViewController: UIViewControllerUtilities {
@@ -47,7 +47,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigation()
-        interactor.reloadCharacters()
+        interactor.reloadCharacters(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -139,9 +139,12 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         collectionView.isHidden = characterList.isEmpty
     }
     
-    func reloadCharacters(_ viewModel: CharacterListViewModel) {
+    func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool) {
         characterList = viewModel.characters
-        collectionView.reloadData()
+        
+        if animated {
+            collectionView.reloadData()
+        }
     }
     
     func removeCharacter(at indexPath: IndexPath) {

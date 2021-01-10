@@ -23,7 +23,7 @@ protocol CharacterListInteractorProtocol: CharacterListDataStoreProtocol {
     
     func fetchCharacterNextPage()
     
-    func reloadCharacters()
+    func reloadCharacters(animated: Bool)
     
     func checkChangesInFavorites()
     
@@ -134,11 +134,11 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterList = []
         searchParameter = ""
         isSearchEnabled = false
-        reloadCharacters()
+        reloadCharacters(animated: true)
     }
     
-    func reloadCharacters() {
-        presenter.reloadCharacters(characterList)
+    func reloadCharacters(animated: Bool) {
+        presenter.reloadCharacters(characterList, animated: animated)
     }
     
     // MARK: - Private Functions
@@ -214,7 +214,9 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private func saveFavorite(_ character: Character) {
         characterListWorker.saveFavorite(
             character: character,
-            sucess: nil,
+            sucess: { [weak self] in
+                self?.reloadCharacters(animated: false)
+            },
             failure: nil)
     }
     

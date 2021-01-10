@@ -28,7 +28,7 @@ class CharacterListViewControllerMock: CharacterListViewControllerProtocol {
         showCharacterListCalled = true
     }
     
-    func reloadCharacters(_ viewModel: CharacterListViewModel) {
+    func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool) {
         characterList = viewModel.characters
     }
     

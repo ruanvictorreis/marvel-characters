@@ -29,7 +29,9 @@ class Character: Decodable, Equatable {
     // MARK: - Computed Properties
     
     var imageURL: String {
-        "\(thumbnail.path).\(thumbnail.extension)"
+        let path = thumbnail.path ?? ""
+        let `extension` = thumbnail.extension ?? ""
+        return "\(path).\(`extension`)"
     }
     
     // MARK: - Init

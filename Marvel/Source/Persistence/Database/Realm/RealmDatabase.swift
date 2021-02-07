@@ -8,33 +8,40 @@
 
 import RealmSwift
 
-class RealmDatabase: PersistenceProtocol {
+protocol RealmDatabaseProtocol {
+    
+    func get<T: Object>(_ key: Any) -> T?
+    
+    func getAll<T: Object>() -> [T]
+    
+    func save<T: Object>(_ object: T) -> Bool
+    
+    func delete<T: Object>(_ object: T) -> Bool
+}
+
+class RealmDatabase: RealmDatabaseProtocol {
     
     // MARK: Public Functions
     
-    func getCharacters() -> [Character] {
+    func get<T: Object>(_ key: Any) -> T? {
         do {
             let realm = try Realm()
-            let resuls = realm.objects(CharacterRealm.self)
-            
-            return resuls.map({
-                Character(
-                    id: $0.id, name: $0.name,
-                    description: $0.about,
-                    isFavorite: $0.isFavorite,
-                    thumbnail: Thumbnail(
-                        path: $0.thumbnail?.path ?? "",
-                        extension: $0.thumbnail?.extension ?? "")
-                )})
-            
+            return realm.object(ofType: T.self, forPrimaryKey: key)
+        } catch {
+            return nil
+        }
+    }
+    
+    func getAll<T: Object>() -> [T] {
+        do {
+            let realm = try Realm()
+            return Array(realm.objects(T.self))
         } catch {
             return []
         }
     }
     
-    func save(_ character: Character) -> Bool {
-        let object = CharacterRealm(character: character)
-        
+    func save<T: Object>(_ object: T) -> Bool {
         do {
             let realm = try Realm()
             try realm.write {
@@ -47,12 +54,9 @@ class RealmDatabase: PersistenceProtocol {
         }
     }
     
-    func delete(_ character: Character) -> Bool {
+    func delete<T: Object>(_ object: T) -> Bool {
         do {
             let realm = try Realm()
-            
-            guard let object = realm.object(ofType: CharacterRealm.self, forPrimaryKey: character.id)
-                else { return false }
             
             try realm.write {
                 realm.delete(object)

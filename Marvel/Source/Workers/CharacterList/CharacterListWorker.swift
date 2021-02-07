@@ -36,12 +36,12 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     
     // MARK: - Private Properties
     
-    private let persistenceManager: PersistenceManagerProtocol
+    private let characterPersistence: CharacterPersistenceProtocol
     
     // MARK: - Inits
     
     init() {
-        self.persistenceManager = PersistenceManager()
+        self.characterPersistence = CharacterPersistence()
     }
     
     // MARK: - Public Functions
@@ -94,14 +94,14 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     }
     
     func getFavoriteCharacters() -> [Character] {
-        return persistenceManager.getCharacters()
+        return characterPersistence.getCharacters()
     }
     
     func saveFavorite(character: Character,
                       sucess: Completation?,
                       failure: Completation?) {
         
-        persistenceManager.save(
+        characterPersistence.save(
             character: character,
             sucess: {
                 sucess?()
@@ -115,7 +115,7 @@ class CharacterListWorker: CharacterListWorkerProtocol {
                         sucess: Completation?,
                         failure: Completation?) {
         
-        persistenceManager.delete(
+        characterPersistence.delete(
             character: character,
             sucess: {
                 sucess?()

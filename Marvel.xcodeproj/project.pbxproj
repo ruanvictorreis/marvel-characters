@@ -36,8 +36,7 @@
 		157A2E1124D45E2700133F79 /* UICircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1024D45E2700133F79 /* UICircularView.swift */; };
 		157A2E1324D4A17700133F79 /* CharacterRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1224D4A17700133F79 /* CharacterRealm.swift */; };
 		157A2E1524D4A4E200133F79 /* ThumbnailRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1424D4A4E200133F79 /* ThumbnailRealm.swift */; };
-		157A2E1B24D4A78900133F79 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1A24D4A78900133F79 /* PersistenceManager.swift */; };
-		157A2E1D24D4A81E00133F79 /* PersistenceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1C24D4A81E00133F79 /* PersistenceProtocol.swift */; };
+		157A2E1B24D4A78900133F79 /* CharacterPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1A24D4A78900133F79 /* CharacterPersistence.swift */; };
 		157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1E24D4A84600133F79 /* RealmDatabase.swift */; };
 		159E393224D0EBE000744AB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 159E393424D0EBE000744AB4 /* Localizable.strings */; };
 		159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E393724D0ECDF00744AB4 /* R+Extensions.swift */; };
@@ -130,8 +129,7 @@
 		157A2E1024D45E2700133F79 /* UICircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularView.swift; sourceTree = "<group>"; };
 		157A2E1224D4A17700133F79 /* CharacterRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRealm.swift; sourceTree = "<group>"; };
 		157A2E1424D4A4E200133F79 /* ThumbnailRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailRealm.swift; sourceTree = "<group>"; };
-		157A2E1A24D4A78900133F79 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
-		157A2E1C24D4A81E00133F79 /* PersistenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceProtocol.swift; sourceTree = "<group>"; };
+		157A2E1A24D4A78900133F79 /* CharacterPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPersistence.swift; sourceTree = "<group>"; };
 		157A2E1E24D4A84600133F79 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		159E393324D0EBE000744AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		159E393524D0EBF500744AB4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -336,8 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				157A2E1724D4A74700133F79 /* Database */,
-				157A2E1A24D4A78900133F79 /* PersistenceManager.swift */,
-				157A2E1C24D4A81E00133F79 /* PersistenceProtocol.swift */,
+				157A2E1A24D4A78900133F79 /* CharacterPersistence.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -976,7 +973,7 @@
 				155B772924D1D83C005DECC3 /* CharacterListRouter.swift in Sources */,
 				156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */,
 				156B2F2224D10B4400643FB6 /* Character.swift in Sources */,
-				157A2E1B24D4A78900133F79 /* PersistenceManager.swift in Sources */,
+				157A2E1B24D4A78900133F79 /* CharacterPersistence.swift in Sources */,
 				155B772C24D1F688005DECC3 /* UIViewController+Extensions.swift in Sources */,
 				15ACB5E024D378A5002156D0 /* ComicBookCell.swift in Sources */,
 				151C67A024D0EE5A005D0D08 /* CharacterListBuilder.swift in Sources */,
@@ -984,7 +981,6 @@
 				155B773224D21DE5005DECC3 /* UIImageView+Extensions.swift in Sources */,
 				15ACB5DA24D36A7B002156D0 /* ComicBook.swift in Sources */,
 				155B772524D1D742005DECC3 /* CharacterListInteractor.swift in Sources */,
-				157A2E1D24D4A81E00133F79 /* PersistenceProtocol.swift in Sources */,
 				15ACB5D624D364BB002156D0 /* ComicBookListResponse.swift in Sources */,
 				15B728BF255DB0B600C9A654 /* CharacterDetailsViewModels.swift in Sources */,
 				15ACB5D824D36981002156D0 /* ComicBooListResults.swift in Sources */,

@@ -10,11 +10,11 @@ import RealmSwift
 
 class ThumbnailRealm: Object {
     
-    @objc dynamic var path: String = ""
+    @objc dynamic var path: String?
     
-    @objc dynamic var `extension`: String = ""
+    @objc dynamic var `extension`: String?
     
-    convenience init(thumbnail: Thumbnail) {
+    convenience init(_ thumbnail: Thumbnail) {
         self.init()
         self.path = thumbnail.path
         self.extension = thumbnail.extension

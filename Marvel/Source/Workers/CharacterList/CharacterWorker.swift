@@ -6,10 +6,8 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Alamofire
-
 typealias CharacterWorkerSuccess = (_ response: CharacterListResponse?) -> Void
-typealias CharacterWorkerError = (_ error: AFError?) -> Void
+typealias CharacterWorkerError = (_ error: NetworkError?) -> Void
 
 protocol CharacterWorkerProtocol {
     
@@ -57,9 +55,8 @@ class CharacterWorker: CharacterWorkerProtocol {
             .set(offset: offset)
             .build()
         
-        let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = NetworkRequest(url: url, method: .get, encoding: enconding)
+        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         
         networkManager.request(
             data: request,
@@ -81,9 +78,8 @@ class CharacterWorker: CharacterWorkerProtocol {
             .set(offset: offset)
             .build()
         
-        let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = NetworkRequest(url: url, method: .get, encoding: enconding)
+        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         
         networkManager.request(
             data: request,

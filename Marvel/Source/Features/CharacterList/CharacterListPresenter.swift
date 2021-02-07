@@ -6,7 +6,7 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
 protocol CharacterListPresenterProtocol {
     
@@ -14,7 +14,7 @@ protocol CharacterListPresenterProtocol {
     
     func removeCharacterFromList(at index: Int)
     
-    func showCharacterListError(_ error: AFError?)
+    func showCharacterListError(_ error: NetworkError?)
     
     func reloadCharacters(_ characters: [Character], animated: Bool)
 }
@@ -37,8 +37,8 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         viewController.reloadCharacters(viewModel, animated: animated)
     }
     
-    func showCharacterListError(_ error: AFError? = nil) {
-        let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
+    func showCharacterListError(_ error: NetworkError? = nil) {
+        let errorMessage = error?.message ?? R.Localizable.errorDescription()
         viewController.showCharacterListError(errorMessage)
     }
     

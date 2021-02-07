@@ -6,8 +6,6 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Alamofire
-
 protocol CharacterDetailsPresenterProtocol {
     
     func startComicsLoading()
@@ -18,7 +16,7 @@ protocol CharacterDetailsPresenterProtocol {
     
     func showDetails(_ character: Character, comics: [ComicBook])
     
-    func showCharacterDetailsError(_ error: AFError?)
+    func showCharacterDetailsError(_ error: NetworkError?)
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
@@ -46,8 +44,8 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
         viewController.showCharacterDetails(viewModel)
     }
     
-    func showCharacterDetailsError(_ error: AFError? = nil) {
-        let errorMessage = error?.errorDescription ?? R.Localizable.errorDescription()
+    func showCharacterDetailsError(_ error: NetworkError? = nil) {
+        let errorMessage = error?.message ?? R.Localizable.errorDescription()
         viewController.showCharacterDetailsError(errorMessage)
     }
     

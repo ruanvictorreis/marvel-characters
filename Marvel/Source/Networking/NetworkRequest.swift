@@ -12,9 +12,9 @@ struct NetworkRequest {
     
     var url: String
     
-    var method: HTTPMethod
+    var method: NetworkMethod
     
-    var encoding: ParameterEncoding
+    var encoding: NetworkEncoding
     
     var parameters: [String: Any]?
 }

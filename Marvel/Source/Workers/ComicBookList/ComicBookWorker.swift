@@ -6,10 +6,8 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Alamofire
-
 typealias ComicBookWorkerSuccess = (_ response: ComicBookListResponse?) -> Void
-typealias ComicBookWorkerError = (_ error: AFError?) -> Void
+typealias ComicBookWorkerError = (_ error: NetworkError?) -> Void
 
 protocol ComicBookWorkerProtocol {
     
@@ -40,9 +38,8 @@ class ComicBookWorker: ComicBookWorkerProtocol {
             .set(characters: character)
             .build()
         
-        let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: ComicBookListResponse.self)
-        let request = NetworkRequest(url: url, method: .get, encoding: enconding)
+        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         
         networkManager.request(
             data: request,

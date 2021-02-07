@@ -9,7 +9,7 @@
 import Alamofire
 
 typealias RequestSuccess<T: Decodable> = (_ result: T?) -> Void
-typealias RequestFailure = (_ error: AFError?) -> Void
+typealias RequestFailure = (_ error: NetworkError?) -> Void
 
 protocol NetworkManagerProtocol {
     
@@ -33,9 +33,10 @@ class NetworkManager: NetworkManagerProtocol {
                                failure: @escaping RequestFailure) {
         
         let request = AF.request(
-            data.url, method: data.method,
+            data.url,
+            method: data.method.httpMethod,
             parameters: data.parameters,
-            encoding: data.encoding)
+            encoding: data.encoding.default)
         
         request.validate().responseJSON { response in
             switch response.result {
@@ -43,7 +44,9 @@ class NetworkManager: NetworkManagerProtocol {
                 let data = response.data ?? Data()
                 success(decoder.decode(from: data))
             case .failure:
-                failure(response.error)
+                let error = response.error
+                let message = error?.errorDescription
+                failure(NetworkError(message))
             }
         }
     }

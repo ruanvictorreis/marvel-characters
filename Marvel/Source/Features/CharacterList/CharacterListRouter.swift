@@ -33,7 +33,7 @@ class CharacterListRouter: CharacterListRouterProtocol, CharacterListDataPassing
     func proceedToCharacterDetails() {
         guard let character = dataStore.character else { return }
         
-        guard let detailsScene = CharacterDetailsBuilder()
+        guard let detailsScene = CharacterDetailsBuilder
                 .build(character) else { return }
         
         viewController.navigationController?

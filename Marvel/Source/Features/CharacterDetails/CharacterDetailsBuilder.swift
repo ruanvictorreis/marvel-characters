@@ -6,13 +6,13 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CharacterDetailsBuilder {
     
     // MARK: - Public Functions
     
-    func build(_ character: Character) -> CharacterDetailsViewController? {
+    static func build(_ character: Character) -> UIViewController? {
         let viewController = R.storyboard.main.characterDetails()
         let interactor = CharacterDetailsInteractor()
         let presenter = CharacterDetailsPresenter()

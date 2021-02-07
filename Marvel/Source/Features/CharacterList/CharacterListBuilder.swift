@@ -6,13 +6,13 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CharacterListBuilder {
     
     // MARK: - Public Functions
     
-    func build() -> CharacterListViewController? {
+    static func build() -> UIViewController? {
         let viewController = R.storyboard.main.characterList()
         let interactor = CharacterListInteractor()
         let presenter = CharacterListPresenter()

@@ -8,7 +8,7 @@
 
 @testable import Marvel
 
-class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
+class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     
     var favoriteCharacters: [Character] = []
     
@@ -27,8 +27,8 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
     }
     
     func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         
         let response = CharacterListResponseMock
             .build(offset: offset, pageCount: 20)
@@ -37,8 +37,8 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         
         var response = CharacterListResponseMock
             .build(offset: offset, pageCount: 20)
@@ -51,7 +51,7 @@ class CharacterListWorkerSuccessMock: CharacterListWorkerProtocol {
     }
 }
 
-class CharacterListWorkerFailureMock: CharacterListWorkerProtocol {
+class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     
     func getFavoriteCharacters() -> [Character] {
         return []
@@ -66,14 +66,14 @@ class CharacterListWorkerFailureMock: CharacterListWorkerProtocol {
     }
     
     func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         failure(nil)
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         failure(nil)
     }
 }

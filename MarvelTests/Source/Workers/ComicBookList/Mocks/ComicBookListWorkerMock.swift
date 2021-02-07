@@ -8,22 +8,22 @@
 
 @testable import Marvel
 
-class ComicBookListWorkerSucessMock: ComicBookListWorkerProtocol {
+class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
     
     func fetchComicBookList(character: Int,
-                            sucess: @escaping ComicBookListSuccess,
-                            failure: @escaping ComicBookListError) {
+                            sucess: @escaping ComicBookWorkerSuccess,
+                            failure: @escaping ComicBookWorkerError) {
         
         let response = ComicBookListResponseMock.build()
         sucess(response)
     }
 }
 
-class ComicBookListWorkerFailureMock: ComicBookListWorkerProtocol {
+class ComicBookListWorkerFailureMock: ComicBookWorkerProtocol {
     
     func fetchComicBookList(character: Int,
-                            sucess: @escaping ComicBookListSuccess,
-                            failure: @escaping ComicBookListError) {
+                            sucess: @escaping ComicBookWorkerSuccess,
+                            failure: @escaping ComicBookWorkerError) {
         
         failure(nil)
     }

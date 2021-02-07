@@ -1,5 +1,5 @@
 //
-//  CharacterListWorker.swift
+//  CharacterWorker.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 29/07/20.
@@ -8,10 +8,10 @@
 
 import Alamofire
 
-typealias CharacterListSuccess = (_ response: CharacterListResponse?) -> Void
-typealias CharacterListError = (_ error: AFError?) -> Void
+typealias CharacterWorkerSuccess = (_ response: CharacterListResponse?) -> Void
+typealias CharacterWorkerError = (_ error: AFError?) -> Void
 
-protocol CharacterListWorkerProtocol {
+protocol CharacterWorkerProtocol {
     
     func getFavoriteCharacters() -> [Character]
     
@@ -24,31 +24,34 @@ protocol CharacterListWorkerProtocol {
                         failure: Completation?)
     
     func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError)
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError)
     
     func fetchCharacterList(searchParameter: String, offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError)
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError)
 }
 
-class CharacterListWorker: CharacterListWorkerProtocol {
+class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Private Properties
+    
+    private let networkManager: NetworkManagerProtocol
     
     private let characterPersistence: CharacterPersistenceProtocol
     
     // MARK: - Inits
     
     init() {
+        self.networkManager = NetworkManager()
         self.characterPersistence = CharacterPersistence()
     }
     
     // MARK: - Public Functions
     
     func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         
         let url = MarvelURLBuilder(resource: .characters)
             .set(offset: offset)
@@ -56,9 +59,9 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = RequestData(url: url, method: .get, encoding: enconding)
+        let request = NetworkRequest(url: url, method: .get, encoding: enconding)
         
-        Network.request(
+        networkManager.request(
             data: request,
             decoder: decoder,
             success: { response in
@@ -70,8 +73,8 @@ class CharacterListWorker: CharacterListWorkerProtocol {
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
-                            sucess: @escaping CharacterListSuccess,
-                            failure: @escaping CharacterListError) {
+                            sucess: @escaping CharacterWorkerSuccess,
+                            failure: @escaping CharacterWorkerError) {
         
         let url = MarvelURLBuilder(resource: .characters)
             .set(nameStartsWith: searchParameter)
@@ -80,9 +83,9 @@ class CharacterListWorker: CharacterListWorkerProtocol {
         
         let enconding = JSONEncoding.default
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = RequestData(url: url, method: .get, encoding: enconding)
+        let request = NetworkRequest(url: url, method: .get, encoding: enconding)
         
-        Network.request(
+        networkManager.request(
             data: request,
             decoder: decoder,
             success: { response in

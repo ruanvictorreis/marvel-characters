@@ -60,15 +60,15 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private var characterList: [Character] = []
     
-    private let characterListWorker: CharacterListWorkerProtocol
+    private let characterListWorker: CharacterWorkerProtocol
     
     // MARK: - Inits
     
     init() {
-        self.characterListWorker = CharacterListWorker()
+        self.characterListWorker = CharacterWorker()
     }
     
-    init(characterListWorker: CharacterListWorkerProtocol) {
+    init(characterListWorker: CharacterWorkerProtocol) {
         self.characterListWorker = characterListWorker
     }
     
@@ -203,11 +203,15 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private func setFavorites(_ results: inout [Character]) {
         let favorites = characterListWorker
             .getFavoriteCharacters()
-            .map { character in character.id }
+        
+        let dictionary = Dictionary(
+            uniqueKeysWithValues: favorites.map { character in
+                (character.id, character)
+            })
         
         results.forEach { character in
             let id = character.id
-            character.isFavorite = favorites.contains(id)
+            character.isFavorite = dictionary[id] != nil
         }
     }
     

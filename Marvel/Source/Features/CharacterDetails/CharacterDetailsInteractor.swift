@@ -32,18 +32,18 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     
     // MARK: - Private Properties
     
-    private let characterListWorker: CharacterListWorkerProtocol
+    private let characterListWorker: CharacterWorkerProtocol
     
-    private let comickBookListWorker: ComicBookListWorkerProtocol
+    private let comickBookListWorker: ComicBookWorkerProtocol
     
     // MARK: - Inits
     
     init() {
-        self.characterListWorker = CharacterListWorker()
-        self.comickBookListWorker = ComicBookListWorker()
+        self.characterListWorker = CharacterWorker()
+        self.comickBookListWorker = ComicBookWorker()
     }
     
-    init(characterListWorker: CharacterListWorkerProtocol, comickBookListWorker: ComicBookListWorkerProtocol) {
+    init(characterListWorker: CharacterWorkerProtocol, comickBookListWorker: ComicBookWorkerProtocol) {
         self.characterListWorker = characterListWorker
         self.comickBookListWorker = comickBookListWorker
     }

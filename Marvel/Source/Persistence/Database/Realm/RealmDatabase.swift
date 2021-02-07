@@ -14,8 +14,10 @@ protocol RealmDatabaseProtocol {
     
     func getAll<T: Object>() -> [T]
     
+    @discardableResult
     func save<T: Object>(_ object: T) -> Bool
     
+    @discardableResult
     func delete<T: Object>(_ object: T) -> Bool
 }
 

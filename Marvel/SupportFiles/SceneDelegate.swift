@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         
-        if let viewController = CharacterListBuilder.build() {
+        if let viewController = CharacterListConfigurator.build() {
             let navigation = UINavigationController(rootViewController: viewController)
             window?.rootViewController = navigation
         }

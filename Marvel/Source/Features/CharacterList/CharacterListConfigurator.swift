@@ -1,5 +1,5 @@
 //
-//  CharacterListBuilder.swift
+//  CharacterListConfigurator.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 28/07/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterListBuilder {
+class CharacterListConfigurator {
     
     // MARK: - Public Functions
     

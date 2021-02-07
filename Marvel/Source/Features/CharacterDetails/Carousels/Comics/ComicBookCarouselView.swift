@@ -29,6 +29,7 @@ class ComicBookCarouselView: UIView {
         title.text = R.Localizable.comics()
         collectionView.delegate = self
         collectionView.dataSource = self
+        ComicBookCell.registerOn(collectionView)
     }
     
     // MARK: - Public Functions

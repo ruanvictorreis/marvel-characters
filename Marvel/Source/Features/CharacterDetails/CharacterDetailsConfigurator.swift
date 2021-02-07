@@ -1,5 +1,5 @@
 //
-//  CharacterDetailsBuilder.swift
+//  CharacterDetailsConfigurator.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 30/07/20.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-class CharacterDetailsBuilder {
+class CharacterDetailsConfigurator {
     
     // MARK: - Public Functions
     
-    static func build(_ character: Character) -> UIViewController? {
-        let viewController = R.storyboard.main.characterDetails()
+    static func build(_ character: Character) -> UIViewController {
+        let viewController = CharacterDetailsViewController()
         let interactor = CharacterDetailsInteractor()
         let presenter = CharacterDetailsPresenter()
         let router = CharacterDetailsRouter()
         
-        viewController?.interactor = interactor
-        viewController?.router = router
+        viewController.interactor = interactor
+        viewController.router = router
         interactor.presenter = presenter
         interactor.character = character
         presenter.viewController = viewController

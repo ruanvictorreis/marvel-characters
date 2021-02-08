@@ -1,5 +1,5 @@
 //
-//  CharacterListData.swift
+//  CharacterListResults.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 29/07/20.

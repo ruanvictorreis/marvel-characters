@@ -20,7 +20,7 @@ class CharacterRealm: Object {
     
     @objc dynamic var thumbnail: ThumbnailRealm?
     
-    convenience init(character: Character) {
+    convenience init(_ character: Character) {
         self.init()
         self.id = character.id
         self.name = character.name
@@ -28,7 +28,7 @@ class CharacterRealm: Object {
         self.isFavorite = character.isFavorite
         
         let thumbnail = character.thumbnail
-        self.thumbnail = ThumbnailRealm(thumbnail: thumbnail)
+        self.thumbnail = ThumbnailRealm(thumbnail)
     }
     
     override class func primaryKey() -> String {

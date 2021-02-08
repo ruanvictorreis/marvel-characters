@@ -12,7 +12,7 @@ struct Thumbnail: Decodable {
     
     // MARK: - Decodable Properties
     
-    let path: String
+    let path: String?
     
-    let `extension`: String
+    let `extension`: String?
 }

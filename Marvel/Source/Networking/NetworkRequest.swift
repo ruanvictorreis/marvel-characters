@@ -1,5 +1,5 @@
 //
-//  RequestData.swift
+//  NetworkRequest.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 28/07/20.
@@ -8,13 +8,13 @@
 
 import Alamofire
 
-struct RequestData {
+struct NetworkRequest {
     
     var url: String
     
-    var method: HTTPMethod
+    var method: NetworkMethod
     
-    var encoding: ParameterEncoding
+    var encoding: NetworkEncoding
     
     var parameters: [String: Any]?
 }

@@ -10,7 +10,7 @@
 
 class CharacterListBuilderMock {
     
-    func build(characterListWorker: CharacterListWorkerProtocol) -> CharacterListViewControllerMock {
+    func build(characterListWorker: CharacterWorkerProtocol) -> CharacterListViewControllerMock {
         let viewController = CharacterListViewControllerMock()
         let presenter = CharacterListPresenter()
         

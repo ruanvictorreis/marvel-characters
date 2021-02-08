@@ -2,8 +2,8 @@
 //  CharacterDetailsViewController.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 30/07/20.
-//  Copyright © 2020 Ruan Reis. All rights reserved.
+//  Created by Ruan Reis on 07/02/21.
+//  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
 import UIKit
@@ -39,6 +39,16 @@ class CharacterDetailsViewController: UIViewController {
     
     var router: CharacterDetailsRouterProtocol!
     
+    // MARK: - Inits
+    
+    init() {
+        super.init(nibName: "CharacterDetailsViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -64,7 +74,7 @@ class CharacterDetailsViewController: UIViewController {
     
     @IBAction private func close(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
-    } 
+    }
 }
 
 // MARK: - CharacterDetailsViewControllerProtocol Extension

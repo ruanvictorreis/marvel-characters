@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CharacterCell" id="nHf-mZ-ivg" customClass="CharacterCell" customModule="Marvel" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="296"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VdJ-bI-1AK" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="296"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebj-S6-CI1" customClass="UICardView" customModule="Marvel" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="296"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="42P-mI-2VF">
+                                <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lg-Fw-ttP">
+                                <rect key="frame" x="8" y="256" width="164" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="Ywg-lY-JVL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fFM-W7-GI7" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
+                                <rect key="frame" x="146" y="225" width="30" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCD-KB-rB5" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="4" width="22" height="22"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="loveIt:" destination="nHf-mZ-ivg" eventType="touchUpInside" id="CFu-tU-ixI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="7yz-PW-UqS"/>
+                                    <constraint firstItem="NCD-KB-rB5" firstAttribute="top" secondItem="fFM-W7-GI7" secondAttribute="top" constant="4" id="IfM-jf-hBM"/>
+                                    <constraint firstAttribute="trailing" secondItem="NCD-KB-rB5" secondAttribute="trailing" constant="4" id="Nxx-Py-c1v"/>
+                                    <constraint firstItem="NCD-KB-rB5" firstAttribute="leading" secondItem="fFM-W7-GI7" secondAttribute="leading" constant="4" id="bU8-fj-Y7F"/>
+                                    <constraint firstAttribute="bottom" secondItem="NCD-KB-rB5" secondAttribute="bottom" constant="4" id="nTi-6Z-AkW"/>
+                                    <constraint firstAttribute="height" constant="30" id="yZ3-m7-ce6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="42P-mI-2VF" firstAttribute="top" secondItem="Ebj-S6-CI1" secondAttribute="top" id="7rl-yo-xSH"/>
+                            <constraint firstAttribute="trailing" secondItem="42P-mI-2VF" secondAttribute="trailing" id="Nim-MT-X4r"/>
+                            <constraint firstAttribute="trailing" secondItem="fFM-W7-GI7" secondAttribute="trailing" constant="4" id="Q1v-eE-aIG"/>
+                            <constraint firstItem="42P-mI-2VF" firstAttribute="leading" secondItem="Ebj-S6-CI1" secondAttribute="leading" id="WKI-e3-kb2"/>
+                            <constraint firstAttribute="bottom" secondItem="5Lg-Fw-ttP" secondAttribute="bottom" constant="16" id="anR-vm-V7c"/>
+                            <constraint firstItem="5Lg-Fw-ttP" firstAttribute="leading" secondItem="Ebj-S6-CI1" secondAttribute="leading" constant="8" id="bwn-zT-MKc"/>
+                            <constraint firstAttribute="trailing" secondItem="5Lg-Fw-ttP" secondAttribute="trailing" constant="8" id="dtO-SF-LMx"/>
+                            <constraint firstItem="fFM-W7-GI7" firstAttribute="bottom" secondItem="42P-mI-2VF" secondAttribute="bottom" constant="15" id="gMN-V7-7Bc"/>
+                            <constraint firstItem="5Lg-Fw-ttP" firstAttribute="top" secondItem="42P-mI-2VF" secondAttribute="bottom" constant="16" id="pjk-AX-eyK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ebj-S6-CI1" firstAttribute="leading" secondItem="VdJ-bI-1AK" secondAttribute="leading" id="eML-7M-lIl"/>
+                    <constraint firstAttribute="trailing" secondItem="Ebj-S6-CI1" secondAttribute="trailing" id="fZz-hD-byZ"/>
+                    <constraint firstAttribute="bottom" secondItem="Ebj-S6-CI1" secondAttribute="bottom" id="nex-lW-KB9"/>
+                    <constraint firstItem="Ebj-S6-CI1" firstAttribute="top" secondItem="VdJ-bI-1AK" secondAttribute="top" id="zTI-8p-dff"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                        <real key="value" value="0.59999999999999998"/>
+                    </userDefinedRuntimeAttribute>
+                </userDefinedRuntimeAttributes>
+            </collectionViewCellContentView>
+            <size key="customSize" width="180" height="296"/>
+            <connections>
+                <outlet property="characterImage" destination="42P-mI-2VF" id="KnT-OE-cRB"/>
+                <outlet property="characterName" destination="5Lg-Fw-ttP" id="i7p-xv-MqS"/>
+                <outlet property="loveItButton" destination="NCD-KB-rB5" id="xzq-2C-jTz"/>
+            </connections>
+            <point key="canvasLocation" x="404" y="113"/>
+        </collectionViewCell>
+    </objects>
+    <designables>
+        <designable name="NCD-KB-rB5">
+            <size key="intrinsicContentSize" width="45" height="45"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -12,14 +12,14 @@ class CharacterListConfigurator {
     
     // MARK: - Public Functions
     
-    static func build() -> UIViewController? {
-        let viewController = R.storyboard.main.characterList()
+    static func build() -> UIViewController {
+        let viewController = CharacterListViewController()
         let interactor = CharacterListInteractor()
         let presenter = CharacterListPresenter()
         let router = CharacterListRouter()
         
-        viewController?.interactor = interactor
-        viewController?.router = router
+        viewController.interactor = interactor
+        viewController.router = router
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController

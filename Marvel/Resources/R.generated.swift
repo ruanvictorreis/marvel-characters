@@ -139,7 +139,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct main {
+    struct characterListViewController {
       /// Accessibility identifier `characterCollection`.
       static let characterCollection: String = "characterCollection"
 
@@ -230,18 +230,38 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
+    /// Nib `CharacterCell`.
+    static let characterCell = _R.nib._CharacterCell()
     /// Nib `CharacterDetailsViewController`.
     static let characterDetailsViewController = _R.nib._CharacterDetailsViewController()
+    /// Nib `CharacterListViewController`.
+    static let characterListViewController = _R.nib._CharacterListViewController()
     /// Nib `ComicBookCell`.
     static let comicBookCell = _R.nib._ComicBookCell()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "CharacterCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.characterCell) instead")
+    static func characterCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.characterCell)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CharacterDetailsViewController", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.characterDetailsViewController) instead")
     static func characterDetailsViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.characterDetailsViewController)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "CharacterListViewController", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.characterListViewController) instead")
+    static func characterListViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.characterListViewController)
     }
     #endif
 
@@ -253,8 +273,16 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    static func characterCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CharacterCell? {
+      return R.nib.characterCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CharacterCell
+    }
+
     static func characterDetailsViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.characterDetailsViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func characterListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.characterListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func comicBookCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ComicBookCell? {
@@ -445,6 +473,21 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _CharacterDetailsViewController.validate()
+      try _CharacterListViewController.validate()
+    }
+
+    struct _CharacterCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = CharacterCell
+
+      let bundle = R.hostingBundle
+      let identifier = "CharacterCell"
+      let name = "CharacterCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CharacterCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CharacterCell
+      }
+
+      fileprivate init() {}
     }
 
     struct _CharacterDetailsViewController: Rswift.NibResourceType, Rswift.Validatable {
@@ -457,6 +500,23 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "icon_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_back' is used in nib 'CharacterDetailsViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _CharacterListViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "CharacterListViewController"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in nib 'CharacterListViewController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }
@@ -511,22 +571,13 @@ struct _R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = CharacterListViewController
-
+    struct main: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
-      let characterList = StoryboardViewControllerResource<CharacterListViewController>(identifier: "CharacterList")
       let name = "Main"
 
-      func characterList(_: Void = ()) -> CharacterListViewController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: characterList)
-      }
-
       static func validate() throws {
-        if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
-        if _R.storyboard.main().characterList() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'characterList' could not be loaded from storyboard 'Main' as 'CharacterListViewController'.") }
       }
 
       fileprivate init() {}

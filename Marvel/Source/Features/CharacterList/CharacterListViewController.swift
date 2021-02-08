@@ -2,8 +2,8 @@
 //  CharacterListViewController.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 28/07/20.
-//  Copyright © 2020 Ruan Reis. All rights reserved.
+//  Created by Ruan Reis on 08/02/21.
+//  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
 import UIKit
@@ -35,6 +35,16 @@ class CharacterListViewController: UIViewControllerUtilities {
     // MARK: - Private Properties
     
     private var characterList: [CharacterViewModel] = []
+    
+    // MARK: - Inits
+    
+    init() {
+        super.init(nibName: "CharacterListViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     // MARK: - View Lifecycle
     
@@ -80,6 +90,7 @@ class CharacterListViewController: UIViewControllerUtilities {
         setupSegmentedControl()
         collectionView.delegate = self
         collectionView.dataSource = self
+        CharacterCell.registerOn(collectionView)
     }
     
     private func setupSearchBar() {

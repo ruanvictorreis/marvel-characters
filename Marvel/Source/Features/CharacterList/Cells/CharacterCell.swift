@@ -2,8 +2,8 @@
 //  CharacterCell.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 29/07/20.
-//  Copyright © 2020 Ruan Reis. All rights reserved.
+//  Created by Ruan Reis on 08/02/21.
+//  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
 import UIKit

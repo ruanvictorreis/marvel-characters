@@ -1,5 +1,5 @@
 //
-//  UICollectionView+Extensions.swift
+//  UICollectionViewCell+Extensions.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 07/02/21.

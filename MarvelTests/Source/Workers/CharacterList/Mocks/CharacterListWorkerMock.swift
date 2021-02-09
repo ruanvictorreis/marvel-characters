@@ -6,6 +6,7 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
+import Foundation
 @testable import Marvel
 
 class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
@@ -29,25 +30,51 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        
-        let response = CharacterListResponseMock
-            .build(offset: offset, pageCount: 20)
-        
-        sucess(response)
+        do {
+            let data = FileReader.read(self, resource: "CharacterList")
+            var response = try JSONDecoder().decode(
+                CharacterListResponse.self, from: data ?? Data())
+            
+            let limit = offset + 20
+            let total = response.data.results.count
+            let endPage = limit < total ? limit : total
+            let characters = response.data.results
+            let results = Array(characters[offset..<endPage])
+            
+            response.data.offset = offset
+            response.data.limit = limit
+            response.data.total = total
+            response.data.count = results.count
+            response.data.results = results
+            sucess(response)
+        } catch {
+            failure(nil)
+        }
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        
-        var response = CharacterListResponseMock
-            .build(offset: offset, pageCount: 20)
-        
-        let results = response.data.results
-            .filter({ $0.name.contains(searchParameter) })
-        
-        response.data.results = results
-        sucess(response)
+        do {
+            let data = FileReader.read(self, resource: "CharacterSearch")
+            var response = try JSONDecoder().decode(
+                CharacterListResponse.self, from: data ?? Data())
+            
+            let limit = offset + 20
+            let total = response.data.results.count
+            let endPage = limit < total ? limit : total
+            let characters = response.data.results
+            let results = Array(characters[offset..<endPage])
+            
+            response.data.offset = offset
+            response.data.limit = limit
+            response.data.total = total
+            response.data.count = results.count
+            response.data.results = results
+            sucess(response)
+        } catch {
+            failure(nil)
+        }
     }
 }
 
@@ -62,7 +89,7 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     }
     
     func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
-       failure?()
+        failure?()
     }
     
     func fetchCharacterList(offset: Int,

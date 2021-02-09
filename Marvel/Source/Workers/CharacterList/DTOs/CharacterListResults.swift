@@ -8,13 +8,13 @@
 
 struct CharacterListResults: Decodable {
     
-    let offset: Int
+    var offset: Int
     
-    let limit: Int
+    var limit: Int
     
-    let total: Int
+    var total: Int
     
-    let count: Int
+    var count: Int
     
     var results: [Character]
 }

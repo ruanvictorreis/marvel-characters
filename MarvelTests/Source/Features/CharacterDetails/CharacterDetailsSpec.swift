@@ -36,14 +36,14 @@ class CharacterDetailsSpec: QuickSpec {
                 
                 it("View is presenting the comics that the characters participated") {
                     viewController.interactor.fetchCharacterDetails()
-                    expect(viewController.comics).to(haveCount(5))
+                    expect(viewController.comics).to(haveCount(20))
                     expect(viewController.showCharacterDetailsCalled).to(beTrue())
                     
                     let firstComic = viewController.comics.first
-                    expect(firstComic?.title).to(equal("Infinity Gauntlet"))
+                    expect(firstComic?.title).to(equal("Wolverine Saga (2009) #7"))
                     
                     let lastComic = viewController.comics.last
-                    expect(lastComic?.title).to(equal("Secret Wars"))
+                    expect(lastComic?.title).to(equal("True Believers: Iron Man 2020 - War Machine (2020) #1"))
                 }
             }
             

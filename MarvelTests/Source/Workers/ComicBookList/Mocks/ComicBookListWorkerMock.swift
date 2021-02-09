@@ -6,6 +6,7 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
+import Foundation
 @testable import Marvel
 
 class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
@@ -13,9 +14,14 @@ class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
     func fetchComicBookList(character: Int,
                             sucess: @escaping ComicBookWorkerSuccess,
                             failure: @escaping ComicBookWorkerError) {
-        
-        let response = ComicBookListResponseMock.build()
-        sucess(response)
+        do {
+            let data = FileReader.read(self, resource: "ComicBookList")
+            let response = try JSONDecoder().decode(
+                ComicBookListResponse.self, from: data ?? Data())
+            sucess(response)
+        } catch {
+            failure(nil)
+        }
     }
 }
 
@@ -24,7 +30,6 @@ class ComicBookListWorkerFailureMock: ComicBookWorkerProtocol {
     func fetchComicBookList(character: Int,
                             sucess: @escaping ComicBookWorkerSuccess,
                             failure: @escaping ComicBookWorkerError) {
-        
         failure(nil)
     }
 }

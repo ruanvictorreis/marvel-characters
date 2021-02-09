@@ -31,9 +31,9 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         do {
-            let data = readFile(resource: "CharacterList") ?? Data()
+            let data = FileReader.read(self, resource: "CharacterList")
             var response = try JSONDecoder().decode(
-                CharacterListResponse.self, from: data)
+                CharacterListResponse.self, from: data ?? Data())
             
             let limit = offset + 20
             let total = response.data.results.count
@@ -56,9 +56,9 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         do {
-            let data = readFile(resource: "CharacterSearch") ?? Data()
+            let data = FileReader.read(self, resource: "CharacterSearch")
             var response = try JSONDecoder().decode(
-                CharacterListResponse.self, from: data)
+                CharacterListResponse.self, from: data ?? Data())
             
             let limit = offset + 20
             let total = response.data.results.count
@@ -75,12 +75,6 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         } catch {
             failure(nil)
         }
-    }
-    
-    private func readFile(resource: String) -> Data? {
-        let bundle = Bundle(for: type(of: self))
-        let filePath = bundle.path(forResource: resource, ofType: "json")
-        return try? String(contentsOfFile: filePath ?? "").data(using: .utf8)
     }
 }
 

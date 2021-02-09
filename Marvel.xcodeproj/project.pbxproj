@@ -51,7 +51,6 @@
 		15AC48B424DAF3A600037F13 /* CharacterListWorkerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48B324DAF3A600037F13 /* CharacterListWorkerMock.swift */; };
 		15AC48B624DAF48700037F13 /* CharacterListBuilderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48B524DAF48700037F13 /* CharacterListBuilderMock.swift */; };
 		15AC48C024DB494800037F13 /* ComicBookListWorkerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48BF24DB494800037F13 /* ComicBookListWorkerMock.swift */; };
-		15AC48C224DB4B9C00037F13 /* ComicBookListResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48C124DB4B9C00037F13 /* ComicBookListResponseMock.swift */; };
 		15AC48C524DB4FC200037F13 /* CharacterDetailsViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48C424DB4FC200037F13 /* CharacterDetailsViewControllerMock.swift */; };
 		15AC48C724DB50A900037F13 /* CharacterDetailsBuilderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48C624DB50A900037F13 /* CharacterDetailsBuilderMock.swift */; };
 		15AC48C924DB52E200037F13 /* CharacterDetailsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48C824DB52E200037F13 /* CharacterDetailsSpec.swift */; };
@@ -81,6 +80,8 @@
 		15BFD32625D178A900B1085B /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15BFD32425D178A900B1085B /* CharacterCell.xib */; };
 		15E0221225D1D9CB00EA8350 /* CharacterList.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0221125D1D9CB00EA8350 /* CharacterList.json */; };
 		15E0222925D201C800EA8350 /* CharacterSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0222825D201C800EA8350 /* CharacterSearch.json */; };
+		15E0223425D21E7C00EA8350 /* ComicBookList.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0223325D21E7C00EA8350 /* ComicBookList.json */; };
+		15E0224025D2210D00EA8350 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0223F25D2210D00EA8350 /* FileReader.swift */; };
 		15ED297624DB72A100D8C494 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED297524DB72A100D8C494 /* Keys.plist */; };
 		15ED297824DB81FB00D8C494 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */; };
 		15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */; };
@@ -154,7 +155,6 @@
 		15AC48B324DAF3A600037F13 /* CharacterListWorkerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListWorkerMock.swift; sourceTree = "<group>"; };
 		15AC48B524DAF48700037F13 /* CharacterListBuilderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListBuilderMock.swift; sourceTree = "<group>"; };
 		15AC48BF24DB494800037F13 /* ComicBookListWorkerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookListWorkerMock.swift; sourceTree = "<group>"; };
-		15AC48C124DB4B9C00037F13 /* ComicBookListResponseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookListResponseMock.swift; sourceTree = "<group>"; };
 		15AC48C424DB4FC200037F13 /* CharacterDetailsViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewControllerMock.swift; sourceTree = "<group>"; };
 		15AC48C624DB50A900037F13 /* CharacterDetailsBuilderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsBuilderMock.swift; sourceTree = "<group>"; };
 		15AC48C824DB52E200037F13 /* CharacterDetailsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsSpec.swift; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		15BFD32425D178A900B1085B /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		15E0221125D1D9CB00EA8350 /* CharacterList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterList.json; sourceTree = "<group>"; };
 		15E0222825D201C800EA8350 /* CharacterSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterSearch.json; sourceTree = "<group>"; };
+		15E0223325D21E7C00EA8350 /* ComicBookList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ComicBookList.json; sourceTree = "<group>"; };
+		15E0223F25D2210D00EA8350 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		15ED297524DB72A100D8C494 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtilities.swift; sourceTree = "<group>"; };
@@ -522,7 +524,7 @@
 		15AC48BE24DB492F00037F13 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				15AC48C124DB4B9C00037F13 /* ComicBookListResponseMock.swift */,
+				15E0223325D21E7C00EA8350 /* ComicBookList.json */,
 				15AC48BF24DB494800037F13 /* ComicBookListWorkerMock.swift */,
 			);
 			path = Mocks;
@@ -649,12 +651,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		15E0223E25D220CA00EA8350 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				15E0223F25D2210D00EA8350 /* FileReader.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		15FB0EBD24D6040B00123270 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				15FB0EBE24D6053800123270 /* Common */,
 				155B773324D22408005DECC3 /* Components */,
 				159E393624D0ECCA00744AB4 /* Extensions */,
+				15E0223E25D220CA00EA8350 /* Utils */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -816,6 +827,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E0223425D21E7C00EA8350 /* ComicBookList.json in Resources */,
 				15E0221225D1D9CB00EA8350 /* CharacterList.json in Resources */,
 				15E0222925D201C800EA8350 /* CharacterSearch.json in Resources */,
 			);
@@ -1012,6 +1024,7 @@
 				15BFD32525D178A900B1085B /* CharacterCell.swift in Sources */,
 				151C67A024D0EE5A005D0D08 /* CharacterListConfigurator.swift in Sources */,
 				156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */,
+				15E0224025D2210D00EA8350 /* FileReader.swift in Sources */,
 				155B773224D21DE5005DECC3 /* UIImageView+Extensions.swift in Sources */,
 				15ACB5DA24D36A7B002156D0 /* ComicBook.swift in Sources */,
 				155B772524D1D742005DECC3 /* CharacterListInteractor.swift in Sources */,
@@ -1060,7 +1073,6 @@
 				15AC48B424DAF3A600037F13 /* CharacterListWorkerMock.swift in Sources */,
 				15AC48C024DB494800037F13 /* ComicBookListWorkerMock.swift in Sources */,
 				15AC48B224DAF0A400037F13 /* CharacterListViewControllerMock.swift in Sources */,
-				15AC48C224DB4B9C00037F13 /* ComicBookListResponseMock.swift in Sources */,
 				15AC48C724DB50A900037F13 /* CharacterDetailsBuilderMock.swift in Sources */,
 				15B6EA1624D0D641005F2CD2 /* CharacterLisSpec.swift in Sources */,
 				15AC48B624DAF48700037F13 /* CharacterListBuilderMock.swift in Sources */,

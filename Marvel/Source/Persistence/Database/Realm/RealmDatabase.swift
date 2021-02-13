@@ -10,22 +10,22 @@ import RealmSwift
 
 protocol RealmDatabaseProtocol {
     
-    func get<T: Object>(_ key: Any) -> T?
+    func get<T: RealmObject>(_ key: Any) -> T?
     
-    func getAll<T: Object>() -> [T]
-    
-    @discardableResult
-    func save<T: Object>(_ object: T) -> Bool
+    func getAll<T: RealmObject>() -> [T]
     
     @discardableResult
-    func delete<T: Object>(_ object: T) -> Bool
+    func save<T: RealmObject>(_ object: T) -> Bool
+    
+    @discardableResult
+    func delete<T: RealmObject>(_ object: T) -> Bool
 }
 
 class RealmDatabase: RealmDatabaseProtocol {
     
     // MARK: Public Functions
     
-    func get<T: Object>(_ key: Any) -> T? {
+    func get<T: RealmObject>(_ key: Any) -> T? {
         do {
             let realm = try Realm()
             return realm.object(ofType: T.self, forPrimaryKey: key)
@@ -34,7 +34,7 @@ class RealmDatabase: RealmDatabaseProtocol {
         }
     }
     
-    func getAll<T: Object>() -> [T] {
+    func getAll<T: RealmObject>() -> [T] {
         do {
             let realm = try Realm()
             return Array(realm.objects(T.self))
@@ -43,7 +43,7 @@ class RealmDatabase: RealmDatabaseProtocol {
         }
     }
     
-    func save<T: Object>(_ object: T) -> Bool {
+    func save<T: RealmObject>(_ object: T) -> Bool {
         do {
             let realm = try Realm()
             try realm.write {
@@ -56,7 +56,7 @@ class RealmDatabase: RealmDatabaseProtocol {
         }
     }
     
-    func delete<T: Object>(_ object: T) -> Bool {
+    func delete<T: RealmObject>(_ object: T) -> Bool {
         do {
             let realm = try Realm()
             

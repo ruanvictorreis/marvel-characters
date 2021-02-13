@@ -8,9 +8,7 @@
 
 import RealmSwift
 
-class CharacterRealm: Object {
-    
-    @objc dynamic var id = 0
+class CharacterRealm: RealmObject {
     
     @objc dynamic var name: String = ""
     
@@ -21,17 +19,12 @@ class CharacterRealm: Object {
     @objc dynamic var thumbnail: ThumbnailRealm?
     
     convenience init(_ character: Character) {
-        self.init()
-        self.id = character.id
+        self.init(character.id)
         self.name = character.name
         self.about = character.description
         self.isFavorite = character.isFavorite
         
         let thumbnail = character.thumbnail
         self.thumbnail = ThumbnailRealm(thumbnail)
-    }
-    
-    override class func primaryKey() -> String {
-        return "id"
     }
 }

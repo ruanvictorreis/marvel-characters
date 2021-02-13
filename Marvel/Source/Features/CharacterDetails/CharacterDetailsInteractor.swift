@@ -97,9 +97,13 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     }
     
     private func deleteFavorite(_ character: Character) {
-        characterListWorker.deleteFavorite(
-            character: character,
-            sucess: nil,
-            failure: nil)
+        characterListWorker.deleteFavorite(character) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                self?.presenter.showCharacterDetailsError(error)
+            }
+        }
     }
 }

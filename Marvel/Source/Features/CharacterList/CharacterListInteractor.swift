@@ -227,12 +227,14 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func deleteFavorite(_ character: Character) {
-        characterListWorker.deleteFavorite(
-            character: character,
-            sucess: { [weak self] in
+        characterListWorker.deleteFavorite(character) { [weak self] result in
+            switch result {
+            case .success(let character):
                 self?.removeFromFavorites(character)
-            },
-            failure: nil)
+            case .failure(let error):
+                self?.presenter.showCharacterListError(error)
+            }
+        }
     }
     
     private func removeFromFavorites(_ character: Character) {

@@ -10,9 +10,9 @@ import RealmSwift
 
 protocol RealmDatabaseProtocol {
     
-    func get<T: RealmObject>(_ key: Any) -> T?
+    func get<T: RealmObject>(_ key: Any) throws -> T?
     
-    func getAll<T: RealmObject>() -> [T]
+    func getAll<T: RealmObject>() throws -> [T]
     
     func save<T: RealmObject>(_ object: T) throws
     
@@ -23,22 +23,14 @@ class RealmDatabase: RealmDatabaseProtocol {
     
     // MARK: Public Functions
     
-    func get<T: RealmObject>(_ key: Any) -> T? {
-        do {
-            let realm = try Realm()
-            return realm.object(ofType: T.self, forPrimaryKey: key)
-        } catch {
-            return nil
-        }
+    func get<T: RealmObject>(_ key: Any) throws -> T? {
+        let realm = try Realm()
+        return realm.object(ofType: T.self, forPrimaryKey: key)
     }
     
-    func getAll<T: RealmObject>() -> [T] {
-        do {
-            let realm = try Realm()
-            return Array(realm.objects(T.self))
-        } catch {
-            return []
-        }
+    func getAll<T: RealmObject>() throws -> [T] {
+        let realm = try Realm()
+        return Array(realm.objects(T.self))
     }
     
     func save<T: RealmObject>(_ object: T) throws {

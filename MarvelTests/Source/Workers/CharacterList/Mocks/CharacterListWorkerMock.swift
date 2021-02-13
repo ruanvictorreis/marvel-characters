@@ -11,20 +11,20 @@ import Foundation
 
 class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     
-    var favoriteCharacters: [Character] = []
+    private var favoriteCharacters: [Character] = []
     
     func getFavoriteCharacters() -> [Character] {
         return favoriteCharacters
     }
     
-    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void) {
+    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
         favoriteCharacters.append(character)
-        completation(.success(character.id))
+        completation(.success(character))
     }
     
-    func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
         favoriteCharacters.removeAll(where: { $0.id == character.id })
-        sucess?()
+        completation(.success(character))
     }
     
     func fetchCharacterList(offset: Int,
@@ -84,16 +84,12 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         return []
     }
     
-    func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
-        failure?()
+    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
+        completation(.failure(.databaseError))
     }
     
-    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void) {
-        completation(.failure(.networkError))
-    }
-    
-    func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
-        failure?()
+    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
+        completation(.failure(.databaseError))
     }
     
     func fetchCharacterList(offset: Int,

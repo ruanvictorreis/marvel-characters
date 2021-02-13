@@ -11,18 +11,20 @@ import RxCocoa
 import RxSwift
 import BetterSegmentedControl
 
-typealias SearchAction = (_ searchParamter: String) -> Void
+typealias SearchCompletation = (_ searchParamter: String) -> Void
+
+typealias CancelSearchCompletation = () -> Void
 
 class UIViewControllerUtilities: UIViewController {
     
     // MARK: - Private Properties
     
+    private var searchOnCancel: CancelSearchCompletation?
+    
     private let disposeBag = DisposeBag()
     
-    private var searchOnCancel: Completation?
-
     // MARK: - Public Functions
-        
+    
     func setupSegmentedControl(titles: [String], section: Int, action: Selector) {
         let normalFont: UIFont = .systemFont(ofSize: 14.0, weight: .medium)
         let selectedFont: UIFont = .systemFont(ofSize: 14.0, weight: .bold)
@@ -50,7 +52,7 @@ class UIViewControllerUtilities: UIViewController {
         self.navigationItem.titleView = segmentedControl
     }
     
-    func setupSearchBar(placeholder: String, onSearch: @escaping SearchAction, onCancel: Completation? = nil) {
+    func setupSearchBar(placeholder: String, onSearch: @escaping SearchCompletation, onCancel: CancelSearchCompletation? = nil) {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self
         search.searchBar.tintColor = .label

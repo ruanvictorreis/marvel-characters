@@ -8,15 +8,13 @@
 
 import Foundation
 
-typealias Completation = (() -> Void)
-
 protocol CharacterPersistenceProtocol {
     
     func getCharacters() -> [Character]
     
-    func save(character: Character, completation: (Result<Int, MarvelError>) -> Void)
+    func save(_ character: Character, completation: CharacterDatabaseCompletation)
     
-    func delete(character: Character, sucess: Completation?, failure: Completation?)
+    func delete(_ character: Character, completation: CharacterDatabaseCompletation)
 }
 
 class CharacterPersistence: CharacterPersistenceProtocol {
@@ -34,39 +32,52 @@ class CharacterPersistence: CharacterPersistenceProtocol {
     // MARK: - Public Functions
     
     func getCharacters() -> [Character] {
-        let results: [CharacterRealm] = database.getAll()
-        
-        return results.map { character in
-            Character(
-                id: character.id,
-                name: character.name,
-                description: character.about,
-                isFavorite: character.isFavorite,
-                thumbnail: Thumbnail(
-                    path: character.thumbnail?.path,
-                    extension: character.thumbnail?.extension)
-            )
+        do {
+            let results: [CharacterRealm] = try database.getAll()
+            return results.map { object in
+                build(character: object)
+            }
+            
+        } catch {
+            return []
         }
     }
     
-    func save(character: Character, completation: (Result<Int, MarvelError>) -> Void) {
+    func save(_ character: Character, completation: CharacterDatabaseCompletation) {
         do {
             let object = CharacterRealm(character)
             try database.save(object)
-            completation(.success(object.id))
+            completation(.success(character))
+            
         } catch {
             completation(.failure(.databaseError))
         }
     }
     
-    func delete(character: Character, sucess: Completation?, failure: Completation?) {
-        guard let object: CharacterRealm = database.get(character.id) else { return }
-        
+    func delete(_ character: Character, completation: CharacterDatabaseCompletation) {
         do {
+            guard let object: CharacterRealm = try database.get(character.id)
+            else { return }
+            
             try database.delete(object)
-            sucess?()
+            completation(.success(character))
+            
         } catch {
-            failure?()
+            completation(.failure(.databaseError))
         }
+    }
+    
+    // MARK: - Private Functions
+    
+    private func build(character: CharacterRealm) -> Character {
+        Character(
+            id: character.id,
+            name: character.name,
+            description: character.about,
+            isFavorite: character.isFavorite,
+            thumbnail: Thumbnail(
+                path: character.thumbnail?.path,
+                extension: character.thumbnail?.extension)
+        )
     }
 }

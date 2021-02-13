@@ -14,11 +14,9 @@ protocol RealmDatabaseProtocol {
     
     func getAll<T: RealmObject>() -> [T]
     
-    @discardableResult
-    func save<T: RealmObject>(_ object: T) -> Bool
+    func save<T: RealmObject>(_ object: T) throws
     
-    @discardableResult
-    func delete<T: RealmObject>(_ object: T) -> Bool
+    func delete<T: RealmObject>(_ object: T) throws
 }
 
 class RealmDatabase: RealmDatabaseProtocol {
@@ -43,30 +41,19 @@ class RealmDatabase: RealmDatabaseProtocol {
         }
     }
     
-    func save<T: RealmObject>(_ object: T) -> Bool {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(object, update: .all)
-            }
-            return true
-            
-        } catch {
-            return false
+    func save<T: RealmObject>(_ object: T) throws {
+        let realm = try Realm()
+        
+        try realm.write {
+            realm.add(object, update: .all)
         }
     }
     
-    func delete<T: RealmObject>(_ object: T) -> Bool {
-        do {
-            let realm = try Realm()
-            
-            try realm.write {
-                realm.delete(object)
-            }
-            return true
-            
-        } catch {
-            return false
+    func delete<T: RealmObject>(_ object: T) throws {
+        let realm = try Realm()
+        
+        try realm.write {
+            realm.delete(object)
         }
     }
 }

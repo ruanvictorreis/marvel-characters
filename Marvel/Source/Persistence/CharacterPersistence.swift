@@ -50,15 +50,23 @@ class CharacterPersistence: CharacterPersistenceProtocol {
     }
     
     func save(character: Character, completation: (Result<Int, MarvelError>) -> Void) {
-        let object = CharacterRealm(character)
-        
-        database.save(object)
-            ? completation(.success(character.id))
-            : completation(.failure(.databaseError))
+        do {
+            let object = CharacterRealm(character)
+            try database.save(object)
+            completation(.success(object.id))
+        } catch {
+            completation(.failure(.databaseError))
+        }
     }
     
     func delete(character: Character, sucess: Completation?, failure: Completation?) {
         guard let object: CharacterRealm = database.get(character.id) else { return }
-        database.delete(object) ? sucess?() : failure?()
+        
+        do {
+            try database.delete(object)
+            sucess?()
+        } catch {
+            failure?()
+        }
     }
 }

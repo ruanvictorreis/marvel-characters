@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1500B73125CF8EB80031A7B2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B73025CF8EB80031A7B2 /* NetworkError.swift */; };
+		1500B73125CF8EB80031A7B2 /* MarvelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B73025CF8EB80031A7B2 /* MarvelError.swift */; };
 		1500B73925CF925A0031A7B2 /* NetworkEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */; };
 		1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */; };
 		15181F0224D9DB6200289D43 /* MarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0124D9DB6200289D43 /* MarvelUITests.swift */; };
@@ -109,7 +109,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1500B73025CF8EB80031A7B2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		1500B73025CF8EB80031A7B2 /* MarvelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelError.swift; sourceTree = "<group>"; };
 		1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEncoding.swift; sourceTree = "<group>"; };
 		1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHTTPMethod.swift; sourceTree = "<group>"; };
 		15181EFF24D9DB6200289D43 /* MarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,7 +251,7 @@
 				15ACB5D024D35983002156D0 /* API */,
 				155B771224D1AD78005DECC3 /* Decoders */,
 				1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */,
-				1500B73025CF8EB80031A7B2 /* NetworkError.swift */,
+				1500B73025CF8EB80031A7B2 /* MarvelError.swift */,
 				1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */,
 				1518F10424D0F99C0020593B /* NetworkManager.swift */,
 				1518F10624D0F9E40020593B /* NetworkRequest.swift */,
@@ -292,19 +292,19 @@
 		155B771724D1B4E5005DECC3 /* Workers */ = {
 			isa = PBXGroup;
 			children = (
-				155B771824D1B507005DECC3 /* CharacterList */,
-				15ACB5D124D35F1D002156D0 /* ComicBookList */,
+				155B771824D1B507005DECC3 /* Character */,
+				15ACB5D124D35F1D002156D0 /* ComicBook */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
 		};
-		155B771824D1B507005DECC3 /* CharacterList */ = {
+		155B771824D1B507005DECC3 /* Character */ = {
 			isa = PBXGroup;
 			children = (
 				155B771B24D1B581005DECC3 /* DTOs */,
 				155B771924D1B51F005DECC3 /* CharacterWorker.swift */,
 			);
-			path = CharacterList;
+			path = Character;
 			sourceTree = "<group>";
 		};
 		155B771B24D1B581005DECC3 /* DTOs */ = {
@@ -566,13 +566,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		15ACB5D124D35F1D002156D0 /* ComicBookList */ = {
+		15ACB5D124D35F1D002156D0 /* ComicBook */ = {
 			isa = PBXGroup;
 			children = (
 				15ACB5D424D363D4002156D0 /* DTOs */,
 				15ACB5D224D363B9002156D0 /* ComicBookWorker.swift */,
 			);
-			path = ComicBookList;
+			path = ComicBook;
 			sourceTree = "<group>";
 		};
 		15ACB5D424D363D4002156D0 /* DTOs */ = {
@@ -1011,7 +1011,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1500B73125CF8EB80031A7B2 /* NetworkError.swift in Sources */,
+				1500B73125CF8EB80031A7B2 /* MarvelError.swift in Sources */,
 				15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */,
 				1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */,
 				15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */,

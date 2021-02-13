@@ -14,7 +14,7 @@ protocol CharacterListPresenterProtocol {
     
     func removeCharacterFromList(at index: Int)
     
-    func showCharacterListError(_ error: NetworkError?)
+    func showCharacterListError(_ error: MarvelError)
     
     func reloadCharacters(_ characters: [Character], animated: Bool)
 }
@@ -37,8 +37,8 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
         viewController.reloadCharacters(viewModel, animated: animated)
     }
     
-    func showCharacterListError(_ error: NetworkError? = nil) {
-        let errorMessage = error?.message ?? R.Localizable.errorDescription()
+    func showCharacterListError(_ error: MarvelError) {
+        let errorMessage = error.message
         viewController.showCharacterListError(errorMessage)
     }
     

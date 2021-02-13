@@ -7,15 +7,13 @@
 //
 
 typealias CharacterWorkerSuccess = (_ response: CharacterListResponse?) -> Void
-typealias CharacterWorkerError = (_ error: NetworkError?) -> Void
+typealias CharacterWorkerError = (_ error: MarvelError) -> Void
 
 protocol CharacterWorkerProtocol {
     
     func getFavoriteCharacters() -> [Character]
     
-    func saveFavorite(character: Character,
-                      sucess: Completation?,
-                      failure: Completation?)
+    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void)
     
     func deleteFavorite(character: Character,
                         sucess: Completation?,
@@ -96,18 +94,15 @@ class CharacterWorker: CharacterWorkerProtocol {
         return characterPersistence.getCharacters()
     }
     
-    func saveFavorite(character: Character,
-                      sucess: Completation?,
-                      failure: Completation?) {
-        
-        characterPersistence.save(
-            character: character,
-            sucess: {
-                sucess?()
-            },
-            failure: {
-                failure?()
-            })
+    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void) {
+        characterPersistence.save(character: character) { result in
+            switch result {
+            case .success(let identifier):
+                completation(.success(identifier))
+            case .failure(let error):
+                completation(.failure(error))
+            }
+        }
     }
     
     func deleteFavorite(character: Character,

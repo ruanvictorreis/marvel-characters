@@ -14,7 +14,7 @@ protocol CharacterPersistenceProtocol {
     
     func getCharacters() -> [Character]
     
-    func save(character: Character, sucess: Completation?, failure: Completation?)
+    func save(character: Character, completation: (Result<Int, MarvelError>) -> Void)
     
     func delete(character: Character, sucess: Completation?, failure: Completation?)
 }
@@ -49,9 +49,12 @@ class CharacterPersistence: CharacterPersistenceProtocol {
         }
     }
     
-    func save(character: Character, sucess: Completation?, failure: Completation?) {
+    func save(character: Character, completation: (Result<Int, MarvelError>) -> Void) {
         let object = CharacterRealm(character)
-        database.save(object) ? sucess?() : failure?()
+        
+        database.save(object)
+            ? completation(.success(character.id))
+            : completation(.failure(.databaseError))
     }
     
     func delete(character: Character, sucess: Completation?, failure: Completation?) {

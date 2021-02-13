@@ -86,10 +86,14 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     }
     
     private func saveFavorite(_ character: Character) {
-        characterListWorker.saveFavorite(
-            character: character,
-            sucess: nil,
-            failure: nil)
+        characterListWorker.saveFavorite(character) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                self?.presenter.showCharacterDetailsError(error)
+            }
+        }
     }
     
     private func deleteFavorite(_ character: Character) {

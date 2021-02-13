@@ -17,9 +17,9 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         return favoriteCharacters
     }
     
-    func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void) {
         favoriteCharacters.append(character)
-        sucess?()
+        completation(.success(character.id))
     }
     
     func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
@@ -48,7 +48,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.results = results
             sucess(response)
         } catch {
-            failure(nil)
+            failure(.networkError)
         }
     }
     
@@ -73,7 +73,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.results = results
             sucess(response)
         } catch {
-            failure(nil)
+            failure(.networkError)
         }
     }
 }
@@ -88,6 +88,10 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         failure?()
     }
     
+    func saveFavorite(_ character: Character, completation: (Result<Int, MarvelError>) -> Void) {
+        completation(.failure(.networkError))
+    }
+    
     func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
         failure?()
     }
@@ -95,12 +99,12 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        failure(nil)
+        failure(.networkError)
     }
     
     func fetchCharacterList(searchParameter: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        failure(nil)
+        failure(.networkError)
     }
 }

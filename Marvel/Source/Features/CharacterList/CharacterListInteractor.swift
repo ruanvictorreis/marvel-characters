@@ -216,12 +216,14 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func saveFavorite(_ character: Character) {
-        characterListWorker.saveFavorite(
-            character: character,
-            sucess: { [weak self] in
+        characterListWorker.saveFavorite(character) { [weak self] result in
+            switch result {
+            case .success:
                 self?.reloadCharacters(animated: false)
-            },
-            failure: nil)
+            case .failure(let error):
+                self?.presenter.showCharacterListError(error)
+            }
+        }
     }
     
     private func deleteFavorite(_ character: Character) {

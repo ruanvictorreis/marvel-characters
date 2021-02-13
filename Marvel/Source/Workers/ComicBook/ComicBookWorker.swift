@@ -7,7 +7,7 @@
 //
 
 typealias ComicBookWorkerSuccess = (_ response: ComicBookListResponse?) -> Void
-typealias ComicBookWorkerError = (_ error: NetworkError?) -> Void
+typealias ComicBookWorkerError = (_ error: MarvelError) -> Void
 
 protocol ComicBookWorkerProtocol {
     

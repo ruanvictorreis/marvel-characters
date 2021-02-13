@@ -20,7 +20,7 @@ class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
                 ComicBookListResponse.self, from: data ?? Data())
             sucess(response)
         } catch {
-            failure(nil)
+            failure(.networkError)
         }
     }
 }
@@ -30,6 +30,6 @@ class ComicBookListWorkerFailureMock: ComicBookWorkerProtocol {
     func fetchComicBookList(character: Int,
                             sucess: @escaping ComicBookWorkerSuccess,
                             failure: @escaping ComicBookWorkerError) {
-        failure(nil)
+        failure(.networkError)
     }
 }

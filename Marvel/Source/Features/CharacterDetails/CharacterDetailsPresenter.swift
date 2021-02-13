@@ -16,7 +16,7 @@ protocol CharacterDetailsPresenterProtocol {
     
     func showDetails(_ character: Character, comics: [ComicBook])
     
-    func showCharacterDetailsError(_ error: NetworkError?)
+    func showCharacterDetailsError(_ error: MarvelError)
 }
 
 class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
@@ -44,8 +44,8 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
         viewController.showCharacterDetails(viewModel)
     }
     
-    func showCharacterDetailsError(_ error: NetworkError? = nil) {
-        let errorMessage = error?.message ?? R.Localizable.errorDescription()
+    func showCharacterDetailsError(_ error: MarvelError) {
+        let errorMessage = error.message
         viewController.showCharacterDetailsError(errorMessage)
     }
     

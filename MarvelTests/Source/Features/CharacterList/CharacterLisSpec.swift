@@ -207,7 +207,7 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.showCharacterListCalled).to(beFalse())
                     expect(viewController.showCharacterListErrorCalled).to(beTrue())
-                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                    expect(viewController.errorMessage).to(equal(R.Localizable.networkError()))
                 }
                 
                 it("View is presenting error alert when fetching characters next page") {
@@ -216,7 +216,7 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.showCharacterListCalled).to(beFalse())
                     expect(viewController.showCharacterListErrorCalled).to(beTrue())
-                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                    expect(viewController.errorMessage).to(equal(R.Localizable.networkError()))
                 }
                 
                 it("View is presenting error alert when searching characters") {
@@ -224,7 +224,7 @@ class CharacterLisSpec: QuickSpec {
                     expect(viewController.characterList).to(haveCount(0))
                     expect(viewController.showCharacterListCalled).to(beFalse())
                     expect(viewController.showCharacterListErrorCalled).to(beTrue())
-                    expect(viewController.errorMessage).to(equal(R.Localizable.errorDescription()))
+                    expect(viewController.errorMessage).to(equal(R.Localizable.networkError()))
                 }
             }
         }

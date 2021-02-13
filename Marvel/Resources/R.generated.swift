@@ -304,7 +304,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
     struct localizable {
       /// en translation: Cancel
       ///
@@ -330,10 +330,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let search = Rswift.StringResource(key: "search", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
-      /// en translation: Sorry, something went wrong. Try again later.
+      /// en translation: Sorry, an error occurred with the database.
       ///
       /// Locales: en, pt-BR
-      static let errorDescription = Rswift.StringResource(key: "errorDescription", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      static let databaseError = Rswift.StringResource(key: "databaseError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Sorry, there was an error connecting to the servers.
+      ///
+      /// Locales: en, pt-BR
+      static let networkError = Rswift.StringResource(key: "networkError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
 
       /// en translation: Cancel
       ///
@@ -425,19 +429,34 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("search", bundle: bundle, comment: "")
       }
 
-      /// en translation: Sorry, something went wrong. Try again later.
+      /// en translation: Sorry, an error occurred with the database.
       ///
       /// Locales: en, pt-BR
-      static func errorDescription(preferredLanguages: [String]? = nil) -> String {
+      static func databaseError(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("errorDescription", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("databaseError", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "errorDescription"
+          return "databaseError"
         }
 
-        return NSLocalizedString("errorDescription", bundle: bundle, comment: "")
+        return NSLocalizedString("databaseError", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sorry, there was an error connecting to the servers.
+      ///
+      /// Locales: en, pt-BR
+      static func networkError(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("networkError", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "networkError"
+        }
+
+        return NSLocalizedString("networkError", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

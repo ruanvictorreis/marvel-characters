@@ -12,9 +12,11 @@
 
 "comics" = "Quadrinhos";
 
-"errorDescription" = "Desculpe, algo deu errado. Tente novamente mais tarde.";
-
 "errorTitle"= "Ops, ocorreu um erro!";
+
+"networkError" = "Desculpe, ocorreu um erro ao conectar aos servidores.";
+
+"databaseError" = "Desculpe, ocorreu um erro com o banco de dados.";
 
 "favorites" = "Favoritos";
 

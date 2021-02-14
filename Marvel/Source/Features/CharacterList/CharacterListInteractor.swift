@@ -54,7 +54,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private var currentPage = 0
     
-    private var searchParameter = ""
+    private var searchText = ""
     
     private var isSearchEnabled = false
     
@@ -85,7 +85,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     func searchForCharacter(_ characterName: String) {
         isSearchEnabled = true
-        searchParameter = characterName.capitalized
+        searchText = characterName.capitalized
         
         switch section {
         case .favorites:
@@ -132,7 +132,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         currentPage = 0
         totalCount = 0
         characterList = []
-        searchParameter = ""
+        searchText = ""
         isSearchEnabled = false
         reloadCharacters(animated: true)
     }
@@ -156,7 +156,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private func searchForCharacter() {
         characterWorker.fetchCharacterList(
-            searchParameter: searchParameter,
+            searchText: searchText,
             offset: currentPage * pageCount,
             sucess: { [weak self] response in
                 self?.didFetchCharacters(response)
@@ -185,7 +185,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         switch result {
         case .success(let characters):
             presentCharacters(
-                filter(characters, by: searchParameter))
+                filter(characters, by: searchText))
         case .failure(let error):
             presenter.showCharacterListError(error)
         }

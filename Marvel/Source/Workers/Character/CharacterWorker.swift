@@ -22,7 +22,7 @@ protocol CharacterWorkerProtocol {
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError)
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError)
 }
@@ -66,12 +66,12 @@ class CharacterWorker: CharacterWorkerProtocol {
             })
     }
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         
         let url = MarvelURLBuilder(resource: .characters)
-            .set(nameStartsWith: searchParameter)
+            .set(nameStartsWith: searchText)
             .set(offset: offset)
             .build()
         

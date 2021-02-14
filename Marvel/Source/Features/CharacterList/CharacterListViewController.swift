@@ -96,8 +96,8 @@ class CharacterListViewController: UIViewControllerUtilities {
     private func setupSearchBar() {
         setupSearchBar(
             placeholder: R.Localizable.search(),
-            onSearch: { [weak self] searchParameter in
-                self?.searchForCharacter(searchParameter)
+            onSearch: { [weak self] searchText in
+                self?.searchForCharacter(searchText)
             },
             onCancel: { [weak self] in
                 self?.fetchCharacterList()

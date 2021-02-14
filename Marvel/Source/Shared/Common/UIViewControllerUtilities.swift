@@ -65,8 +65,8 @@ class UIViewControllerUtilities: UIViewController {
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .filter({ $0.isNotEmpty})
-            .subscribe(onNext: { searchParameter in
-                onSearch(searchParameter)
+            .subscribe(onNext: { searchText in
+                onSearch(searchText)
             }).disposed(by: disposeBag)
         
         self.searchOnCancel = onCancel

@@ -52,7 +52,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         }
     }
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         do {
@@ -98,7 +98,7 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         failure(.networkError)
     }
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         failure(.networkError)

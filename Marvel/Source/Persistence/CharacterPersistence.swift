@@ -10,7 +10,7 @@ import Foundation
 
 protocol CharacterPersistenceProtocol {
     
-    func getCharacters() -> [Character]
+    func getCharacters() -> Result<[Character], MarvelError>
     
     func save(_ character: Character) -> Result<Character, MarvelError>
     
@@ -31,15 +31,18 @@ class CharacterPersistence: CharacterPersistenceProtocol {
     
     // MARK: - Public Functions
     
-    func getCharacters() -> [Character] {
+    func getCharacters() -> Result<[Character], MarvelError> {
         do {
             let results: [CharacterRealm] = try database.getAll()
-            return results.map { object in
+            
+            let characters =  results.map { object in
                 build(character: object)
             }
             
+            return .success(characters)
+            
         } catch {
-            return []
+            return .failure(.networkError)
         }
     }
     

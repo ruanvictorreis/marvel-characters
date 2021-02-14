@@ -13,8 +13,8 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     
     private var favoriteCharacters: [Character] = []
     
-    func getFavoriteCharacters() -> [Character] {
-        return favoriteCharacters
+    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
+        return .success(favoriteCharacters)
     }
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
@@ -80,8 +80,8 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
 
 class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     
-    func getFavoriteCharacters() -> [Character] {
-        return []
+    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
+        return .failure(.databaseError)
     }
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {

@@ -12,7 +12,7 @@ typealias CharacterWorkerError = (_ error: MarvelError) -> Void
 
 protocol CharacterWorkerProtocol {
     
-    func getFavoriteCharacters() -> [Character]
+    func getFavoriteCharacters() -> Result<[Character], MarvelError>
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError>
     
@@ -89,7 +89,7 @@ class CharacterWorker: CharacterWorkerProtocol {
             })
     }
     
-    func getFavoriteCharacters() -> [Character] {
+    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
         return characterPersistence.getCharacters()
     }
     

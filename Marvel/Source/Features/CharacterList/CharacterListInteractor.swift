@@ -167,18 +167,34 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func fetchFavorites() {
-        let characters = characterWorker
+        let result = characterWorker
             .getFavoriteCharacters()
         
-        presentCharacters(characters)
+        switch result {
+        case .success(let characters):
+            presentCharacters(characters)
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
     }
     
     private func searchForFavorite() {
-        let characters = characterWorker
+        let result = characterWorker
             .getFavoriteCharacters()
-            .filter({ $0.name.contains(searchParameter) })
         
-        presentCharacters(characters)
+        switch result {
+        case .success(let characters):
+            presentCharacters(
+                filter(characters, by: searchParameter))
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
+    }
+    
+    private func filter(_ characters: [Character], by text: String) -> [Character] {
+        characters.filter { character in
+            character.name.contains(text)
+        }
     }
     
     private func didFetchCharacters(_ response: CharacterListResponse?) {
@@ -201,8 +217,16 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func setFavorites(_ results: inout [Character]) {
-        let favorites = characterWorker
+        let favorites: [Character]
+        let result = characterWorker
             .getFavoriteCharacters()
+        
+        switch result {
+        case .success(let characters):
+            favorites = characters
+        case .failure:
+            favorites = []
+        }
         
         let dictionary = Dictionary(
             uniqueKeysWithValues: favorites.map { character in
@@ -216,7 +240,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func saveFavorite(_ character: Character) {
-        let result = characterWorker.saveFavorite(character)
+        let result = characterWorker
+            .saveFavorite(character)
         
         switch result {
         case .success:
@@ -227,7 +252,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func deleteFavorite(_ character: Character) {
-        let result = characterWorker.deleteFavorite(character)
+        let result = characterWorker
+            .deleteFavorite(character)
         
         switch result {
         case .success(let character):

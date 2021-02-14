@@ -10,15 +10,13 @@ typealias CharacterWorkerSuccess = (_ response: CharacterListResponse?) -> Void
 
 typealias CharacterWorkerError = (_ error: MarvelError) -> Void
 
-typealias CharacterDatabaseCompletation = (Result<Character, MarvelError>) -> Void
-
 protocol CharacterWorkerProtocol {
     
     func getFavoriteCharacters() -> [Character]
     
-    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation)
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError>
     
-    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation)
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError>
     
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
@@ -95,25 +93,11 @@ class CharacterWorker: CharacterWorkerProtocol {
         return characterPersistence.getCharacters()
     }
     
-    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
-        characterPersistence.save(character) { result in
-            switch result {
-            case .success(let character):
-                completation(.success(character))
-            case .failure(let error):
-                completation(.failure(error))
-            }
-        }
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return characterPersistence.save(character)
     }
     
-    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
-        characterPersistence.delete(character) { result in
-            switch result {
-            case .success(let character):
-                completation(.success(character))
-            case .failure(let error):
-                completation(.failure(error))
-            }
-        }
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return characterPersistence.delete(character)
     }
 }

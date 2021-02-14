@@ -17,14 +17,14 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         return favoriteCharacters
     }
     
-    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
         favoriteCharacters.append(character)
-        completation(.success(character))
+        return .success(character)
     }
     
-    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
         favoriteCharacters.removeAll(where: { $0.id == character.id })
-        completation(.success(character))
+        return .success(character)
     }
     
     func fetchCharacterList(offset: Int,
@@ -84,12 +84,12 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         return []
     }
     
-    func saveFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
-        completation(.failure(.databaseError))
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return .failure(.databaseError)
     }
     
-    func deleteFavorite(_ character: Character, completation: CharacterDatabaseCompletation) {
-        completation(.failure(.databaseError))
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return .failure(.databaseError)
     }
     
     func fetchCharacterList(offset: Int,

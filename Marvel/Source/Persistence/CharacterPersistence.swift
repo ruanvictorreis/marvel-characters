@@ -12,9 +12,9 @@ protocol CharacterPersistenceProtocol {
     
     func getCharacters() -> [Character]
     
-    func save(_ character: Character, completation: CharacterDatabaseCompletation)
+    func save(_ character: Character) -> Result<Character, MarvelError>
     
-    func delete(_ character: Character, completation: CharacterDatabaseCompletation)
+    func delete(_ character: Character) -> Result<Character, MarvelError>
 }
 
 class CharacterPersistence: CharacterPersistenceProtocol {
@@ -43,27 +43,28 @@ class CharacterPersistence: CharacterPersistenceProtocol {
         }
     }
     
-    func save(_ character: Character, completation: CharacterDatabaseCompletation) {
+    func save(_ character: Character) -> Result<Character, MarvelError> {
         do {
             let object = CharacterRealm(character)
             try database.save(object)
-            completation(.success(character))
+            return .success(character)
             
         } catch {
-            completation(.failure(.databaseError))
+            return .failure(.databaseError)
         }
     }
     
-    func delete(_ character: Character, completation: CharacterDatabaseCompletation) {
+    func delete(_ character: Character) -> Result<Character, MarvelError> {
         do {
-            guard let object: CharacterRealm = try database.get(character.id)
-            else { return }
+            guard let object: CharacterRealm = try database.get(character.id) else {
+                return .failure(.databaseError)
+            }
             
             try database.delete(object)
-            completation(.success(character))
+            return .success(character)
             
         } catch {
-            completation(.failure(.databaseError))
+            return .failure(.databaseError)
         }
     }
     

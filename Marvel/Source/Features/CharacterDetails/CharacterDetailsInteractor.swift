@@ -86,7 +86,8 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     }
     
     private func saveFavorite(_ character: Character) {
-        let result = characterListWorker.saveFavorite(character)
+        let result = characterListWorker
+            .saveFavorite(character)
         
         switch result {
         case .success:
@@ -97,7 +98,8 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     }
     
     private func deleteFavorite(_ character: Character) {
-        let result = characterListWorker.deleteFavorite(character)
+        let result = characterListWorker
+            .deleteFavorite(character)
         
         switch result {
         case .success:

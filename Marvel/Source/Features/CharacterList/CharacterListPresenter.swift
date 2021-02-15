@@ -38,7 +38,7 @@ class CharacterListPresenter: CharacterListPresenterProtocol {
     }
     
     func showCharacterListError(_ error: MarvelError) {
-        let errorMessage = error.message
+        let errorMessage = error.errorDescription ?? R.Localizable.errorDescription()
         viewController.showCharacterListError(errorMessage)
     }
     

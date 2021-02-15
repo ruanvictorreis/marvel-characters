@@ -14,6 +14,8 @@
 
 "errorTitle"= "Ops, ocorreu um erro!";
 
+"errorDescription" = "Desculpe, algo deu errado. Tente novamente mais tarde.";
+
 "networkError" = "Desculpe, ocorreu um erro ao conectar aos servidores.";
 
 "databaseError" = "Desculpe, ocorreu um erro com o banco de dados.";

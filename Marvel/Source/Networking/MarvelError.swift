@@ -11,8 +11,11 @@ import Foundation
 enum MarvelError: Error {
     case networkError
     case databaseError
+}
+
+extension MarvelError: LocalizedError {
     
-    var message: String {
+    var errorDescription: String? {
         switch self {
         case .networkError:
             return R.Localizable.networkError()

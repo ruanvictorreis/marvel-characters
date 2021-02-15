@@ -45,7 +45,7 @@ class CharacterDetailsPresenter: CharacterDetailsPresenterProtocol {
     }
     
     func showCharacterDetailsError(_ error: MarvelError) {
-        let errorMessage = error.message
+        let errorMessage = error.errorDescription ?? R.Localizable.errorDescription()
         viewController.showCharacterDetailsError(errorMessage)
     }
     

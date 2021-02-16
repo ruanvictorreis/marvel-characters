@@ -126,7 +126,7 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Private Functions
     
-    func build(_ characters: [CharacterRealm]) -> [Character] {
+    private func build(_ characters: [CharacterRealm]) -> [Character] {
         characters.map { character in
             Character(
                 id: character.id,

@@ -33,13 +33,13 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     private let networkManager: NetworkManagerProtocol
     
-    private let characterPersistence: CharacterPersistenceProtocol
+    private let persistenceManager: PersistenceManagerProtocol
     
     // MARK: - Inits
     
     init() {
         self.networkManager = NetworkManager()
-        self.characterPersistence = CharacterPersistence()
+        self.persistenceManager = PersistenceManager()
     }
     
     // MARK: - Public Functions
@@ -90,14 +90,53 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     func getFavoriteCharacters() -> Result<[Character], MarvelError> {
-        return characterPersistence.getCharacters()
+        let result: Result<[CharacterRealm], MarvelError> = persistenceManager.getAll()
+        
+        switch result {
+        case .success(let objects):
+            return .success(build(objects))
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
-        return characterPersistence.save(character)
+        let object = CharacterRealm(character)
+        let result = persistenceManager.save(object)
+        
+        switch result {
+        case .success:
+            return .success(character)
+        case .failure(let error):
+            return .failure(error)
+        }
     }
     
     func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
-        return characterPersistence.delete(character)
+        let object = CharacterRealm(character)
+        let result = persistenceManager.delete(object)
+        
+        switch result {
+        case .success:
+            return .success(character)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+    
+    // MARK: - Private Functions
+    
+    func build(_ characters: [CharacterRealm]) -> [Character] {
+        characters.map { character in
+            Character(
+                id: character.id,
+                name: character.name,
+                description: character.about,
+                isFavorite: character.isFavorite,
+                thumbnail: Thumbnail(
+                    path: character.thumbnail?.path,
+                    extension: character.thumbnail?.extension)
+            )
+        }
     }
 }

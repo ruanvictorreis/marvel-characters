@@ -68,7 +68,7 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     private func fetchComicBookList() {
         presenter.startComicsLoading()
         
-        comickBookListWorker.fetchComicBookList(
+        comickBookListWorker.fetchList(
             character: character.id,
             completation: { [weak self] result in
                 switch result {

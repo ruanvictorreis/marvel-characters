@@ -22,9 +22,9 @@ protocol CharacterWorkerProtocol {
     
     func filterFavorites(byName name: String) -> CharacterListResult
     
-    func fetchCharacterList(offset: Int, completation: @escaping CharacterCompletation)
+    func fetchList(offset: Int, completation: @escaping CharacterCompletation)
     
-    func fetchCharacterList(searchText: String, offset: Int, completation: @escaping CharacterCompletation)
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation)
 }
 
 class CharacterWorker: CharacterWorkerProtocol {
@@ -44,41 +44,21 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Public Functions
     
-    func fetchCharacterList(offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(offset: Int, completation: @escaping CharacterCompletation) {
         let url = MarvelURLBuilder(resource: .characters)
             .set(offset: offset)
             .build()
         
-        let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
-        
-        networkManager.request(request, decoder: decoder) { result in
-            switch result {
-            case .success(let response):
-                completation(.success(response))
-            case .failure(let error):
-                completation(.failure(error))
-            }
-        }
+        request(url, completation: completation)
     }
     
-    func fetchCharacterList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
         let url = MarvelURLBuilder(resource: .characters)
             .set(nameStartsWith: searchText)
             .set(offset: offset)
             .build()
         
-        let decoder = DefaultDecoder(for: CharacterListResponse.self)
-        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
-        
-        networkManager.request(request, decoder: decoder) { result in
-            switch result {
-            case .success(let response):
-                completation(.success(response))
-            case .failure(let error):
-                completation(.failure(error))
-            }
-        }
+        request(url, completation: completation)
     }
     
     func getFavorites() -> CharacterListResult {
@@ -132,6 +112,20 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     // MARK: - Private Functions
+    
+    private func request(_ url: String, completation: @escaping CharacterCompletation) {
+        let decoder = DefaultDecoder(for: CharacterListResponse.self)
+        let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
+        
+        networkManager.request(request, decoder: decoder) { result in
+            switch result {
+            case .success(let response):
+                completation(.success(response))
+            case .failure(let error):
+                completation(.failure(error))
+            }
+        }
+    }
     
     private func build(_ characters: [CharacterRealm]) -> [Character] {
         characters.map { character in

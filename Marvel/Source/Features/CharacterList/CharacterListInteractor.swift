@@ -144,7 +144,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     // MARK: - Private Functions
     
     private func fetchCharacters() {
-        characterWorker.fetchCharacterList(
+        characterWorker.fetchList(
             offset: currentPage * pageCount,
             completation: { [weak self] result in
                 switch result {
@@ -157,7 +157,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func searchForCharacter() {
-        characterWorker.fetchCharacterList(
+        characterWorker.fetchList(
             searchText: searchText,
             offset: currentPage * pageCount,
             completation: { [weak self] result in
@@ -182,7 +182,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func searchForFavorite() {
-        let result = characterWorker.filterFavorites(byName: searchText)
+        let result = characterWorker
+            .filterFavorites(byName: searchText)
         
         switch result {
         case .success(let characters):

@@ -1,5 +1,5 @@
 //
-//  ComicBookListWorkerMock.swift
+//  ComicBookWorkerMock.swift
 //  MarvelTests
 //
 //  Created by Ruan Reis on 05/08/20.
@@ -9,9 +9,9 @@
 import Foundation
 @testable import Marvel
 
-class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
+class ComicBookWorkerSucessMock: ComicBookWorkerProtocol {
     
-    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation) {
+    func fetchList(character: Int, completation: @escaping ComicBookCompletation) {
         do {
             let data = FileReader.read(self, resource: "ComicBookList")
             let response = try JSONDecoder().decode(
@@ -25,9 +25,9 @@ class ComicBookListWorkerSucessMock: ComicBookWorkerProtocol {
     }
 }
 
-class ComicBookListWorkerFailureMock: ComicBookWorkerProtocol {
+class ComicBookWorkerFailureMock: ComicBookWorkerProtocol {
     
-    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation) {
+    func fetchList(character: Int, completation: @escaping ComicBookCompletation) {
         completation(.failure(.networkError))
     }
 }

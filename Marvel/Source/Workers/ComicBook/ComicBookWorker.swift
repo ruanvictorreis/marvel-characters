@@ -10,7 +10,7 @@ typealias ComicBookCompletation = (Result<ComicBookListResponse?, MarvelError>) 
 
 protocol ComicBookWorkerProtocol {
     
-    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation)
+    func fetchList(character: Int, completation: @escaping ComicBookCompletation)
 }
 
 class ComicBookWorker: ComicBookWorkerProtocol {
@@ -27,7 +27,7 @@ class ComicBookWorker: ComicBookWorkerProtocol {
     
     // MARK: - Public Functions
     
-    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation) {
+    func fetchList(character: Int, completation: @escaping ComicBookCompletation) {
         let url = MarvelURLBuilder(resource: .comics)
             .set(characters: character)
             .build()

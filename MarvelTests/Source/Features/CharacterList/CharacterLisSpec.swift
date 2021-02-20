@@ -23,7 +23,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 beforeEach {
                     viewController = CharacterListBuilderMock()
-                        .build(characterWorker: CharacterListWorkerSuccessMock())
+                        .build(characterWorker: CharacterWorkerSuccessMock())
                 }
                 
                 it("View is presenting character list from first page") {
@@ -85,7 +85,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 beforeEach {
                     viewController = CharacterListBuilderMock()
-                        .build(characterWorker: CharacterListWorkerSuccessMock())
+                        .build(characterWorker: CharacterWorkerSuccessMock())
                 }
                 
                 it("The user gets his favorite characters and can also delete them") {
@@ -133,7 +133,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 beforeEach {
                     viewController = CharacterListBuilderMock()
-                        .build(characterWorker: CharacterListWorkerSuccessMock())
+                        .build(characterWorker: CharacterWorkerSuccessMock())
                 }
                 
                 it("The user searches for a character by name from API") {
@@ -199,7 +199,7 @@ class CharacterLisSpec: QuickSpec {
                 
                 beforeEach {
                     viewController = CharacterListBuilderMock()
-                        .build(characterWorker: CharacterListWorkerFailureMock())
+                        .build(characterWorker: CharacterWorkerFailureMock())
                 }
                 
                 it("View is presenting error alert when fetching characters") {

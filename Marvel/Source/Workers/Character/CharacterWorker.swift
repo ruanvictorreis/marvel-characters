@@ -12,11 +12,13 @@ typealias CharacterWorkerError = (_ error: MarvelError) -> Void
 
 protocol CharacterWorkerProtocol {
     
-    func getFavoriteCharacters() -> Result<[Character], MarvelError>
+    func getFavorites() -> Result<[Character], MarvelError>
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError>
     
     func deleteFavorite(_ character: Character) -> Result<Character, MarvelError>
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError>
     
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
@@ -28,6 +30,8 @@ protocol CharacterWorkerProtocol {
 }
 
 class CharacterWorker: CharacterWorkerProtocol {
+    
+    typealias CharacterResults = Result<[CharacterRealm], MarvelError>
     
     // MARK: - Private Properties
     
@@ -89,8 +93,8 @@ class CharacterWorker: CharacterWorkerProtocol {
             })
     }
     
-    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
-        let result: Result<[CharacterRealm], MarvelError> = persistenceManager.getAll()
+    func getFavorites() -> Result<[Character], MarvelError> {
+        let result: CharacterResults = persistenceManager.getAll()
         
         switch result {
         case .success(let objects):
@@ -119,6 +123,17 @@ class CharacterWorker: CharacterWorkerProtocol {
         switch result {
         case .success:
             return .success(character)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
+        let result: CharacterResults = persistenceManager.filter(byName: name)
+        
+        switch result {
+        case .success(let objects):
+            return .success(build(objects))
         case .failure(let error):
             return .failure(error)
         }

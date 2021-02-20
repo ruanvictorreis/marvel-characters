@@ -13,7 +13,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     
     private var favoriteCharacters: [Character] = []
     
-    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
+    func getFavorites() -> Result<[Character], MarvelError> {
         return .success(favoriteCharacters)
     }
     
@@ -25,6 +25,14 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
         favoriteCharacters.removeAll(where: { $0.id == character.id })
         return .success(character)
+    }
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
+        let results = favoriteCharacters.filter { character in
+            character.name.contains(name)
+        }
+        
+        return .success(results)
     }
     
     func fetchCharacterList(offset: Int,
@@ -80,7 +88,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
 
 class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     
-    func getFavoriteCharacters() -> Result<[Character], MarvelError> {
+    func getFavorites() -> Result<[Character], MarvelError> {
         return .failure(.databaseError)
     }
     
@@ -89,6 +97,10 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     }
     
     func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return .failure(.databaseError)
+    }
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
         return .failure(.databaseError)
     }
     

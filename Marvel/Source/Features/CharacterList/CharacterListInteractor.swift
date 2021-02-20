@@ -167,8 +167,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func fetchFavorites() {
-        let result = characterWorker
-            .getFavoriteCharacters()
+        let result = characterWorker.getFavorites()
         
         switch result {
         case .success(let characters):
@@ -179,21 +178,13 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func searchForFavorite() {
-        let result = characterWorker
-            .getFavoriteCharacters()
+        let result = characterWorker.filterFavorites(byName: searchText)
         
         switch result {
         case .success(let characters):
-            presentCharacters(
-                filter(characters, by: searchText))
+            presentCharacters(characters)
         case .failure(let error):
             presenter.showCharacterListError(error)
-        }
-    }
-    
-    private func filter(_ characters: [Character], by text: String) -> [Character] {
-        characters.filter { character in
-            character.name.contains(text)
         }
     }
     
@@ -218,8 +209,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private func setFavorites(_ results: inout [Character]) {
         let favorites: [Character]
-        let result = characterWorker
-            .getFavoriteCharacters()
+        let result = characterWorker.getFavorites()
         
         switch result {
         case .success(let characters):

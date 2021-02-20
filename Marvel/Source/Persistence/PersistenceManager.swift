@@ -12,6 +12,8 @@ protocol PersistenceManagerProtocol {
     
     func getAll<T: RealmObject>() -> Result<[T], MarvelError>
     
+    func filter<T: RealmObject>(byName name: String) -> Result<[T], MarvelError>
+    
     func save<T: RealmObject>(_ object: T) -> Result<T, MarvelError>
     
     func delete<T: RealmObject>(_ object: T) -> Result<T, MarvelError>
@@ -34,6 +36,16 @@ class PersistenceManager: PersistenceManagerProtocol {
     func getAll<T: RealmObject>() -> Result<[T], MarvelError> {
         do {
             let results: [T] = try database.getAll()
+            return .success(results)
+            
+        } catch {
+            return .failure(.networkError)
+        }
+    }
+    
+    func filter<T: RealmObject>(byName name: String) -> Result<[T], MarvelError> {
+        do {
+            let results: [T] = try database.filter(byName: name)
             return .success(results)
             
         } catch {

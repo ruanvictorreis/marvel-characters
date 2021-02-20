@@ -14,6 +14,8 @@ protocol RealmDatabaseProtocol {
     
     func getAll<T: RealmObject>() throws -> [T]
     
+    func filter<T: RealmObject>(byName name: String) throws -> [T]
+    
     func save<T: RealmObject>(_ object: T) throws
     
     func delete<T: RealmObject>(_ object: T) throws
@@ -31,6 +33,13 @@ class RealmDatabase: RealmDatabaseProtocol {
     func getAll<T: RealmObject>() throws -> [T] {
         let realm = try Realm()
         return Array(realm.objects(T.self))
+    }
+    
+    func filter<T: RealmObject>(byName name: String) throws -> [T] {
+        let realm = try Realm()
+        let predicate = NSPredicate(format: "name contains[cd] %@", name)
+        let results = realm.objects(T.self).filter(predicate)
+        return Array(results)
     }
     
     func save<T: RealmObject>(_ object: T) throws {

@@ -6,14 +6,11 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-typealias ComicBookWorkerSuccess = (_ response: ComicBookListResponse?) -> Void
-typealias ComicBookWorkerError = (_ error: MarvelError) -> Void
+typealias ComicBookCompletation = (Result<ComicBookListResponse?, MarvelError>) -> Void
 
 protocol ComicBookWorkerProtocol {
     
-    func fetchComicBookList(character: Int,
-                            sucess: @escaping ComicBookWorkerSuccess,
-                            failure: @escaping ComicBookWorkerError)
+    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation)
 }
 
 class ComicBookWorker: ComicBookWorkerProtocol {
@@ -30,10 +27,7 @@ class ComicBookWorker: ComicBookWorkerProtocol {
     
     // MARK: - Public Functions
     
-    func fetchComicBookList(character: Int,
-                            sucess: @escaping ComicBookWorkerSuccess,
-                            failure: @escaping ComicBookWorkerError) {
-        
+    func fetchComicBookList(character: Int, completation: @escaping ComicBookCompletation) {
         let url = MarvelURLBuilder(resource: .comics)
             .set(characters: character)
             .build()
@@ -41,14 +35,13 @@ class ComicBookWorker: ComicBookWorkerProtocol {
         let decoder = DefaultDecoder(for: ComicBookListResponse.self)
         let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         
-        networkManager.request(
-            data: request,
-            decoder: decoder,
-            success: { response in
-                sucess(response)
-            },
-            failure: { error in
-                failure(error)
-            })
+        networkManager.request(request, decoder: decoder) { result in
+            switch result {
+            case .success(let response):
+                completation(.success(response))
+            case .failure(let error):
+                completation(.failure(error))
+            }
+        }
     }
 }

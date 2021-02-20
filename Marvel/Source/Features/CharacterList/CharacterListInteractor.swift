@@ -146,11 +146,13 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private func fetchCharacters() {
         characterWorker.fetchCharacterList(
             offset: currentPage * pageCount,
-            sucess: { [weak self] response in
-                self?.didFetchCharacters(response)
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
+            completation: { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.didFetchCharacters(response)
+                case .failure(let error):
+                    self?.presenter.showCharacterListError(error)
+                }
             })
     }
     
@@ -158,11 +160,13 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterWorker.fetchCharacterList(
             searchText: searchText,
             offset: currentPage * pageCount,
-            sucess: { [weak self] response in
-                self?.didFetchCharacters(response)
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
+            completation: { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.didFetchCharacters(response)
+                case .failure(let error):
+                    self?.presenter.showCharacterListError(error)
+                }
             })
     }
     

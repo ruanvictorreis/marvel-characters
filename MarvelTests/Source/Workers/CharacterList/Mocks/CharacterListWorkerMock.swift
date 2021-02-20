@@ -35,9 +35,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         return .success(results)
     }
     
-    func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
+    func fetchCharacterList(offset: Int, completation: @escaping CharacterCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterList")
             var response = try JSONDecoder().decode(
@@ -54,15 +52,13 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.total = total
             response.data.count = results.count
             response.data.results = results
-            sucess(response)
+            completation(.success(response))
         } catch {
-            failure(.networkError)
+            completation(.failure(.networkError))
         }
     }
     
-    func fetchCharacterList(searchText: String, offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
+    func fetchCharacterList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterSearch")
             var response = try JSONDecoder().decode(
@@ -79,9 +75,9 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.total = total
             response.data.count = results.count
             response.data.results = results
-            sucess(response)
+            completation(.success(response))
         } catch {
-            failure(.networkError)
+            completation(.failure(.networkError))
         }
     }
 }
@@ -104,15 +100,11 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         return .failure(.databaseError)
     }
     
-    func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
-        failure(.networkError)
+    func fetchCharacterList(offset: Int, completation: @escaping CharacterCompletation) {
+        completation(.failure(.networkError))
     }
     
-    func fetchCharacterList(searchText: String, offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
-        failure(.networkError)
+    func fetchCharacterList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
+        completation(.failure(.networkError))
     }
 }

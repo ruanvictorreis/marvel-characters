@@ -10,63 +10,51 @@ import RealmSwift
 
 protocol RealmDatabaseProtocol {
     
-    func get<T: Object>(_ key: Any) -> T?
+    func get<T: RealmObject>(_ key: Any) throws -> T?
     
-    func getAll<T: Object>() -> [T]
+    func getAll<T: RealmObject>() throws -> [T]
     
-    @discardableResult
-    func save<T: Object>(_ object: T) -> Bool
+    func filter<T: RealmObject>(byName name: String) throws -> [T]
     
-    @discardableResult
-    func delete<T: Object>(_ object: T) -> Bool
+    func save<T: RealmObject>(_ object: T) throws
+    
+    func delete<T: RealmObject>(_ object: T) throws
 }
 
 class RealmDatabase: RealmDatabaseProtocol {
     
     // MARK: Public Functions
     
-    func get<T: Object>(_ key: Any) -> T? {
-        do {
-            let realm = try Realm()
-            return realm.object(ofType: T.self, forPrimaryKey: key)
-        } catch {
-            return nil
+    func get<T: RealmObject>(_ key: Any) throws -> T? {
+        let realm = try Realm()
+        return realm.object(ofType: T.self, forPrimaryKey: key)
+    }
+    
+    func getAll<T: RealmObject>() throws -> [T] {
+        let realm = try Realm()
+        return Array(realm.objects(T.self))
+    }
+    
+    func filter<T: RealmObject>(byName name: String) throws -> [T] {
+        let realm = try Realm()
+        let predicate = NSPredicate(format: "name contains[cd] %@", name)
+        let results = realm.objects(T.self).filter(predicate)
+        return Array(results)
+    }
+    
+    func save<T: RealmObject>(_ object: T) throws {
+        let realm = try Realm()
+        
+        try realm.write {
+            realm.add(object, update: .all)
         }
     }
     
-    func getAll<T: Object>() -> [T] {
-        do {
-            let realm = try Realm()
-            return Array(realm.objects(T.self))
-        } catch {
-            return []
-        }
-    }
-    
-    func save<T: Object>(_ object: T) -> Bool {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(object, update: .all)
-            }
-            return true
-            
-        } catch {
-            return false
-        }
-    }
-    
-    func delete<T: Object>(_ object: T) -> Bool {
-        do {
-            let realm = try Realm()
-            
-            try realm.write {
-                realm.delete(object)
-            }
-            return true
-            
-        } catch {
-            return false
+    func delete<T: RealmObject>(_ object: T) throws {
+        let realm = try Realm()
+        
+        try realm.write {
+            realm.delete(object)
         }
     }
 }

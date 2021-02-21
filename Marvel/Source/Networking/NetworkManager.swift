@@ -9,7 +9,7 @@
 import Alamofire
 
 typealias RequestSuccess<T: Decodable> = (_ result: T?) -> Void
-typealias RequestFailure = (_ error: NetworkError?) -> Void
+typealias RequestFailure = (_ error: MarvelError) -> Void
 
 protocol NetworkManagerProtocol {
     
@@ -44,9 +44,7 @@ class NetworkManager: NetworkManagerProtocol {
                 let data = response.data ?? Data()
                 success(decoder.decode(from: data))
             case .failure:
-                let error = response.error
-                let message = error?.errorDescription
-                failure(NetworkError(message))
+                failure(.networkError)
             }
         }
     }

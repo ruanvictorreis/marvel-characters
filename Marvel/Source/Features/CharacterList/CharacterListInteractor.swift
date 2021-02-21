@@ -54,22 +54,22 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     private var currentPage = 0
     
-    private var searchParameter = ""
+    private var searchText = ""
     
     private var isSearchEnabled = false
     
     private var characterList: [Character] = []
     
-    private let characterListWorker: CharacterWorkerProtocol
+    private let characterWorker: CharacterWorkerProtocol
     
     // MARK: - Inits
     
     init() {
-        self.characterListWorker = CharacterWorker()
+        self.characterWorker = CharacterWorker()
     }
     
-    init(characterListWorker: CharacterWorkerProtocol) {
-        self.characterListWorker = characterListWorker
+    init(characterWorker: CharacterWorkerProtocol) {
+        self.characterWorker = characterWorker
     }
     
     // MARK: - Public Functions
@@ -85,7 +85,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     
     func searchForCharacter(_ characterName: String) {
         isSearchEnabled = true
-        searchParameter = characterName.capitalized
+        searchText = characterName.capitalized
         
         switch section {
         case .favorites:
@@ -132,7 +132,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         currentPage = 0
         totalCount = 0
         characterList = []
-        searchParameter = ""
+        searchText = ""
         isSearchEnabled = false
         reloadCharacters(animated: true)
     }
@@ -144,7 +144,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     // MARK: - Private Functions
     
     private func fetchCharacters() {
-        characterListWorker.fetchCharacterList(
+        characterWorker.fetchCharacterList(
             offset: currentPage * pageCount,
             sucess: { [weak self] response in
                 self?.didFetchCharacters(response)
@@ -155,8 +155,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func searchForCharacter() {
-        characterListWorker.fetchCharacterList(
-            searchParameter: searchParameter,
+        characterWorker.fetchCharacterList(
+            searchText: searchText,
             offset: currentPage * pageCount,
             sucess: { [weak self] response in
                 self?.didFetchCharacters(response)
@@ -167,18 +167,25 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func fetchFavorites() {
-        let characters = characterListWorker
-            .getFavoriteCharacters()
+        let result = characterWorker.getFavorites()
         
-        presentCharacters(characters)
+        switch result {
+        case .success(let characters):
+            presentCharacters(characters)
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
     }
     
     private func searchForFavorite() {
-        let characters = characterListWorker
-            .getFavoriteCharacters()
-            .filter({ $0.name.contains(searchParameter) })
+        let result = characterWorker.filterFavorites(byName: searchText)
         
-        presentCharacters(characters)
+        switch result {
+        case .success(let characters):
+            presentCharacters(characters)
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
     }
     
     private func didFetchCharacters(_ response: CharacterListResponse?) {
@@ -201,8 +208,15 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func setFavorites(_ results: inout [Character]) {
-        let favorites = characterListWorker
-            .getFavoriteCharacters()
+        let favorites: [Character]
+        let result = characterWorker.getFavorites()
+        
+        switch result {
+        case .success(let characters):
+            favorites = characters
+        case .failure:
+            favorites = []
+        }
         
         let dictionary = Dictionary(
             uniqueKeysWithValues: favorites.map { character in
@@ -216,21 +230,27 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func saveFavorite(_ character: Character) {
-        characterListWorker.saveFavorite(
-            character: character,
-            sucess: { [weak self] in
-                self?.reloadCharacters(animated: false)
-            },
-            failure: nil)
+        let result = characterWorker
+            .saveFavorite(character)
+        
+        switch result {
+        case .success:
+            reloadCharacters(animated: false)
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
     }
     
     private func deleteFavorite(_ character: Character) {
-        characterListWorker.deleteFavorite(
-            character: character,
-            sucess: { [weak self] in
-                self?.removeFromFavorites(character)
-            },
-            failure: nil)
+        let result = characterWorker
+            .deleteFavorite(character)
+        
+        switch result {
+        case .success(let character):
+            removeFromFavorites(character)
+        case .failure(let error):
+            presenter.showCharacterListError(error)
+        }
     }
     
     private func removeFromFavorites(_ character: Character) {

@@ -11,20 +11,28 @@ import Foundation
 
 class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
     
-    var favoriteCharacters: [Character] = []
+    private var favoriteCharacters: [Character] = []
     
-    func getFavoriteCharacters() -> [Character] {
-        return favoriteCharacters
+    func getFavorites() -> Result<[Character], MarvelError> {
+        return .success(favoriteCharacters)
     }
     
-    func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
         favoriteCharacters.append(character)
-        sucess?()
+        return .success(character)
     }
     
-    func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
         favoriteCharacters.removeAll(where: { $0.id == character.id })
-        sucess?()
+        return .success(character)
+    }
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
+        let results = favoriteCharacters.filter { character in
+            character.name.contains(name)
+        }
+        
+        return .success(results)
     }
     
     func fetchCharacterList(offset: Int,
@@ -48,11 +56,11 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.results = results
             sucess(response)
         } catch {
-            failure(nil)
+            failure(.networkError)
         }
     }
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
         do {
@@ -73,34 +81,38 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.results = results
             sucess(response)
         } catch {
-            failure(nil)
+            failure(.networkError)
         }
     }
 }
 
 class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
     
-    func getFavoriteCharacters() -> [Character] {
-        return []
+    func getFavorites() -> Result<[Character], MarvelError> {
+        return .failure(.databaseError)
     }
     
-    func saveFavorite(character: Character, sucess: Completation?, failure: Completation?) {
-        failure?()
+    func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return .failure(.databaseError)
     }
     
-    func deleteFavorite(character: Character, sucess: Completation?, failure: Completation?) {
-        failure?()
+    func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
+        return .failure(.databaseError)
+    }
+    
+    func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
+        return .failure(.databaseError)
     }
     
     func fetchCharacterList(offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        failure(nil)
+        failure(.networkError)
     }
     
-    func fetchCharacterList(searchParameter: String, offset: Int,
+    func fetchCharacterList(searchText: String, offset: Int,
                             sucess: @escaping CharacterWorkerSuccess,
                             failure: @escaping CharacterWorkerError) {
-        failure(nil)
+        failure(.networkError)
     }
 }

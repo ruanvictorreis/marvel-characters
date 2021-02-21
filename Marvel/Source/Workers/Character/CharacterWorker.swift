@@ -49,7 +49,7 @@ class CharacterWorker: CharacterWorkerProtocol {
             .set(offset: offset)
             .build()
         
-        request(url, completation: completation)
+        requestCharacters(url, completation: completation)
     }
     
     func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
@@ -58,7 +58,7 @@ class CharacterWorker: CharacterWorkerProtocol {
             .set(offset: offset)
             .build()
         
-        request(url, completation: completation)
+        requestCharacters(url, completation: completation)
     }
     
     func getFavorites() -> CharacterListResult {
@@ -113,7 +113,7 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Private Functions
     
-    private func request(_ url: String, completation: @escaping CharacterCompletation) {
+    private func requestCharacters(_ url: String, completation: @escaping CharacterCompletation) {
         let decoder = DefaultDecoder(for: CharacterListResponse.self)
         let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         

@@ -63,7 +63,7 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     func getFavorites() -> CharacterListResult {
         let result: Result<[CharacterRealm], MarvelError>
-        result = persistenceManager.getAll()
+        result = persistenceManager.getList()
         
         switch result {
         case .success(let objects):

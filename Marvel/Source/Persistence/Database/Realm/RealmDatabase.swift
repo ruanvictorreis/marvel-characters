@@ -12,7 +12,7 @@ protocol RealmDatabaseProtocol {
     
     func get<T: RealmObject>(_ key: Any) throws -> T?
     
-    func getAll<T: RealmObject>() throws -> [T]
+    func getList<T: RealmObject>() throws -> [T]
     
     func filter<T: RealmObject>(byName name: String) throws -> [T]
     
@@ -30,7 +30,7 @@ class RealmDatabase: RealmDatabaseProtocol {
         return realm.object(ofType: T.self, forPrimaryKey: key)
     }
     
-    func getAll<T: RealmObject>() throws -> [T] {
+    func getList<T: RealmObject>() throws -> [T] {
         let realm = try Realm()
         return Array(realm.objects(T.self))
     }

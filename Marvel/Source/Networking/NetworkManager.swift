@@ -8,15 +8,11 @@
 
 import Alamofire
 
-typealias RequestSuccess<T: Decodable> = (_ result: T?) -> Void
-typealias RequestFailure = (_ error: MarvelError) -> Void
+typealias NetworkResult<T: Decodable> = ((Result<T?, MarvelError>) -> Void)
 
 protocol NetworkManagerProtocol {
     
-    func request<T: Decodable>(data: NetworkRequest,
-                               decoder: DefaultDecoder<T>,
-                               success: @escaping RequestSuccess<T>,
-                               failure: @escaping RequestFailure)
+    func request<T: Decodable>(_ data: NetworkRequest, decoder: DefaultDecoder<T>, completation:  @escaping NetworkResult<T>)
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -27,11 +23,7 @@ class NetworkManager: NetworkManagerProtocol {
     
     // MARK: - Public Functions
     
-    func request<T: Decodable>(data: NetworkRequest,
-                               decoder: DefaultDecoder<T>,
-                               success: @escaping RequestSuccess<T>,
-                               failure: @escaping RequestFailure) {
-        
+    func request<T: Decodable>(_ data: NetworkRequest, decoder: DefaultDecoder<T>, completation: @escaping NetworkResult<T>) {
         let request = AF.request(
             data.url,
             method: data.method.httpMethod,
@@ -42,9 +34,10 @@ class NetworkManager: NetworkManagerProtocol {
             switch response.result {
             case .success:
                 let data = response.data ?? Data()
-                success(decoder.decode(from: data))
+                let result = decoder.decode(from: data)
+                completation(.success(result))
             case .failure:
-                failure(.networkError)
+                completation(.failure(.networkError))
             }
         }
     }

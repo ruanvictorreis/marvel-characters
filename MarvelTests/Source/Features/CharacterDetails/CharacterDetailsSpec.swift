@@ -30,8 +30,8 @@ class CharacterDetailsSpec: QuickSpec {
                 beforeEach {
                     viewController = CharacterDetailsBuilderMock().build(
                         character: character,
-                        characterListWorker: CharacterListWorkerSuccessMock(),
-                        comickBookListWorker: ComicBookListWorkerSucessMock())
+                        characterListWorker: CharacterWorkerSuccessMock(),
+                        comickBookListWorker: ComicBookWorkerSucessMock())
                 }
                 
                 it("View is presenting the comics that the characters participated") {
@@ -55,8 +55,8 @@ class CharacterDetailsSpec: QuickSpec {
                 beforeEach {
                     viewController = CharacterDetailsBuilderMock().build(
                         character: character,
-                        characterListWorker: CharacterListWorkerSuccessMock(),
-                        comickBookListWorker: ComicBookListWorkerSucessMock())
+                        characterListWorker: CharacterWorkerSuccessMock(),
+                        comickBookListWorker: ComicBookWorkerSucessMock())
                 }
                 
                 it("It is possible to save and delete a character as favorite") {
@@ -73,8 +73,8 @@ class CharacterDetailsSpec: QuickSpec {
                 beforeEach {
                     viewController = CharacterDetailsBuilderMock().build(
                         character: character,
-                        characterListWorker: CharacterListWorkerFailureMock(),
-                        comickBookListWorker: ComicBookListWorkerFailureMock())
+                        characterListWorker: CharacterWorkerFailureMock(),
+                        comickBookListWorker: ComicBookWorkerFailureMock())
                 }
                 
                 it("View is presenting the comics that the characters participated") {

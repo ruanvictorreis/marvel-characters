@@ -68,15 +68,17 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
     private func fetchComicBookList() {
         presenter.startComicsLoading()
         
-        comickBookListWorker.fetchComicBookList(
+        comickBookListWorker.fetchList(
             character: character.id,
-            sucess: { [weak self] response in
-                self?.didFetchComicBookList(response)
-                self?.presenter.stopComicsLoading()
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterDetailsError(error)
-                self?.presenter.stopComicsLoading()
+            completation: { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.didFetchComicBookList(response)
+                    self?.presenter.stopComicsLoading()
+                case .failure(let error):
+                    self?.presenter.showCharacterDetailsError(error)
+                    self?.presenter.stopComicsLoading()
+                }
             })
     }
     

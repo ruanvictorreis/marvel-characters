@@ -1,5 +1,5 @@
 //
-//  CharacterListWorkerMock.swift
+//  CharacterWorkerMock.swift
 //  MarvelTests
 //
 //  Created by Ruan Reis on 05/08/20.
@@ -9,7 +9,7 @@
 import Foundation
 @testable import Marvel
 
-class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
+class CharacterWorkerSuccessMock: CharacterWorkerProtocol {
     
     private var favoriteCharacters: [Character] = []
     
@@ -35,9 +35,7 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
         return .success(results)
     }
     
-    func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
+    func fetchList(offset: Int, completation: @escaping CharacterCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterList")
             var response = try JSONDecoder().decode(
@@ -54,15 +52,13 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.total = total
             response.data.count = results.count
             response.data.results = results
-            sucess(response)
+            completation(.success(response))
         } catch {
-            failure(.networkError)
+            completation(.failure(.networkError))
         }
     }
     
-    func fetchCharacterList(searchText: String, offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterSearch")
             var response = try JSONDecoder().decode(
@@ -79,14 +75,14 @@ class CharacterListWorkerSuccessMock: CharacterWorkerProtocol {
             response.data.total = total
             response.data.count = results.count
             response.data.results = results
-            sucess(response)
+            completation(.success(response))
         } catch {
-            failure(.networkError)
+            completation(.failure(.networkError))
         }
     }
 }
 
-class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
+class CharacterWorkerFailureMock: CharacterWorkerProtocol {
     
     func getFavorites() -> Result<[Character], MarvelError> {
         return .failure(.databaseError)
@@ -104,15 +100,11 @@ class CharacterListWorkerFailureMock: CharacterWorkerProtocol {
         return .failure(.databaseError)
     }
     
-    func fetchCharacterList(offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
-        failure(.networkError)
+    func fetchList(offset: Int, completation: @escaping CharacterCompletation) {
+        completation(.failure(.networkError))
     }
     
-    func fetchCharacterList(searchText: String, offset: Int,
-                            sucess: @escaping CharacterWorkerSuccess,
-                            failure: @escaping CharacterWorkerError) {
-        failure(.networkError)
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
+        completation(.failure(.networkError))
     }
 }

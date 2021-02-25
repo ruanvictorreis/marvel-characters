@@ -144,25 +144,29 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     // MARK: - Private Functions
     
     private func fetchCharacters() {
-        characterWorker.fetchCharacterList(
+        characterWorker.fetchList(
             offset: currentPage * pageCount,
-            sucess: { [weak self] response in
-                self?.didFetchCharacters(response)
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
+            completation: { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.didFetchCharacters(response)
+                case .failure(let error):
+                    self?.presenter.showCharacterListError(error)
+                }
             })
     }
     
     private func searchForCharacter() {
-        characterWorker.fetchCharacterList(
+        characterWorker.fetchList(
             searchText: searchText,
             offset: currentPage * pageCount,
-            sucess: { [weak self] response in
-                self?.didFetchCharacters(response)
-            },
-            failure: { [weak self] error in
-                self?.presenter.showCharacterListError(error)
+            completation: { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.didFetchCharacters(response)
+                case .failure(let error):
+                    self?.presenter.showCharacterListError(error)
+                }
             })
     }
     
@@ -178,7 +182,8 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     }
     
     private func searchForFavorite() {
-        let result = characterWorker.filterFavorites(byName: searchText)
+        let result = characterWorker
+            .filterFavorites(byName: searchText)
         
         switch result {
         case .success(let characters):

@@ -10,7 +10,7 @@ import Foundation
 
 protocol PersistenceManagerProtocol {
     
-    func getAll<T: RealmObject>() -> Result<[T], MarvelError>
+    func getList<T: RealmObject>() -> Result<[T], MarvelError>
     
     func filter<T: RealmObject>(byName name: String) -> Result<[T], MarvelError>
     
@@ -33,9 +33,9 @@ class PersistenceManager: PersistenceManagerProtocol {
     
     // MARK: - Public Functions
     
-    func getAll<T: RealmObject>() -> Result<[T], MarvelError> {
+    func getList<T: RealmObject>() -> Result<[T], MarvelError> {
         do {
-            let results: [T] = try database.getAll()
+            let results: [T] = try database.getList()
             return .success(results)
             
         } catch {

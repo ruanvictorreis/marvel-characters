@@ -21,7 +21,6 @@
 		153EF67F25D02C690097A7F3 /* CharacterDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153EF67D25D02C690097A7F3 /* CharacterDetailsViewController.xib */; };
 		153EF68725D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EF68625D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift */; };
 		153EF69325D0336C0097A7F3 /* ComicBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EF69125D0336C0097A7F3 /* ComicBookCell.swift */; };
-		153EF69425D0336C0097A7F3 /* ComicBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153EF69225D0336C0097A7F3 /* ComicBookCell.xib */; };
 		1541250E255B65F90081CD66 /* CharacterCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1541250D255B65F90081CD66 /* CharacterCellDelegate.swift */; };
 		155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771324D1AE5F005DECC3 /* SnakeCaseDecoder.swift */; };
 		155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771524D1B045005DECC3 /* DefaultDecoder.swift */; };
@@ -48,6 +47,7 @@
 		157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1E24D4A84600133F79 /* RealmDatabase.swift */; };
 		159E393224D0EBE000744AB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 159E393424D0EBE000744AB4 /* Localizable.strings */; };
 		159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E393724D0ECDF00744AB4 /* R+Extensions.swift */; };
+		159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */; };
 		15AC48B224DAF0A400037F13 /* CharacterListViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48B124DAF0A400037F13 /* CharacterListViewControllerMock.swift */; };
 		15AC48B424DAF3A600037F13 /* CharacterWorkerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48B324DAF3A600037F13 /* CharacterWorkerMock.swift */; };
 		15AC48B624DAF48700037F13 /* CharacterListBuilderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AC48B524DAF48700037F13 /* CharacterListBuilderMock.swift */; };
@@ -125,7 +125,6 @@
 		153EF67D25D02C690097A7F3 /* CharacterDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailsViewController.xib; sourceTree = "<group>"; };
 		153EF68625D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		153EF69125D0336C0097A7F3 /* ComicBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCell.swift; sourceTree = "<group>"; };
-		153EF69225D0336C0097A7F3 /* ComicBookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicBookCell.xib; sourceTree = "<group>"; };
 		1541250D255B65F90081CD66 /* CharacterCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellDelegate.swift; sourceTree = "<group>"; };
 		155B771324D1AE5F005DECC3 /* SnakeCaseDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCaseDecoder.swift; sourceTree = "<group>"; };
 		155B771524D1B045005DECC3 /* DefaultDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDecoder.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		159E393324D0EBE000744AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		159E393524D0EBF500744AB4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159E393724D0ECDF00744AB4 /* R+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R+Extensions.swift"; sourceTree = "<group>"; };
+		159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodeProtocol.swift; sourceTree = "<group>"; };
 		15AC48B124DAF0A400037F13 /* CharacterListViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewControllerMock.swift; sourceTree = "<group>"; };
 		15AC48B324DAF3A600037F13 /* CharacterWorkerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterWorkerMock.swift; sourceTree = "<group>"; };
 		15AC48B524DAF48700037F13 /* CharacterListBuilderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListBuilderMock.swift; sourceTree = "<group>"; };
@@ -597,7 +597,6 @@
 			children = (
 				15ACB5DC24D37589002156D0 /* ComicBookCarouselView.swift */,
 				153EF69125D0336C0097A7F3 /* ComicBookCell.swift */,
-				153EF69225D0336C0097A7F3 /* ComicBookCell.xib */,
 			);
 			path = Comics;
 			sourceTree = "<group>";
@@ -677,6 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */,
+				159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -821,7 +821,6 @@
 				15B6EA0824D0D640005F2CD2 /* Assets.xcassets in Resources */,
 				15B6EA0624D0D640005F2CD2 /* Main.storyboard in Resources */,
 				15ED297624DB72A100D8C494 /* Keys.plist in Resources */,
-				153EF69425D0336C0097A7F3 /* ComicBookCell.xib in Resources */,
 				153EF67F25D02C690097A7F3 /* CharacterDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1043,6 +1042,7 @@
 				157A2E1524D4A4E200133F79 /* ThumbnailRealm.swift in Sources */,
 				153EF67E25D02C690097A7F3 /* CharacterDetailsViewController.swift in Sources */,
 				1500B73925CF925A0031A7B2 /* NetworkEncoding.swift in Sources */,
+				159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */,
 				155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */,
 				15ACB5CB24D30A8C002156D0 /* CharacterDetailsPresenter.swift in Sources */,
 				15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */,

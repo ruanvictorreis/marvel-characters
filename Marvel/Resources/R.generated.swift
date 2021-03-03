@@ -230,7 +230,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `CharacterCell`.
     static let characterCell = _R.nib._CharacterCell()
@@ -238,8 +238,6 @@ struct R: Rswift.Validatable {
     static let characterDetailsViewController = _R.nib._CharacterDetailsViewController()
     /// Nib `CharacterListViewController`.
     static let characterListViewController = _R.nib._CharacterListViewController()
-    /// Nib `ComicBookCell`.
-    static let comicBookCell = _R.nib._ComicBookCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CharacterCell", in: bundle)`
@@ -265,14 +263,6 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "ComicBookCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.comicBookCell) instead")
-    static func comicBookCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.comicBookCell)
-    }
-    #endif
-
     static func characterCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CharacterCell? {
       return R.nib.characterCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CharacterCell
     }
@@ -285,19 +275,13 @@ struct R: Rswift.Validatable {
       return R.nib.characterListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func comicBookCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ComicBookCell? {
-      return R.nib.comicBookCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ComicBookCell
-    }
-
     fileprivate init() {}
   }
 
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `CharacterCell`.
     static let characterCell: Rswift.ReuseIdentifier<CharacterCell> = Rswift.ReuseIdentifier(identifier: "CharacterCell")
-    /// Reuse identifier `ComicBookCell`.
-    static let comicBookCell: Rswift.ReuseIdentifier<ComicBookCell> = Rswift.ReuseIdentifier(identifier: "ComicBookCell")
 
     fileprivate init() {}
   }
@@ -557,20 +541,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in nib 'CharacterListViewController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _ComicBookCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = ComicBookCell
-
-      let bundle = R.hostingBundle
-      let identifier = "ComicBookCell"
-      let name = "ComicBookCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ComicBookCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ComicBookCell
       }
 
       fileprivate init() {}

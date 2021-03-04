@@ -68,7 +68,6 @@
 		15B12D1D24D796A7005FF023 /* CharacterListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B12D1C24D796A7005FF023 /* CharacterListSection.swift */; };
 		15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */; };
 		15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */; };
-		15B6EA0624D0D640005F2CD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B6EA0424D0D640005F2CD2 /* Main.storyboard */; };
 		15B6EA0824D0D640005F2CD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B6EA0724D0D640005F2CD2 /* Assets.xcassets */; };
 		15B6EA0B24D0D640005F2CD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */; };
 		15B6EA1624D0D641005F2CD2 /* CharacterLisSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6EA1524D0D641005F2CD2 /* CharacterLisSpec.swift */; };
@@ -173,7 +172,6 @@
 		15B6E9FB24D0D640005F2CD2 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B6E9FE24D0D640005F2CD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15B6EA0024D0D640005F2CD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		15B6EA0524D0D640005F2CD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15B6EA0724D0D640005F2CD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15B6EA0A24D0D640005F2CD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15B6EA0C24D0D640005F2CD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -268,14 +266,6 @@
 				155B771724D1B4E5005DECC3 /* Workers */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		153AAF2224D0EA4400EEE22E /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				15B6EA0424D0D640005F2CD2 /* Main.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		155B771224D1AD78005DECC3 /* Decoders */ = {
@@ -625,7 +615,6 @@
 			children = (
 				15B6EA2224D0DCF6005F2CD2 /* Resources */,
 				153AAF2124D0EA2E00EEE22E /* Source */,
-				153AAF2224D0EA4400EEE22E /* Storyboards */,
 				158C064524D0E96400E6A81A /* SupportFiles */,
 			);
 			path = Marvel;
@@ -815,7 +804,6 @@
 				15B6EA0B24D0D640005F2CD2 /* LaunchScreen.storyboard in Resources */,
 				159E393224D0EBE000744AB4 /* Localizable.strings in Resources */,
 				15B6EA0824D0D640005F2CD2 /* Assets.xcassets in Resources */,
-				15B6EA0624D0D640005F2CD2 /* Main.storyboard in Resources */,
 				15ED297624DB72A100D8C494 /* Keys.plist in Resources */,
 				153EF67F25D02C690097A7F3 /* CharacterDetailsViewController.xib in Resources */,
 			);
@@ -1104,14 +1092,6 @@
 				159E393524D0EBF500744AB4 /* pt-BR */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		15B6EA0424D0D640005F2CD2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15B6EA0524D0D640005F2CD2 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		15B6EA0924D0D640005F2CD2 /* LaunchScreen.storyboard */ = {

@@ -15,6 +15,8 @@ protocol ViewCodeProtocol {
     func setupSubviews()
     
     func setupConstraints()
+    
+    func setupBehaviors()
 }
 
 extension ViewCodeProtocol {
@@ -22,5 +24,8 @@ extension ViewCodeProtocol {
     func setupUI() {
         setupSubviews()
         setupConstraints()
+        setupBehaviors()
     }
+    
+    func setupBehaviors() {}
 }

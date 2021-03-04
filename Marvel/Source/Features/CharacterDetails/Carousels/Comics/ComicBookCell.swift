@@ -16,13 +16,13 @@ class ComicBookCell: UICollectionViewCell {
     lazy private var contentCard: UICardView = {
         let cardView = UICardView()
         cardView.shadowOpacity = 0.6
-        cardView.backgroundColor = .darkness
         return cardView
     }()
     
     lazy private var thumbnailCard: UICardView = {
         let cardView = UICardView()
         cardView.clipsToBounds = true
+        cardView.backgroundColor = .darkness
         return cardView
     }()
     
@@ -77,12 +77,8 @@ extension ComicBookCell: ViewCodeProtocol {
     
     func setupSubviews() {
         addSubview(contentCard)
-        
-        contentCard
-            .addSubview(thumbnailCard)
-        
-        thumbnailCard
-            .addSubview(thumbnail)
+        contentCard.addSubview(thumbnailCard)
+        thumbnailCard.addSubview(thumbnail)
     }
     
     func setupConstraints() {

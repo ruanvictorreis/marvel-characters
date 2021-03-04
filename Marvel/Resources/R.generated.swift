@@ -230,22 +230,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
-    /// Nib `CharacterCell`.
-    static let characterCell = _R.nib._CharacterCell()
     /// Nib `CharacterDetailsViewController`.
     static let characterDetailsViewController = _R.nib._CharacterDetailsViewController()
     /// Nib `CharacterListViewController`.
     static let characterListViewController = _R.nib._CharacterListViewController()
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "CharacterCell", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.characterCell) instead")
-    static func characterCell(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.characterCell)
-    }
-    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CharacterDetailsViewController", in: bundle)`
@@ -263,10 +253,6 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    static func characterCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CharacterCell? {
-      return R.nib.characterCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CharacterCell
-    }
-
     static func characterDetailsViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.characterDetailsViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -274,14 +260,6 @@ struct R: Rswift.Validatable {
     static func characterListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.characterListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
-
-    fileprivate init() {}
-  }
-
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
-  struct reuseIdentifier {
-    /// Reuse identifier `CharacterCell`.
-    static let characterCell: Rswift.ReuseIdentifier<CharacterCell> = Rswift.ReuseIdentifier(identifier: "CharacterCell")
 
     fileprivate init() {}
   }
@@ -496,20 +474,6 @@ struct _R: Rswift.Validatable {
     static func validate() throws {
       try _CharacterDetailsViewController.validate()
       try _CharacterListViewController.validate()
-    }
-
-    struct _CharacterCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
-      typealias ReusableType = CharacterCell
-
-      let bundle = R.hostingBundle
-      let identifier = "CharacterCell"
-      let name = "CharacterCell"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CharacterCell? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CharacterCell
-      }
-
-      fileprivate init() {}
     }
 
     struct _CharacterDetailsViewController: Rswift.NibResourceType, Rswift.Validatable {

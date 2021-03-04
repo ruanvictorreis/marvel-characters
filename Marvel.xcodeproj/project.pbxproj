@@ -78,7 +78,6 @@
 		15BFD31E25D176CF00B1085B /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFD31C25D176CF00B1085B /* CharacterListViewController.swift */; };
 		15BFD31F25D176CF00B1085B /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15BFD31D25D176CF00B1085B /* CharacterListViewController.xib */; };
 		15BFD32525D178A900B1085B /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BFD32325D178A900B1085B /* CharacterCell.swift */; };
-		15BFD32625D178A900B1085B /* CharacterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15BFD32425D178A900B1085B /* CharacterCell.xib */; };
 		15E0221225D1D9CB00EA8350 /* CharacterList.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0221125D1D9CB00EA8350 /* CharacterList.json */; };
 		15E0222925D201C800EA8350 /* CharacterSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0222825D201C800EA8350 /* CharacterSearch.json */; };
 		15E0223425D21E7C00EA8350 /* ComicBookList.json in Resources */ = {isa = PBXBuildFile; fileRef = 15E0223325D21E7C00EA8350 /* ComicBookList.json */; };
@@ -187,7 +186,6 @@
 		15BFD31C25D176CF00B1085B /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
 		15BFD31D25D176CF00B1085B /* CharacterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListViewController.xib; sourceTree = "<group>"; };
 		15BFD32325D178A900B1085B /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
-		15BFD32425D178A900B1085B /* CharacterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCell.xib; sourceTree = "<group>"; };
 		15E0221125D1D9CB00EA8350 /* CharacterList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterList.json; sourceTree = "<group>"; };
 		15E0222825D201C800EA8350 /* CharacterSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CharacterSearch.json; sourceTree = "<group>"; };
 		15E0223325D21E7C00EA8350 /* ComicBookList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ComicBookList.json; sourceTree = "<group>"; };
@@ -320,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				15BFD32325D178A900B1085B /* CharacterCell.swift */,
-				15BFD32425D178A900B1085B /* CharacterCell.xib */,
 				1541250D255B65F90081CD66 /* CharacterCellDelegate.swift */,
 			);
 			path = Cells;
@@ -817,7 +814,6 @@
 				15BFD31F25D176CF00B1085B /* CharacterListViewController.xib in Resources */,
 				15B6EA0B24D0D640005F2CD2 /* LaunchScreen.storyboard in Resources */,
 				159E393224D0EBE000744AB4 /* Localizable.strings in Resources */,
-				15BFD32625D178A900B1085B /* CharacterCell.xib in Resources */,
 				15B6EA0824D0D640005F2CD2 /* Assets.xcassets in Resources */,
 				15B6EA0624D0D640005F2CD2 /* Main.storyboard in Resources */,
 				15ED297624DB72A100D8C494 /* Keys.plist in Resources */,

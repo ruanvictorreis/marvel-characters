@@ -95,11 +95,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="CcY-cG-ikb" secondAttribute="trailing" constant="16" id="wKh-up-9MS"/>
                                                 <constraint firstItem="UHK-mT-pYO" firstAttribute="top" secondItem="CcY-cG-ikb" secondAttribute="bottom" constant="16" id="ymL-IS-hWh"/>
                                             </constraints>
-                                            <connections>
-                                                <outlet property="collectionView" destination="UHK-mT-pYO" id="EET-ry-OPe"/>
-                                                <outlet property="loading" destination="zDp-Uy-me9" id="cjl-eE-cYv"/>
-                                                <outlet property="title" destination="CcY-cG-ikb" id="1J1-7i-fd7"/>
-                                            </connections>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>

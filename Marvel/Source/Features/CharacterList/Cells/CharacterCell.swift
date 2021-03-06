@@ -148,7 +148,7 @@ extension CharacterCell: ViewCodeProtocol {
         }
     }
     
-    func setupBehaviors() {
+    func setupComponents() {
         loveItButton.addTarget(
             self, action: #selector(loveIt), for: .touchUpInside)
     }

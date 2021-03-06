@@ -13,20 +13,20 @@ class CharacterCell: UICollectionViewCell {
     // MARK: - UI Components
     
     lazy private var contentCard: UICardView = {
-        let cardView = UICardView()
+        let cardView = UICardView(frame: .zero)
         cardView.shadowOpacity = 0.6
         return cardView
     }()
     
     lazy private var characterCard: UICardView = {
-        let cardView = UICardView()
+        let cardView = UICardView(frame: .zero)
         cardView.clipsToBounds = true
         cardView.backgroundColor = .darkness
         return cardView
     }()
     
     lazy private var characterName: UILabel = {
-        let label = UILabel()
+        let label = UILabel(frame: .zero)
         label.textColor = .white
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 16)
@@ -34,20 +34,20 @@ class CharacterCell: UICollectionViewCell {
     }()
     
     lazy private var characterImage: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
     lazy private var loveItContainer: UICircularView = {
-        let circularView = UICircularView()
+        let circularView = UICircularView(frame: .zero)
         circularView.backgroundColor = .white
         return circularView
     }()
     
     lazy private var loveItButton: UIHeartButton = {
-        return UIHeartButton()
+        return UIHeartButton(frame: .zero)
     }()
     
     // MARK: - Public Properties
@@ -149,7 +149,6 @@ extension CharacterCell: ViewCodeProtocol {
     }
     
     func setupComponents() {
-        loveItButton.addTarget(
-            self, action: #selector(loveIt), for: .touchUpInside)
+        loveItButton.addTarget(self, action: #selector(loveIt), for: .touchUpInside)
     }
 }

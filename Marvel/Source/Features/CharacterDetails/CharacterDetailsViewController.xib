@@ -79,14 +79,9 @@
                                                     </collectionViewFlowLayout>
                                                     <cells/>
                                                 </collectionView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-Uy-me9" userLabel="Loading">
-                                                    <rect key="frame" x="188.5" y="128" width="37" height="37"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="zDp-Uy-me9" firstAttribute="centerY" secondItem="cxR-hc-IrD" secondAttribute="centerY" id="4j9-5s-rN6"/>
-                                                <constraint firstItem="zDp-Uy-me9" firstAttribute="centerX" secondItem="cxR-hc-IrD" secondAttribute="centerX" id="5mX-t4-Xos"/>
                                                 <constraint firstItem="CcY-cG-ikb" firstAttribute="leading" secondItem="cxR-hc-IrD" secondAttribute="leading" constant="16" id="CTS-ss-8kh"/>
                                                 <constraint firstAttribute="bottom" secondItem="UHK-mT-pYO" secondAttribute="bottom" constant="24" id="DGM-zQ-hQ2"/>
                                                 <constraint firstItem="CcY-cG-ikb" firstAttribute="top" secondItem="cxR-hc-IrD" secondAttribute="top" id="aRW-rc-Ic7"/>

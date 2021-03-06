@@ -10,8 +10,6 @@ import Foundation
 
 protocol ViewCodeProtocol {
     
-    func setupUI()
-    
     func setupSubviews()
     
     func setupConstraints()

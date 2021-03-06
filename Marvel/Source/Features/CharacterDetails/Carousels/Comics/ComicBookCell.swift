@@ -14,20 +14,20 @@ class ComicBookCell: UICollectionViewCell {
     // MARK: - UI Components
     
     lazy private var contentCard: UICardView = {
-        let cardView = UICardView()
+        let cardView = UICardView(frame: .zero)
         cardView.shadowOpacity = 0.6
         return cardView
     }()
     
     lazy private var thumbnailCard: UICardView = {
-        let cardView = UICardView()
+        let cardView = UICardView(frame: .zero)
         cardView.clipsToBounds = true
         cardView.backgroundColor = .darkness
         return cardView
     }()
     
     lazy private var thumbnail: UIImageView = {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView

@@ -14,13 +14,14 @@ class ComicBookCarouselView: UIView {
     // MARK: - UI Components
     
     lazy private var title: UILabel = {
-        let label = UILabel()
+        let label = UILabel(frame: .zero)
         label.font = .semiBoldSystemFont(ofSize: 22)
         return label
     }()
     
     lazy private var loading: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
+        let activityIndicator = UIActivityIndicatorView(frame: .zero)
+        activityIndicator.style = .large
         return activityIndicator
     }()
     
@@ -58,10 +59,12 @@ class ComicBookCarouselView: UIView {
     }
     
     func startLoading() {
+        loading.startAnimating()
         loading.isHidden = false
     }
     
     func stopLoading() {
+        loading.stopAnimating()
         loading.isHidden = true
     }
 }

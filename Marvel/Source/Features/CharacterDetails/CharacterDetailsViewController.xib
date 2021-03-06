@@ -25,11 +25,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMA-Mc-gXg">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="204.5"/>
                     <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="260" id="9XY-w1-EDI"/>
-                    </constraints>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9J-0f-0r7">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
@@ -116,7 +113,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-bM-YK8" customClass="UICircularView" customModule="Marvel" customModuleProvider="target">
-                    <rect key="frame" x="358" y="136" width="40" height="40"/>
+                    <rect key="frame" x="358" y="164.5" width="40" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGZ-YI-GW7" userLabel="Heart Button" customClass="UIHeartButton" customModule="Marvel" customModuleProvider="target">
                             <rect key="frame" x="8.8000000000000007" y="8.8000000000000007" width="22.399999999999999" height="22.399999999999999"/>
@@ -152,6 +149,7 @@
                 <constraint firstItem="RMA-Mc-gXg" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="brd-Vz-0Cs"/>
                 <constraint firstItem="V9J-0f-0r7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cqC-8d-pw4"/>
                 <constraint firstItem="hxg-xy-11K" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="eM5-fG-oo1"/>
+                <constraint firstItem="2pO-9S-xT3" firstAttribute="top" secondItem="RMA-Mc-gXg" secondAttribute="bottom" constant="-20" id="jcb-ll-A7H"/>
                 <constraint firstItem="RMA-Mc-gXg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oS8-Dc-zPl"/>
                 <constraint firstItem="V9J-0f-0r7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="orU-ZB-2mH"/>
                 <constraint firstItem="hxg-xy-11K" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="tjq-iv-FYa"/>

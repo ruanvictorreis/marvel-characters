@@ -58,37 +58,9 @@
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxR-hc-IrD" customClass="ComicBookCarouselView" customModule="Marvel" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="345" width="414" height="292.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-cG-ikb">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="26.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UHK-mT-pYO">
-                                                    <rect key="frame" x="0.0" y="42.5" width="414" height="226"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="226" id="Toh-qL-RKT"/>
-                                                    </constraints>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gcr-Bb-eB1">
-                                                        <size key="itemSize" width="128" height="128"/>
-                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
-                                                    </collectionViewFlowLayout>
-                                                    <cells/>
-                                                </collectionView>
-                                            </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="CcY-cG-ikb" firstAttribute="leading" secondItem="cxR-hc-IrD" secondAttribute="leading" constant="16" id="CTS-ss-8kh"/>
-                                                <constraint firstAttribute="bottom" secondItem="UHK-mT-pYO" secondAttribute="bottom" constant="24" id="DGM-zQ-hQ2"/>
-                                                <constraint firstItem="CcY-cG-ikb" firstAttribute="top" secondItem="cxR-hc-IrD" secondAttribute="top" id="aRW-rc-Ic7"/>
-                                                <constraint firstItem="UHK-mT-pYO" firstAttribute="leading" secondItem="cxR-hc-IrD" secondAttribute="leading" id="dcd-vf-k3V"/>
-                                                <constraint firstAttribute="trailing" secondItem="UHK-mT-pYO" secondAttribute="trailing" id="tuo-c3-n6x"/>
-                                                <constraint firstAttribute="trailing" secondItem="CcY-cG-ikb" secondAttribute="trailing" constant="16" id="wKh-up-9MS"/>
-                                                <constraint firstItem="UHK-mT-pYO" firstAttribute="top" secondItem="CcY-cG-ikb" secondAttribute="bottom" constant="16" id="ymL-IS-hWh"/>
+                                                <constraint firstAttribute="height" constant="292.5" id="MKM-V5-rpK"/>
                                             </constraints>
                                         </view>
                                     </subviews>

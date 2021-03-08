@@ -21,17 +21,9 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
 
 class CharacterDetailsViewController: UIViewController {
     
-    // MARK: - IBOutlets
+    // MARK: - Private Properties
     
-    @IBOutlet private var characterName: UILabel!
-    
-    @IBOutlet private var characterDescription: UILabel!
-    
-    @IBOutlet private var characterThumbnail: UIImageView!
-    
-    @IBOutlet private var loveItButton: UIHeartButton!
-    
-    @IBOutlet private var comicsCarousel: ComicBookCarouselView!
+    private let characterDetailsView = CharacterDetailsView()
     
     // MARK: - VIP Properties
     
@@ -39,17 +31,12 @@ class CharacterDetailsViewController: UIViewController {
     
     var router: CharacterDetailsRouterProtocol!
     
-    // MARK: - Inits
-    
-    init() {
-        super.init(nibName: "CharacterDetailsViewController", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     // MARK: - View Lifecycle
+    
+    override func loadView() {
+        self.view = characterDetailsView
+        characterDetailsView.delegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +53,18 @@ class CharacterDetailsViewController: UIViewController {
     private func setupNavigation() {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+}
+
+// MARK: - CharacterDetailsViewDelegate Extension
+
+extension CharacterDetailsViewController: CharacterDetailsViewDelegate {
     
-    @IBAction private func loveIt(_ sender: UIHeartButton) {
-        loveItButton.toggleIt()
-        interactor.setFavorite(loveItButton.isFilled)
+    func close() {
+        navigationController?.popViewController(animated: true)
     }
     
-    @IBAction private func close(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+    func loveIt(_ status: Bool) {
+        interactor.setFavorite(status)
     }
 }
 
@@ -82,22 +73,15 @@ class CharacterDetailsViewController: UIViewController {
 extension CharacterDetailsViewController: CharacterDetailsViewControllerProtocol {
     
     func startComicsLoading() {
-        comicsCarousel.startLoading()
+        characterDetailsView.startComicsLoading()
     }
     
     func stopComicsLoading() {
-        comicsCarousel.stopLoading()
+        characterDetailsView.stopComicsLoading()
     }
     
     func showCharacterDetails(_ viewModel: CharacterDetailsViewModel) {
-        characterName.text = viewModel.name
-        characterDescription.text = viewModel.description
-        characterThumbnail.load(url: viewModel.image)
-        comicsCarousel.setup(viewModel.comics)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.loveItButton.isFilled = viewModel.isLoved
-        }
+        characterDetailsView.setup(viewModel)
     }
     
     func showCharacterDetailsError(_ errorMessage: String) {

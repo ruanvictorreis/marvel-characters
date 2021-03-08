@@ -13,7 +13,7 @@ class UIHeartButton: UIButton {
     
     // MARK: - Public Properties
     
-    @IBInspectable var isFilled: Bool = false {
+    var isFilled: Bool = false {
         didSet {
             animate()
         }
@@ -25,21 +25,20 @@ class UIHeartButton: UIButton {
     
     private var heartImage: UIImage? = R.image.heart_outline()
     
-    // MARK: - View Lifecycle
+    // MARK: - Inits
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
+        
+        self.accessibilityIdentifier = "heartButtonId"
     }
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setupUI()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupUI()
+        
+        self.accessibilityIdentifier = "heartButtonId"
     }
     
     // MARK: - Public Functions
@@ -80,6 +79,6 @@ class UIHeartButton: UIButton {
                 UIView.animate(withDuration: 0.1, animations: {
                     self?.transform = CGAffineTransform.identity
                 })
-        })
+            })
     }
 }

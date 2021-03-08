@@ -11,9 +11,9 @@ import Foundation
 
 struct UIElements {
     
-    static let back = "back"
+    static let back = "backButtonId"
     
-    static let heart = "heart"
+    static let heart = "heartButtonId"
     
     static let collection = "characterCollection"
     

@@ -15,7 +15,7 @@ class ComicBookCarouselView: UIView {
     
     lazy private var title: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = .semiBoldSystemFont(ofSize: 22)
+        label.font = .semiBoldSystemFont(ofSize: 20)
         return label
     }()
     
@@ -31,6 +31,7 @@ class ComicBookCarouselView: UIView {
             frame: .zero, collectionViewLayout: layout)
         
         layout.scrollDirection = .horizontal
+        collectionView.clipsToBounds = false
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -91,7 +92,9 @@ extension ComicBookCarouselView: ViewCodeProtocol {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.height.equalTo(210)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(16)
             make.top.equalTo(title.snp.bottom).offset(16)
         }

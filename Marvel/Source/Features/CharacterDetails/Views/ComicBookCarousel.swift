@@ -1,5 +1,5 @@
 //
-//  ComicBookCarouselView.swift
+//  ComicBookCarousel.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 30/07/20.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ComicBookCarouselView: UIView {
+class ComicBookCarousel: UIView {
     
     // MARK: - User Interface Components
     
@@ -72,7 +72,7 @@ class ComicBookCarouselView: UIView {
 
 // MARK: - ViewCodeProtocol Extension
 
-extension ComicBookCarouselView: ViewCodeProtocol {
+extension ComicBookCarousel: ViewCodeProtocol {
     
     func setupSubviews() {
         addSubview(title)
@@ -110,7 +110,7 @@ extension ComicBookCarouselView: ViewCodeProtocol {
 
 // MARK: - UICollectionView Protocol Extensions
 
-extension ComicBookCarouselView: UICollectionViewDataSource {
+extension ComicBookCarousel: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return comics.count
@@ -128,7 +128,7 @@ extension ComicBookCarouselView: UICollectionViewDataSource {
     }
 }
 
-extension ComicBookCarouselView: UICollectionViewDelegateFlowLayout {
+extension ComicBookCarousel: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

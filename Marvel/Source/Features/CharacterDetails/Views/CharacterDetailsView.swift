@@ -9,6 +9,13 @@
 import UIKit
 import SnapKit
 
+protocol CharacterDetailsViewDelegate: AnyObject {
+    
+    func close()
+    
+    func loveIt(_ status: Bool)
+}
+
 class CharacterDetailsView: UIView {
     
     // MARK: - User Interface Components
@@ -63,8 +70,8 @@ class CharacterDetailsView: UIView {
         return label
     }()
     
-    private lazy var comicsCarousel: ComicBookCarouselView = {
-        let view = ComicBookCarouselView(frame: .zero)
+    private lazy var comicsCarousel: ComicBookCarousel = {
+        let view = ComicBookCarousel(frame: .zero)
         view.backgroundColor = .systemBackground
         return view
     }()
@@ -201,7 +208,7 @@ extension CharacterDetailsView: ViewCodeProtocol {
         
         loveItButton.snp.makeConstraints { make in
             make.width.height.equalTo(40)
-            make.right.equalTo(safeAreaLayoutGuide).inset(16)
+            make.right.equalTo(safeAreaLayoutGuide).inset(4)
             make.bottom.equalTo(detailsContent.snp.top).offset(20)
         }
     }

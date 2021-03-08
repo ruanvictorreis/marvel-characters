@@ -11,6 +11,8 @@
 		1500B73925CF925A0031A7B2 /* NetworkEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */; };
 		1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */; };
 		150266D025F66D6E006D8557 /* CharacterDetailsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266CF25F66D6E006D8557 /* CharacterDetailsViewDelegate.swift */; };
+		150266DB25F69972006D8557 /* UILoveItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266DA25F69972006D8557 /* UILoveItButton.swift */; };
+		150266E625F6A3F0006D8557 /* UIHeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266E525F6A3F0006D8557 /* UIHeartButton.swift */; };
 		15181F0224D9DB6200289D43 /* MarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0124D9DB6200289D43 /* MarvelUITests.swift */; };
 		15181F0A24D9DCFD00289D43 /* KIF+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0924D9DCFD00289D43 /* KIF+Extensions.swift */; };
 		15181F0C24D9FE0600289D43 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0B24D9FE0600289D43 /* UIElements.swift */; };
@@ -39,7 +41,6 @@
 		156B2F2224D10B4400643FB6 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2124D10B4400643FB6 /* Character.swift */; };
 		156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2324D10FAF00643FB6 /* Date+Extensions.swift */; };
 		156B2F2624D110F300643FB6 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156B2F2524D110F300643FB6 /* String+Extensions.swift */; };
-		157A2E0F24D456A200133F79 /* UIHeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E0E24D456A200133F79 /* UIHeartButton.swift */; };
 		157A2E1124D45E2700133F79 /* UICircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1024D45E2700133F79 /* UICircularView.swift */; };
 		157A2E1324D4A17700133F79 /* CharacterRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1224D4A17700133F79 /* CharacterRealm.swift */; };
 		157A2E1524D4A4E200133F79 /* ThumbnailRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1424D4A4E200133F79 /* ThumbnailRealm.swift */; };
@@ -113,6 +114,8 @@
 		1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEncoding.swift; sourceTree = "<group>"; };
 		1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHTTPMethod.swift; sourceTree = "<group>"; };
 		150266CF25F66D6E006D8557 /* CharacterDetailsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewDelegate.swift; sourceTree = "<group>"; };
+		150266DA25F69972006D8557 /* UILoveItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILoveItButton.swift; sourceTree = "<group>"; };
+		150266E525F6A3F0006D8557 /* UIHeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHeartButton.swift; sourceTree = "<group>"; };
 		15181EFF24D9DB6200289D43 /* MarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15181F0124D9DB6200289D43 /* MarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUITests.swift; sourceTree = "<group>"; };
 		15181F0324D9DB6200289D43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,7 +146,6 @@
 		156B2F2124D10B4400643FB6 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		156B2F2324D10FAF00643FB6 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		156B2F2524D110F300643FB6 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		157A2E0E24D456A200133F79 /* UIHeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHeartButton.swift; sourceTree = "<group>"; };
 		157A2E1024D45E2700133F79 /* UICircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularView.swift; sourceTree = "<group>"; };
 		157A2E1224D4A17700133F79 /* CharacterRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterRealm.swift; sourceTree = "<group>"; };
 		157A2E1424D4A4E200133F79 /* ThumbnailRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailRealm.swift; sourceTree = "<group>"; };
@@ -322,7 +324,8 @@
 			children = (
 				155B773424D2245B005DECC3 /* UICardView.swift */,
 				157A2E1024D45E2700133F79 /* UICircularView.swift */,
-				157A2E0E24D456A200133F79 /* UIHeartButton.swift */,
+				150266E525F6A3F0006D8557 /* UIHeartButton.swift */,
+				150266DA25F69972006D8557 /* UILoveItButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1005,6 +1008,7 @@
 				15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */,
 				15C86C5E25F47A140030022E /* CharacterDetailsView.swift in Sources */,
 				15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */,
+				150266E625F6A3F0006D8557 /* UIHeartButton.swift in Sources */,
 				15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */,
 				157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */,
 				155B772924D1D83C005DECC3 /* CharacterListRouter.swift in Sources */,
@@ -1035,6 +1039,7 @@
 				153EF67E25D02C690097A7F3 /* CharacterDetailsViewController.swift in Sources */,
 				1500B73925CF925A0031A7B2 /* NetworkEncoding.swift in Sources */,
 				159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */,
+				150266DB25F69972006D8557 /* UILoveItButton.swift in Sources */,
 				155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */,
 				15ACB5CB24D30A8C002156D0 /* CharacterDetailsPresenter.swift in Sources */,
 				15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */,
@@ -1057,7 +1062,6 @@
 				15B12D1D24D796A7005FF023 /* CharacterListSection.swift in Sources */,
 				153EF68725D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift in Sources */,
 				155B771A24D1B51F005DECC3 /* CharacterWorker.swift in Sources */,
-				157A2E0F24D456A200133F79 /* UIHeartButton.swift in Sources */,
 				15ACB5DD24D37589002156D0 /* ComicBookCarouselView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

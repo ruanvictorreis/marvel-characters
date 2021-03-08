@@ -20,14 +20,8 @@ class CharacterDetailsView: UIView {
         return imageView
     }()
     
-    private lazy var loveItContainer: UICircularView = {
-        let circularView = UICircularView(frame: .zero)
-        circularView.backgroundColor = .white
-        return circularView
-    }()
-    
-    private lazy var loveItButton: UIHeartButton = {
-        return UIHeartButton(frame: .zero)
+    private lazy var loveItButton: UILoveItButton = {
+        return UILoveItButton(frame: .zero)
     }()
     
     private lazy var backButton: UIButton = {
@@ -120,6 +114,7 @@ class CharacterDetailsView: UIView {
         let paragraphStyle = NSMutableParagraphStyle()
         
         paragraphStyle.lineSpacing = 3
+        paragraphStyle.alignment = .justified
         paragraphStyle.lineBreakMode = .byWordWrapping
         paragraphStyle.baseWritingDirection = .leftToRight
         
@@ -150,13 +145,12 @@ extension CharacterDetailsView: ViewCodeProtocol {
         addSubview(characterThumbnail)
         addSubview(scrollView)
         addSubview(backButton)
-        addSubview(loveItContainer)
+        addSubview(loveItButton)
         scrollView.addSubview(scrollContent)
         scrollContent.addSubview(detailsContent)
         detailsContent.addSubview(characterName)
         detailsContent.addSubview(characterDescription)
         detailsContent.addSubview(comicsCarousel)
-        loveItContainer.addSubview(loveItButton)
     }
     
     func setupConstraints() {
@@ -182,8 +176,9 @@ extension CharacterDetailsView: ViewCodeProtocol {
         }
         
         characterName.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().inset(16)
-            make.top.left.equalToSuperview().offset(16)
         }
         
         characterDescription.snp.makeConstraints { make in
@@ -204,15 +199,10 @@ extension CharacterDetailsView: ViewCodeProtocol {
             make.top.left.equalTo(safeAreaLayoutGuide)
         }
         
-        loveItContainer.snp.makeConstraints { make in
+        loveItButton.snp.makeConstraints { make in
             make.width.height.equalTo(40)
             make.right.equalTo(safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(detailsContent.snp.top).offset(20)
-        }
-        
-        loveItButton.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(4)
-            make.right.bottom.equalToSuperview().inset(4)
         }
     }
     

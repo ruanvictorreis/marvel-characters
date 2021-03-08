@@ -40,14 +40,8 @@ class CharacterCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var loveItContainer: UICircularView = {
-        let circularView = UICircularView(frame: .zero)
-        circularView.backgroundColor = .white
-        return circularView
-    }()
-    
-    private lazy var loveItButton: UIHeartButton = {
-        return UIHeartButton(frame: .zero)
+    private lazy var loveItButton: UILoveItButton = {
+        return UILoveItButton(frame: .zero)
     }()
     
     // MARK: - Public Properties
@@ -92,7 +86,7 @@ class CharacterCell: UICollectionViewCell {
     }
     
     @objc
-    private func loveIt(_ sender: UIHeartButton) {
+    private func loveIt() {
         loveItButton.toggleIt()
         
         let value = loveItButton.isFilled
@@ -109,8 +103,7 @@ extension CharacterCell: ViewCodeProtocol {
         contentCard.addSubview(characterCard)
         characterCard.addSubview(characterName)
         characterCard.addSubview(characterImage)
-        characterCard.addSubview(loveItContainer)
-        loveItContainer.addSubview(loveItButton)
+        characterCard.addSubview(loveItButton)
     }
     
     func setupConstraints() {
@@ -136,15 +129,10 @@ extension CharacterCell: ViewCodeProtocol {
             make.top.equalTo(characterImage.snp.bottom).offset(16)
         }
         
-        loveItContainer.snp.makeConstraints { make in
+        loveItButton.snp.makeConstraints { make in
             make.width.height.equalTo(30)
             make.right.equalToSuperview().inset(4)
             make.top.equalTo(characterImage.snp.bottom).inset(15)
-        }
-        
-        loveItButton.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(4)
-            make.right.bottom.equalToSuperview().inset(4)
         }
     }
     

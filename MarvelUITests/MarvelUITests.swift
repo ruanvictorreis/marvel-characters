@@ -22,7 +22,7 @@ class MarvelUITests: KIFTestCase {
             loveCharacter(withLoveStatus: false)
             backToCharacterList()
         })
-
+        
         cancelSearch()
         selectSegmentControl(at: 1)
         

@@ -2,13 +2,12 @@
 //  UIHeartButton.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 31/07/20.
-//  Copyright © 2020 Ruan Reis. All rights reserved.
+//  Created by Ruan Reis on 08/03/21.
+//  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
 import UIKit
 
-@IBDesignable
 class UIHeartButton: UIButton {
     
     // MARK: - Public Properties
@@ -30,15 +29,11 @@ class UIHeartButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
-        self.accessibilityIdentifier = "heartButtonId"
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
-        
-        self.accessibilityIdentifier = "heartButtonId"
     }
     
     // MARK: - Public Functions
@@ -51,8 +46,9 @@ class UIHeartButton: UIButton {
     
     private func setupUI() {
         setupImage()
-        self.setTitle(nil, for: .normal)
-        self.setImage(heartImage, for: .normal)
+        setTitle(nil, for: .normal)
+        setImage(heartImage, for: .normal)
+        accessibilityIdentifier = "heartButtonId"
     }
     
     private func setupImage() {

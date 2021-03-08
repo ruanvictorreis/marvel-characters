@@ -128,15 +128,6 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct viewController {
-      /// Accessibility identifier `back`.
-      static let back: String = "back"
-      /// Accessibility identifier `heart`.
-      static let heart: String = "heart"
-
-      fileprivate init() {}
-    }
-
     fileprivate init() {}
   }
 
@@ -221,12 +212,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
     /// Nib `CharacterListViewController`.
     static let characterListViewController = _R.nib._CharacterListViewController()
-    /// Nib `ViewController`.
-    static let viewController = _R.nib._ViewController()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CharacterListViewController", in: bundle)`
@@ -236,20 +225,8 @@ struct R: Rswift.Validatable {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "ViewController", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.viewController) instead")
-    static func viewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.viewController)
-    }
-    #endif
-
     static func characterListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.characterListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-
-    static func viewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.viewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     fileprivate init() {}
@@ -464,7 +441,6 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _CharacterListViewController.validate()
-      try _ViewController.validate()
     }
 
     struct _CharacterListViewController: Rswift.NibResourceType, Rswift.Validatable {
@@ -477,23 +453,6 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in nib 'CharacterListViewController', but couldn't be loaded.") }
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-      }
-
-      fileprivate init() {}
-    }
-
-    struct _ViewController: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "ViewController"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      static func validate() throws {
-        if UIKit.UIImage(named: "icon_back", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon_back' is used in nib 'ViewController', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

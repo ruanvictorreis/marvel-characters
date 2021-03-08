@@ -10,22 +10,22 @@ import UIKit
 
 class CharacterCell: UICollectionViewCell {
     
-    // MARK: - UI Components
+    // MARK: - User Interface Components
     
-    lazy private var contentCard: UICardView = {
+    private lazy var contentCard: UICardView = {
         let cardView = UICardView(frame: .zero)
         cardView.shadowOpacity = 0.6
         return cardView
     }()
     
-    lazy private var characterCard: UICardView = {
+    private lazy var characterCard: UICardView = {
         let cardView = UICardView(frame: .zero)
         cardView.clipsToBounds = true
         cardView.backgroundColor = .darkness
         return cardView
     }()
     
-    lazy private var characterName: UILabel = {
+    private lazy var characterName: UILabel = {
         let label = UILabel(frame: .zero)
         label.textColor = .white
         label.textAlignment = .center
@@ -33,20 +33,20 @@ class CharacterCell: UICollectionViewCell {
         return label
     }()
     
-    lazy private var characterImage: UIImageView = {
+    private lazy var characterImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    lazy private var loveItContainer: UICircularView = {
+    private lazy var loveItContainer: UICircularView = {
         let circularView = UICircularView(frame: .zero)
         circularView.backgroundColor = .white
         return circularView
     }()
     
-    lazy private var loveItButton: UIHeartButton = {
+    private lazy var loveItButton: UIHeartButton = {
         return UIHeartButton(frame: .zero)
     }()
     

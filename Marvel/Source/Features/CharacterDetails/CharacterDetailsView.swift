@@ -13,47 +13,47 @@ class CharacterDetailsView: UIView {
     
     // MARK: - User Interface Components
     
-    lazy private var characterThumbnail: UIImageView = {
+    private lazy var characterThumbnail: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .darkness
         return imageView
     }()
     
-    lazy private var loveItContainer: UICircularView = {
+    private lazy var loveItContainer: UICircularView = {
         let circularView = UICircularView(frame: .zero)
         circularView.backgroundColor = .white
         return circularView
     }()
     
-    lazy private var loveItButton: UIHeartButton = {
+    private lazy var loveItButton: UIHeartButton = {
         return UIHeartButton(frame: .zero)
     }()
     
-    lazy private var backButton: UIButton = {
+    private lazy var backButton: UIButton = {
         let button = UIButton(frame: .zero)
         return button
     }()
     
-    lazy private var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
         return scrollView
     }()
     
-    lazy private var scrollContent: UIView = {
+    private lazy var scrollContent: UIView = {
         let contentView = UIView(frame: .zero)
         contentView.backgroundColor = .clear
         return contentView
     }()
     
-    lazy private var detailsContent: UICardView = {
+    private lazy var detailsContent: UICardView = {
         let cardView = UICardView(frame: .zero)
         cardView.cornerRadius = 20
         cardView.backgroundColor = .systemBackground
         return cardView
     }()
     
-    lazy private var characterName: UILabel = {
+    private lazy var characterName: UILabel = {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -62,14 +62,14 @@ class CharacterDetailsView: UIView {
         return label
     }()
     
-    lazy private var characterDescription: UILabel = {
+    private lazy var characterDescription: UILabel = {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 16)
         return label
     }()
     
-    lazy private var comicsCarousel: ComicBookCarouselView = {
+    private lazy var comicsCarousel: ComicBookCarouselView = {
         let view = ComicBookCarouselView(frame: .zero)
         view.backgroundColor = .systemBackground
         return view

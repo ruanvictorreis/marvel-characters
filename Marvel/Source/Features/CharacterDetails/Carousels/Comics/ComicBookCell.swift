@@ -11,22 +11,22 @@ import SnapKit
 
 class ComicBookCell: UICollectionViewCell {
     
-    // MARK: - UI Components
+    // MARK: - User Interface Components
     
-    lazy private var contentCard: UICardView = {
+    private lazy var contentCard: UICardView = {
         let cardView = UICardView(frame: .zero)
         cardView.shadowOpacity = 0.6
         return cardView
     }()
     
-    lazy private var thumbnailCard: UICardView = {
+    private lazy var thumbnailCard: UICardView = {
         let cardView = UICardView(frame: .zero)
         cardView.clipsToBounds = true
         cardView.backgroundColor = .darkness
         return cardView
     }()
     
-    lazy private var thumbnail: UIImageView = {
+    private lazy var thumbnail: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill

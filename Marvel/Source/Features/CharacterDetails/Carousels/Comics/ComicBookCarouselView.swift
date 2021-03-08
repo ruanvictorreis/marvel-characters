@@ -11,21 +11,21 @@ import SnapKit
 
 class ComicBookCarouselView: UIView {
     
-    // MARK: - UI Components
+    // MARK: - User Interface Components
     
-    lazy private var title: UILabel = {
+    private lazy var title: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = .semiBoldSystemFont(ofSize: 20)
         return label
     }()
     
-    lazy private var loading: UIActivityIndicatorView = {
+    private lazy var loading: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(frame: .zero)
         activityIndicator.style = .large
         return activityIndicator
     }()
     
-    lazy private var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: .zero, collectionViewLayout: layout)

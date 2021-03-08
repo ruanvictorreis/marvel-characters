@@ -31,14 +31,12 @@ class CharacterDetailsView: UIView {
         return UILoveItButton(frame: .zero)
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        return button
+    private lazy var backButton: UIBackButton = {
+        return UIBackButton(frame: .zero)
     }()
     
     private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView(frame: .zero)
-        return scrollView
+        return UIScrollView(frame: .zero)
     }()
     
     private lazy var scrollContent: UIView = {
@@ -71,9 +69,7 @@ class CharacterDetailsView: UIView {
     }()
     
     private lazy var comicsCarousel: ComicBookCarousel = {
-        let view = ComicBookCarousel(frame: .zero)
-        view.backgroundColor = .systemBackground
-        return view
+        return ComicBookCarousel(frame: .zero)
     }()
     
     // MARK: - Inits
@@ -215,9 +211,6 @@ extension CharacterDetailsView: ViewCodeProtocol {
     
     func setupComponents() {
         backgroundColor = .systemBackground
-        backButton.tintColor = .lightFog
-        backButton.accessibilityIdentifier = "backButtonId"
-        backButton.setImage(R.image.icon_back(), for: .normal)
         backButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         loveItButton.addTarget(self, action: #selector(loveIt), for: .touchUpInside)
     }

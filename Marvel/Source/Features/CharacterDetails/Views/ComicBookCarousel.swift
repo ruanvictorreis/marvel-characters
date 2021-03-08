@@ -101,6 +101,7 @@ extension ComicBookCarousel: ViewCodeProtocol {
     }
     
     func setupComponents() {
+        backgroundColor = .systemBackground
         title.text = R.Localizable.comics()
         collectionView.delegate = self
         collectionView.dataSource = self

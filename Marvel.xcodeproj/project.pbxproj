@@ -12,6 +12,7 @@
 		1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */; };
 		150266DB25F69972006D8557 /* UILoveItButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266DA25F69972006D8557 /* UILoveItButton.swift */; };
 		150266E625F6A3F0006D8557 /* UIHeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266E525F6A3F0006D8557 /* UIHeartButton.swift */; };
+		150266FA25F6AF67006D8557 /* UIBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150266F925F6AF67006D8557 /* UIBackButton.swift */; };
 		15181F0224D9DB6200289D43 /* MarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0124D9DB6200289D43 /* MarvelUITests.swift */; };
 		15181F0A24D9DCFD00289D43 /* KIF+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0924D9DCFD00289D43 /* KIF+Extensions.swift */; };
 		15181F0C24D9FE0600289D43 /* UIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15181F0B24D9FE0600289D43 /* UIElements.swift */; };
@@ -114,6 +115,7 @@
 		1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHTTPMethod.swift; sourceTree = "<group>"; };
 		150266DA25F69972006D8557 /* UILoveItButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILoveItButton.swift; sourceTree = "<group>"; };
 		150266E525F6A3F0006D8557 /* UIHeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHeartButton.swift; sourceTree = "<group>"; };
+		150266F925F6AF67006D8557 /* UIBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBackButton.swift; sourceTree = "<group>"; };
 		15181EFF24D9DB6200289D43 /* MarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15181F0124D9DB6200289D43 /* MarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUITests.swift; sourceTree = "<group>"; };
 		15181F0324D9DB6200289D43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 		155B773324D22408005DECC3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				150266F925F6AF67006D8557 /* UIBackButton.swift */,
 				155B773424D2245B005DECC3 /* UICardView.swift */,
 				157A2E1024D45E2700133F79 /* UICircularView.swift */,
 				150266E525F6A3F0006D8557 /* UIHeartButton.swift */,
@@ -991,6 +994,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				150266FA25F6AF67006D8557 /* UIBackButton.swift in Sources */,
 				1500B73125CF8EB80031A7B2 /* MarvelError.swift in Sources */,
 				15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */,
 				1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */,

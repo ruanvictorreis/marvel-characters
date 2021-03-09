@@ -19,7 +19,7 @@ class UILoveItButton: UIView {
     }()
     
     private lazy var heartButton: UIHeartButton = {
-        let button = UIHeartButton()
+        let button = UIHeartButton(frame: .zero)
         return button
     }()
     

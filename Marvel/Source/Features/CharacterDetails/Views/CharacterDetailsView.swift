@@ -197,9 +197,8 @@ extension CharacterDetailsView: ViewCodeProtocol {
         }
         
         backButton.snp.makeConstraints { make in
-            make.width.equalTo(45)
-            make.height.equalTo(55)
-            make.top.left.equalTo(safeAreaLayoutGuide)
+            make.width.height.equalTo(35)
+            make.top.left.equalTo(safeAreaLayoutGuide).offset(8)
         }
         
         loveItButton.snp.makeConstraints { make in

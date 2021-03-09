@@ -7,8 +7,23 @@
 //
 
 import UIKit
+import SnapKit
 
-class UIBackButton: UIButton {
+class UIBackButton: UIView {
+    
+    // MARK: - User Interface Components
+    
+    private lazy var contentView: UICircularView = {
+        let view = UICircularView(frame: .zero)
+        view.backgroundColor = .night
+        return view
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.tintColor = .lightFog
+        return button
+    }()
     
     // MARK: - Inits
     
@@ -22,11 +37,39 @@ class UIBackButton: UIButton {
         setupUI()
     }
     
-    // MARK: - Private Properties
+    // MARK: - Public Properties
     
-    private func setupUI() {
-        self.tintColor = .lightFog
-        self.accessibilityIdentifier = "backButtonId"
-        self.setImage(R.image.icon_back(), for: .normal)
+    func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        backButton.addTarget(target, action: action, for: controlEvents)
+    }
+}
+
+// MARK: - ViewCodeProtocol Extension
+
+extension UIBackButton: ViewCodeProtocol {
+    
+    func setupSubviews() {
+        addSubview(contentView)
+        contentView.addSubview(backButton)
+    }
+    
+    func setupConstraints() {
+        contentView.snp.makeConstraints { make in
+            make.top.left.equalToSuperview()
+            make.right.bottom.equalToSuperview()
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().offset(8)
+            make.right.bottom.equalToSuperview().inset(8)
+        }
+    }
+    
+    func setupComponents() {
+        clipsToBounds = false
+        backgroundColor = .clear
+        
+        backButton.accessibilityIdentifier = "backButtonId"
+        backButton.setImage(R.image.icon_back(), for: .normal)
     }
 }

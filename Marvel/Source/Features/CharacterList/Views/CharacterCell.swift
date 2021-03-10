@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol CharacterCellDelegate: AnyObject {
-    
-    func setFavorite(_ cell: UICollectionViewCell, value: Bool)
-}
-
 class CharacterCell: UICollectionViewCell {
     
     // MARK: - User Interface Components
@@ -32,8 +27,11 @@ class CharacterCell: UICollectionViewCell {
     
     private lazy var characterName: UILabel = {
         let label = UILabel(frame: .zero)
+        label.numberOfLines = 0
         label.textColor = .white
         label.textAlignment = .center
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()

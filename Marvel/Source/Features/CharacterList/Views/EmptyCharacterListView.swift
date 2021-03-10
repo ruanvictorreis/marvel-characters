@@ -1,5 +1,5 @@
 //
-//  UIEmptyCharacterList.swift
+//  EmptyCharacterListView.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 09/03/21.
@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class UIEmptyCharacterList: UIView {
+class EmptyCharacterListView: UIView {
     
     // MARK: - User Interface Components
     
@@ -22,14 +22,16 @@ class UIEmptyCharacterList: UIView {
     
     private lazy var title: UILabel = {
         let label = UILabel(frame: .zero)
+        label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = .semiBoldSystemFont(ofSize: 22)
+        label.font = .semiBoldSystemFont(ofSize: 20)
         label.text = R.Localizable.noResultFound()
         return label
     }()
     
     private lazy var subtitle: UILabel = {
         let label = UILabel(frame: .zero)
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18)
         label.text = R.Localizable.thanosKillEveryone()
@@ -51,7 +53,7 @@ class UIEmptyCharacterList: UIView {
 
 // MARK: - ViewCodeProtocol Extension
 
-extension UIEmptyCharacterList: ViewCodeProtocol {
+extension EmptyCharacterListView: ViewCodeProtocol {
     
     func setupSubviews() {
         addSubview(logo)
@@ -67,14 +69,15 @@ extension UIEmptyCharacterList: ViewCodeProtocol {
         }
         
         title.snp.makeConstraints { make in
-            make.centerX.equalTo(logo)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(16)
             make.top.equalTo(logo.snp.bottom).offset(8)
         }
         
         subtitle.snp.makeConstraints { make in
-            make.centerX.equalTo(logo)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(16)
             make.top.equalTo(title.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(8)
         }
     }
 }

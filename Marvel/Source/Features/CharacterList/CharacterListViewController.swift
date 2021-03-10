@@ -119,20 +119,6 @@ class CharacterListViewController: UIViewControllerUtilities {
     }
 }
 
-// MARK: - CharacterListViewDelegate Extension
-
-extension CharacterListViewController: CharacterListViewDelegate {
-    
-    func fetchCharacterNextPage() {
-        interactor.fetchCharacterNextPage()
-    }
-    
-    func selectCharacter(at index: Int) {
-        interactor.select(at: index)
-        router.proceedToCharacterDetails()
-    }
-}
-
 // MARK: - CharacterListViewControllerProtocol Extension
 
 extension CharacterListViewController: CharacterListViewControllerProtocol {
@@ -171,6 +157,20 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         hideLoading()
         characterListView.setCollectionHidden(characterList.isEmpty)
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
+    }
+}
+
+// MARK: - CharacterListViewDelegate Extension
+
+extension CharacterListViewController: CharacterListViewDelegate {
+    
+    func fetchCharacterNextPage() {
+        interactor.fetchCharacterNextPage()
+    }
+    
+    func selectCharacter(at index: Int) {
+        interactor.select(at: index)
+        router.proceedToCharacterDetails()
     }
 }
 

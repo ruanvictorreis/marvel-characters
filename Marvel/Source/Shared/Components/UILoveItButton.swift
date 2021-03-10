@@ -73,8 +73,12 @@ extension UILoveItButton: ViewCodeProtocol {
         }
         
         heartButton.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(4)
-            make.bottom.right.equalToSuperview().inset(4)
+            make.top.left.equalToSuperview()
+            make.bottom.right.equalToSuperview()
         }
+    }
+    
+    func setupComponents() {
+        heartButton.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
 }

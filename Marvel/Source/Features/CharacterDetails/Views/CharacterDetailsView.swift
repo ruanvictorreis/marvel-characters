@@ -9,13 +9,6 @@
 import UIKit
 import SnapKit
 
-protocol CharacterDetailsViewDelegate: AnyObject {
-    
-    func close()
-    
-    func loveIt(_ status: Bool)
-}
-
 class CharacterDetailsView: UIView {
     
     // MARK: - User Interface Components

@@ -9,21 +9,12 @@
 import UIKit
 import SnapKit
 
-protocol CharacterListViewDelegate: AnyObject {
-    
-    var characterList: [CharacterViewModel] { get }
-    
-    func fetchCharacterNextPage()
-    
-    func selectCharacter(at index: Int)
-}
-
 class CharacterListView: UIView {
     
     // MARK: - User Interface Components
     
-    private lazy var emptyListView: UIEmptyCharacterList = {
-        let view = UIEmptyCharacterList(frame: .zero)
+    private lazy var emptyListView: EmptyCharacterListView = {
+        let view = EmptyCharacterListView(frame: .zero)
         view.backgroundColor = .clear
         
         return view
@@ -45,7 +36,7 @@ class CharacterListView: UIView {
     
     // MARK: - Public Properties
     
-    weak var delegate: CharacterListViewDelegate?
+    weak var delegate: (CharacterListViewDelegate & CharacterCellDelegate)?
     
     // MARK: - Private Properties
     
@@ -76,8 +67,8 @@ class CharacterListView: UIView {
     }
     
     func setCollectionHidden(_ hidden: Bool) {
-        collectionView.isHidden = hidden
         emptyListView.isHidden = !hidden
+        collectionView.isHidden = hidden
     }
     
     func indexPath(for cell: UICollectionViewCell) -> IndexPath? {
@@ -149,7 +140,7 @@ extension CharacterListView: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         
         cell.setup(characterList[indexPath.item])
-        // cell.delegate = self
+        cell.delegate = delegate
         
         return cell
     }

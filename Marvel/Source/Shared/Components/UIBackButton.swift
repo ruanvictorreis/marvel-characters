@@ -60,8 +60,8 @@ extension UIBackButton: ViewCodeProtocol {
         }
         
         backButton.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(8)
-            make.right.bottom.equalToSuperview().inset(8)
+            make.top.left.equalToSuperview()
+            make.right.bottom.equalToSuperview()
         }
     }
     
@@ -71,5 +71,6 @@ extension UIBackButton: ViewCodeProtocol {
         
         backButton.accessibilityIdentifier = "backButtonId"
         backButton.setImage(R.image.icon_back(), for: .normal)
+        backButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }

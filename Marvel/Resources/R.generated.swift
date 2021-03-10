@@ -119,18 +119,6 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.id` struct is generated, and contains static references to accessibility identifiers.
-  struct id {
-    struct characterListViewController {
-      /// Accessibility identifier `characterCollection`.
-      static let characterCollection: String = "characterCollection"
-
-      fileprivate init() {}
-    }
-
-    fileprivate init() {}
-  }
-
   /// This `R.image` struct is generated, and contains static references to 5 images.
   struct image {
     /// Image `heart_filled`.
@@ -212,29 +200,9 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
-  struct nib {
-    /// Nib `CharacterListViewController`.
-    static let characterListViewController = _R.nib._CharacterListViewController()
-
-    #if os(iOS) || os(tvOS)
-    /// `UINib(name: "CharacterListViewController", in: bundle)`
-    @available(*, deprecated, message: "Use UINib(resource: R.nib.characterListViewController) instead")
-    static func characterListViewController(_: Void = ()) -> UIKit.UINib {
-      return UIKit.UINib(resource: R.nib.characterListViewController)
-    }
-    #endif
-
-    static func characterListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-      return R.nib.characterListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-    }
-
-    fileprivate init() {}
-  }
-
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 9 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
     struct localizable {
       /// en translation: Cancel
       ///
@@ -252,6 +220,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let favorites = Rswift.StringResource(key: "favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: No results found
+      ///
+      /// Locales: en, pt-BR
+      static let noResultFound = Rswift.StringResource(key: "noResultFound", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
       /// en translation: Oops, an error has occurred!
       ///
       /// Locales: en, pt-BR
@@ -272,6 +244,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, pt-BR
       static let networkError = Rswift.StringResource(key: "networkError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
+      /// en translation: Thanos probably killed everyone
+      ///
+      /// Locales: en, pt-BR
+      static let thanosKillEveryone = Rswift.StringResource(key: "thanosKillEveryone", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "pt-BR"], comment: nil)
 
       /// en translation: Cancel
       ///
@@ -331,6 +307,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("favorites", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No results found
+      ///
+      /// Locales: en, pt-BR
+      static func noResultFound(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("noResultFound", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "noResultFound"
+        }
+
+        return NSLocalizedString("noResultFound", bundle: bundle, comment: "")
       }
 
       /// en translation: Oops, an error has occurred!
@@ -408,6 +399,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("networkError", bundle: bundle, comment: "")
       }
 
+      /// en translation: Thanos probably killed everyone
+      ///
+      /// Locales: en, pt-BR
+      static func thanosKillEveryone(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("thanosKillEveryone", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "thanosKillEveryone"
+        }
+
+        return NSLocalizedString("thanosKillEveryone", bundle: bundle, comment: "")
+      }
+
       fileprivate init() {}
     }
 
@@ -430,39 +436,9 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     #if os(iOS) || os(tvOS)
-    try nib.validate()
-    #endif
-    #if os(iOS) || os(tvOS)
     try storyboard.validate()
     #endif
   }
-
-  #if os(iOS) || os(tvOS)
-  struct nib: Rswift.Validatable {
-    static func validate() throws {
-      try _CharacterListViewController.validate()
-    }
-
-    struct _CharacterListViewController: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "CharacterListViewController"
-
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
-        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
-      }
-
-      static func validate() throws {
-        if UIKit.UIImage(named: "thanos", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'thanos' is used in nib 'CharacterListViewController', but couldn't be loaded.") }
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-      }
-
-      fileprivate init() {}
-    }
-
-    fileprivate init() {}
-  }
-  #endif
 
   #if os(iOS) || os(tvOS)
   struct storyboard: Rswift.Validatable {

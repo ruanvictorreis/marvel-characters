@@ -21,25 +21,25 @@ protocol CharacterDetailsViewControllerProtocol: AnyObject {
 
 class CharacterDetailsViewController: UIViewController {
     
-    // MARK: - Private Properties
-    
-    private let characterDetailsView = CharacterDetailsView()
-    
     // MARK: - VIP Properties
     
     var interactor: CharacterDetailsInteractorProtocol!
     
     var router: CharacterDetailsRouterProtocol!
     
+    // MARK: - Private Properties
+    
+    private let characterDetailsView = CharacterDetailsView()
+    
     // MARK: - View Lifecycle
     
     override func loadView() {
         self.view = characterDetailsView
-        characterDetailsView.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         interactor.fetchCharacterDetails()
     }
     
@@ -52,6 +52,10 @@ class CharacterDetailsViewController: UIViewController {
     
     private func setupNavigation() {
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    private func setupUI() {
+        characterDetailsView.delegate = self
     }
 }
 

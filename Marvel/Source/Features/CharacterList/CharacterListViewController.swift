@@ -22,10 +22,6 @@ protocol CharacterListViewControllerProtocol: AnyObject {
 
 class CharacterListViewController: UIViewControllerUtilities {
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet private var collectionView: UICollectionView!
-    
     // MARK: - VIP Properties
     
     var interactor: CharacterListInteractorProtocol!
@@ -34,19 +30,15 @@ class CharacterListViewController: UIViewControllerUtilities {
     
     // MARK: - Private Properties
     
+    private let characterListView = CharacterListView()
+    
     private var characterList: [CharacterViewModel] = []
     
-    // MARK: - Inits
-    
-    init() {
-        super.init(nibName: "CharacterListViewController", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     // MARK: - View Lifecycle
+    
+    override func loadView() {
+        self.view = characterListView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +80,7 @@ class CharacterListViewController: UIViewControllerUtilities {
     private func setupUI() {
         setupSearchBar()
         setupSegmentedControl()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        CharacterCell.registerOn(collectionView)
+        characterListView.registerCollection(self)
     }
     
     private func setupSearchBar() {
@@ -123,7 +113,7 @@ class CharacterListViewController: UIViewControllerUtilities {
         navigationItem.title = section.title
         interactor.section = section
         fetchCharacterList()
-        collectionView.setContentOffset(.zero, animated: true)
+        characterListView.scrollUp()
     }
 }
 
@@ -141,32 +131,29 @@ extension CharacterListViewController: CharacterListViewControllerProtocol {
         }
         
         characterList.append(contentsOf: characters)
-        
-        collectionView.performBatchUpdates({
-            collectionView.insertItems(at: indexPaths)
-        })
+        characterListView.insertItems(at: indexPaths)
         
         hideLoading()
-        collectionView.isHidden = characterList.isEmpty
+        characterListView.setCollectionHidden(characterList.isEmpty)
     }
     
     func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool) {
         characterList = viewModel.characters
         
         if animated {
-            collectionView.reloadData()
+            characterListView.reload()
         }
     }
     
     func removeCharacter(at indexPath: IndexPath) {
         characterList.remove(at: indexPath.item)
-        collectionView.deleteItems(at: [indexPath])
-        collectionView.isHidden = characterList.isEmpty
+        characterListView.deleteItems(at: [indexPath])
+        characterListView.setCollectionHidden(characterList.isEmpty)
     }
     
     func showCharacterListError(_ errorMessage: String) {
         hideLoading()
-        collectionView.isHidden = characterList.isEmpty
+        characterListView.setCollectionHidden(characterList.isEmpty)
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }
@@ -242,7 +229,7 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
 extension CharacterListViewController: CharacterCellDelegate {
     
     func setFavorite(_ cell: UICollectionViewCell, value: Bool) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        guard let indexPath = characterListView.indexPath(for: cell) else { return }
         interactor.setFavorite(at: indexPath.item, value: value)
     }
 }

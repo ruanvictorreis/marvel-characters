@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CharacterCellDelegate: AnyObject {
+    
+    func setFavorite(_ cell: UICollectionViewCell, value: Bool)
+}
+
 class CharacterCell: UICollectionViewCell {
     
     // MARK: - User Interface Components

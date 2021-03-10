@@ -27,12 +27,14 @@ class ComicBookCarousel: UIView {
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
         let collectionView = UICollectionView(
             frame: .zero, collectionViewLayout: layout)
         
-        layout.scrollDirection = .horizontal
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .clear
+        
         return collectionView
     }()
     

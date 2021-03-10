@@ -11,19 +11,19 @@ import Foundation
 
 struct UIElements {
     
-    static let back = "back"
+    static let back = "backButtonId"
     
-    static let heart = "heart"
+    static let heart = "heartButtonId"
     
     static let collection = "characterCollection"
-    
-    static let noCharacters = "no results found"
     
     static let segmentedControl = "segmentedControl"
     
     static let search = R.Localizable.search()
     
     static let cancel = R.Localizable.cancel()
+    
+    static let noCharacters = R.Localizable.noResultFound()
     
     static let firstIndexPath = IndexPath(row: 0, section: 0)
     

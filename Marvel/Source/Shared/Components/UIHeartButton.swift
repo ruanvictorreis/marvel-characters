@@ -2,18 +2,17 @@
 //  UIHeartButton.swift
 //  Marvel
 //
-//  Created by Ruan Reis on 31/07/20.
-//  Copyright © 2020 Ruan Reis. All rights reserved.
+//  Created by Ruan Reis on 08/03/21.
+//  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
 import UIKit
 
-@IBDesignable
 class UIHeartButton: UIButton {
     
     // MARK: - Public Properties
     
-    @IBInspectable var isFilled: Bool = false {
+    var isFilled: Bool = false {
         didSet {
             animate()
         }
@@ -25,20 +24,15 @@ class UIHeartButton: UIButton {
     
     private var heartImage: UIImage? = R.image.heart_outline()
     
-    // MARK: - View Lifecycle
+    // MARK: - Inits
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
     }
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setupUI()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setupUI()
     }
     
@@ -52,8 +46,9 @@ class UIHeartButton: UIButton {
     
     private func setupUI() {
         setupImage()
-        self.setTitle(nil, for: .normal)
-        self.setImage(heartImage, for: .normal)
+        setTitle(nil, for: .normal)
+        setImage(heartImage, for: .normal)
+        accessibilityIdentifier = "heartButtonId"
     }
     
     private func setupImage() {
@@ -80,6 +75,6 @@ class UIHeartButton: UIButton {
                 UIView.animate(withDuration: 0.1, animations: {
                     self?.transform = CGAffineTransform.identity
                 })
-        })
+            })
     }
 }

@@ -34,7 +34,6 @@ class ComicBookCarousel: UIView {
         
         collectionView.clipsToBounds = false
         collectionView.backgroundColor = .clear
-        
         return collectionView
     }()
     

@@ -102,11 +102,15 @@ class CharacterListViewController: UIViewControllerUtilities {
             R.Localizable.characters(),
             R.Localizable.favorites()]
         
-        let section = interactor.section
+        let action = #selector(didChangeControlSection)
         
-        setupSegmentedControl(
-            titles: titles, section: section.rawValue,
-            action: #selector(didChangeControlSection))
+        let segmentedControl = SegmentedControlBuilder()
+            .set(titles: titles)
+            .set(width: 300, height: 40)
+            .set(self, action: action)
+            .build()
+        
+        self.navigationItem.titleView = segmentedControl
     }
     
     @objc

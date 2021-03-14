@@ -16,7 +16,6 @@ class CharacterListView: UIView {
     private lazy var emptyListView: EmptyCharacterListView = {
         let view = EmptyCharacterListView(frame: .zero)
         view.backgroundColor = .clear
-        
         return view
     }()
     
@@ -30,7 +29,6 @@ class CharacterListView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .systemBackground
-        
         return collectionView
     }()
     

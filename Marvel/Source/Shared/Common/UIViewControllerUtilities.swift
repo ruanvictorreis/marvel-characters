@@ -25,33 +25,6 @@ class UIViewControllerUtilities: UIViewController {
     
     // MARK: - Public Functions
     
-    func setupSegmentedControl(titles: [String], section: Int, action: Selector) {
-        let normalFont: UIFont = .systemFont(ofSize: 14.0, weight: .medium)
-        let selectedFont: UIFont = .systemFont(ofSize: 14.0, weight: .bold)
-        
-        let segments = LabelSegment.segments(
-            withTitles: titles,
-            normalFont: normalFont,
-            normalTextColor: .darkGray,
-            selectedFont: selectedFont,
-            selectedTextColor: .white)
-        
-        let options: [BetterSegmentedControlOption] = [
-            .backgroundColor(.clear),
-            .indicatorViewBackgroundColor(.darkness),
-            .cornerRadius(CGFloat(20.0))]
-        
-        let segmentedControl = BetterSegmentedControl(
-            frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 40.0),
-            segments: segments,
-            index: section,
-            options: options)
-        
-        segmentedControl.accessibilityIdentifier = "segmentedControl"
-        segmentedControl.addTarget(self, action: action, for: .valueChanged)
-        self.navigationItem.titleView = segmentedControl
-    }
-    
     func setupSearchBar(placeholder: String, onSearch: @escaping SearchCompletation, onCancel: CancelSearchCompletation? = nil) {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.delegate = self

@@ -34,8 +34,6 @@ Saiba mais sobre o Homem de Ferro, Thor, Capitão América e outros heróis da M
 - BetterSegmentedControl
 - R.swift
 - RealmSwift
-- RxCocoa
-- RxSwift
 - SwiftLint
 - Quick & Nimble
 - KIF (UITests)

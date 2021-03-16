@@ -51,6 +51,8 @@
 		157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1E24D4A84600133F79 /* RealmDatabase.swift */; };
 		1581CE6025F82BEA00608782 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1581CE5F25F82BEA00608782 /* CharacterListView.swift */; };
 		1581CE6525F84C7300608782 /* EmptyCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1581CE6425F84C7300608782 /* EmptyCharacterListView.swift */; };
+		1583F2ED260022EA0038CE81 /* SearchWithDebounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */; };
+		1583F31026002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */; };
 		159E393224D0EBE000744AB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 159E393424D0EBE000744AB4 /* Localizable.strings */; };
 		159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E393724D0ECDF00744AB4 /* R+Extensions.swift */; };
 		159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */; };
@@ -90,7 +92,6 @@
 		15E0224025D2210D00EA8350 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E0223F25D2210D00EA8350 /* FileReader.swift */; };
 		15ED297624DB72A100D8C494 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15ED297524DB72A100D8C494 /* Keys.plist */; };
 		15ED297824DB81FB00D8C494 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */; };
-		15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */; };
 		18A08301C797D43FA7241BCF /* Pods_MarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E303A40926DEAA436345B82 /* Pods_MarvelTests.framework */; };
 		8091B6428B5AC282A134EC9A /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A600C631507FD81141728CE3 /* Pods_Marvel.framework */; };
 		94A787FB8D6670A83D9E9193 /* Pods_MarvelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9926CC9012F9AF6DA582D846 /* Pods_MarvelUITests.framework */; };
@@ -160,6 +161,8 @@
 		157A2E1E24D4A84600133F79 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		1581CE5F25F82BEA00608782 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		1581CE6425F84C7300608782 /* EmptyCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCharacterListView.swift; sourceTree = "<group>"; };
+		1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWithDebounceController.swift; sourceTree = "<group>"; };
+		1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWithDebounceControllerDelegate.swift; sourceTree = "<group>"; };
 		159E393324D0EBE000744AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		159E393524D0EBF500744AB4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159E393724D0ECDF00744AB4 /* R+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R+Extensions.swift"; sourceTree = "<group>"; };
@@ -204,7 +207,6 @@
 		15E0223F25D2210D00EA8350 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		15ED297524DB72A100D8C494 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		15ED297724DB81FB00D8C494 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
-		15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerUtilities.swift; sourceTree = "<group>"; };
 		22BA36CF1FB6DF0E228ECFD5 /* Pods-Marvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.debug.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.debug.xcconfig"; sourceTree = "<group>"; };
 		4E303A40926DEAA436345B82 /* Pods_MarvelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EC19B14138A136F5AED225B /* Pods-MarvelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelTests/Pods-MarvelTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -421,6 +423,15 @@
 				157A2E1424D4A4E200133F79 /* ThumbnailRealm.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1583F31426002D1F0038CE81 /* SearchWithDebounce */ = {
+			isa = PBXGroup;
+			children = (
+				1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */,
+				1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */,
+			);
+			path = SearchWithDebounce;
 			sourceTree = "<group>";
 		};
 		158C064524D0E96400E6A81A /* SupportFiles */ = {
@@ -698,7 +709,7 @@
 		15FB0EBE24D6053800123270 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				15FB0EBF24D6054B00123270 /* UIViewControllerUtilities.swift */,
+				1583F31426002D1F0038CE81 /* SearchWithDebounce */,
 				159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */,
 			);
 			path = Common;
@@ -1033,13 +1044,13 @@
 				1500B73125CF8EB80031A7B2 /* MarvelError.swift in Sources */,
 				15B6E9FF24D0D640005F2CD2 /* AppDelegate.swift in Sources */,
 				1500B74425CF95980031A7B2 /* NetworkHTTPMethod.swift in Sources */,
-				15FB0EC024D6054B00123270 /* UIViewControllerUtilities.swift in Sources */,
 				1581CE6525F84C7300608782 /* EmptyCharacterListView.swift in Sources */,
 				15C86C5E25F47A140030022E /* CharacterDetailsView.swift in Sources */,
 				153DB57E25F908DF00112D3B /* CharacterCellDelegate.swift in Sources */,
 				15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */,
 				150266E625F6A3F0006D8557 /* UIHeartButton.swift in Sources */,
 				15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */,
+				1583F2ED260022EA0038CE81 /* SearchWithDebounceController.swift in Sources */,
 				157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */,
 				155B772924D1D83C005DECC3 /* CharacterListRouter.swift in Sources */,
 				156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */,
@@ -1078,6 +1089,7 @@
 				1518F10524D0F99C0020593B /* NetworkManager.swift in Sources */,
 				155D859D25D7688B00F861F7 /* RealmObject.swift in Sources */,
 				159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */,
+				1583F31026002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift in Sources */,
 				155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */,
 				155B772324D1C314005DECC3 /* Thumbnail.swift in Sources */,
 				155B773524D2245B005DECC3 /* UICardView.swift in Sources */,

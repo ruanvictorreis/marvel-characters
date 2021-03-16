@@ -20,7 +20,7 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool)
 }
 
-class CharacterListViewController: UIViewControllerUtilities {
+class CharacterListViewController: UIViewController {
     
     // MARK: - VIP Properties
     
@@ -86,15 +86,11 @@ class CharacterListViewController: UIViewControllerUtilities {
     }
     
     private func setupSearchBar() {
-        setupSearchBar(
-            placeholder: R.Localizable.search(),
-            onSearch: { [weak self] searchText in
-                self?.searchForCharacter(searchText)
-            },
-            onCancel: { [weak self] in
-                self?.fetchCharacterList()
-            }
-        )
+        let searchBar = SearchWithDebounceController()
+        searchBar.searchDelegate = self
+        
+        navigationItem.searchController = searchBar
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setupSegmentedControl() {
@@ -175,6 +171,17 @@ extension CharacterListViewController: CharacterListViewDelegate {
     func selectCharacter(at index: Int) {
         interactor.select(at: index)
         router.proceedToCharacterDetails()
+    }
+}
+
+extension CharacterListViewController: SearchWithDebounceControllerDelegate {
+    
+    func onSearch(_ searchText: String) {
+        searchForCharacter(searchText)
+    }
+    
+    func onCancel() {
+        fetchCharacterList()
     }
 }
 

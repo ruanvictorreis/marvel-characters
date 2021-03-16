@@ -14,6 +14,10 @@ class DelayedSearchController: UISearchController {
     
     private var searchTask: DispatchWorkItem?
     
+    // MARK: - Public Properties
+    
+    weak var delayedSearchDelegate: DelayedSearchControllerDelegate?
+    
     // MARK: - Inits
     
     init() {
@@ -45,7 +49,8 @@ extension DelayedSearchController: UISearchBarDelegate {
         
         let newSearchTask = DispatchWorkItem { [weak self] in
             DispatchQueue.main.async {
-                self?.delegate?.didFinishSearch(searchText)
+                self?.delayedSearchDelegate?
+                    .didFinishSearch(searchText)
             }
         }
         
@@ -57,6 +62,6 @@ extension DelayedSearchController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        delegate?.didCancelSearch()
+        delayedSearchDelegate?.didCancelSearch()
     }
 }

@@ -87,7 +87,7 @@ class CharacterListViewController: UIViewController {
     
     private func setupSearchBar() {
         let delayedSearch = DelayedSearchController()
-        delayedSearch.delegate = self
+        delayedSearch.delayedSearchDelegate = self
         
         navigationItem.searchController = delayedSearch
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -174,9 +174,9 @@ extension CharacterListViewController: CharacterListViewDelegate {
     }
 }
 
-// MARK: - UISearchControllerDelegate Extension
+// MARK: - DelayedSearchControllerDelegate Extension
 
-extension CharacterListViewController: UISearchControllerDelegate {
+extension CharacterListViewController: DelayedSearchControllerDelegate {
     
     func didFinishSearch(_ searchText: String) {
         searchForCharacter(searchText)

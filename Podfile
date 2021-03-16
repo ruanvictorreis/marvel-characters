@@ -10,8 +10,6 @@ target 'Marvel' do
   pod 'Kingfisher', '5.14.1'
   pod 'R.swift', '~> 5.2.2'
   pod 'RealmSwift', '~> 5.3.2'
-  pod 'RxSwift', '~> 5.1.1'
-  pod 'RxCocoa', '~> 5.1.1'
   pod 'SnapKit', '~> 5.0.0'
   pod 'SwiftLint', '~> 0.39.2'
   

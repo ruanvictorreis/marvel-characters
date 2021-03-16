@@ -20,7 +20,7 @@ protocol CharacterListViewControllerProtocol: AnyObject {
     func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool)
 }
 
-class CharacterListViewController: UIViewControllerUtilities {
+class CharacterListViewController: UIViewController {
     
     // MARK: - VIP Properties
     
@@ -86,15 +86,11 @@ class CharacterListViewController: UIViewControllerUtilities {
     }
     
     private func setupSearchBar() {
-        setupSearchBar(
-            placeholder: R.Localizable.search(),
-            onSearch: { [weak self] searchText in
-                self?.searchForCharacter(searchText)
-            },
-            onCancel: { [weak self] in
-                self?.fetchCharacterList()
-            }
-        )
+        let delayedSearch = DelayedSearchController()
+        delayedSearch.delayedSearchDelegate = self
+        
+        navigationItem.searchController = delayedSearch
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func setupSegmentedControl() {
@@ -102,11 +98,15 @@ class CharacterListViewController: UIViewControllerUtilities {
             R.Localizable.characters(),
             R.Localizable.favorites()]
         
-        let section = interactor.section
+        let action = #selector(didChangeControlSection)
         
-        setupSegmentedControl(
-            titles: titles, section: section.rawValue,
-            action: #selector(didChangeControlSection))
+        let segmentedControl = SegmentedControlBuilder()
+            .set(titles: titles)
+            .set(width: 300, height: 40)
+            .set(self, action: action)
+            .build()
+        
+        self.navigationItem.titleView = segmentedControl
     }
     
     @objc
@@ -171,6 +171,19 @@ extension CharacterListViewController: CharacterListViewDelegate {
     func selectCharacter(at index: Int) {
         interactor.select(at: index)
         router.proceedToCharacterDetails()
+    }
+}
+
+// MARK: - DelayedSearchControllerDelegate Extension
+
+extension CharacterListViewController: DelayedSearchControllerDelegate {
+    
+    func didFinishSearch(_ searchText: String) {
+        searchForCharacter(searchText)
+    }
+    
+    func didCancelSearch() {
+        fetchCharacterList()
     }
 }
 

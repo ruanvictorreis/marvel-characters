@@ -360,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				154437BB25FE7119002733A2 /* Builders */,
+				1583F31426002D1F0038CE81 /* DelayedSearch */,
 				150266F925F6AF67006D8557 /* UIBackButton.swift */,
 				155B773424D2245B005DECC3 /* UICardView.swift */,
 				157A2E1024D45E2700133F79 /* UICircularView.swift */,
@@ -709,7 +710,6 @@
 		15FB0EBE24D6053800123270 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1583F31426002D1F0038CE81 /* DelayedSearch */,
 				159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */,
 			);
 			path = Common;

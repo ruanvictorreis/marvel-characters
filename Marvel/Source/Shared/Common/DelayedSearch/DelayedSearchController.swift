@@ -1,5 +1,5 @@
 //
-//  SearchWithDebounceController.swift
+//  DelayedSearchController.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 15/03/21.
@@ -8,15 +8,11 @@
 
 import UIKit
 
-class SearchWithDebounceController: UISearchController {
+class DelayedSearchController: UISearchController {
     
     // MARK: - Private Properties
     
     private var searchTask: DispatchWorkItem?
-    
-    // MARK: - Public Properties
-    
-    weak var searchDelegate: SearchWithDebounceControllerDelegate?
     
     // MARK: - Inits
     
@@ -40,7 +36,7 @@ class SearchWithDebounceController: UISearchController {
     }
 }
 
-extension SearchWithDebounceController: UISearchBarDelegate {
+extension DelayedSearchController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard searchText.isNotEmpty else { return }
@@ -49,15 +45,18 @@ extension SearchWithDebounceController: UISearchBarDelegate {
         
         let newSearchTask = DispatchWorkItem { [weak self] in
             DispatchQueue.main.async {
-                self?.searchDelegate?.onSearch(searchText)
+                self?.delegate?.didFinishSearch(searchText)
             }
         }
         
-        self.searchTask = newSearchTask
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: newSearchTask)
+        searchTask = newSearchTask
+        
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + 0.5,
+            execute: newSearchTask)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchDelegate?.onCancel()
+        delegate?.didCancelSearch()
     }
 }

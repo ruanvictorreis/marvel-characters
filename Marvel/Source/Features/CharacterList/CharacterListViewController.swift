@@ -86,10 +86,10 @@ class CharacterListViewController: UIViewController {
     }
     
     private func setupSearchBar() {
-        let searchBar = SearchWithDebounceController()
-        searchBar.searchDelegate = self
+        let delayedSearch = DelayedSearchController()
+        delayedSearch.delegate = self
         
-        navigationItem.searchController = searchBar
+        navigationItem.searchController = delayedSearch
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
@@ -174,13 +174,15 @@ extension CharacterListViewController: CharacterListViewDelegate {
     }
 }
 
-extension CharacterListViewController: SearchWithDebounceControllerDelegate {
+// MARK: - UISearchControllerDelegate Extension
+
+extension CharacterListViewController: UISearchControllerDelegate {
     
-    func onSearch(_ searchText: String) {
+    func didFinishSearch(_ searchText: String) {
         searchForCharacter(searchText)
     }
     
-    func onCancel() {
+    func didCancelSearch() {
         fetchCharacterList()
     }
 }

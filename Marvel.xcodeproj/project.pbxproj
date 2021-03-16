@@ -51,8 +51,8 @@
 		157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A2E1E24D4A84600133F79 /* RealmDatabase.swift */; };
 		1581CE6025F82BEA00608782 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1581CE5F25F82BEA00608782 /* CharacterListView.swift */; };
 		1581CE6525F84C7300608782 /* EmptyCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1581CE6425F84C7300608782 /* EmptyCharacterListView.swift */; };
-		1583F2ED260022EA0038CE81 /* SearchWithDebounceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */; };
-		1583F31026002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */; };
+		1583F2ED260022EA0038CE81 /* DelayedSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F2EC260022EA0038CE81 /* DelayedSearchController.swift */; };
+		1583F31026002D0A0038CE81 /* UISearchControllerDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1583F30F26002D0A0038CE81 /* UISearchControllerDelegate+Extensions.swift */; };
 		159E393224D0EBE000744AB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 159E393424D0EBE000744AB4 /* Localizable.strings */; };
 		159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E393724D0ECDF00744AB4 /* R+Extensions.swift */; };
 		159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */; };
@@ -161,8 +161,8 @@
 		157A2E1E24D4A84600133F79 /* RealmDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabase.swift; sourceTree = "<group>"; };
 		1581CE5F25F82BEA00608782 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		1581CE6425F84C7300608782 /* EmptyCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCharacterListView.swift; sourceTree = "<group>"; };
-		1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWithDebounceController.swift; sourceTree = "<group>"; };
-		1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWithDebounceControllerDelegate.swift; sourceTree = "<group>"; };
+		1583F2EC260022EA0038CE81 /* DelayedSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedSearchController.swift; sourceTree = "<group>"; };
+		1583F30F26002D0A0038CE81 /* UISearchControllerDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchControllerDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		159E393324D0EBE000744AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		159E393524D0EBF500744AB4 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		159E393724D0ECDF00744AB4 /* R+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R+Extensions.swift"; sourceTree = "<group>"; };
@@ -425,13 +425,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1583F31426002D1F0038CE81 /* SearchWithDebounce */ = {
+		1583F31426002D1F0038CE81 /* DelayedSearch */ = {
 			isa = PBXGroup;
 			children = (
-				1583F2EC260022EA0038CE81 /* SearchWithDebounceController.swift */,
-				1583F30F26002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift */,
+				1583F2EC260022EA0038CE81 /* DelayedSearchController.swift */,
 			);
-			path = SearchWithDebounce;
+			path = DelayedSearch;
 			sourceTree = "<group>";
 		};
 		158C064524D0E96400E6A81A /* SupportFiles */ = {
@@ -457,6 +456,7 @@
 				155B772D24D1F6FB005DECC3 /* UIColor+Extensions.swift */,
 				15C86C4925F3FE4C0030022E /* UIFont+Extensions.swift */,
 				155B773124D21DE5005DECC3 /* UIImageView+Extensions.swift */,
+				1583F30F26002D0A0038CE81 /* UISearchControllerDelegate+Extensions.swift */,
 				155B772B24D1F688005DECC3 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -709,7 +709,7 @@
 		15FB0EBE24D6053800123270 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1583F31426002D1F0038CE81 /* SearchWithDebounce */,
+				1583F31426002D1F0038CE81 /* DelayedSearch */,
 				159E6B8F25EF10B000AE5260 /* ViewCodeProtocol.swift */,
 			);
 			path = Common;
@@ -1050,7 +1050,7 @@
 				15B6EA0124D0D640005F2CD2 /* SceneDelegate.swift in Sources */,
 				150266E625F6A3F0006D8557 /* UIHeartButton.swift in Sources */,
 				15ACB5C924D30A38002156D0 /* CharacterDetailsInteractor.swift in Sources */,
-				1583F2ED260022EA0038CE81 /* SearchWithDebounceController.swift in Sources */,
+				1583F2ED260022EA0038CE81 /* DelayedSearchController.swift in Sources */,
 				157A2E1F24D4A84600133F79 /* RealmDatabase.swift in Sources */,
 				155B772924D1D83C005DECC3 /* CharacterListRouter.swift in Sources */,
 				156B2F2424D10FAF00643FB6 /* Date+Extensions.swift in Sources */,
@@ -1089,7 +1089,7 @@
 				1518F10524D0F99C0020593B /* NetworkManager.swift in Sources */,
 				155D859D25D7688B00F861F7 /* RealmObject.swift in Sources */,
 				159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */,
-				1583F31026002D0A0038CE81 /* SearchWithDebounceControllerDelegate.swift in Sources */,
+				1583F31026002D0A0038CE81 /* UISearchControllerDelegate+Extensions.swift in Sources */,
 				155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */,
 				155B772324D1C314005DECC3 /* Thumbnail.swift in Sources */,
 				155B773524D2245B005DECC3 /* UICardView.swift in Sources */,

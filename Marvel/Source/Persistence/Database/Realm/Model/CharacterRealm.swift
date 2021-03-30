@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class CharacterRealm: RealmObject {
+class CharacterRealm: StorableObject {
     
     @objc dynamic var name: String = ""
     
@@ -20,8 +20,9 @@ class CharacterRealm: RealmObject {
     
     var character: Character {
         Character(
-            id: id, name: name,
-            description: description,
+            id: identifier,
+            name: name,
+            description: about,
             isFavorite: isFavorite,
             thumbnail: Thumbnail(
                 path: thumbnail?.path,

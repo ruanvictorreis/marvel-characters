@@ -18,6 +18,16 @@ class CharacterRealm: RealmObject {
     
     @objc dynamic var thumbnail: ThumbnailRealm?
     
+    var character: Character {
+        Character(
+            id: id, name: name,
+            description: description,
+            isFavorite: isFavorite,
+            thumbnail: Thumbnail(
+                path: thumbnail?.path,
+                extension: thumbnail?.extension))
+    }
+    
     convenience init(_ character: Character) {
         self.init(character.id)
         self.name = character.name

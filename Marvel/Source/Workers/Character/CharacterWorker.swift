@@ -67,7 +67,7 @@ class CharacterWorker: CharacterWorkerProtocol {
         
         switch result {
         case .success(let objects):
-            let characters = build(objects)
+            let characters = objects.map({ $0.character })
             return .success(characters)
         case .failure(let error):
             return .failure(error)
@@ -104,7 +104,7 @@ class CharacterWorker: CharacterWorkerProtocol {
         
         switch result {
         case .success(let objects):
-            let characters = build(objects)
+            let characters = objects.map({ $0.character })
             return .success(characters)
         case .failure(let error):
             return .failure(error)
@@ -124,20 +124,6 @@ class CharacterWorker: CharacterWorkerProtocol {
             case .failure(let error):
                 completation(.failure(error))
             }
-        }
-    }
-    
-    private func build(_ characters: [CharacterRealm]) -> [Character] {
-        characters.map { character in
-            Character(
-                id: character.id,
-                name: character.name,
-                description: character.about,
-                isFavorite: character.isFavorite,
-                thumbnail: Thumbnail(
-                    path: character.thumbnail?.path,
-                    extension: character.thumbnail?.extension)
-            )
         }
     }
 }

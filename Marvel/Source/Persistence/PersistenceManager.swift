@@ -39,7 +39,7 @@ class PersistenceManager: PersistenceManagerProtocol {
             return .success(results)
             
         } catch {
-            return .failure(.networkError)
+            return .failure(.databaseError)
         }
     }
     
@@ -49,7 +49,7 @@ class PersistenceManager: PersistenceManagerProtocol {
             return .success(results)
             
         } catch {
-            return .failure(.networkError)
+            return .failure(.databaseError)
         }
     }
     

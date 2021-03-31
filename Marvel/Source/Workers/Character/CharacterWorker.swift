@@ -33,12 +33,15 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     private let networkManager: NetworkManagerProtocol
     
+    private let characterWrapper: CharacterWrapperProtocol
+    
     private let persistenceManager: PersistenceManagerProtocol
     
     // MARK: - Inits
     
     init() {
         self.networkManager = NetworkManager()
+        self.characterWrapper = CharacterWrapper()
         self.persistenceManager = PersistenceManager()
     }
     
@@ -62,52 +65,32 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     func getFavorites() -> CharacterListResult {
-        let result: Result<[CharacterRealm], MarvelError>
-        result = persistenceManager.getList()
-        
-        switch result {
-        case .success(let objects):
-            let characters = build(objects)
-            return .success(characters)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResultForBusiness {
+            persistenceManager.getList()
         }
     }
     
     func saveFavorite(_ character: Character) -> CharacterResult {
-        let object = CharacterRealm(character)
-        let result = persistenceManager.save(object)
+        let object = characterWrapper
+            .makePersistenceObject(character)
         
-        switch result {
-        case .success:
-            return .success(character)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResultForBusiness {
+            persistenceManager.save(object)
         }
     }
     
     func deleteFavorite(_ character: Character) -> CharacterResult {
-        let object = CharacterRealm(character)
-        let result = persistenceManager.delete(object)
+        let object = characterWrapper
+            .makePersistenceObject(character)
         
-        switch result {
-        case .success:
-            return .success(character)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResultForBusiness {
+            persistenceManager.delete(object)
         }
     }
     
     func filterFavorites(byName name: String) -> CharacterListResult {
-        let result: Result<[CharacterRealm], MarvelError>
-        result = persistenceManager.filter(byName: name)
-        
-        switch result {
-        case .success(let objects):
-            let characters = build(objects)
-            return .success(characters)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResultForBusiness {
+            persistenceManager.filter(byName: name)
         }
     }
     
@@ -124,20 +107,6 @@ class CharacterWorker: CharacterWorkerProtocol {
             case .failure(let error):
                 completation(.failure(error))
             }
-        }
-    }
-    
-    private func build(_ characters: [CharacterRealm]) -> [Character] {
-        characters.map { character in
-            Character(
-                id: character.id,
-                name: character.name,
-                description: character.about,
-                isFavorite: character.isFavorite,
-                thumbnail: Thumbnail(
-                    path: character.thumbnail?.path,
-                    extension: character.thumbnail?.extension)
-            )
         }
     }
 }

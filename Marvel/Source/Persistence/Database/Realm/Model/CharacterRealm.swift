@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class CharacterRealm: RealmObject {
+class CharacterRealm: StorableObject {
     
     @objc dynamic var name: String = ""
     

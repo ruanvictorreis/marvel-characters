@@ -1,5 +1,5 @@
 //
-//  RealmObject.swift
+//  StorableObject.swift
 //  Marvel
 //
 //  Created by Ruan Reis on 12/02/21.
@@ -8,16 +8,16 @@
 
 import RealmSwift
 
-class RealmObject: Object {
+class StorableObject: Object {
     
-    @objc dynamic var id = 0
+    @objc dynamic var identifier = 0
     
     convenience init(_ id: Int) {
         self.init()
-        self.id = id
+        self.identifier = id
     }
     
     override class func primaryKey() -> String {
-        return "id"
+        return "identifier"
     }
 }

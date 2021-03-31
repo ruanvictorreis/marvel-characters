@@ -35,7 +35,7 @@ class CharacterWorkerSuccessMock: CharacterWorkerProtocol {
         return .success(results)
     }
     
-    func fetchList(offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(offset: Int, completation: @escaping CharactersCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterList")
             var response = try JSONDecoder().decode(
@@ -58,7 +58,7 @@ class CharacterWorkerSuccessMock: CharacterWorkerProtocol {
         }
     }
     
-    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharactersCompletation) {
         do {
             let data = FileReader.read(self, resource: "CharacterSearch")
             var response = try JSONDecoder().decode(
@@ -100,11 +100,11 @@ class CharacterWorkerFailureMock: CharacterWorkerProtocol {
         return .failure(.databaseError)
     }
     
-    func fetchList(offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(offset: Int, completation: @escaping CharactersCompletation) {
         completation(.failure(.networkError))
     }
     
-    func fetchList(searchText: String, offset: Int, completation: @escaping CharacterCompletation) {
+    func fetchList(searchText: String, offset: Int, completation: @escaping CharactersCompletation) {
         completation(.failure(.networkError))
     }
 }

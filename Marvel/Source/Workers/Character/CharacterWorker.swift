@@ -33,12 +33,15 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     private let networkManager: NetworkManagerProtocol
     
+    private let characterWrapper: CharacterWrapperProtocol
+    
     private let persistenceManager: PersistenceManagerProtocol
     
     // MARK: - Inits
     
     init() {
         self.networkManager = NetworkManager()
+        self.characterWrapper = CharacterWrapper()
         self.persistenceManager = PersistenceManager()
     }
     
@@ -62,52 +65,32 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     func getFavorites() -> CharacterListResult {
-        let result: Result<[CharacterRealm], MarvelError>
-        result = persistenceManager.getList()
-        
-        switch result {
-        case .success(let objects):
-            let characters = objects.map({ $0.character })
-            return .success(characters)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResult {
+            persistenceManager.getList()
         }
     }
     
     func saveFavorite(_ character: Character) -> CharacterResult {
-        let object = CharacterRealm(character)
-        let result = persistenceManager.save(object)
+        let object = characterWrapper
+            .makePersistenceObject(character)
         
-        switch result {
-        case .success:
-            return .success(character)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResult {
+            persistenceManager.save(object)
         }
     }
     
     func deleteFavorite(_ character: Character) -> CharacterResult {
-        let object = CharacterRealm(character)
-        let result = persistenceManager.delete(object)
+        let object = characterWrapper
+            .makePersistenceObject(character)
         
-        switch result {
-        case .success:
-            return .success(character)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResult {
+            persistenceManager.delete(object)
         }
     }
     
     func filterFavorites(byName name: String) -> CharacterListResult {
-        let result: Result<[CharacterRealm], MarvelError>
-        result = persistenceManager.filter(byName: name)
-        
-        switch result {
-        case .success(let objects):
-            let characters = objects.map({ $0.character })
-            return .success(characters)
-        case .failure(let error):
-            return .failure(error)
+        return characterWrapper.makeResult {
+            persistenceManager.filter(byName: name)
         }
     }
     

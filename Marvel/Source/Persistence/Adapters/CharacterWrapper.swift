@@ -12,9 +12,9 @@ protocol CharacterWrapperProtocol {
     
     func makePersistenceObject(_ character: Character) -> CharacterWrapper.PersistenceObject
     
-    func makeResult(_ procedure: () -> Result<CharacterWrapper.PersistenceObject, MarvelError>) -> CharacterResult
+    func makeResultForBusiness(_ procedure: () -> Result<CharacterWrapper.PersistenceObject, MarvelError>) -> CharacterResult
     
-    func makeResult(_ procedure: () -> Result<[CharacterWrapper.PersistenceObject], MarvelError>) -> CharacterListResult
+    func makeResultForBusiness(_ procedure: () -> Result<[CharacterWrapper.PersistenceObject], MarvelError>) -> CharacterListResult
 }
 
 class CharacterWrapper: CharacterWrapperProtocol {
@@ -33,7 +33,7 @@ class CharacterWrapper: CharacterWrapperProtocol {
         PersistenceObject(character)
     }
     
-    func makeResult(_ procedure: () -> PersistenceResult) -> CharacterResult {
+    func makeResultForBusiness(_ procedure: () -> PersistenceResult) -> CharacterResult {
         let result = procedure()
         
         switch result {
@@ -45,7 +45,7 @@ class CharacterWrapper: CharacterWrapperProtocol {
         }
     }
     
-    func makeResult(_ procedure: () -> PersistenceListResult) -> CharacterListResult {
+    func makeResultForBusiness(_ procedure: () -> PersistenceListResult) -> CharacterListResult {
         let result = procedure()
         
         switch result {

@@ -65,7 +65,7 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     func getFavorites() -> CharacterListResult {
-        return characterWrapper.makeResult {
+        return characterWrapper.makeResultForBusiness {
             persistenceManager.getList()
         }
     }
@@ -74,7 +74,7 @@ class CharacterWorker: CharacterWorkerProtocol {
         let object = characterWrapper
             .makePersistenceObject(character)
         
-        return characterWrapper.makeResult {
+        return characterWrapper.makeResultForBusiness {
             persistenceManager.save(object)
         }
     }
@@ -83,13 +83,13 @@ class CharacterWorker: CharacterWorkerProtocol {
         let object = characterWrapper
             .makePersistenceObject(character)
         
-        return characterWrapper.makeResult {
+        return characterWrapper.makeResultForBusiness {
             persistenceManager.delete(object)
         }
     }
     
     func filterFavorites(byName name: String) -> CharacterListResult {
-        return characterWrapper.makeResult {
+        return characterWrapper.makeResultForBusiness {
             persistenceManager.filter(byName: name)
         }
     }

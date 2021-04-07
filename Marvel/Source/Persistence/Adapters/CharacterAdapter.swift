@@ -6,11 +6,9 @@
 //  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
-typealias CharacterAdaptee = CharacterRealm
-
 class CharacterAdapter: Character {
     
-    init(_ character: CharacterAdaptee) {
+    init(_ character: Adaptee) {
         super.init(
             id: character.identifier,
             name: character.name,
@@ -24,4 +22,9 @@ class CharacterAdapter: Character {
     required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+}
+
+extension CharacterAdapter: AdapterProtocol {
+    
+    typealias Adaptee = CharacterRealm
 }

@@ -27,6 +27,8 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Internal Typealias
     
+    typealias CharacterAdaptee = CharacterAdapter.Adaptee
+    
     typealias PersistenceResult = Result<CharacterAdaptee, MarvelError>
     
     typealias PersistenceListResult = Result<[CharacterAdaptee], MarvelError>

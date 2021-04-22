@@ -36,7 +36,9 @@ class CharacterListView: UIView {
     
     var characterList: [CharacterViewModel] = []
     
-    unowned let delegate: (CharacterListViewDelegate & CharacterCellDelegate)
+    // MARK: - Private Properties
+    
+    private unowned let delegate: (CharacterListViewDelegate & CharacterCellDelegate)
     
     // MARK: - Inits
     

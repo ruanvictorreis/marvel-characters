@@ -65,9 +65,9 @@ class CharacterDetailsView: UIView {
         return ComicBookCarousel(frame: .zero)
     }()
     
-    // MARK: - Public Properties
+    // MARK: - Private Properties
     
-    unowned let delegate: CharacterDetailsViewDelegate
+    private unowned let delegate: CharacterDetailsViewDelegate
     
     // MARK: - Inits
     

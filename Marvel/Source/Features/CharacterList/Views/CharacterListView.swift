@@ -32,11 +32,9 @@ class CharacterListView: UIView {
         return collectionView
     }()
     
-    // MARK: - Public Properties
-    
-    var characterList: [CharacterViewModel] = []
-    
     // MARK: - Private Properties
+    
+    private var characterList: [CharacterViewModel] = []
     
     private unowned let delegate: (CharacterListViewDelegate & CharacterCellDelegate)
     

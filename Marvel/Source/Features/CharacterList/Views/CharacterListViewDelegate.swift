@@ -13,4 +13,6 @@ protocol CharacterListViewDelegate: AnyObject {
     func fetchCharacterNextPage()
     
     func selectCharacter(at index: Int)
+    
+    func setFavorite(at index: Int, value: Bool)
 }

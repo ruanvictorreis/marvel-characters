@@ -152,6 +152,10 @@ extension CharacterListViewController: CharacterListViewDelegate {
         interactor.select(at: index)
         router.proceedToCharacterDetails()
     }
+    
+    func setFavorite(at index: Int, value: Bool) {
+        interactor.setFavorite(at: index, value: value)
+    }
 }
 
 // MARK: - DelayedSearchControllerDelegate Extension
@@ -164,15 +168,5 @@ extension CharacterListViewController: DelayedSearchControllerDelegate {
     
     func didCancelSearch() {
         fetchCharacterList()
-    }
-}
-
-// MARK: - CharacterCellDelegate Extension
-
-extension CharacterListViewController: CharacterCellDelegate {
-    
-    func setFavorite(_ cell: UICollectionViewCell, value: Bool) {
-        guard let indexPath = characterListView.indexPath(for: cell) else { return }
-        interactor.setFavorite(at: indexPath.item, value: value)
     }
 }

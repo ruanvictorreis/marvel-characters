@@ -36,11 +36,11 @@ class CharacterListView: UIView {
     
     private var characterList: [CharacterViewModel] = []
     
-    private unowned let delegate: (CharacterListViewDelegate & CharacterCellDelegate)
+    private unowned let delegate: CharacterListViewDelegate
     
     // MARK: - Inits
     
-    init(_ delegate: (CharacterListViewDelegate & CharacterCellDelegate)) {
+    init(_ delegate: CharacterListViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
         setupUI()
@@ -54,18 +54,6 @@ class CharacterListView: UIView {
     
     func scrollUp() {
         collectionView.setContentOffset(.zero, animated: true)
-    }
-    
-    func indexPath(for cell: UICollectionViewCell) -> IndexPath? {
-        collectionView.indexPath(for: cell)
-    }
-    
-    func reloadCharacters(_ characters: [CharacterViewModel], animated: Bool) {
-        characterList = characters
-        
-        if animated {
-            collectionView.reloadData()
-        }
     }
     
     func insertCharacters(_ characters: [CharacterViewModel]) {
@@ -89,6 +77,14 @@ class CharacterListView: UIView {
         characterList.remove(at: indexPath.item)
         collectionView.deleteItems(at: [indexPath])
         setCollectionHidden(characterList.isEmpty)
+    }
+    
+    func reloadCharacters(_ characters: [CharacterViewModel], animated: Bool) {
+        characterList = characters
+        
+        if animated {
+            collectionView.reloadData()
+        }
     }
     
     // MARK: - Private Functions
@@ -150,8 +146,8 @@ extension CharacterListView: UICollectionViewDataSource {
                 withReuseIdentifier: identifier, for: indexPath) as? CharacterCell
         else { return UICollectionViewCell() }
         
+        cell.delegate = self
         cell.setup(characterList[indexPath.item])
-        cell.delegate = delegate
         
         return cell
     }
@@ -206,5 +202,15 @@ extension CharacterListView: ViewCodeProtocol {
         backgroundColor = .systemBackground
         CharacterCell.registerOn(collectionView)
         collectionView.accessibilityIdentifier = "characterCollection"
+    }
+}
+
+// MARK: - CharacterCellDelegate Extension
+
+extension CharacterListView: CharacterCellDelegate {
+    
+    func setFavorite(_ cell: UICollectionViewCell, value: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        delegate.setFavorite(at: indexPath.item, value: value)
     }
 }

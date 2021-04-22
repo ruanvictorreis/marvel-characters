@@ -29,7 +29,9 @@ class CharacterDetailsViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let characterDetailsView = CharacterDetailsView()
+    private lazy var characterDetailsView: CharacterDetailsView = {
+        return CharacterDetailsView(self)
+    }()
     
     // MARK: - View Lifecycle
     
@@ -39,7 +41,6 @@ class CharacterDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         interactor.fetchCharacterDetails()
     }
     
@@ -52,10 +53,6 @@ class CharacterDetailsViewController: UIViewController {
     
     private func setupNavigation() {
         navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    private func setupUI() {
-        characterDetailsView.delegate = self
     }
 }
 

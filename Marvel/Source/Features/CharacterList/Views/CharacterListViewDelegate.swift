@@ -10,8 +10,6 @@ import Foundation
 
 protocol CharacterListViewDelegate: AnyObject {
     
-    var characterList: [CharacterViewModel] { get }
-    
     func fetchCharacterNextPage()
     
     func selectCharacter(at index: Int)

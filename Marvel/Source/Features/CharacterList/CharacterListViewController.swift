@@ -30,17 +30,14 @@ class CharacterListViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let characterListView = CharacterListView()
-    
-    // MARK: - Public Properties
-    
-    var characterList: [CharacterViewModel] = []
+    private lazy var characterListView: CharacterListView = {
+        return CharacterListView(self)
+    }()
     
     // MARK: - View Lifecycle
     
     override func loadView() {
         self.view = characterListView
-        characterListView.delegate = self
     }
     
     override func viewDidLoad() {
@@ -124,38 +121,21 @@ class CharacterListViewController: UIViewController {
 extension CharacterListViewController: CharacterListViewControllerProtocol {
     
     func showCharacterList(_ viewModel: CharacterListViewModel) {
-        var indexPaths: [IndexPath] = []
-        let characters = viewModel.characters
-        
-        for index in characters.indices {
-            let item = IndexPath(item: index + (characterList.count), section: 0)
-            indexPaths.append(item)
-        }
-        
-        characterList.append(contentsOf: characters)
-        characterListView.insertItems(at: indexPaths)
-        
+        characterListView.insertCharacters(viewModel.characters)
         hideLoading()
-        characterListView.setCollectionHidden(characterList.isEmpty)
     }
     
     func reloadCharacters(_ viewModel: CharacterListViewModel, animated: Bool) {
-        characterList = viewModel.characters
-        
-        if animated {
-            characterListView.reload()
-        }
+        characterListView.reloadCharacters(
+            viewModel.characters, animated: animated)
     }
     
     func removeCharacter(at indexPath: IndexPath) {
-        characterList.remove(at: indexPath.item)
-        characterListView.deleteItems(at: [indexPath])
-        characterListView.setCollectionHidden(characterList.isEmpty)
+        characterListView.removeCharacter(at: indexPath)
     }
     
     func showCharacterListError(_ errorMessage: String) {
         hideLoading()
-        characterListView.setCollectionHidden(characterList.isEmpty)
         showMessage(title: R.Localizable.errorTitle(), message: errorMessage)
     }
 }

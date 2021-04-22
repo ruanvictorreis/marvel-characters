@@ -32,65 +32,74 @@ class CharacterListView: UIView {
         return collectionView
     }()
     
-    // MARK: - Public Properties
-    
-    weak var delegate: (CharacterListViewDelegate & CharacterCellDelegate)?
-    
     // MARK: - Private Properties
     
-    private var characterList: [CharacterViewModel] {
-        return delegate?.characterList ?? []
-    }
+    private var characterList: [CharacterViewModel] = []
+    
+    private unowned let delegate: CharacterListViewDelegate
     
     // MARK: - Inits
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(_ delegate: CharacterListViewDelegate) {
+        self.delegate = delegate
+        super.init(frame: .zero)
         setupUI()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupUI()
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public Functions
-    
-    func reload() {
-        collectionView.reloadData()
-    }
     
     func scrollUp() {
         collectionView.setContentOffset(.zero, animated: true)
     }
     
-    func setCollectionHidden(_ hidden: Bool) {
-        emptyListView.isHidden = !hidden
-        collectionView.isHidden = hidden
-    }
-    
-    func indexPath(for cell: UICollectionViewCell) -> IndexPath? {
-        collectionView.indexPath(for: cell)
-    }
-    
-    func insertItems(at indexPaths: [IndexPath]) {
+    func insertCharacters(_ characters: [CharacterViewModel]) {
+        var indexPaths: [IndexPath] = []
+        
+        for index in characters.indices {
+            let item = IndexPath(item: index + (characterList.count), section: 0)
+            indexPaths.append(item)
+        }
+        
+        characterList.append(contentsOf: characters)
+        
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: indexPaths)
         })
+        
+        setCollectionHidden(characterList.isEmpty)
     }
     
-    func deleteItems(at indexPaths: [IndexPath]) {
-        collectionView.deleteItems(at: indexPaths)
+    func removeCharacter(at indexPath: IndexPath) {
+        characterList.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+        setCollectionHidden(characterList.isEmpty)
+    }
+    
+    func reloadCharacters(_ characters: [CharacterViewModel], animated: Bool) {
+        characterList = characters
+        
+        if animated {
+            collectionView.reloadData()
+        }
     }
     
     // MARK: - Private Functions
     
     private func fetchCharacterNextPage() {
-        delegate?.fetchCharacterNextPage()
+        delegate.fetchCharacterNextPage()
     }
     
     private func selectCharacter(at index: Int) {
-        delegate?.selectCharacter(at: index)
+        delegate.selectCharacter(at: index)
+    }
+    
+    private func setCollectionHidden(_ hidden: Bool) {
+        emptyListView.isHidden = !hidden
+        collectionView.isHidden = hidden
     }
 }
 
@@ -137,8 +146,8 @@ extension CharacterListView: UICollectionViewDataSource {
                 withReuseIdentifier: identifier, for: indexPath) as? CharacterCell
         else { return UICollectionViewCell() }
         
+        cell.delegate = self
         cell.setup(characterList[indexPath.item])
-        cell.delegate = delegate
         
         return cell
     }
@@ -193,5 +202,15 @@ extension CharacterListView: ViewCodeProtocol {
         backgroundColor = .systemBackground
         CharacterCell.registerOn(collectionView)
         collectionView.accessibilityIdentifier = "characterCollection"
+    }
+}
+
+// MARK: - CharacterCellDelegate Extension
+
+extension CharacterListView: CharacterCellDelegate {
+    
+    func setFavorite(_ cell: UICollectionViewCell, value: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        delegate.setFavorite(at: indexPath.item, value: value)
     }
 }

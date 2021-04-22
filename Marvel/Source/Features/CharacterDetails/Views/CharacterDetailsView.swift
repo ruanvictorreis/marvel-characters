@@ -65,21 +65,21 @@ class CharacterDetailsView: UIView {
         return ComicBookCarousel(frame: .zero)
     }()
     
+    // MARK: - Private Properties
+    
+    private unowned let delegate: CharacterDetailsViewDelegate
+    
     // MARK: - Inits
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(_ delegate: CharacterDetailsViewDelegate) {
+        self.delegate = delegate
+        super.init(frame: .zero)
         setupUI()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupUI()
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Public Properties
-    
-    weak var delegate: CharacterDetailsViewDelegate?
     
     // MARK: - Public Functions
     
@@ -124,12 +124,12 @@ class CharacterDetailsView: UIView {
     @objc
     private func loveIt() {
         loveItButton.toggleIt()
-        delegate?.loveIt(loveItButton.isFilled)
+        delegate.loveIt(loveItButton.isFilled)
     }
     
     @objc
     private func close() {
-        delegate?.close()
+        delegate.close()
     }
 }
 

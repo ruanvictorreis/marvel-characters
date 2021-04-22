@@ -10,9 +10,9 @@ import Foundation
 
 protocol CharacterListViewDelegate: AnyObject {
     
-    var characterList: [CharacterViewModel] { get }
-    
     func fetchCharacterNextPage()
     
     func selectCharacter(at index: Int)
+    
+    func setFavorite(at index: Int, value: Bool)
 }

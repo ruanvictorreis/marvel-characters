@@ -25,17 +25,11 @@ protocol CharacterWorkerProtocol {
 
 class CharacterWorker: CharacterWorkerProtocol {
     
-    // MARK: - Internal Typealias
-    
-    typealias CharacterAdaptee = CharacterAdapter.Adaptee
-    
-    typealias PersistenceResult = Result<CharacterAdaptee, MarvelError>
-    
-    typealias PersistenceListResult = Result<[CharacterAdaptee], MarvelError>
-    
     // MARK: - Private Properties
     
     private let networkManager: NetworkManagerProtocol
+    
+    private let resultHandler: CharacterResultHandlerProtocol
     
     private let persistenceManager: PersistenceManagerProtocol
     
@@ -43,6 +37,7 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     init() {
         self.networkManager = NetworkManager()
+        self.resultHandler = CharacterResultHandler()
         self.persistenceManager = PersistenceManager()
     }
     
@@ -66,25 +61,25 @@ class CharacterWorker: CharacterWorkerProtocol {
     }
     
     func getFavorites() -> Result<[Character], MarvelError> {
-        let result: PersistenceListResult = persistenceManager.getList()
-        return makeResultForBusiness(result)
+        let result: Result<[CharacterAdaptee], MarvelError> = persistenceManager.getList()
+        return resultHandler.makeResultForBusiness(result)
     }
     
     func saveFavorite(_ character: Character) -> Result<Character, MarvelError> {
         let object = CharacterAdaptee(character)
         let result = persistenceManager.save(object)
-        return makeResultForBusiness(result)
+        return resultHandler.makeResultForBusiness(result)
     }
     
     func deleteFavorite(_ character: Character) -> Result<Character, MarvelError> {
         let object = CharacterAdaptee(character)
         let result = persistenceManager.delete(object)
-        return makeResultForBusiness(result)
+        return resultHandler.makeResultForBusiness(result)
     }
     
     func filterFavorites(byName name: String) -> Result<[Character], MarvelError> {
-        let result: PersistenceListResult = persistenceManager.filter(byName: name)
-        return makeResultForBusiness(result)
+        let result: Result<[CharacterAdaptee], MarvelError> = persistenceManager.filter(byName: name)
+        return resultHandler.makeResultForBusiness(result)
     }
     
     // MARK: - Private Functions
@@ -100,35 +95,5 @@ class CharacterWorker: CharacterWorkerProtocol {
                 completion(.failure(error))
             }
         }
-    }
-    
-    private func makeResultForBusiness(_ result: PersistenceResult) -> Result<Character, MarvelError> {
-        switch result {
-        case .success(let object):
-            let character = applyAdapter(object)
-            return .success(character)
-        case .failure(let error):
-            return .failure(error)
-        }
-    }
-    
-    private func makeResultForBusiness(_ result: PersistenceListResult) -> Result<[Character], MarvelError> {
-        switch result {
-        case .success(let objects):
-            let characters = applyAdapter(objects)
-            return .success(characters)
-        case .failure(let error):
-            return .failure(error)
-        }
-    }
-    
-    private func applyAdapter(_ objects: [CharacterAdaptee]) -> [Character] {
-        return objects.map { object in
-            applyAdapter(object)
-        }
-    }
-    
-    private func applyAdapter(_ object: CharacterAdaptee) -> Character {
-        return CharacterAdapter(object)
     }
 }

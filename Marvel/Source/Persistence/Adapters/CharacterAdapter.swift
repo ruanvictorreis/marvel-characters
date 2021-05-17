@@ -6,6 +6,8 @@
 //  Copyright © 2021 Ruan Reis. All rights reserved.
 //
 
+typealias CharacterAdaptee = CharacterAdapter.Adaptee
+
 class CharacterAdapter: Character {
     
     init(_ character: Adaptee) {

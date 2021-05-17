@@ -70,7 +70,7 @@ class CharacterDetailsInteractor: CharacterDetailsInteractorProtocol, CharacterD
         
         comickBookListWorker.fetchList(
             character: character.id,
-            completation: { [weak self] result in
+            completion: { [weak self] result in
                 switch result {
                 case .success(let response):
                     self?.didFetchComicBookList(response)

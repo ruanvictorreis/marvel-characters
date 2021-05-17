@@ -11,23 +11,23 @@ import Foundation
 
 class ComicBookWorkerSucessMock: ComicBookWorkerProtocol {
     
-    func fetchList(character: Int, completation: @escaping ComicBookCompletation) {
+    func fetchList(character: Int, completion: @escaping ComicBookCompletion) {
         do {
             let data = FileReader.read(self, resource: "ComicBookList")
             let response = try JSONDecoder().decode(
                 ComicBookListResponse.self,
                 from: data ?? Data())
             
-            completation(.success(response))
+            completion(.success(response))
         } catch {
-            completation(.failure(.networkError))
+            completion(.failure(.networkError))
         }
     }
 }
 
 class ComicBookWorkerFailureMock: ComicBookWorkerProtocol {
     
-    func fetchList(character: Int, completation: @escaping ComicBookCompletation) {
-        completation(.failure(.networkError))
+    func fetchList(character: Int, completion: @escaping ComicBookCompletion) {
+        completion(.failure(.networkError))
     }
 }

@@ -27,8 +27,6 @@
 		153EF68725D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EF68625D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift */; };
 		153EF69325D0336C0097A7F3 /* ComicBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153EF69125D0336C0097A7F3 /* ComicBookCell.swift */; };
 		154437B725FE5C21002733A2 /* SegmentedControlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154437B625FE5C21002733A2 /* SegmentedControlBuilder.swift */; };
-		155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771324D1AE5F005DECC3 /* SnakeCaseDecoder.swift */; };
-		155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771524D1B045005DECC3 /* DefaultDecoder.swift */; };
 		155B771A24D1B51F005DECC3 /* CharacterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771924D1B51F005DECC3 /* CharacterWorker.swift */; };
 		155B771D24D1B59C005DECC3 /* CharacterListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B771C24D1B59C005DECC3 /* CharacterListResponse.swift */; };
 		155B772124D1B9AD005DECC3 /* CharacterListResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B772024D1B9AD005DECC3 /* CharacterListResults.swift */; };
@@ -139,8 +137,6 @@
 		153EF68625D0311D0097A7F3 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		153EF69125D0336C0097A7F3 /* ComicBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBookCell.swift; sourceTree = "<group>"; };
 		154437B625FE5C21002733A2 /* SegmentedControlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlBuilder.swift; sourceTree = "<group>"; };
-		155B771324D1AE5F005DECC3 /* SnakeCaseDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCaseDecoder.swift; sourceTree = "<group>"; };
-		155B771524D1B045005DECC3 /* DefaultDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDecoder.swift; sourceTree = "<group>"; };
 		155B771924D1B51F005DECC3 /* CharacterWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterWorker.swift; sourceTree = "<group>"; };
 		155B771C24D1B59C005DECC3 /* CharacterListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListResponse.swift; sourceTree = "<group>"; };
 		155B772024D1B9AD005DECC3 /* CharacterListResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListResults.swift; sourceTree = "<group>"; };
@@ -265,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				15ACB5D024D35983002156D0 /* API */,
-				155B771224D1AD78005DECC3 /* Decoders */,
 				1500B73825CF925A0031A7B2 /* NetworkEncoding.swift */,
 				1500B73025CF8EB80031A7B2 /* MarvelError.swift */,
 				1500B74325CF95980031A7B2 /* NetworkHTTPMethod.swift */,
@@ -311,15 +306,6 @@
 				154437B625FE5C21002733A2 /* SegmentedControlBuilder.swift */,
 			);
 			path = Builders;
-			sourceTree = "<group>";
-		};
-		155B771224D1AD78005DECC3 /* Decoders */ = {
-			isa = PBXGroup;
-			children = (
-				155B771524D1B045005DECC3 /* DefaultDecoder.swift */,
-				155B771324D1AE5F005DECC3 /* SnakeCaseDecoder.swift */,
-			);
-			path = Decoders;
 			sourceTree = "<group>";
 		};
 		155B771724D1B4E5005DECC3 /* Workers */ = {
@@ -1098,14 +1084,12 @@
 				159E6B9025EF10B000AE5260 /* ViewCodeProtocol.swift in Sources */,
 				150266DB25F69972006D8557 /* UILoveItButton.swift in Sources */,
 				153DB56B25F8FF0100112D3B /* CharacterListViewDelegate.swift in Sources */,
-				155B771624D1B045005DECC3 /* DefaultDecoder.swift in Sources */,
 				15ACB5CB24D30A8C002156D0 /* CharacterDetailsPresenter.swift in Sources */,
 				15B6EA2424D0DD32005F2CD2 /* R.generated.swift in Sources */,
 				1518F10524D0F99C0020593B /* NetworkManager.swift in Sources */,
 				155D859D25D7688B00F861F7 /* StorableObject.swift in Sources */,
 				159E393824D0ECDF00744AB4 /* R+Extensions.swift in Sources */,
 				1583F31026002D0A0038CE81 /* DelayedSearchControllerDelegate.swift in Sources */,
-				155B771424D1AE5F005DECC3 /* SnakeCaseDecoder.swift in Sources */,
 				155B772324D1C314005DECC3 /* Thumbnail.swift in Sources */,
 				155B773524D2245B005DECC3 /* UICardView.swift in Sources */,
 				157A2E1324D4A17700133F79 /* CharacterRealm.swift in Sources */,

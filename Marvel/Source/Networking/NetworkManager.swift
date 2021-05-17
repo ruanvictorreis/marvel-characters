@@ -12,18 +12,15 @@ typealias NetworkResult<T: Decodable> = ((Result<T?, MarvelError>) -> Void)
 
 protocol NetworkManagerProtocol {
     
-    func request<T: Decodable>(_ data: NetworkRequest, decoder: DefaultDecoder<T>, completation:  @escaping NetworkResult<T>)
+    func request<T: Decodable>(_ data: NetworkRequest, completion:  @escaping NetworkResult<T>)
 }
 
 class NetworkManager: NetworkManagerProtocol {
     
-    // MARK: - Inits
-    
-    init() {}
-    
     // MARK: - Public Functions
     
-    func request<T: Decodable>(_ data: NetworkRequest, decoder: DefaultDecoder<T>, completation: @escaping NetworkResult<T>) {
+    func request<T: Decodable>(_ data: NetworkRequest, completion: @escaping NetworkResult<T>) {
+        let decoder = JSONDecoder()
         let request = AF.request(
             data.url,
             method: data.method.httpMethod,
@@ -34,10 +31,11 @@ class NetworkManager: NetworkManagerProtocol {
             switch response.result {
             case .success:
                 let data = response.data ?? Data()
-                let result = decoder.decode(from: data)
-                completation(.success(result))
+                let result = try? decoder
+                    .decode(T.self, from: data)
+                completion(.success(result))
             case .failure:
-                completation(.failure(.networkError))
+                completion(.failure(.networkError))
             }
         }
     }

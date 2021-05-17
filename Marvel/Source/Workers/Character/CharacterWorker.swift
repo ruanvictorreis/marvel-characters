@@ -6,7 +6,7 @@
 //  Copyright © 2020 Ruan Reis. All rights reserved.
 //
 
-typealias CharactersCompletation = (Result<CharacterListResponse?, MarvelError>) -> Void
+typealias CharactersCompletion = (Result<CharacterListResponse?, MarvelError>) -> Void
 
 protocol CharacterWorkerProtocol {
     
@@ -18,9 +18,9 @@ protocol CharacterWorkerProtocol {
     
     func filterFavorites(byName name: String) -> Result<[Character], MarvelError>
     
-    func fetchList(offset: Int, completation: @escaping CharactersCompletation)
+    func fetchList(offset: Int, completion: @escaping CharactersCompletion)
     
-    func fetchList(searchText: String, offset: Int, completation: @escaping CharactersCompletation)
+    func fetchList(searchText: String, offset: Int, completion: @escaping CharactersCompletion)
 }
 
 class CharacterWorker: CharacterWorkerProtocol {
@@ -48,21 +48,21 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Public Functions
     
-    func fetchList(offset: Int, completation: @escaping CharactersCompletation) {
+    func fetchList(offset: Int, completion: @escaping CharactersCompletion) {
         let url = MarvelURLBuilder(resource: .characters)
             .set(offset: offset)
             .build()
         
-        requestCharacters(url, completation: completation)
+        requestCharacters(url, completion: completion)
     }
     
-    func fetchList(searchText: String, offset: Int, completation: @escaping CharactersCompletation) {
+    func fetchList(searchText: String, offset: Int, completion: @escaping CharactersCompletion) {
         let url = MarvelURLBuilder(resource: .characters)
             .set(nameStartsWith: searchText)
             .set(offset: offset)
             .build()
         
-        requestCharacters(url, completation: completation)
+        requestCharacters(url, completion: completion)
     }
     
     func getFavorites() -> Result<[Character], MarvelError> {
@@ -89,16 +89,15 @@ class CharacterWorker: CharacterWorkerProtocol {
     
     // MARK: - Private Functions
     
-    private func requestCharacters(_ url: String, completation: @escaping CharactersCompletation) {
-        let decoder = DefaultDecoder(for: CharacterListResponse.self)
+    private func requestCharacters(_ url: String, completion: @escaping CharactersCompletion) {
         let request = NetworkRequest(url: url, method: .get, encoding: .JSON)
         
-        networkManager.request(request, decoder: decoder) { result in
+        networkManager.request(request) { (result: Result<CharacterListResponse?, MarvelError>) in
             switch result {
             case .success(let response):
-                completation(.success(response))
+                completion(.success(response))
             case .failure(let error):
-                completation(.failure(error))
+                completion(.failure(error))
             }
         }
     }

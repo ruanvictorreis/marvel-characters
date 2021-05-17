@@ -146,7 +146,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
     private func fetchCharacters() {
         characterWorker.fetchList(
             offset: currentPage * pageCount,
-            completation: { [weak self] result in
+            completion: { [weak self] result in
                 switch result {
                 case .success(let response):
                     self?.didFetchCharacters(response)
@@ -160,7 +160,7 @@ class CharacterListInteractor: CharacterListInteractorProtocol {
         characterWorker.fetchList(
             searchText: searchText,
             offset: currentPage * pageCount,
-            completation: { [weak self] result in
+            completion: { [weak self] result in
                 switch result {
                 case .success(let response):
                     self?.didFetchCharacters(response)
